@@ -1,0 +1,54 @@
+<ng-container *ngIf="mode.compact">
+    <div class="card card-v">
+        <a class="dblock"><img class="h-1 hm-3 image-fill" src="https://via.placeholder.com/300"></a>
+        <div class="box">
+            <h4 class="f6 weight-bold"><a routerLink="/projects/34">Lorem Ipsum</a></h4>
+            <div class="small light">Sub line
+            </div>
+        </div>
+        <div class="corner">
+            <div class="box">
+                <button title="Link" class="btn"><i class="liga">plus</i></button>
+            </div>
+        </div>
+    </div>
+    <div class="card box valign-center">
+        <a class="dblock c-2 rspace">
+            <img class="image-cover image-circle" src="https://via.placeholder.com/50?text=RM"></a>
+        <div>
+            <span class="f6 weight-normal">Extra information</span>
+        </div>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="!mode.compact">
+
+    <div class="card">
+        <div class="image">
+            <a><img class="h-2 hm-2 image-fill" src="https://via.placeholder.com/300"></a>
+        </div>
+        <div class="content hspace card card-v c-7">
+            <h4 class="f6 weight-bold"><a routerLink="/projects/34">Lorem Ipsum</a></h4>
+            <div class="small light">Sub line
+            </div>
+
+            <div class="tail-v">
+
+                <a class="dinline" style="width: 20px">
+                    <img class="box-shadow-shallow image-cover image-circle" src="https://via.placeholder.com/50?text=RM"></a>
+                <a class="dinline" style="width: 20px; margin-left: -5px">
+                    <img class="box-shadow-shallow image-cover image-circle" src="https://via.placeholder.com/50?text=RM"></a>
+            </div>
+
+        </div>
+        <div class="extra c-2">
+            <div class="f6 weight-normal">Extra information</div>
+            <div class="lighter smaller">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet doloremque dolorum vitae aliquid accusamus ipsa quo alias voluptatem quam,
+            </div>
+        </div>
+        <div class="tail">
+            <button title="Link" class="btn"><i class="liga">plus</i></button>
+        </div>
+    </div>
+</ng-container>

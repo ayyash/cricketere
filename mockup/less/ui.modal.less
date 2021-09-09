@@ -1,0 +1,153 @@
+.modal-close {
+    // .getIcon(@icon-close);
+}
+.modal-content {
+    // this is per project to allow for changing viewport in mobiles
+    max-height: calc((var(--vh, 1vh) * 100));
+}
+.modal-half-screen .modal-content {
+    min-height: calc((var(--vh, 1vh) * 100));
+    max-height: calc((var(--vh, 1vh) * 100));
+
+}
+
+
+// FIXME: this is a chrome bug:
+.modal-header {
+    min-height: 58px;
+}
+
+// TODO: move this to shut
+.modal-body {
+    padding-top: 0;
+}
+
+
+.modal-drawer {
+    // animate model window
+
+    .modal-dialog {
+        margin: 0;
+        max-width: 50vw;
+    }
+    .modal-content {
+        min-height: calc((var(--vh, 1vh) * 100));
+
+    }
+}
+
+.modal-split {
+    // allow for upper
+    .modal-upper, .modal-lower {
+        padding: @modal-padding;
+    }
+    .modal-upper {
+        padding: 0 @modal-padding @modal-padding;
+
+    }
+    .modal-body {
+        padding: 0;
+    }
+}
+
+
+.modal-details {
+    .modal-title {
+        .f4();
+    }
+    .modal-body {
+        padding: 0;
+    }
+
+    .modal-dialog {
+        margin: 0;
+        margin-left: auto;
+    }
+    .modal-content {
+        min-height: calc((var(--vh, 1vh) * 100));
+
+    }
+
+}
+.modal-details {
+    &:extend(.modal-split all);
+
+    .modal-upper {
+        background-color: @grey-light;
+    }
+    .modal-header {
+        background-color: @grey-light;
+    }
+    .modal-dialog {
+        max-width: 90vw;
+    }
+}
+
+.modal-edit {
+    .modal-dialog {
+        max-width: 80vw;
+    }
+}
+
+
+.modal-bottom-sheet .modal-dialog {
+
+    height: calc(var(--vh, 1vh) * 100); // fix mobile auto hiding address bar
+}
+
+.modal-footer {
+    background-color: @grey-light;
+}
+
+.modal-message {
+    &:extend(.modal-split all);
+
+    .modal-upper {
+        background-color: @grey-dark;
+        color: @white;
+    }
+    .modal-header {
+        background-color: @grey-dark;
+        color: @white;
+    }
+    .modal-close {
+        color: @white;
+    }
+
+    .modal-dialog {
+        height: 100vh;
+        // align-items: flex-end;
+        margin: 0;
+    }
+    .modal-content {
+
+
+        height: 100%;
+    }
+    .modal-title {
+        font-weight: @font-weight;
+        .text-nowrap();
+    }
+
+
+}
+
+.media(md, {
+    .modal-details {
+        .modal-dialog {
+            max-width: 50vw;
+        }
+    }
+    .modal-edit {
+        .modal-dialog {
+            max-width: 30vw;
+        }
+    }
+    .modal-message {
+        .modal-dialog {
+            margin: auto;
+            padding-top: @space;
+        }
+    }
+
+});

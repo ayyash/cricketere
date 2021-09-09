@@ -1,0 +1,45 @@
+@import (reference) "sh._vars.less";
+// be careful with template styles, u can only import vars and functions, not actual css
+// also remmeber this does not get mirrored into rtl
+
+.httploader {
+    height: 4px;
+	position: fixed;
+	top: 0;
+	left:0;
+    z-index: 5101;
+    overflow: hidden;
+	right: 0;
+  }
+
+  .line{
+    position:absolute;
+    opacity: 0.4;
+    background: fade(@linkcolor, 50);
+    width:100%;
+    height:5px;
+  }
+
+  .subline{
+    position:absolute;
+    background:@linkcolor;
+    height:5px;
+  }
+  .inc {
+
+    animation: increase 5s  infinite;
+  }
+  .dec {
+    animation: decrease 5s 1s infinite;
+  }
+
+  @keyframes increase {
+   from { left: -5%; width: 5%; }
+   to { left: 130%; width: 100%;}
+  }
+  @keyframes decrease {
+   from { left: -80%; width: 80%; }
+   to { left: 110%; width: 10%;}
+  }
+
+

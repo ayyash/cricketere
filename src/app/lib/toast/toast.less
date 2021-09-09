@@ -1,0 +1,95 @@
+@import (reference) 'sh._vars.less';
+// @import (reference) "css.Icon.less";
+// @import (reference) "ui.icons.less";
+@import (reference) "utilities/media.less";
+
+.closelabel {
+    color: @white;
+    margin: @space;
+    margin-left: @halfspace;
+   display: block;
+    cursor: pointer;
+}
+
+// VER_NEXT: rely on transition instead of animation, animation is quite unreliable and cannot be customized
+.toast {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+
+    background-color: @grey-dark;
+    color: @white;
+    position: fixed;
+    bottom: @space;
+    left: @space;
+    right: @space;
+    font-size: 90%;
+
+    z-index: 5100;
+
+    div {
+        margin: @space;
+        margin-right: @halfspace;
+        flex-basis: 100%;
+    }
+    animation: gbox-in 0.2s ease-in-out;
+    box-shadow: @shadows[deep];
+
+    // stop doin gthis
+
+    &.error {
+        background-color: @red;
+    }
+    &.success {
+        background-color: @green;
+    }
+    &.fordone {
+
+        background-color: @green;
+        font-weight: 500;
+        text-transform: uppercase;
+    }
+    &.app {
+        // for refresh, install, and subscibe banners
+        .btn {
+            background-color: transparent;
+            color: @yellow;
+        }
+    }
+
+    &.out {
+        // animate out
+        animation-name: gbox-out;
+        animation-duration: 1s;
+        animation-timing-function: ease-in-out;
+    }
+}
+
+
+@keyframes gbox-in {
+    0% {
+        bottom: -100%;
+        opacity: 0;
+    }
+    100% {
+        bottom: 0;
+        opacity: 1;
+    }
+}
+
+@keyframes gbox-out {
+    0% {
+        bottom: 0;
+        opacity: 1;
+    }
+    90% {
+        bottom: -100%;
+        opacity: 0;
+    }
+}
+
+.media(md, {
+    .toast {
+        max-width: 50vw;
+    }
+});

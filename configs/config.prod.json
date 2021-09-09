@@ -1,0 +1,14 @@
+{
+
+    "API": {
+        "apiRoot": "https://vaes.azurewebsites.net/v1/api"
+    },
+    "Auth": {
+        "userAccessKey": "cricketere.user"
+    },
+    "Cache": {
+        "Timeout": 1,
+        "Key": "cricketere.cache",
+        "ResetKey": "cricketere.20190208"
+    }
+}

@@ -1,0 +1,47 @@
+{
+    "name": "cricketere",
+    "version": "1.0.0",
+    "license": "MIT",
+    "scripts": {
+        "start": "ng serve  --port 5100 --watch  --live-reload false",
+        "start:rtl": "ng serve  --configuration=rtl --port 5100 --watch  --live-reload false",
+        "start:prod": "ng serve --configuration=production --port 5100 --watch  --live-reload false",
+        "build": "ng build --configuration=production && gulp generateIndex",
+        "build:server": "ng run cricketereweb:server --configuration=production",
+        "build:ssr": "gulp critical && npm run build && npm run build:server && gulp locales",
+        "install": "npm install --save @angular/animations @angular/cdk @angular/common @angular/compiler @angular/core @angular/forms @angular/material @angular/platform-browser @angular/platform-browser-dynamic @angular/platform-server @angular/router @nguniversal/common @nguniversal/express-engine rxjs shut zone.js tslib",
+        "install:dev": "npm install --save-dev @angular-devkit/build-angular @angular/cli @angular/compiler-cli @types/express  @types/node gulp @sekrab/gulpbin rxjs-tslint",
+        "install:all": "npm run install && npm run install:dev",
+        "network": "ng serve --configuration=network --port 5200 --watch  --live-reload false --host 192.168.0.100 --disableHostCheck ",
+        "network:secure": "ng serve --ssl --ssl-key c:\\d\\zjunk\\cricketere\\localhost.key  --ssl-cert c:\\d\\zjunk\\cricketere\\localhost.crt --configuration=network --port 5200 --watch  --live-reload false --host 192.168.0.100 --disableHostCheck "
+    },
+    "dependencies": {
+        "@angular/animations": "^12.2.4",
+        "@angular/cdk": "^12.2.4",
+        "@angular/common": "^12.2.4",
+        "@angular/compiler": "^12.2.4",
+        "@angular/core": "^12.2.4",
+        "@angular/forms": "^12.2.4",
+        "@angular/material": "^12.2.4",
+        "@angular/platform-browser": "^12.2.4",
+        "@angular/platform-browser-dynamic": "^12.2.4",
+        "@angular/platform-server": "^12.2.4",
+        "@angular/router": "^12.2.4",
+        "@nguniversal/common": "^12.1.0",
+        "@nguniversal/express-engine": "^12.1.0",
+        "rxjs": "^7.3.0",
+        "shut": "^6.2.4",
+        "tslib": "^2.3.1",
+        "zone.js": "^0.11.4"
+    },
+    "devDependencies": {
+        "@angular-devkit/build-angular": "^12.2.4",
+        "@angular/cli": "^12.2.4",
+        "@angular/compiler-cli": "^12.2.4",
+        "@sekrab/gulpbin": "^1.1.6",
+        "@types/express": "^4.17.13",
+        "@types/node": "^16.7.10",
+        "gulp": "^4.0.2",
+        "rxjs-tslint": "^0.1.8"
+    }
+}

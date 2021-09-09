@@ -1,0 +1,240 @@
+{
+    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+    "version": 1,
+    "newProjectRoot": "projects",
+    "defaultProject": "cricketereweb",
+    "projects": {
+        "cricketereweb": {
+            "root": "",
+            "sourceRoot": "src",
+            "schematics": {
+                "@schematics/angular:component": {
+                    "style": "less"
+                },
+                "@schematics/angular:application": {
+                    "strict": true
+                }
+            },
+            "projectType": "application",
+            "prefix": "cr",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:browser",
+                    "options": {
+                        "outputPath": "dist",
+                        "resourcesOutputPath": "assets/",
+                        "allowedCommonJsDependencies": [
+                            "express"
+                        ],
+                        "index": "src/placeholder.html",
+                        "main": "src/main.ts",
+                        "polyfills": "src/polyfills.ts",
+                        "tsConfig": "tsconfig.app.json",
+                        "styles": [
+                            {
+                                "input": "src/assets/css/cricketere.critical.css",
+                                "bundleName": "critical",
+                                "inject": false
+                            },
+                            {
+                                "input": "src/assets/css/cricketere.critical.rtl.css",
+                                "bundleName": "criticalrtl",
+                                "inject": false
+                            },
+                            {
+                                "input": "src/assets/css/cricketere.general.css",
+                                "bundleName": "styles",
+                                "inject": false
+                            },
+                            {
+                                "input": "src/assets/css/cricketere.general.rtl.css",
+                                "bundleName": "stylesrtl",
+                                "inject": false
+                            }
+                        ],
+                        "stylePreprocessorOptions": {
+                            "includePaths": [
+                                "./mockup/less",
+                                "./node_modules/shut/src/less"
+                            ]
+                        },
+                        "scripts": [
+                            {
+                                "input": "src/assets/js/cricketere.js",
+                                "bundleName": "cricketere"
+                            }
+                        ],
+                        "assets": [
+                            {
+                                "glob": "favicon.ico",
+                                "input": "src",
+                                "output": "/"
+                            },
+                            {
+                                "glob": "images/**/*",
+                                "input": "src/assets",
+                                "output": "/assets"
+                            },
+                            {
+                                "glob": "*.js",
+                                "input": "src/locale",
+                                "output": "/locale"
+                            },
+                            {
+                                "glob": "*.json",
+                                "input": "configs",
+                                "output": "/localdata"
+                            }
+                        ]
+                    },
+                    "configurations": {
+                        "serve": {
+                            "buildOptimizer": false,
+                            "optimization": false,
+                            "vendorChunk": true,
+                            "extractLicenses": false,
+                            "sourceMap": true,
+                            "namedChunks": true,
+                            "commonChunk": true,
+                            "aot": true,
+                            "index": "src/index.dev.html",
+                            "styles": [
+                                {
+                                    "input": "src/assets/css/cricketere.css",
+                                    "bundleName": "styles"
+                                }
+                            ]
+                        },
+                        "serveProduction": {
+                            "namedChunks": true,
+                            "vendorChunk": false,
+                            "commonChunk": true,
+                            "optimization": false,
+                            "aot": true,
+                            "sourceMap": true,
+                            "index": "src/index.dev.prod.html",
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.prod.ts"
+                                }
+                            ]
+                        },
+                        "serveRtl": {
+                            "buildOptimizer": false,
+                            "optimization": false,
+                            "vendorChunk": true,
+                            "extractLicenses": false,
+                            "sourceMap": true,
+                            "namedChunks": true,
+                            "commonChunk": true,
+                            "aot": true,
+                            "index": "src/index.rtl.html",
+                            "styles": [
+                                {
+                                    "input": "src/assets/css/cricketere.rtl.css",
+                                    "bundleName": "styles"
+                                }
+                            ]
+                        },
+                        "production": {
+                            "outputPath": "./host/client/",
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.prod.ts"
+                                }
+                            ],
+                            "optimization": {
+                                "scripts": true,
+                                "fonts": false,
+                                "styles": true
+                            },
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "namedChunks": false,
+                            "aot": true,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "deleteOutputPath": true,
+                            "assets": [
+                                {
+                                    "glob": "favicon.ico",
+                                    "input": "src",
+                                    "output": "/"
+                                },
+                                {
+                                    "glob": "images/**/*",
+                                    "input": "src/assets",
+                                    "output": "/assets"
+                                },
+                                {
+                                    "glob": "*.js",
+                                    "input": "src/locale",
+                                    "output": "/locale"
+                                }
+                            ],
+                            "budgets": [
+                                {
+                                    "type": "initial",
+                                    "maximumWarning": "500kb",
+                                    "maximumError": "5mb"
+                                },
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "2kb",
+                                    "maximumError": "4mb"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "serve": {
+                    "builder": "@angular-devkit/build-angular:dev-server",
+                    "options": {
+                        "browserTarget": "cricketereweb:build:serve"
+                    },
+                    "configurations": {
+                        "production": {
+                            "browserTarget": "cricketereweb:build:serveProduction"
+                        },
+                        "rtl": {
+                            "browserTarget": "cricketereweb:build:serveRtl"
+                        }
+                    }
+                },
+				"server": {
+                    "builder": "@angular-devkit/build-angular:server",
+                    "options": {
+                        "outputPath": "./host/server",
+                        "main": "server.ts",
+                        "tsConfig": "tsconfig.server.json",
+                        "stylePreprocessorOptions": {
+                            "includePaths": [
+                                "./mockup/less",
+                                "./node_modules/shut/src/less"
+                            ]
+                        }
+                    },
+                    "configurations": {
+                        "production": {
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.prod.ts"
+                                }
+                            ],
+                            "optimization": false,
+                            "outputHashing": "media",
+                            "sourceMap": false,
+                            "namedChunks": true,
+                            "extractLicenses": true,
+                            "deleteOutputPath": false
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

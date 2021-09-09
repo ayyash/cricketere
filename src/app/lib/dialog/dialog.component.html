@@ -1,0 +1,26 @@
+<!-- // VER_NEXT: future, remove all explicit functionality to directive so that i can extract the html into the project -->
+<div class="dr-modal-overlay {{dialogMode}}" (click)="onOverlayClicked($event)">
+    <div
+        class="dialog modal dr-window"
+        role="dialog"
+        aria-labelledby="modaltitle"
+        tabindex="-1"
+
+    >
+        <div class="modal-dialog" (click)="onDialogClicked($event)">
+            <div class="modal-content dr-content">
+                <div class="modal-header">
+                    <h6 class="f6 modal-title dr-title" id="modaltitle">{{ dialogTitle }}</h6>
+                    <button type="button" class="modal-close dr-close" aria-label="Close" (click)="close()"></button>
+                </div>
+
+                <div class="modal-body"><ng-template dialog-content></ng-template></div>
+
+                <!-- <div class="modal-footer" *ngIf="withFooter">
+                <button type="button" class="btn btn-secondary closeoverlay">Close</button>
+            </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+

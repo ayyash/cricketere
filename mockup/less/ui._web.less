@@ -1,0 +1,63 @@
+body {
+    background-color: @body-bg;
+}
+
+// adding definition for extra spaces
+// .spaced and .doublespaced are defined already
+
+.halfspaced,
+ul.halfspacedout>li,
+ol.halfspacedout>li {
+    margin-block-end: @halfspace;
+}
+
+.extraspaced,
+ul.extraspacedout>li,
+ol.extraspacedout>li {
+    margin-block-end: @extraspace;
+}
+
+.logotext {
+    font-weight: normal;
+    font-size: 300%;
+    color: @brand-color;
+    line-height: 1;
+}
+
+// signle layout special treatment
+.singlelayout {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+
+    background-color: @white;
+
+    .container {
+        width: 100%;
+    }
+
+
+    footer {
+        margin-top: auto;
+    }
+}
+
+.media(md, {
+
+        .singlelayout {
+            max-width: @screen[xs];
+            margin: 0 auto;
+            background-color: transparent;
+
+            .container {
+                background-color: @white;
+            }
+            footer {
+                margin-top: 0;
+            }
+        }
+    }
+
+);

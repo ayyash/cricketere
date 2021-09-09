@@ -1,0 +1,81 @@
+<form [formGroup]="projectForm" novalidate [class.was-validated]="forceValidation">
+    <fieldset>
+        <legend>Legend of fields</legend>
+        <div class="spaced">
+            <md-input placeholder="Name">
+                <input type="text" id="name" class="md-input w100" mdinput formControlName="name"
+                    [required]="true" />
+                <div class="md-help-text" helptext>help text</div>
+
+            </md-input>
+        </div>
+        <div class="spaced">
+            <md-input placeholder="List">
+                <select formControlName="list" mdinput class="md-input w100" [required]="true"
+                    [compareWith]="compareFn">
+                    <option *ngFor="let item of [1,2,3,4]" [ngValue]="item">{{ item }}</option>
+                </select>
+            </md-input>
+        </div>
+        <div class="spaced">
+            <md-input placeholder="Fieldname">
+                <input type="text" id="fieldname" class="md-input w100" mdinput formControlName="fieldname"
+                    [required]="false" />
+            </md-input>
+        </div>
+
+        <div class="spaced">
+            <md-input placeholder="Email">
+                <input type="email" id="email" class="md-input w100" mdinput mdpattern="email" formControlName="email"
+                    [required]="false" />
+            </md-input>
+        </div>
+
+        <div class="spaced">
+            <md-input placeholder="Number">
+                <input type="number" id="number" class="md-input w100" mdinput  formControlName="number"
+                    [required]="false" />
+            </md-input>
+        </div>
+
+        <div class="spaced">
+            <md-input placeholder="Minimum Length">
+                <input type="text" id="minlength" class="md-input w100" mdinput minlength="5" formControlName="minlength"
+                    [required]="false"  />
+            </md-input>
+        </div>
+        <div class="spaced">
+            <md-input placeholder="Maximum Length">
+                <input type="text" id="maxlength" class="md-input w100" mdinput maxlength="3" formControlName="maxlength"
+                    [required]="false"  />
+            </md-input>
+        </div>
+        <div class="spaced">
+            <md-input placeholder="Minimim Value">
+                <input type="number" id="minvalue" class="md-input w100" mdinput min="4" formControlName="minvalue"
+                    [required]="false"  />
+            </md-input>
+        </div>
+        <div class="spaced">
+            <md-input placeholder="Maximum Value">
+                <input type="number" id="maxvalue" class="md-input w100" mdinput max="3" formControlName="maxvalue"
+                    [required]="false"  />
+            </md-input>
+        </div>
+        <div class="spaced">
+            <md-input placeholder="Phone">
+                <input type="text" id="phone" class="md-input w100" mdinput mdpattern="phone" formControlName="phone"
+                    [required]="false"  />
+            </md-input>
+        </div>
+        <div class="spaced">
+            <md-input placeholder="Range">
+                <input type="number" id="range" class="md-input w100" mdinput mdtype="range" min="3" max="10" formControlName="range"
+                    [required]="false"  />
+            </md-input>
+        </div>
+
+    </fieldset>
+
+    <div class="breath"><button class="btn-rev" type="submit" (click)="saveProject()">Save</button></div>
+</form>

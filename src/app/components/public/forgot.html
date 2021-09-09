@@ -1,0 +1,16 @@
+<form [formGroup]="forgotForm" (submit)="submit()" novalidate [class.was-validated]="forceValidation">
+
+        <h5 class="f4 spaced">{{'Request a new password' | translate:'ForgotTitle'}}</h5>
+        <div class="breath">
+            <md-input placeholder="{{'Your email' | translate:'YourEmail'}}">
+                <input type="email" class="md-input w100" mdinput mdpattern="email" id="email" formControlName="email"
+                    [required]="true" />
+            </md-input>
+        </div>
+
+
+        <div class="spaced">
+            <button type="submit" class="btn-rev">{{ "Remind me" | translate:'RemindMe'}}</button>
+        </div>
+
+</form>

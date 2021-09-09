@@ -1,0 +1,153 @@
+.md-field {
+    position: relative;
+    display: block;
+    margin-bottom: @doublespace;
+    margin-top: @halfspace;
+}
+.star-field-wrapper {
+    position: relative;
+    display: block;
+}
+
+.md-help-text {
+    color: @text-light;
+    .smaller;
+    display: block;
+    text-align: right;
+    margin-top: @halfspace;
+    float: right;
+}
+
+.md-input {
+    border: 1px solid @grey;
+    border-radius: @input-radius;
+    -webkit-appearance: none;
+    outline: none;
+    padding: @input-padding;
+    box-shadow: 0 2px 5px 0 rgba(@text-light, 0.15);
+
+    background-color: @white;
+    caret-color: @linkcolor;
+    &:focus {
+        outline: none;
+        border-color: @linkcolor;
+        box-shadow: 0 0 0 1px @linkcolor;
+    }
+    &:focus ~ .md-asterisk {
+        display: none;
+    }
+    &:focus ~ .md-label {
+        color: @linkcolor;
+    }
+}
+select.md-input {
+    padding-left: 7px;
+}
+
+// label is sensitive to its environent
+.md-label {
+    position: absolute;
+    top: 11px;
+    left: 9px;
+    color: @text-light;
+    cursor: auto;
+    transform-origin: left;
+    transition: transform 0.3s;
+    padding: 0 3px;
+
+    // taking care of non white bgs
+    background-image: linear-gradient(0deg, @white 62%, transparent 62%);
+}
+.md-field.focused {
+    .md-label {
+        // transform: translateY(142%);
+        transform: translateY(-100%) scale(0.8);
+    }
+}
+
+.md-field.notempty {
+    .md-label {
+        // transform: translateY(142%);
+        transform: translateY(-100%) scale(.8);
+
+    }
+}
+
+span.md-asterisk {
+    display: inline-block;
+    position: absolute;
+    right: 5px;
+    top: 0;
+    z-index: 2;
+    &:after {
+        display: block;
+        content: '*';
+        font-size: 1.6rem;
+        font-weight: @font-weight-bold;
+        line-height: 1.5;
+        color: @red;
+    }
+}
+
+.md-invalid-feedback {
+    background-color: @red;
+    color: @white;
+    .smaller();
+    position: absolute;
+    bottom: -1.6rem;
+    left: 1rem;
+    z-index: 100;
+    border-radius: @radius;
+    padding: 5px 8px;
+    white-space: nowrap;
+
+    display: none;
+}
+
+input.md-input:-webkit-autofill,
+input.md-input:-webkit-autofill:hover,
+input.md-input:-webkit-autofill:focus {
+    // -webkit-text-fill-color: @yellow-dark;
+    -webkit-box-shadow: 0 2px 5px 0 rgba(@text-light, 0.15),
+        0 0 0px 1000px @white inset;
+    border: 1px solid #e1e1e1;
+}
+
+.ng-validate-force-show() {
+    box-shadow+: inset 0 0 0 1px @red;
+    border-color: @red;
+    ~ .md-invalid-feedback,
+    ~ .md-invalid-feedback--custom {
+        display: block;
+    }
+    ~ .md-label {
+        color: @red;
+    }
+}
+
+.ng-validation(@selector) {
+    @{selector}.ng-dirty.ng-touched.ng-invalid {
+        .ng-validate-force-show();
+    }
+}
+
+.ng-forcevalidation(@selector) {
+    @{selector}.ng-invalid {
+        .ng-validate-force-show();
+    }
+}
+
+.ng-validation(input);
+.ng-validation(textarea);
+.ng-validation(select);
+.was-validated {
+    .ng-forcevalidation(input);
+    .ng-forcevalidation(textarea);
+    .ng-forcevalidation(select);
+}
+
+// allow custommd to show invalid the minute it is called, no touched and dirty because
+// there is no input associated
+.custommd.ng-invalid {
+    .ng-validate-force-show();
+}

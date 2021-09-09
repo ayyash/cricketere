@@ -1,0 +1,211 @@
+﻿// for angular components styles, keep reference of vars
+@import (reference) "sh.vars.less";
+
+// following are shut framework vars, uncomment to override
+
+
+// @font-url: "../fonts/";
+
+// @rem-enabled: true;
+// @enable-rounded: true;
+@enable-icon-font: true;
+// @enable-res-fonts: true; // allow scaling of fonts to change for smaller screens
+
+@icon-font: "cr";
+// @icon-inline-margin: @space;
+
+// // fonts
+// @fontface: -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI", "Fira Sans",
+//     "Helvetica Neue", Arial, sans-serif;
+// @fontface-ar: "Traditional Arabic", tahoma, sans-serif;
+
+@htmlFontBase: 62.5%;
+@resFontFactor: 1.2; // how much to reduce font sizes for smaller screens
+
+@font-size: 1.45; // in rem
+// @font-size-print: 80%;
+
+// // do not remove these, they are explicitly used
+// @font-multiplier: {
+//     larger: 3.5;
+//     large: 3;
+//     f1: 2.5;
+//     f2: 2;
+//     f3: 1.75;
+//     f4: 1.5;
+//     f5: 1.25;
+//     f6: 1;
+//     small: 0.9;
+//     smaller: 0.8;
+// };
+// @custom-font-multiplier: {
+// };
+
+// @font-weight-light: 300;
+// @font-weight: 400;
+// @font-weight-medium: 500;
+// @font-weight-bold: 700;
+
+// // colors
+// @text-color: #202020; // basic text color
+// @text-light: #959595;
+// @text-lighter: #cccccc;
+// @text-dark: #202020;
+
+// @white: #fff; // the inverse of basic text
+// @grey-light: #f3f3f3;
+// @grey: #999999;
+// @grey-dark: #263238;
+// @black: #000;
+
+// @linkcolor: #0c00b4;
+// @visitedcolor: #800080;
+// @altcolor: #048bca; // alt link color
+
+// // main colors only, the rest should be by user definition
+// @red: #f31109;
+// @yellow: #ffc400;
+// @green: #57b347;
+// @blue: #0097a7;
+
+// @red-light: lighten(@red, 20%);
+// @yellow-light: lighten(@yellow, 20%);
+// @green-light: lighten(@green, 20%);
+// @blue-light: lighten(@blue, 20%);
+
+// @colors: {
+//     red: @red;
+//     yellow: @yellow;
+//     green: @green;
+//     blue: @blue;
+//     red-light: @red-light;
+//     yellow-light: @yellow-light;
+//     green-light: @green-light;
+//     blue-light: @blue-light;
+//     light: @text-light;
+//     lighter: @text-lighter;
+//     grey: @grey;
+//     grey-light: @grey-light;
+//     grey-dark: @grey-dark;
+// };
+
+// @front-color-contrast: 43%;
+
+// // table colors
+// @table-th-border-color: @grey-dark;
+// @table-td-border-color: @grey-light;
+// @table-ft-border-color: @grey-dark;
+// @table-spaced: @space;
+// @table-half-spaced: @halfspace;
+// @table-striped-bg-color: @grey-light;
+// @table-th-bg-color: @grey-light;
+
+// @lightLabel: 15; // light labels on hover of a link to how much percentage
+
+// // buttons
+// @btn-diff-bg: @red;
+// @rowlist-border: @grey-light;
+// @b-color: @grey; // bthin and bthick
+// @b-dark-color: @grey-dark; // bthin-dark and bthick-dark
+
+// // shadows
+
+// @shadows: {
+//     none: none;
+//     shallow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+//     normal: 0 2px 2px 0 rgba(@black, 0.14), 0 1px 5px 0 rgba(@black, 0.12),
+//         0 3px 1px -2px rgba(@black, 0.2);
+// // keep "deep": referecnced in css.Modal
+//     deep: 0 6px 10px 0 rgba(@black, 0.14), 0 1px 18px 0 rgba(@black, 0.12),
+//         0 3px 5px -1px rgba(@black, 0.3);
+//     deeper: 0 16px 24px 2px rgba(@black, 0.14),
+//         0 6px 30px 5px rgba(@black, 0.12), 0 8px 10px -5px rgba(@black, 0.3);
+// };
+
+// // breakpoints
+// @screen: {
+//     xs: 480px; // special cases
+//     sm: 600px; // mobile interface, KEEP
+//     md: 720px; // tablet portrait, KEEP
+//     lg: 960px; // the usual desktop and landscape tablets, KEEP
+//     xl: 1280px; // more popular small desktop, KEEP
+//     ds: 1600px; // up above desktop
+// };
+
+// // content padding
+// @mainpad: @space;
+
+// // rounded corder radius
+// @radius: 3px;
+// // for forms @radius-input: 0;
+
+// /* spacing and layout */
+@space: 1.6rem;
+// @halfspace: @space * 0.5;
+// @extraspace: @space * 1.5;
+// @doublespace: @space * 2;
+
+// @box-border: 1px; // for white boxes
+// @box-padding: 1rem;
+// @list-spacing: 0.7rem; // lists spacing (multiplied by two for padding and margin)
+// @label-padding: 0.25rem 0.8rem;
+// @label-radius: @radius;
+
+// @button-padding-h: 1.6rem;
+// @button-padding-v: 1.2rem;
+// @button-sm-padding: 0.8rem;
+
+// // form specific
+// @input-radius: @radius;
+@input-padding: @halfspace;
+
+// @wrapper: 12; // columns
+// @grid-column-height: 60px;
+
+// // modals
+// @modal-bg: fade(@black, 60);
+// @modal-zindex: 1040; // overlay is -10
+// @modal-margin: @space;
+// @modal-padding: @halfspace;
+// @modal-md-width: 700px;
+// @modal-scrollbar-width: 5px;
+
+// @trans-func: cubic-bezier(0.4, 0, 0.2, 1); // basic most used animation
+
+// :root {
+//     --sh-fontface: @fontface;
+//     --sh-fontface-ar: @fontface-ar;
+//     --sh-font-size: @font-size;
+//     --sh-font-weight-light: @font-weight-light;
+//     --sh-font-weight: @font-weight;
+//     --sh-font-weight-bold: @font-weight-bold;
+//     --sh-text-color: @text-color;
+//     --sh-text-light: @text-light;
+//     --sh-text-lighter: @text-lighter;
+//     --sh-text-dark: @text-dark;
+//     --sh-white: @white;
+//     --sh-grey-light: @grey-light;
+//     --sh-grey: @grey;
+//     --sh-grey-dark: @grey-dark;
+//     --sh-black: @black;
+//     --sh-linkcolor: @linkcolor;
+//     --sh-visitedcolor: @visitedcolor;
+//     --sh-altcolor: @altcolor;
+//     --sh-red: @red;
+//     --sh-yellow: @yellow;
+//     --sh-green: @green;
+//     --sh-blue: @blue;
+//     --sh-red-light: @red-light;
+//     --sh-yellow-light: @yellow-light;
+//     --sh-green-light: @green-light;
+//     --sh-blue-light: @blue-light;
+//     --sh-space: @space;
+//     --sh-rowlist-border: @rowlist-border;
+//     --sh-b-color: @b-color;
+//     --sh-b-dark-color: @b-dark-color;
+// }
+
+
+// site vars
+@body-bg: #f6f6f6;
+@brand-color: #ff043a;

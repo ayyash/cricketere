@@ -1,0 +1,58 @@
+
+<div class="spaced">
+
+    <!-- TODO: create icons for reach  -->
+
+    <button class="btn-social btn-cam w100 halfspaced">
+        <img src="assets/images/iGoogle.svg" alt="Google">
+        {{'Sign in with Google' | translate:'SinginGoogle'}}</button>
+    <button class="btn-social btn-cam w100 halfspaced">
+        <img src="assets/images/iMS.svg" alt="Microsoft">
+        {{'Sign in with Microsoft' | translate:'SinginMicrosoft'}}</button>
+    <button class="btn-social btn-cam w100 halfspaced">
+        <img src="assets/images/iFacebook.svg" alt="Facebook">
+        {{'Sign in with Facebook' | translate:'SinginFacebook'}}</button>
+    <button class="btn-social btn-cam w100 halfspaced">
+        <img src="assets/images/iTwitter.svg" alt="Twitter">
+        {{'Sign in with Twitter' | translate:'SinginTwitter'}}</button>
+</div>
+
+<div class="txt-c small light spaced">{{'OR' | translate:'OR'}}</div>
+
+<form [formGroup]="loginForm" (submit)="login()" novalidate [class.was-validated]="forceValidation">
+
+    <div class="spaced">
+        <md-input placeholder="{{'Email' | translate:'Email'}}" [static]="true">
+
+            <input type="email" mdpattern="email" id="username" class="md-input w100" mdinput formControlName="username"
+                [required]="true" />
+        </md-input>
+
+    </div>
+    <div class="spaced">
+        <md-input placeholder="{{'Password' | translate:'Password'}}" [static]="true">
+
+            <input type="password" id="password" name="current-password" autofocus autocomplete="current-password"
+                class="md-input w100" mdinput [required]="true" formControlName="password" />
+        </md-input>
+    </div>
+    <div class="spaced">
+        <!-- keep for errors  -->
+
+    </div>
+
+    <div class="spaced">
+
+        <button type="submit" class="btn-rev w100">{{'Sign in' | translate:'SignIn'}}</button>
+    </div>
+
+
+</form>
+
+
+
+<div class="spaced bthin"></div>
+<div class="spaced row-spaced">
+    <a routerLink="/forgot">{{'Forgot password?' | translate:'ForgotPassword'}}</a>
+    <a>Sign up for an account</a>
+</div>

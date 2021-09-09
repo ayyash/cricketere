@@ -1,0 +1,60 @@
+/* CRITICAL BEGIN */
+
+// for the purpose of displaying sub routes in the page
+.partial-page {
+    width: 100%;
+    // width: calc(100vw - (100vw - 100%)); withouth the scollbar
+    height: 100vh;
+    background-color: fade(@black, 60);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: @modal-zindex - 20; // to allow modal to appear on top of it
+    display: flex;
+    align-items: center;
+}
+.partial-page-content {
+    background-color: @white;
+
+    height: 90vh;
+    width: 90vw;
+
+    overflow: hidden;
+    position: relative;
+    pointer-events: auto;
+    outline: 0;
+
+    display: flex;
+    flex-direction: column;
+
+    .partial-page-close {
+        position: absolute;
+        z-index: @modal-zindex - 15;
+        top: 0;
+        right: 0;
+        .symbol {
+            padding: @space;
+        }
+    }
+}
+.partial-page-header {
+    padding: @modal-padding;
+    min-height: 58px;
+
+}
+.partial-page-title {
+    padding-right: @doublespace;
+}
+.partial-page-body {
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    .scroll(5px);
+    position: relative;
+    flex: 1 1 auto;
+    padding: @modal-padding;
+}
+.partial-page-map {
+    height: 100%;
+}
+.media(md, {.partial-page-content {width: 100%;}});
+/* CRITICAL END */

@@ -1,0 +1,14 @@
+{
+
+    "API": {
+        "apiRoot": "http://localhost:50007/api"
+    },
+    "Auth": {
+        "userAccessKey": "cricketere.user"
+    },
+    "Cache": {
+        "Timeout": 1,
+        "Key": "cricketere.cache",
+        "ResetKey": "cricketere.20190208"
+    }
+}
