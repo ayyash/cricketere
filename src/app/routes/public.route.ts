@@ -1,26 +1,27 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '../core/shared.module';
 import { Routes, RouterModule } from '@angular/router';
-import * as CoreComponents from '../core/components';
-
-
+import { PublicForgotComponent } from '../components/public/forgot.component';
+import { PublicHomeComponent } from '../components/public/home.component';
+import { PublicLoginComponent } from '../components/public/login.component';
+// **gulpimport**
 
 const routes: Routes = [
     {
         path: '',
-        component: CoreComponents.PublicHomeComponent,
+        component: PublicHomeComponent,
         data: {
             title: 'SITE_NAME'
         }
     }
     , {
         path: 'login',
-        component: CoreComponents.PublicLoginComponent
+        component: PublicLoginComponent
     }
 
     , {
         path: 'forgot',
-        component: CoreComponents.PublicForgotComponent
+        component: PublicForgotComponent
     }
 
     // **gulproute**
@@ -32,9 +33,9 @@ const routes: Routes = [
         RouterModule.forChild(routes)
     ],
     declarations: [
-        CoreComponents.PublicHomeComponent
-        , CoreComponents.PublicLoginComponent
-        , CoreComponents.PublicForgotComponent
+        PublicHomeComponent
+        , PublicLoginComponent
+        , PublicForgotComponent
         // **gulpcomponent**
     ]
 })

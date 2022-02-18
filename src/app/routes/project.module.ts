@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '../core/shared.module';
 import { RouterModule } from '@angular/router';
-import * as CoreComponents from '../core/components';
+import { ProjectCardPartialComponent } from '../components/project/card.partial';
+import { ProjectFormPartialComponent } from '../components/project/form.partial';
+// **gulpimport**
 
 @NgModule({
     imports: [
@@ -9,13 +11,13 @@ import * as CoreComponents from '../core/components';
         RouterModule
     ],
     declarations: [
-        CoreComponents.ProjectCardPartialComponent
-        , CoreComponents.ProjectFormPartialComponent
+        ProjectCardPartialComponent
+        , ProjectFormPartialComponent
         // **gulpcomponent**
     ],
     exports: [
-        CoreComponents.ProjectCardPartialComponent
-        , CoreComponents.ProjectFormPartialComponent
+        ProjectCardPartialComponent
+        , ProjectFormPartialComponent
         // **gulpcomponent**
     ]
 })

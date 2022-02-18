@@ -28,8 +28,8 @@ export class AuthInfo implements IAuthInfo {
         const _expiresat = Date.now() + (auth.expiresIn * 1000);
 
         return new AuthInfo(
-            User.NewInstance(auth.payload),
-            auth.access_token,
+            User.NewInstance(auth.user),
+            auth.accessToken,
             _expiresat
         );
     }
@@ -38,7 +38,7 @@ export class AuthInfo implements IAuthInfo {
     public static PrepAccessToken(username: string, password: string): any {
         // prepare the body of request login data
         return {
-            username: username, // this is an email
+            email: username, // this is an email
             password: password
         };
     }

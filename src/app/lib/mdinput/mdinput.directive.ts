@@ -41,7 +41,6 @@ export class MdInputDirective implements OnInit, Validator {
     blur$: Observable<any> = this._blur.asObservable();
 
     private updateError() {
-        _attn(this.formControl.errors);
         if (this.formControl.errors) {
             const key = Object.keys(this.formControl.errors)[0];
             // TODO: roll bock message
@@ -141,7 +140,6 @@ export class MdInputDirective implements OnInit, Validator {
             this.errorText = _message;
 
             if (validator) {
-                _attn(validator);
                 return validator;
             }
 

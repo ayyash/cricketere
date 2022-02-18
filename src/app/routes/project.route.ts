@@ -1,27 +1,31 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '../core/shared.module';
 import { Routes, RouterModule } from '@angular/router';
-import * as CoreComponents from '../core/components';
 import { ProjectModule } from './project.module';
+import { ProjectCreateComponent } from '../components/project/create.component';
+import { ProjectEditComponent } from '../components/project/edit.component';
+import { ProjectListComponent } from '../components/project/list.component';
+import { ProjectViewComponent } from '../components/project/view.component';
+// **gulpimport**
 
 const routes: Routes = [
     {
         path: '',
-        component: CoreComponents.ProjectListComponent
+        component: ProjectListComponent
     }
     , {
         path: 'create',
-        component: CoreComponents.ProjectCreateComponent
+        component: ProjectCreateComponent
     }
 
     , {
         path: 'edit/:id',
-        component: CoreComponents.ProjectEditComponent
+        component: ProjectEditComponent
     }
 
     , {
         path: ':id',
-        component: CoreComponents.ProjectViewComponent
+        component: ProjectViewComponent
     }
 
 
@@ -35,10 +39,10 @@ const routes: Routes = [
         RouterModule.forChild(routes)
     ],
     declarations: [
-        CoreComponents.ProjectListComponent
-        , CoreComponents.ProjectViewComponent
-        , CoreComponents.ProjectCreateComponent
-        , CoreComponents.ProjectEditComponent
+        ProjectListComponent
+        , ProjectViewComponent
+        , ProjectCreateComponent
+        , ProjectEditComponent
         // **gulpcomponent**
     ]
 })

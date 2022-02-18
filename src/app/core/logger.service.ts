@@ -47,7 +47,7 @@ Observable.prototype.catchProjectError = function(message: string, methodName: s
                         uiError.code = 'PAGE_NOT_FOUND';
 
                         break;
-                    case 401: // this is invalid access token, retry this one ony
+                    // case 401: // this is invalid access token, retry this one ony
                     case 403: // this is invalid authorization, this is a deadend
                         uiError.code = 'UNAUTHORIZED';
                         break;

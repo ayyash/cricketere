@@ -3,9 +3,9 @@
     "version": "1.0.0",
     "license": "MIT",
     "scripts": {
-        "start": "ng serve  --port 5100 --watch  --live-reload false",
-        "start:rtl": "ng serve  --configuration=rtl --port 5100 --watch  --live-reload false",
-        "start:prod": "ng serve --configuration=production --port 5100 --watch  --live-reload false",
+        "start": "ng serve  --port 4100 --watch  --live-reload false",
+        "start:rtl": "ng serve  --configuration=rtl --port 4100 --watch  --live-reload false",
+        "start:prod": "ng serve --configuration=production --port 4100 --watch  --live-reload false",
         "build": "ng build --configuration=production && gulp generateIndex",
         "build:server": "ng run cricketereweb:server --configuration=production",
         "build:ssr": "gulp critical && npm run build && npm run build:server && gulp locales",
