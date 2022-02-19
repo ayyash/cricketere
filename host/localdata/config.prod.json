@@ -1,5 +1,5 @@
 {
-
+    "isServed": true,
     "API": {
         "apiRoot": "http://localhost:50007/api"
     },

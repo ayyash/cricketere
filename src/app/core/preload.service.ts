@@ -2,9 +2,8 @@ import { Injectable } from '@angular/core';
 import { PreloadingStrategy, Route } from '@angular/router';
 import { Observable, of, timer } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
-import { Platform } from '@angular/cdk/platform';
+import { Platform } from '../lib/platform.service';
 
-// TODO: add server platform
 @Injectable({
     providedIn: 'root'
 })

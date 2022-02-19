@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ICachedStorage, ConfigService } from '../core/services';
-import { Platform } from '@angular/cdk/platform';
 import { skipWhile, take } from 'rxjs/operators';
+import { Platform } from '../lib/platform.service';
 
 @Injectable({ providedIn: 'root' })
 export class LocalStorageService {

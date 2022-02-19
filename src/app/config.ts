@@ -2,6 +2,7 @@ import { environment } from '../environments/environment';
 
 
 export const Config = {
+    isServed: false,
     Basic: {
         language: resources.language,
         country: resources.country,

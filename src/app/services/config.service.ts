@@ -5,7 +5,7 @@ import { map, catchError } from 'rxjs/operators';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { IConfig } from '../core/services';
 
-
+// FIXME: VER_NEXT: this needs to change to drop the http call and make the config available on load
 @Injectable({
     providedIn: 'root'
 })
@@ -36,7 +36,6 @@ export class ConfigService {
         ConfigService._config = _config;
 
 
-
         return _config;
     }
 
@@ -44,11 +43,12 @@ export class ConfigService {
         @Optional() @Inject('localConfig') protected localConfig: IConfig,
         private injector: Injector) {
         this._http = this.injector.get(HttpClient);
+        _seqlog('config construct');
     }
 
     loadAppConfig(): Observable<boolean> {
         // too much typing
-
+        _seqlog('config load');
         // WATCH: on server, retrieve from local file injected from server
         if (this.localConfig) {
 
@@ -58,13 +58,15 @@ export class ConfigService {
             return of(true);
         }
 
+
         return this._http
             .get(this._getUrl)
             .pipe(
                 map(response => {
                     const config = ConfigService.NewInstance(<any>response);
-
+                    config.isServed = true;
                     this.config.next(config);
+                    _seqlog('config next');
                     return true;
                 }),
                 catchError(error => {

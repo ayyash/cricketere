@@ -1,5 +1,5 @@
 {
-
+    "isServed": true,
     "API": {
         "apiRoot": "https://vaes.azurewebsites.net/v1/api"
     },

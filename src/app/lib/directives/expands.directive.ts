@@ -5,7 +5,6 @@ import {
 } from '@angular/core';
 
 export interface IExpandsOptions {
-    guts: string;
     src: string;
     active: boolean;
     togglecss: string;
@@ -31,7 +30,6 @@ export class ExpandsDirective implements OnDestroy, AfterViewInit {
     @Output() onLoad = new EventEmitter();
 
     private defaultOptions: IExpandsOptions = {
-        guts: '.guts',
         src: '.h',
         showsrc: '.showexpands',
         hidesrc: '.hideexpands',
@@ -62,8 +60,9 @@ export class ExpandsDirective implements OnDestroy, AfterViewInit {
 
     @HostListener('click', ['$event.target'])
     onClick(target: HTMLElement): void {
-
-        if (target.matches(this._options.src)) {
+        // WATCH: new condition, if the src contains the target
+        // this means there can only be one src, watch for it
+        if (target.matches(this._options.src) || this.element.querySelector(this._options.src)?.contains(target)) {
             // toggle
             this._options.isvisible ? this.hide() : this.show();
         }

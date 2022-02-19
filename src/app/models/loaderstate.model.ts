@@ -7,6 +7,8 @@ export enum EnumLoaderSource {
 
 export interface ILoaderState {
     show: boolean;
-    source?: EnumLoaderSource;
+    source?: EnumLoaderSource | null;
+    id?: string;
+    url?: string | null;
 }
 

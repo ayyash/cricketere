@@ -5,15 +5,13 @@ import {
     Injector,
     Type,
     EmbeddedViewRef,
-    ComponentRef,
-    Inject
-} from '@angular/core';
+    ComponentRef} from '@angular/core';
 import { DialogModule } from './dialog.module';
 import { DialogComponent } from './dialog.component';
 import { DialogInjector } from './dialog-injector';
 import { DialogConfig } from './dialog-config';
 import { DialogRef } from './dialog-ref';
-import { DOCUMENT } from '@angular/common';
+import { Platform } from '../platform.service';
 
 
 @Injectable({
@@ -26,7 +24,7 @@ export class DialogService {
         private componentFactoryResolver: ComponentFactoryResolver,
         private appRef: ApplicationRef,
         private injector: Injector,
-        @Inject(DOCUMENT) private doc: Document,
+        private platform: Platform
     ) {}
 
     public open(componentType: Type<any>, config: DialogConfig) {
@@ -56,7 +54,7 @@ export class DialogService {
 
         const domElem = (componentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
 
-        this.doc.body.appendChild(domElem);
+        this.platform.doc.body.appendChild(domElem);
 
         const sub = dialogRef.afterClosed.subscribe(() => {
             this.removeDialogComponentFromBody(componentRef);

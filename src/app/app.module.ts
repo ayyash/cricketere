@@ -17,7 +17,7 @@ import { SingleLayoutComponent } from './components/layouts/single.component';
         SingleLayoutComponent,
         ErrorComponent],
     imports: [
-        BrowserModule.withServerTransition({ appId: 'cricketereServer' }),
+        BrowserModule.withServerTransition({ appId: 'crsr' }),
         TransferHttpCacheModule,
         SharedModule,
         AppRoutingModule,

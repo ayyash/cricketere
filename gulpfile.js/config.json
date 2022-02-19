@@ -17,10 +17,6 @@
         {
             "name": "ar",
             "isRtl": true
-        },
-        {
-            "name": "tr",
-            "isRtl": false
         }
     ],
     "browserslist": [

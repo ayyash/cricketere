@@ -13,7 +13,7 @@ const config = require('./config.json');
 
 
 // or bring them all in
-const gulpBin = require('@sekrab/gulpbin')(config);
+const gulpBin = require('sekrab-gulpbin')(config);
 
 
 Object.keys(gulpBin).forEach(i => {

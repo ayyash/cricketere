@@ -4,7 +4,7 @@ var rootPath = path.normalize(__dirname + '/../');
 // use this for different keys on server if any
 // ssr and urlbased used to switch between different flavors of cricketere server
 
-const languages = ['en', 'ar', 'tr']; // populate languages supported, for ssr and urlbased
+const languages = ['en', 'ar']; // populate languages supported, for ssr and urlbased
 module.exports = {
     local: {
         name: 'local',

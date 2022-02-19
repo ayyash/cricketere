@@ -3,34 +3,34 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { clone } from '../core/common';
 import { IState } from '../core/services';
 
-export interface IStateService<T> {
-    stateList$: Observable<T[]>;
-    appendList(items: T[], dbCount?: number): void;
-    emptyList(): void;
-    resetCount(): void;
-
-    // TODO: the rest
-}
-
-
-
-export class StateService<T extends IState> implements IStateService<T> {
+export class StateService<T extends IState>  {
 
     protected stateList: BehaviorSubject<T[]> = new BehaviorSubject([]);
-    stateList$: Observable<T[]> = this.stateList.asObservable().debug('List', 'State');
+    stateList$: Observable<T[]> = this.stateList.asObservable();
 
     protected stateItem: BehaviorSubject<T | null> = new BehaviorSubject(null);
-    stateItem$: Observable<T | null> = this.stateItem.asObservable().debug('Item', 'State');
+    stateItem$: Observable<T | null> = this.stateItem.asObservable();
 
     protected dbCount: BehaviorSubject<number> = new BehaviorSubject(0);
     dbCount$: Observable<number> = this.dbCount.asObservable().debug('DbCount', 'State');
 
 
-    constructor() {
-        // _attn(this, 'what is instantiated');
+    constructor(level?: string) {
+        _seqlog('state construct');
+        if (!level) {
+            // default debug
+            this.stateItem$ = this.stateItem$.debug('Item', 'State');
+        }
+        if (level === 'DEBUG') {
+            // default dont
+            this.stateList$ = this.stateList$.debug('List', 'State');
+
+        }
+
     }
 
 
+    // STATE LIST
     appendList(items: T[], dbcount?: number) {
         // update current list
         const currentList = this.currentList.concat(items);
@@ -63,12 +63,12 @@ export class StateService<T extends IState> implements IStateService<T> {
     }
 
     // return ready observable
-    GetList(items: T[]): Observable<T[]> {
+    SetList(items: T[]): Observable<T[]> {
         this.loadList(items);
         return this.stateList$;
     }
 
-    loadList(items: T[]) {
+    private loadList(items: T[]) {
         this.stateList.next(items);
     }
 
@@ -100,26 +100,6 @@ export class StateService<T extends IState> implements IStateService<T> {
         this.updateDbCount(false);
     }
 
-    // for state of a single item (using in edit pops)
-    get currentItem(): T | null{
-
-        return this.stateItem.getValue();
-    }
-
-    // return ready observable
-    GetItem(item: T): Observable<T | null> {
-        this.loadItem(item);
-        return this.stateItem$;
-    }
-
-    // those two are the same!
-    loadItem(item: T) {
-        this.stateItem.next(item);
-    }
-
-    editSingleItem(item: T): void {
-        this.stateItem.next(clone(item));
-    }
 
 
     private updateDbCount(dir: boolean): void {
@@ -130,4 +110,35 @@ export class StateService<T extends IState> implements IStateService<T> {
         this.dbCount.next(count);
 
     }
+    // END STATE LIST
+
+
+
+    // STATE ITEM
+    get currentItem(): T | null {
+
+        return this.stateItem.getValue();
+    }
+
+    // return ready observable
+    SetState(item: T): Observable<T | null> {
+        this.loadItem(item);
+        return this.stateItem$;
+    }
+
+    loadItem(item: T) {
+        this.stateItem.next(item);
+    }
+
+    UpdateState(item: Partial<T>): void {
+        // extend the item first
+        const newItem = {...this.currentItem,...clone(item)};
+        this.stateItem.next(newItem);
+    }
+
+    RemoveState(): void {
+
+        this.stateItem.next(null);
+    }
+
 }

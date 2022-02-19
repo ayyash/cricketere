@@ -6,6 +6,7 @@
 /out-tsc
 /fontfiles
 /_gulpfile.js
+/.angular
 
 # dependencies
 /node_modules
