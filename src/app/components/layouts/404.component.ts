@@ -10,6 +10,7 @@ export class NotFoundComponent implements OnInit {
     constructor(private loaderService: LoaderService) { }
 
     ngOnInit() {
-        _debug(this.loaderService.urlSubject.getValue(), '404ed url');
+        _debug(this.loaderService.currentItem?.url, '404ed url');
+
     }
 }

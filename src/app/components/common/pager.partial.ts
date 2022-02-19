@@ -33,7 +33,7 @@ export class PagerPartialComponent implements OnInit, OnDestroy {
     }
     ngOnInit(): void {
         //
-        this.subscription = this.loaderService.loaderState.pipe(share()).subscribe((state: ILoaderState) => {
+        this.subscription = this.loaderService.stateItem$.pipe(share()).subscribe((state: ILoaderState) => {
             // if state is false, paging has ended, hide loader
             if (!state.show) {
                 this.loading = false;
