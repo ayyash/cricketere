@@ -50,6 +50,17 @@ export const GetParamsAsString = (urlParams: any, joinArray = false): string => 
     return s.toString();
 
 };
+
+export const toFormat = (s:string, ...args: any) => {
+    const regExp = /\$(\d+)/gi;
+    // match $1 $2 ...
+    return s.replace(regExp, (match, index) => {
+        return args[index] ? args[index] : match;
+    });
+
+}
+
+
 export const CleanParams = (params: any): any => {
     // remove empty arrays, unidentified, nulls
     const s = {};

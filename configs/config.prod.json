@@ -1,7 +1,7 @@
 {
     "isServed": true,
     "API": {
-        "apiRoot": "https://vaes.azurewebsites.net/v1/api"
+        "apiRoot": "https://sss.azurewebsites.net/v1/api"
     },
     "Auth": {
         "userAccessKey": "cricketere.user"

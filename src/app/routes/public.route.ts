@@ -16,7 +16,10 @@ const routes: Routes = [
     }
     , {
         path: 'login',
-        component: PublicLoginComponent
+        component: PublicLoginComponent,
+        data: {
+            title: 'LOGIN'
+        }
     }
 
     , {

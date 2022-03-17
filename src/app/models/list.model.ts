@@ -1,19 +1,21 @@
 import { Config } from '../config';
 
-
-export interface IList<T> {
-    total: number;
-    matches: T[];
-
+export interface IListItem {
+    id: string;
 }
 
+export interface IList<T extends IListItem> {
+    matches: T[];
+    total: number;
+}
 
 export interface IListOptions {
     page?: number;
     keyword?: string;
     country?: string;
     size?: number;
-
+    total?: number;
+    hasMore?: boolean;
 }
 
 
@@ -34,7 +36,7 @@ export class ListOptions {
 
 }
 
-export class DataList<T>  {
+export class DataList<T extends IListItem>  {
     public mapper?: (dataitem: any) => T;
 
 

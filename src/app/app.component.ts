@@ -29,9 +29,8 @@ export class AppComponent {
                     route = route.firstChild;
                 }
                 // return route.data;
-                if (route.data && route.data.title) {
-                    this.seoService.setPageTitle(route.data.title);
-                }
+                this.seoService.setPageTitle(route.data?.title);
+
 
                 if (event instanceof NavigationEnd) {
                     if (event.urlAfterRedirects === '/404') {

@@ -21,6 +21,20 @@ export const Config = {
         Key: 'cricketere.cache',
         ResetKey: 'cricketere.20190208'
     },
+    Seo: {
+        tags: [
+            { property: 'og:site_name', content: 'Sekrab Garage' },
+            { property: 'og.type', content: 'website' },
+            { property: 'twitter:site', content: '@sekrabbin' },
+            { property: 'twitter:card', content: 'summary_large_image' },
+            { property: 'twitter:creator', content: '@sekrabbin' },
+            { property: 'og:locale', content: 'en_GB' },
+            { name: 'author', content: 'Ayyash' }
+        ],
+        baseUrl: 'http://garage.sekrab.com',
+        defaultImage: 'http://garage.sekrab.com/assets/images/sekrab0813.jpg',
+        defaultAlt: 'Image on Sekrab Garage'
+    },
     API: {
         apiRoot: environment.apiRoot,
         auth: {
@@ -36,7 +50,15 @@ export const Config = {
         config: {
             local: environment.localConfig
         }
-         // **gulpmodel**
+         , project: {
+    list: '/projects/?:options',
+    details: '/projects/:id',
+    create: '/projects', // POST
+    save: '/projects/:id', // PUT
+    delete: '/projects/:id', // DELETE
+}
+
+// **gulpmodel**
     }
 };
 

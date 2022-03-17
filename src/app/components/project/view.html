@@ -1,8 +1,11 @@
-<div class="page">
+<div class="page" *ngIf="project$ | async as project">
     <div class="container">
+
         <span class="small">Breadcrumbs</span>
-        <h3 class="f3 ">ProjectName</h3>
+        <h3 class="f3 ">{{ project.title }}</h3>
         <h4 class="f6 light spaced">Subline</h4>
+        <img src="{{project.image}}" >
+        <p>{{ project.description }}</p>
 
         <section>
         <dl class="grid g-1 spacedout">

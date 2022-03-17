@@ -15,7 +15,7 @@ export class PublicHomeComponent implements OnInit {
     ngOnInit(): void {
         //
         // this.seoService.SetHomeSeo();
-        this.seoService.setPageSeo();
+        // this.seoService.setPageSeo();
     }
 
 }

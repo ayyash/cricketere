@@ -37,6 +37,8 @@ if (config.ssr){
         // do nothing
         // console.log(message, o);
     }
+    global._seqlog = function (message) {
+    }
 
     // to make language change on ssr, use globals
     // relying on cookie is coupling it with client side resources, unable to use reference of keys, always resources.keys, explicity
@@ -83,6 +85,7 @@ app.use(function(req, res, next){
 
      }
      res.locals.serverUrl = `${proto}://${req.get('host')}${port}`;
+     console.log(res.locals.serverUrl);
      next();
 });
 

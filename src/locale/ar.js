@@ -48,6 +48,21 @@ resources.keys = {
     },
     "DEFAULT_PAGE_TITLE": "أهلا",
     "WELCOME_TEXT": "أهلا كريكت",
+    "Results": { "0": "no results", "1": "one result", "2": "two results", "3": "$0 results", "11": "$0 results" },
+    "SEO_CONTENT": {
+        "HOME_TITLE": "Home",
+        "HOME":"Home",
+        "PRODUCT_TITLE":"$0, in $1",
+        "PROJECT_RESULTS_TITLE": "$0 projects in $1",
+        "PROJECT_RESULTS_DESC": "Found $0 projects categorized under $1"
+     },
+     "PAGE_TITLES": {
+        "ERROR": "Oh oh, an error occurred",
+        "NOT_FOUND": "404! Hmm! Once in a while, we change address and forget to update the mailman.",
+        "LOGIN": "Login to your sekrab account",
+        "LIST_PROJECTS": "All projects list"
+    },
+    "DEFAULT_PAGE_TITLE": "Welcome",
     // inject:translations
     "ShowMore": "show more",
     "WelcomeCricketere": "أهلا وسهلا",
