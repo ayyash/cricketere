@@ -12,5 +12,6 @@ export interface IConfig {
         Key: string;
         ResetKey: string;
     };
+    MyKey: string;
 
 }

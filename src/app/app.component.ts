@@ -3,6 +3,7 @@ import { NavigationEnd, Router, NavigationCancel, ActivatedRoute } from '@angula
 import { LoaderService, SeoService } from './core/services';
 import { GaTracking } from './core/ga';
 import { filter } from 'rxjs/operators';
+import { ConfigInitService } from './services/configinit.service';
 @Component({
     selector: 'app-root',
     template: '<http-loader></http-loader><sh-toast *shServerRender="false"></sh-toast><router-outlet></router-outlet>'
@@ -12,6 +13,7 @@ export class AppComponent {
         private router: Router,
         private activatedRoute: ActivatedRoute,
         private seoService: SeoService,
+        private configInit: ConfigInitService,
         private LoaderService: LoaderService // @Inject(LOCALE_ID) protected localeId: string
     ) {
 
@@ -22,6 +24,7 @@ export class AppComponent {
         this.router.events
             .pipe(filter(e => e instanceof NavigationEnd || e instanceof NavigationCancel))
             .subscribe(event => {
+                _seqlog('router event');
                 // use snapshot to get title, instead of data subscribe?
                 // note to self: this is okay because the main trigger is the event change
                 let route = this.activatedRoute.snapshot;

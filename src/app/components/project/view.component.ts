@@ -25,12 +25,14 @@ export class ProjectViewComponent implements OnInit {
     }
     ngOnInit(): void {
 
+
         this.project$ = this.route.paramMap.pipe(
             switchMap(params => {
                 // get project from service by params
                 return of(mockProject);
             }),
             tap(project => {
+                _seqlog('title');
                 this.seoService.setProject(project);
 
                 // this.seoSerivce.UpdateTags({

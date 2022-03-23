@@ -4,7 +4,7 @@
 export const environment = {
     production: true,
     apiRoot: 'https://api.website.com',
-    localConfig: 'localdata/config.prod.json'
+    // localConfig: 'https://saphire.sekrab.com/api/config'
 
 
 };

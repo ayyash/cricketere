@@ -6,6 +6,7 @@ import { ProjectCreateComponent } from '../components/project/create.component';
 import { ProjectEditComponent } from '../components/project/edit.component';
 import { ProjectListComponent } from '../components/project/list.component';
 import { ProjectViewComponent } from '../components/project/view.component';
+import { ProjectResolve } from '../services/project.resolve';
 // **gulpimport**
 
 const routes: Routes = [
@@ -15,7 +16,10 @@ const routes: Routes = [
     }
     , {
         path: 'create',
-        component: ProjectCreateComponent
+        component: ProjectCreateComponent,
+        resolve: {
+            ready: ProjectResolve
+        }
     }
 
     , {

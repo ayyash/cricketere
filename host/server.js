@@ -28,16 +28,17 @@ if (config.ssr){
         }
     };
     global._debug = function (o, message, type) {
-        if (type === 'e' || type === 'f' || type === 'ssr') {
+        // if (type === 'e' || type === 'f' || type === 'ssr') {
             console.log(message, o);
 
-        }
+        // }
     };
     global._attn = function (o, message) {
         // do nothing
-        // console.log(message, o);
+        console.log(message, o);
     }
     global._seqlog = function (message) {
+        console.log(message);
     }
 
     // to make language change on ssr, use globals
@@ -85,7 +86,6 @@ app.use(function(req, res, next){
 
      }
      res.locals.serverUrl = `${proto}://${req.get('host')}${port}`;
-     console.log(res.locals.serverUrl);
      next();
 });
 

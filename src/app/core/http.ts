@@ -14,12 +14,14 @@ import { ConfigService, LoaderService } from './services';
 
 @Injectable()
 export class CricketereInterceptor implements HttpInterceptor {
-    private isRefreshingToken = false;
-    // tokenSubject: BehaviorSubject<string> = new BehaviorSubject<string>(null);
 
-    constructor(private loaderService: LoaderService) {}
+    constructor(private loaderService: LoaderService) {
+
+    }
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        if (req.url.indexOf('localdata') > -1 ) {
+        // FIXME: remove http later
+
+        if (req.url.indexOf('localdata') > -1  ) {
             // pass through
            return next.handle(req);
         }

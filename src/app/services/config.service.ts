@@ -1,16 +1,19 @@
-import { Inject, Injectable, Injector, Optional } from '@angular/core';
+import { Inject, Injectable, Optional } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Config } from '../config';
 import { map, catchError } from 'rxjs/operators';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { IConfig } from '../core/services';
 
-// FIXME: VER_NEXT: this needs to change to drop the http call and make the config available on load
+
+export const configFactory = (config: ConfigService): (() => Observable<boolean>) => {
+    return () => config.loadAppConfig();
+};
+
 @Injectable({
     providedIn: 'root'
 })
 export class ConfigService {
-    private static _config: IConfig;
 
     private _getUrl: string = Config.API.config.local;
 
@@ -18,16 +21,16 @@ export class ConfigService {
     private config = new BehaviorSubject<IConfig>(Config as IConfig);
     config$: Observable<IConfig> = this.config.asObservable();
 
-    private _http: HttpClient;
+    private static _config: IConfig;
 
-    static configFactory = (config: ConfigService): (() => Observable<boolean>) => {
-        return () => config.loadAppConfig();
-
+    static get Config(): IConfig {
+        return this._config || Config;
     }
 
-    private static NewInstance(config: any): IConfig {
+    private NewInstance(config: any): IConfig {
         // clone first, because in ssr the object is transfered in state to client, which adds the key again, unless u clone
-        const _config = { ...<IConfig>config };
+        const _config = {...Config, ...<IConfig>config };
+
         _config.Cache = { ..._config.Cache };
         // adjust cache key to have language in it
         _config.Cache.Key += '.' + Config.Basic.language;
@@ -35,38 +38,36 @@ export class ConfigService {
         // populate static element
         ConfigService._config = _config;
 
-
         return _config;
     }
 
     constructor(
         @Optional() @Inject('localConfig') protected localConfig: IConfig,
-        private injector: Injector) {
-        this._http = this.injector.get(HttpClient);
+        private http: HttpClient) {
         _seqlog('config construct');
     }
 
     loadAppConfig(): Observable<boolean> {
-        // too much typing
-        _seqlog('config load');
+
+        _seqlog('loadAppConfig');
         // WATCH: on server, retrieve from local file injected from server
-        if (this.localConfig) {
+        // if (this.localConfig) {
 
-            const localconfig = ConfigService.NewInstance(this.localConfig);
-            this.config.next(localconfig);
+        //     const localconfig = this._CreateConfig(this.localConfig);
+        //     this.config.next(localconfig);
 
-            return of(true);
-        }
+        //     return of(true);
+        // }
 
-
-        return this._http
+        return this.http
             .get(this._getUrl)
             .pipe(
                 map(response => {
-                    const config = ConfigService.NewInstance(<any>response);
-                    config.isServed = true;
+
+                    _seqlog('Config return');
+                    const config = this.NewInstance(<any>response);
+
                     this.config.next(config);
-                    _seqlog('config next');
                     return true;
                 }),
                 catchError(error => {
@@ -76,18 +77,5 @@ export class ConfigService {
                     return of(false);
                 })
             );
-
     }
-
-
-
-    static get Config(): IConfig {
-        // add language to cache key
-        return ConfigService._config ? ConfigService._config : <IConfig>Config;
-    }
-
-    public GetConfig(): IConfig | null {
-        return this.config.getValue();
-    }
-
 }

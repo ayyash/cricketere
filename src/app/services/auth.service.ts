@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { map, skipWhile, take } from 'rxjs/operators';
+import { first, map } from 'rxjs/operators';
 import { Config } from '../config';
 import {
     IAuthInfo,
@@ -38,9 +38,11 @@ export class AuthService {
         private localStorage: LocalStorageService
     ) {
         // get profile from localstorage first time only
+        _seqlog('auth service');
+        _attn(Config.isServed);
+
         this.configService.config$.debug('AUTH', 'CONFIG').pipe(
-            skipWhile(config => !config),
-            take(1)
+            first(config => config.isServed),
         ).subscribe(config => {
 
             const _localuser = JSON.parse(

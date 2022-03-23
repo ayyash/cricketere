@@ -21,7 +21,7 @@ import { SingleLayoutComponent } from './components/layouts/single.component';
         TransferHttpCacheModule,
         SharedModule,
         AppRoutingModule,
-        CoreModule
+        CoreModule,
     ]
 })
 export class AppModule { }

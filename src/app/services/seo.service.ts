@@ -32,7 +32,6 @@ export class SeoService {
         @Inject(DOCUMENT) private doc: Document,
         private platform: Platform
     ) {
-
         // add all basic unchanging links
         // const _hostname = this.platform.doc.location.hostname.split('.');
         this.AddTags();

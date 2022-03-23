@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Res } from '../../core/resources';
-import { SeoService } from '../../core/services';
+import { ConfigService, SeoService } from '../../core/services';
 @Component({
 
     templateUrl: './home.html'
@@ -9,13 +9,13 @@ export class PublicHomeComponent implements OnInit {
 
     welcomeText = Res.Get('WELCOME_TEXT');
 
-    constructor( private seoService: SeoService) {
+    constructor() {
         //
     }
     ngOnInit(): void {
-        //
-        // this.seoService.SetHomeSeo();
-        // this.seoService.setPageSeo();
+        // _attn(this.configService.xConfig?.API?.apiRoot, 'on init');
+        _attn(ConfigService.Config.isServed, 'served');
+
     }
 
 }

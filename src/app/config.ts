@@ -3,6 +3,7 @@ import { environment } from '../environments/environment';
 
 export const Config = {
     isServed: false,
+    MyKey: 'default',
     Basic: {
         language: resources.language,
         country: resources.country,
@@ -19,7 +20,7 @@ export const Config = {
     Cache: {
         Timeout: 1,
         Key: 'cricketere.cache',
-        ResetKey: 'cricketere.20190208'
+        ResetKey: 'cricketere.20180208'
     },
     Seo: {
         tags: [
@@ -50,15 +51,15 @@ export const Config = {
         config: {
             local: environment.localConfig
         }
-         , project: {
-    list: '/projects/?:options',
-    details: '/projects/:id',
-    create: '/projects', // POST
-    save: '/projects/:id', // PUT
-    delete: '/projects/:id', // DELETE
-}
+        , project: {
+            list: '/projects/?:options',
+            details: '/projects/:id',
+            create: '/projects', // POST
+            save: '/projects/:id', // PUT
+            delete: '/projects/:id', // DELETE
+        }
 
-// **gulpmodel**
+        // **gulpmodel**
     }
 };
 

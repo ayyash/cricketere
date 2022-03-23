@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ICachedStorage, ConfigService } from '../core/services';
-import { skipWhile, take } from 'rxjs/operators';
+import { first } from 'rxjs/operators';
 import { Platform } from '../lib/platform.service';
 
 @Injectable({ providedIn: 'root' })
@@ -19,8 +19,7 @@ export class LocalStorageService {
         // check DataCacheResetKey, if exists continue, else force reset and save key
         // wait for config
         this.configService.config$.debug('LOCALSTORGAGE', 'CONFIG').pipe(
-            skipWhile(config => !config),
-            take(1)
+            first(config => config.isServed),
         ).subscribe(config => {
 
             if (config) {

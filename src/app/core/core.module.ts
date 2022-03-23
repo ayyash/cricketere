@@ -4,9 +4,9 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CricketereInterceptor } from './http';
-import { ConfigService } from './services';
 import { LocalInterceptor } from './local.interceptor';
 import { CricketereErrorHandler } from './error.service';
+import { configFactory, ConfigService } from '../services/config.service';
 
 
 
@@ -17,7 +17,7 @@ import { CricketereErrorHandler } from './error.service';
 
         {
             provide: APP_INITIALIZER,
-            useFactory: ConfigService.configFactory,
+            useFactory: configFactory,
             multi: true,
             deps: [ConfigService]
         },
@@ -34,5 +34,8 @@ import { CricketereErrorHandler } from './error.service';
         { provide: ErrorHandler, useClass: CricketereErrorHandler }]
 })
 export class CoreModule {
+    constructor() {
+        _seqlog('core');
+    }
 
 }

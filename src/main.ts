@@ -2,7 +2,7 @@
 // import './app/core/common';
 import './app/core/logger.service';
 
-import { enableProdMode } from '@angular/core';
+import { enableProdMode, PLATFORM_INITIALIZER } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import { AppBrowserModule } from './app/app.browser.module';
@@ -14,6 +14,6 @@ if (environment.production) {
 
 document.addEventListener('DOMContentLoaded', () => {
     platformBrowserDynamic()
-    .bootstrapModule(AppBrowserModule)
-    .catch(err => console.log(err));
+        .bootstrapModule(AppBrowserModule)
+        .catch(err => console.log(err));
 });

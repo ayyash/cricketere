@@ -73,6 +73,10 @@ const routes: Routes = [
     providers: [{provide: RouteReuseStrategy, useClass: RouteReuseService}]
 
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+    constructor() {
+        _seqlog('app routing');
+    }
+}
 
 
