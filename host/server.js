@@ -35,10 +35,10 @@ if (config.ssr){
     };
     global._attn = function (o, message) {
         // do nothing
-        console.log(message, o);
+        // console.log(message, o);
     }
     global._seqlog = function (message) {
-        console.log(message);
+        // console.log(message);
     }
 
     // to make language change on ssr, use globals
@@ -50,6 +50,7 @@ if (config.ssr){
     };
 
     // get all languages here (keys)
+    // TODO: FIXME: change this to get files from same source as client
     global.resources.allLanguages = {}
     for (let lang of config.languages) {
         const resFile = './server/locale/' + lang + '.js';
@@ -58,6 +59,8 @@ if (config.ssr){
         }
 
     }
+
+    global.WebConfig = require('./localdata/config.js');
 
 }
 
@@ -92,10 +95,7 @@ app.use(function(req, res, next){
 // serve the right router
 const _routes = (config.ssr ? '-ssr' : '') + (config.urlBased ? '-url' : '');
 require('./server/routes' + _routes)(app, config);
-// require('./server/routes')(app, config);
-// require('./server/routes-url')(app, config);
-// require('./server/routes-ssr')(app, config);
-// require('./server/routes-ssr-url')(app, config);
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -117,7 +117,7 @@ app.use(function (err, req, res, next) {
 var port = process.env.PORT || 1212;
 
 app.listen(port, function (err) {
-    // console.log('started to listen to port: ' + port);
+    console.log('started to listen to port: ' + port);
     if (err) {
         console.log(err);
         return;

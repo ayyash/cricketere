@@ -1,4 +1,4 @@
-import { NgModule, APP_INITIALIZER, ErrorHandler } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
@@ -6,7 +6,6 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CricketereInterceptor } from './http';
 import { LocalInterceptor } from './local.interceptor';
 import { CricketereErrorHandler } from './error.service';
-import { configFactory, ConfigService } from '../services/config.service';
 
 
 
@@ -15,12 +14,12 @@ import { configFactory, ConfigService } from '../services/config.service';
     imports: [CommonModule, HttpClientModule],
     providers: [Title,
 
-        {
-            provide: APP_INITIALIZER,
-            useFactory: configFactory,
-            multi: true,
-            deps: [ConfigService]
-        },
+        // {
+        //     provide: APP_INITIALIZER,
+        //     useFactory: configFactory,
+        //     multi: true,
+        //     deps: [ConfigService]
+        // },
         {
             provide: HTTP_INTERCEPTORS,
             useClass: LocalInterceptor,

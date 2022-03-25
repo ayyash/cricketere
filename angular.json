@@ -81,7 +81,7 @@
                                 "output": "/locale"
                             },
                             {
-                                "glob": "*.json",
+                                "glob": "*",
                                 "input": "configs",
                                 "output": "/localdata"
                             }

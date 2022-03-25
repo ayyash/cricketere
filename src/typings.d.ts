@@ -1,5 +1,3 @@
-
-
 declare const resources: {
     keys: any;
     language: string;

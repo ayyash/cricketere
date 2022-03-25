@@ -109,3 +109,7 @@ resources.keys = {
     "DEFAULT_PAGE_TITLE": "Welcome"
 };
 
+if (window == null){
+
+    exports.resources = resources;
+}

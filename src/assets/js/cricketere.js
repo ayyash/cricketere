@@ -39,3 +39,7 @@ function _seqlog(message) {
         console.debug('%c' + seq + '. Seq: '+ message, 'background: #8BFF00; color: #000');
     }
 }
+
+window.WebConfig = {
+    isServed: false
+};

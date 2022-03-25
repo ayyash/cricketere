@@ -3,7 +3,6 @@ const express = require('express');
 // for ssr multilingual, URL driven, contains AppEngine
 const ssr = require('./main');
 
-// TODO: add to config.js
 const localConfig = require('../localdata/config.prod.json');
 
 module.exports = function (app, config) {
@@ -54,7 +53,7 @@ module.exports = function (app, config) {
     app.set('views', config.rootPath + '/client');
 
     // setup path for localdata in sub projects
-       app.use(/^\/(en|ar|tr)\/localdata/, express.static(config.rootPath + '/localdata', {
+    app.use(/^\/(en|ar|tr)\/localdata/, express.static(config.rootPath + '/localdata', {
         fallthrough: false
     }));
 
@@ -96,6 +95,6 @@ module.exports = function (app, config) {
         res.redirect(301, `/en` + req.path);
     });
 
-   
+
 
 };

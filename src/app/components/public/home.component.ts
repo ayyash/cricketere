@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Res } from '../../core/resources';
-import { ConfigService, SeoService } from '../../core/services';
+import { ConfigService } from '../../core/services';
 @Component({
 
     templateUrl: './home.html'

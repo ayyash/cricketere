@@ -7,7 +7,7 @@ import { Platform } from '../lib/platform.service';
 export class LocalStorageService {
     public isBrowser = false;
 
-    constructor(private platform: Platform, private configService: ConfigService) {
+    constructor(private platform: Platform) {
         if (this.platform.isBrowser) {
             this.isBrowser = true;
             this._setResetKey();
@@ -18,24 +18,36 @@ export class LocalStorageService {
     private _setResetKey(): void {
         // check DataCacheResetKey, if exists continue, else force reset and save key
         // wait for config
-        this.configService.config$.debug('LOCALSTORGAGE', 'CONFIG').pipe(
-            first(config => config.isServed),
-        ).subscribe(config => {
-
-            if (config) {
-
-                const _reset: any = this.getItem(config.Cache.ResetKey);
-                if (!_reset || _reset !== 'true') {
-                    // set key and force reste of data
-
-                    this.clear(); // added, clear localstorage here, bullox this is breaking storage
-
-                    this.setItem(config.Cache.ResetKey, 'true');
-                }
-            }
 
 
-        });
+        const _reset: any = this.getItem(ConfigService.Config.Cache.ResetKey);
+        if (!_reset || _reset !== 'true') {
+            // set key and force reste of data
+
+            this.clear(); // added, clear localstorage here, bullox this is breaking storage
+
+            this.setItem(ConfigService.Config.Cache.ResetKey, 'true');
+        }
+
+
+        // this.configService.config$.debug('LOCALSTORGAGE', 'CONFIG').pipe(
+        //     first(config => config.isServed),
+        // ).subscribe(config => {
+
+        //     if (config) {
+
+        //         const _reset: any = this.getItem(config.Cache.ResetKey);
+        //         if (!_reset || _reset !== 'true') {
+        //             // set key and force reste of data
+
+        //             this.clear(); // added, clear localstorage here, bullox this is breaking storage
+
+        //             this.setItem(config.Cache.ResetKey, 'true');
+        //         }
+        //     }
+
+
+        // });
 
     }
 

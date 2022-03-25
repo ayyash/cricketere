@@ -1,4 +1,4 @@
-
+// OBSOLETE remove
 import './app/core/logger.service';
 
 import { environment } from './environments/environment';

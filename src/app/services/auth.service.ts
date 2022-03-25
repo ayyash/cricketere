@@ -34,27 +34,37 @@ export class AuthService {
 
     constructor(
         private http: HttpClient, // WATCH:
-        private configService: ConfigService,
+        // private configService: ConfigService,
         private localStorage: LocalStorageService
     ) {
         // get profile from localstorage first time only
         _seqlog('auth service');
         _attn(Config.isServed);
 
-        this.configService.config$.debug('AUTH', 'CONFIG').pipe(
-            first(config => config.isServed),
-        ).subscribe(config => {
+        const _localuser = JSON.parse(
+            this.localStorage.getItem(ConfigService.Config.Auth.userAccessKey)
+        );
 
-            const _localuser = JSON.parse(
-                this.localStorage.getItem(config.Auth.userAccessKey)
-            );
+        if (this.checkProfile(_localuser)) {
+            this.profileSubject.next(_localuser);
+        } else {
+            this.profileSubject.next(null);
+        }
 
-            if (this.checkProfile(_localuser)) {
-                this.profileSubject.next(_localuser);
-            } else {
-                this.profileSubject.next(null);
-            }
-        });
+        // this.configService.config$.debug('AUTH', 'CONFIG').pipe(
+        //     first(config => config.isServed),
+        // ).subscribe(config => {
+
+        //     const _localuser = JSON.parse(
+        //         this.localStorage.getItem(config.Auth.userAccessKey)
+        //     );
+
+        //     if (this.checkProfile(_localuser)) {
+        //         this.profileSubject.next(_localuser);
+        //     } else {
+        //         this.profileSubject.next(null);
+        //     }
+        // });
 
     }
 
