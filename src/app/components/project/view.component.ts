@@ -8,7 +8,10 @@ const mockProject: IProject = {
     description: 'A place to build a turtle',
     image: 'https://picsum.photos/200/300',
     id: '56',
-    category: 'Turtles'
+    category: {
+        value: 'Turtles',
+        key: 'turtles'
+    }
 }
 @Component({
 

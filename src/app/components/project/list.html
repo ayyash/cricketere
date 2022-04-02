@@ -1,9 +1,17 @@
 <div class="page">
     <div class="container">
         <h4 class="f5 spaced">Project list</h4>
+        <p>
+            Test links for products
+            <a [routerLink]="['/products', {public: true}]">Public</a> |
+            <a [routerLink]="['/products', {public: false}]">Private</a> |
+            <a [routerLink]="['/products', {public: false, page: 2}]">Private page 2</a>
+
+        </p>
+
         <ul class="row row-gap boxed umd-3">
             <li class="box-shadow-normal spaced" *ngFor="let project of projects$ | async">
-                <h3 class="f3 a" routerLink="/projects/{{project.id}}">{{ project.title }}</h3>
+                <a class="f3 a" routerLink="/projects/{{project.id}}">{{ project.title }}</a>
                 <img src="{{project.image}}" >
                 <p>{{ project.description }}</p>
                 <!-- <cr-project-card [mode]="{compact: true}"></cr-project-card> -->
@@ -11,6 +19,7 @@
         </ul>
         <hr>
 
+        <a [href]="seoLink" (click)="next($event)">Next</a>
         <h5 class="f5 spaced">Listed</h5>
         <ul class="rowlist">
             <li *ngFor="let item of [1,2,3,4,5,6]">

@@ -68,3 +68,7 @@ resources.keys = {
     "WelcomeCricketere": "أهلا وسهلا",
     // endinject
 };
+if (window == null){
+
+    exports.resources = resources;
+}

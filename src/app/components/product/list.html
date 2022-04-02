@@ -1,0 +1,20 @@
+
+
+<div class="page">
+    <div class="container" *ngIf="products$ | async as products">
+        <ng-container *ngIf="params$ | async as params">
+            <p>Total: {{ params.total }}</p>
+            <div class="spaced">
+                Show: <a [href]="getShowLink(true)" (click)="showProducts(true, $event)">Public</a> |
+                <a [href]="getShowLink(false)" (click)="showProducts(false, $event)">Private</a>
+            </div>
+            <ul class="rowlist" >
+                <li *ngFor="let item of products">
+                    {{ item.name }} - {{item.price }}
+                </li>
+            </ul>
+            Page {{params.page}}
+            <a class="btn" [href]="getNextLink()" (click)="nextPage($event)" *ngIf="params.hasMore">Next</a>
+        </ng-container>
+    </div>
+</div>

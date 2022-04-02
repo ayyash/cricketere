@@ -2,7 +2,7 @@
 const WebConfig = {
 
     "API": {
-        "apiRoot": "http://localhost:9003/v1/api"
+        "apiRoot": "http://localhost:8888/api"
     },
     "Auth": {
         "userAccessKey": "edash.user",
@@ -12,7 +12,7 @@ const WebConfig = {
     "Cache": {
         "Timeout": 1,
         "Key": "edash.cache",
-        "ResetKey": "edash.20220215"
+        "ResetKey": "edash.20220216"
     },
     "Upload": {
         "chunkSize": 5242880,

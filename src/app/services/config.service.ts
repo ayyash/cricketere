@@ -51,12 +51,10 @@ export class ConfigService {
     static loadAppConfig(): void {
 
         _seqlog('loadAppConfig');
-        _attn(WebConfig);
         if (WebConfig?.isServed) {
             this.NewInstance(WebConfig);
 
         } else {
-            _attn('error');
             this.NewInstance(Config);
         }
         // WATCH: on server, retrieve from local file injected from server

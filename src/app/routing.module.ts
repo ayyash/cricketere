@@ -50,6 +50,13 @@ const routes: Routes = [
         data: {preload: true}
 
     },
+    {
+        path: 'products',
+        component: MainLayoutComponent,
+        loadChildren: () => import('./routes/product.route').then(m => m.ProductRoutingModule),
+        data: {preload: true}
+
+    },
     // **gulproute**
     {
         path: '**',

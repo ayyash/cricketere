@@ -29,12 +29,24 @@ export const Config = {
             { property: 'twitter:site', content: '@sekrabbin' },
             { property: 'twitter:card', content: 'summary_large_image' },
             { property: 'twitter:creator', content: '@sekrabbin' },
-            { property: 'og:locale', content: 'en_GB' },
             { name: 'author', content: 'Ayyash' }
         ],
-        baseUrl: 'http://garage.sekrab.com',
+        baseUrl: 'https://$0.sekrab.com/$1/$2',
         defaultImage: 'http://garage.sekrab.com/assets/images/sekrab0813.jpg',
-        defaultAlt: 'Image on Sekrab Garage'
+        defaultAlt: 'Image on Sekrab Garage',
+        defaultLanguage: 'en',
+        defaultRegion: 'www',
+        hrefLangs: [
+            { region: 'ES', language: 'es' },
+            { region: 'ES', language: 'en' },
+            { region: 'MX', language: 'es' },
+            { region: 'MX', language: 'en' },
+            { language: 'de' },
+            { language: 'fr' },
+            { language: 'es' },
+            { language: 'en' },
+            { language: 'x-default' }
+        ]
     },
     API: {
         apiRoot: environment.apiRoot,
@@ -57,6 +69,9 @@ export const Config = {
             create: '/projects', // POST
             save: '/projects/:id', // PUT
             delete: '/projects/:id', // DELETE
+        }
+        , product: {
+            list: '/products/?:options'
         }
 
         // **gulpmodel**

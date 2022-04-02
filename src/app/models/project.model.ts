@@ -1,11 +1,16 @@
 import { DataList, IList } from '../core/services';
 
+export interface ICategory {
+    id?: string;
+    key: string;
+    value: string;
+}
 export interface IProject {
     id: string;
     title: string;
     description?: string;
     image?: string;
-    category?: string;
+    category?: ICategory;
 }
 
 export class Project  {

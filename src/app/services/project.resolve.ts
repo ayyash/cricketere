@@ -14,8 +14,6 @@ export class ProjectResolve implements Resolve<boolean> {
 
         _seqlog('resolve');
         // _attn(WebConfig.isServed, 'resolve');
-        _attn(ConfigService.Config, 'in resolve');
-        this.localStorage.setObject('MyAyyash', ConfigService.Config.Auth.userAccessKey);
         return of(ConfigService.Config.isServed);
 
     }

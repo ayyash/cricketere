@@ -8,6 +8,6 @@ export class ConfigInitService {
 
     constructor() {
         _seqlog('ConfigInit');
-        _attn(ConfigService.Config.isServed, 'api root static');
+        // _attn(ConfigService.Config.isServed, 'api root static');
     }
 }

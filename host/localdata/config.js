@@ -2,7 +2,7 @@
 const WebConfig = {
 
     "API": {
-        "apiRoot": "http://localhost:9003/v1/api"
+        "apiRoot": "http://localhost:8888/api"
     },
     "Auth": {
         "userAccessKey": "edash.user",
