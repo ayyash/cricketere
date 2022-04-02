@@ -54,7 +54,6 @@ export class ProductListComponent implements OnInit {
             }),
             switchMap((params) => this.productService.GetProducts(params).pipe(
                 switchMap(products => {
-                    console.log(products);
                     const _hasMore = hasMore(
                         products.total,
                         params.size,

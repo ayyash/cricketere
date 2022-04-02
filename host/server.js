@@ -1,4 +1,4 @@
-var express = require('express');
+const express = require('express');
 const fs = require('fs');
 
 /*********************Configuration***********/
@@ -6,8 +6,8 @@ var config = require('./server/config').getConfig();
 
 // for ssr to run, define global
 if (config.ssr){
-    global.WebSocket = require('ws');
-    global.XMLHttpRequest = require('xhr2');
+    // global.WebSocket = require('ws');
+    // global.XMLHttpRequest = require('xhr2');
 
     global.window = undefined;
 
@@ -60,7 +60,7 @@ if (config.ssr){
 
     }
 
-    global.WebConfig = require('./localdata/config.js');
+    // global.WebConfig = require('./localdata/config.js');
 
 }
 
@@ -81,14 +81,13 @@ app.use(function(req, res, next){
 
      // also save serverUrl to use with local interceptor
      let proto = req.protocol;
-     let port = '';
      if (req.headers) {
          if (req.headers['x-forwarded-proto']) {
              proto = req.headers['x-forwarded-proto'].toString();
          }
 
      }
-     res.locals.serverUrl = `${proto}://${req.get('host')}${port}`;
+     res.locals.serverUrl = `${proto}://${req.get('host')}`;
      next();
 });
 

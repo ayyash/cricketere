@@ -1,6 +1,7 @@
 
 export interface IConfig {
-   isServed: boolean;
+    isServed: boolean;
+    withErrors?: boolean;
     API: {
         apiRoot: string;
     };

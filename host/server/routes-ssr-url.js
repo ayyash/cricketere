@@ -5,6 +5,7 @@ const ssr = require('./main');
 
 const localConfig = require('../localdata/config.prod.json');
 
+
 module.exports = function (app, config) {
 
     app.get('/robots.txt', function (req, res) {
@@ -73,7 +74,6 @@ module.exports = function (app, config) {
         // serve index file relevant to language
         // require config and inject on ssr
         // for this work, index files must have baseHref correctly set to the language it serves
-
         res.render(`../index/index.${res.locals.lang}.html`, {
             req,
             res,

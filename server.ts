@@ -12,17 +12,17 @@ import { AppServerModule } from './src/app/app.server.module';
 // export the bare minimum, let nodejs take care of everything else
 export const AppEngine = ngExpressEngine({
     bootstrap: AppServerModule,
-    providers:[
-        {
-            provide: PLATFORM_INITIALIZER,
-            useFactory: platformFactory,
-            multi: true,
-        }
-    ]
+    // PLATFORMINIT: use this for static injected config
+    // providers:[
+        // {
+        //     provide: PLATFORM_INITIALIZER,
+        //     useFactory: platformFactory,
+        //     multi: true,
+        // }
+    // ]
 });
+
 
 if (environment.production) {
     enableProdMode();
   }
-
-

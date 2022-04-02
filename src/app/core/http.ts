@@ -21,7 +21,7 @@ export class CricketereInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         // FIXME: remove http later
 
-        if (req.url.indexOf('localdata') > -1  ) {
+        if (req.url.indexOf('localdata') > -1  || req.url.indexOf('http') > -1) {
             // pass through
            return next.handle(req);
         }
