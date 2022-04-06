@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { map, Observable, of } from 'rxjs';
-import { IListOptions, IProject, SeoService } from '../../core/services';
+import { IListOptions, IProject, ProjectSeoService } from '../../core/services';
 
 const projects: IProject[] = [
   {
@@ -36,7 +36,7 @@ export class ProjectListComponent implements OnInit {
     projects$: Observable<any>;
     seoLink: string;
 
-    constructor(private seoService: SeoService) {
+    constructor(private seoService: ProjectSeoService) {
         //
     }
     ngOnInit(): void {
@@ -51,7 +51,7 @@ export class ProjectListComponent implements OnInit {
                 category: { key: 'turtles', value: 'Turtles' },
               };
               this.seoLink = this.seoService.getNextLink(results);
-              this.seoService.setSearchResults(results);
+              this.seoService.setSearchResults(results, projects);
               return projects;
             })
           );

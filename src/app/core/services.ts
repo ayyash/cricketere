@@ -10,6 +10,8 @@ export { ProductService } from '../services/product.service';
 export { ProjectResolve } from '../services/project.resolve';
 export { ProjectService } from '../services/project.service';
 export { SeoService } from '../services/seo.service';
+export { ProjectSeoService } from '../services/seo.project.service';
+export { HomeSeoService } from '../services/seo.home.service';
 // endinject
 
 // inject:models

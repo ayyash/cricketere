@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, of, switchMap, tap } from 'rxjs';
-import { IProject, SeoService } from '../../core/services';
+import { IProject, ProjectSeoService } from '../../core/services';
 
 const mockProject: IProject = {
     title: 'Turtle Rock',
@@ -23,7 +23,7 @@ export class ProjectViewComponent implements OnInit {
     project$: Observable<any>;
 
     constructor(private route: ActivatedRoute,
-        private seoService: SeoService) {
+        private seoService: ProjectSeoService) {
         //
     }
     ngOnInit(): void {

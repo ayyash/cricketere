@@ -33,6 +33,7 @@ export const Config = {
         ],
         baseUrl: 'https://$0.sekrab.com/$1/$2',
         defaultImage: 'http://garage.sekrab.com/assets/images/sekrab0813.jpg',
+        logoUrl: 'https://garage.sekrab.com/assets/ilogo.2643991258d0540e.svg',
         defaultAlt: 'Image on Sekrab Garage',
         defaultLanguage: 'en',
         defaultRegion: 'www',
