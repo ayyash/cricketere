@@ -9,7 +9,7 @@ export const Config = {
         country: resources.country,
         defaultRoute: '/',
         loginRoute: '/login',
-        defaultSize: 25,
+        defaultSize: 10,
         defaultDateFormt: 'DD-MM-YYYY',
         defaultUploadSize: 1048576,
         defaultUploadFormat: ['gif', 'jpg', 'jpeg', 'png']

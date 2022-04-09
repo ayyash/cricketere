@@ -1,5 +1,7 @@
+import { ViewportScroller } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { RouteReuseStrategy, RouterModule, Routes } from '@angular/router';
+import { Router, RouteReuseStrategy, RouterModule, Routes, Scroll } from '@angular/router';
+import { filter } from 'rxjs';
 import { NotFoundComponent } from './components/layouts/404.component';
 import { ErrorComponent } from './components/layouts/error.component';
 import { MainLayoutComponent } from './components/layouts/main.component';
@@ -72,7 +74,7 @@ const routes: Routes = [
             preloadingStrategy: PreloadService,
             paramsInheritanceStrategy: 'always',
             onSameUrlNavigation: 'reload',
-            scrollPositionRestoration: 'top',
+            scrollPositionRestoration: 'disabled',
             initialNavigation: 'enabledBlocking'
         })
     ],
@@ -81,8 +83,36 @@ const routes: Routes = [
 
 })
 export class AppRoutingModule {
-    constructor() {
+    constructor(router: Router,
+        viewportScroller: ViewportScroller,
+
+        ) {
         _seqlog('app routing');
+
+        router.events.pipe(
+            filter(event => event instanceof Scroll)
+        ).subscribe({
+            next: (e: Scroll) => {
+                if (e.position) {
+                    // backward navigation
+                    _attn(e.position, 'position');
+                    viewportScroller.scrollToPosition(e.position);
+                } else if (e.anchor) {
+                    // anchor navigation
+                    _attn(e.anchor, 'anchor');
+                    viewportScroller.scrollToAnchor(e.anchor);
+                } else {
+                    // forward navigation
+                    // check url if page exists do not scroll
+                    _attn(e, 'watch this');
+                    if (!e.routerEvent.urlAfterRedirects.includes('page')) {
+                        _attn('no page', 'scroll top');
+                        viewportScroller.scrollToPosition([0, 0]);
+                    }
+                }
+            }
+        });
+
     }
 }
 

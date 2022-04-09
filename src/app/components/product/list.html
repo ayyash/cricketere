@@ -16,5 +16,6 @@
             Page {{params.page}}
             <a class="btn" [href]="getNextLink()" (click)="nextPage($event)" *ngIf="params.hasMore">Next</a>
         </ng-container>
+        <a routerLink="/projects" [queryParams]="{page: 2}">Test forward with page</a>
     </div>
 </div>

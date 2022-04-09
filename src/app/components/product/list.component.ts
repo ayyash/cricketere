@@ -1,6 +1,8 @@
+import { Location } from '@angular/common';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { distinctUntilChanged, distinctUntilKeyChanged, map, Observable, switchMap, tap } from 'rxjs';
+import { Config } from '../../config';
 import { hasMore } from '../../core/common';
 import { IList, IListOptions } from '../../models/list.model';
 import { IProduct } from '../../models/product.model';
@@ -25,7 +27,9 @@ export class ProductListComponent implements OnInit {
         private productState: ProductState,
         private router: Router,
         private paramState: ParamState,
+        private location: Location,
         private route: ActivatedRoute) {
+
         //
     }
     ngOnInit(): void {
@@ -33,12 +37,14 @@ export class ProductListComponent implements OnInit {
         this.params$ = this.paramState.stateItem$;
 
 
+
         this.products$ = this.route.paramMap.pipe(
+            tap(n => _attn(n)),
             map((p) => {
                 return {
                     page: +p.get('page') || 1,
                     isPublic: p.get('public') === 'true',
-                    size: 2
+                    size: Config.Basic.defaultSize
                 };
             }),
             // here add a filter to filter out changes we do not want to trigger
@@ -48,7 +54,6 @@ export class ProductListComponent implements OnInit {
                     this.productState.emptyList();
                     next.page = 1;
                 }
-                _attn({ prev, next }, 'ffffffffffffff');
                 // if neither changes return true
                 return prev.page >= next.page && prev.isPublic === next.isPublic;
             }),
@@ -84,13 +89,15 @@ export class ProductListComponent implements OnInit {
 
         // dependency of Angular router
         this.router.navigate(['.', { page, public: isPublic }], {
-          replaceUrl: true,
+          skipLocationChange: true
         });
+
+        // this.location.go(`/products;page=${page};public=${isPublic}`);
       }
       showProducts(isPublic: boolean, event: MouseEvent) {
         // simple routing event, what will happen to page?
         event.preventDefault();
-        this.router.navigate(['.', { page: 1, public: isPublic }]);
+        this.router.navigate(['.', { page: 1, public: isPublic }], {skipLocationChange: true});
       }
 
       getNextLink() {
