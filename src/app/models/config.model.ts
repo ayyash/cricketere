@@ -14,5 +14,8 @@ export interface IConfig {
         ResetKey: string;
     };
     MyKey: string;
+    GTM: {
+        isEnabled: boolean;
+    }
 
 }

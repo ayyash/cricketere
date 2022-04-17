@@ -3,7 +3,9 @@
 <div class="page">
     <div class="container" *ngIf="products$ | async as products">
         <ng-container *ngIf="params$ | async as params">
+            <a routerLink="/" target="_blank">Route to blank page</a>
             <p>Total: {{ params.total }}</p>
+            <p><a (click)="locationChange()">Test location go</a></p>
             <div class="spaced">
                 Show: <a [href]="getShowLink(true)" (click)="showProducts(true, $event)">Public</a> |
                 <a [href]="getShowLink(false)" (click)="showProducts(false, $event)">Private</a>

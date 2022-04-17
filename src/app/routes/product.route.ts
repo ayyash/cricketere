@@ -7,7 +7,10 @@ import { ProductListComponent } from '../components/product/list.component';
 const routes: Routes = [
    {
     path: '',
-    component: ProductListComponent
+    component: ProductListComponent,
+    data: {
+        title: 'PRODUCTS'
+    }
 }
 
 // **gulproute**

@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { distinctUntilChanged, distinctUntilKeyChanged, map, Observable, switchMap, tap } from 'rxjs';
 import { Config } from '../../config';
 import { hasMore } from '../../core/common';
+import { GaTracking } from '../../core/ga';
+import { EnumGtmEvent, EnumGtmSource, GtmTracking } from '../../core/gtm';
 import { IList, IListOptions } from '../../models/list.model';
 import { IProduct } from '../../models/product.model';
 import { ParamState } from '../../services/param.state';
@@ -39,7 +41,6 @@ export class ProductListComponent implements OnInit {
 
 
         this.products$ = this.route.paramMap.pipe(
-            tap(n => _attn(n)),
             map((p) => {
                 return {
                     page: +p.get('page') || 1,
@@ -92,12 +93,15 @@ export class ProductListComponent implements OnInit {
           skipLocationChange: true
         });
 
+        GtmTracking.RegisterEvent({event: EnumGtmEvent.PageView}, GtmTracking.MapPath(`;page=${page};public=${isPublic}`));
+
+
         // this.location.go(`/products;page=${page};public=${isPublic}`);
       }
       showProducts(isPublic: boolean, event: MouseEvent) {
         // simple routing event, what will happen to page?
         event.preventDefault();
-        this.router.navigate(['.', { page: 1, public: isPublic }], {skipLocationChange: true});
+        this.router.navigate(['.', { page: 1, public: isPublic }], {replaceUrl: true});
       }
 
       getNextLink() {
@@ -108,5 +112,20 @@ export class ProductListComponent implements OnInit {
       }
       getShowLink(isPublic: boolean) {
         return `/products;page=1;public=${isPublic}`;
+      }
+
+      locationChange() {
+        this.router.navigate(['.', { page: 2 }], {skipLocationChange: true});
+      }
+
+      trackThis(item: IProduct) {
+        // register event view_item in GA4 for this click
+        GtmTracking.RegisterEvent(
+          {
+            event: EnumGtmEvent.Click,
+            source: EnumGtmSource.ProductsList,
+          },
+          GtmTracking.MapProducts([item])
+        );
       }
 }

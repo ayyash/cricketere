@@ -10,5 +10,8 @@
         "Timeout": 1,
         "Key": "cricketere.cache",
         "ResetKey": "cricketere.20210801"
+    },
+    "GTM": {
+        "isEnabled": true
     }
 }

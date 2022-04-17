@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Config } from '../../config';
+import { GtmTracking } from '../../core/gtm';
 import { AuthService } from '../../core/services';
 import { Toast } from '../../lib/toast';
 
@@ -37,6 +38,9 @@ export class PublicLoginComponent implements OnInit {
         // stage 2: normal login
         this.forceValidation = false;
         this.toast.Hide();
+
+
+
 
 
         if (this.loginForm.valid) {
