@@ -1,7 +1,8 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { map, Observable, of } from 'rxjs';
-import { EnumGtmAction, EnumGtmEvent, EnumGtmSource, GtmTracking } from '../../core/gtm';
+import { EnumGtmEvent, EnumGtmSource, GtmTracking } from '../../core/gtm';
 import { IListOptions, IProject, ProjectSeoService } from '../../core/services';
+import { GtmComponent } from '../abstract/gtm.abstract';
 
 const projects: IProject[] = [
     {
@@ -32,13 +33,13 @@ const projects: IProject[] = [
     templateUrl: './list.html',
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ProjectListComponent implements OnInit {
+export class ProjectListComponent extends GtmComponent implements OnInit {
 
     projects$: Observable<any>;
     seoLink: string;
 
     constructor(private seoService: ProjectSeoService) {
-        //
+        super();
     }
     ngOnInit(): void {
 
@@ -78,4 +79,23 @@ export class ProjectListComponent implements OnInit {
 
 
     }
+
+setOne() {
+    // reigster event and push datalayer
+    GtmTracking.RegisterEvent({
+        event: EnumGtmEvent.Filter,
+        source: EnumGtmSource.ProjectsList,
+    }, {
+        filter: 'one'
+    });
+}
+setTwo() {
+    GtmTracking.Reset();
+    GtmTracking.RegisterEvent({
+        event: EnumGtmEvent.Filter,
+        source: EnumGtmSource.EmployeesList,
+    }, {
+        filter: null
+    });
+}
 }

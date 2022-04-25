@@ -4,6 +4,7 @@ import { LoaderService, SeoService } from './core/services';
 import { GaTracking } from './core/ga';
 import { filter } from 'rxjs/operators';
 import { ConfigInitService } from './services/configinit.service';
+import { GtmTracking } from './core/gtm';
 @Component({
     selector: 'app-root',
     template: '<http-loader></http-loader><sh-toast *shServerRender="false"></sh-toast><router-outlet></router-outlet>'
@@ -35,6 +36,7 @@ export class AppComponent {
 
 
                 if (event instanceof NavigationEnd) {
+                    GtmTracking.Reset();
                     if (event.urlAfterRedirects === '/404') {
                         // if 404 is the url, do nothing, the 404 has already been handled
                         if (event.url !== '/404') {

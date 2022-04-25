@@ -1,17 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { SeoService } from '../../core/services';
+import { GtmComponent } from '../abstract/gtm.abstract';
 
 @Component({
     templateUrl: './main.component.html'
     // changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MainLayoutComponent implements OnInit {
+export class MainLayoutComponent extends GtmComponent implements OnInit {
 
-    constructor( private seoService: SeoService) { }
+
+    constructor( private seoService: SeoService) {
+        super();
+     }
 
     ngOnInit() {
     }
- 
+
 
 
 }

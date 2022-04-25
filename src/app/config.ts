@@ -14,9 +14,6 @@ export const Config = {
         defaultUploadSize: 1048576,
         defaultUploadFormat: ['gif', 'jpg', 'jpeg', 'png']
     },
-    GTM: {
-        isEnabled: true
-    },
     Auth: {
         userAccessKey: 'cricketere.user'
     },

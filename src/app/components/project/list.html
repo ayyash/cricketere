@@ -1,6 +1,8 @@
 <div class="page">
     <div class="container">
         <h4 class="f5 spaced">Project list</h4>
+        <div class="a"  (click)="setOne()" >Set filter 1</div>
+        <div class="a"  (click)="setTwo()" >Set filter 2</div>
 
         <ul class="row row-gap boxed umd-3">
             <li class="box-shadow-normal spaced" *ngFor="let project of projects$ | async">
@@ -15,7 +17,7 @@
         <h5 class="f5 spaced">Listed</h5>
         <ul class="rowlist">
             <li *ngFor="let item of [1,2,3,4,5,6]">
-                <cr-project-card></cr-project-card>
+                <cr-project-card ></cr-project-card>
             </li>
         </ul>
         <p>

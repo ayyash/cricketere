@@ -11,13 +11,16 @@ export enum EnumGtmSource {
     ProductsDetail = 'products detail',
     ProjectsDetail = 'projects detail',
     EmployeesDetail = 'employees detail',
+    Anywhere = 'anywhere',
+    Homepage = 'home',
+    NavigationDesktop = 'navigation desktop',
 }
 export enum EnumGtmEvent {
     Login = 'garage_login',
     Click = 'garage_click',
     NavClick = 'garage_nav_click',
     Search = 'garage_search',
-    Filter = 'garage_filter',
+    Filter = 'gr_filter',
     Sort = 'garage_sort',
     Next = 'garage_next',
     Upload = 'garage_upload',
@@ -26,7 +29,8 @@ export enum EnumGtmEvent {
     Details = 'garage_view_item',
     List = 'garage_view_list',
     Share = 'garage_share',
-    PageView = 'garage_page_view'
+    PageView = 'garage_page_view',
+    GroupClick = 'garage_group_click'
 }
 export enum EnumGtmMethod {
     Google = 'google',
@@ -41,6 +45,12 @@ export enum EnumGtmAction {
     Click = 'click',
     Drag = 'drag'
 }
+export enum EnumGtmGroup {
+    Login = 'login',
+    Upload = 'upload',
+    General = 'general',
+    Navigation = 'navigation'
+}
 export interface IGtmTrack {
     event: EnumGtmEvent;  // to control events site-wise
     source?: EnumGtmSource; // to control where the event is coming from
@@ -48,11 +58,6 @@ export interface IGtmTrack {
 
 
 export class GtmTracking {
-
-
-    public static get IsEnabled(): boolean {
-        return ConfigService.Config.GTM.isEnabled && typeof window !== 'undefined' && window['dataLayer'];
-    }
 
 
 
@@ -65,20 +70,21 @@ export class GtmTracking {
             }
         };
         _debug(data, 'register event');
-        if (GtmTracking.IsEnabled) {
-            dataLayer.push(data);
-        }
+		dataLayer.push(data);
 
-        /*
-{
-    event: 'gr_upload',
-    gr_track: {
-        source: 'product - details',
-        action: 'drag'
     }
-}
-        */
+    public static Reset() {
 
+        dataLayer.splice(1);
+
+        dataLayer.push(function () {
+            this.reset();
+        });
+
+    }
+
+    public static MapGroup(group: EnumGtmGroup, label?: string) {
+        return { group, label };
     }
 
     public static MapPath(path: string): any {
@@ -92,7 +98,7 @@ export class GtmTracking {
         if (position) {
             items[0].index = position;
         }
-        return {items};
+        return { items };
     }
 
     public static MapProject(project: IProject, index: number) {
@@ -113,7 +119,7 @@ export class GtmTracking {
         if (position) {
             items[0].index = position;
         }
-        return { items, value};
+        return { items, value };
 
     }
 
@@ -138,7 +144,9 @@ export class GtmTracking {
 
 
     public static MapAction(action: EnumGtmAction) {
-        return {action: action}
+        return { action: action };
     }
+
+
     // then all other mappers for employee, and project
 }
