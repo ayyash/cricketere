@@ -31,7 +31,8 @@ import { configFactory, ConfigService } from '../services/config.service';
             useClass: CricketereInterceptor,
             multi: true,
         },
-        { provide: ErrorHandler, useClass: CricketereErrorHandler }]
+        { provide: ErrorHandler, useClass: CricketereErrorHandler }
+    ]
 })
 export class CoreModule {
     constructor() {

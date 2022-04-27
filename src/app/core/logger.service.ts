@@ -57,6 +57,7 @@ Observable.prototype.catchProjectError = function(message: string, methodName: s
                     default:
                         // case 400: // this is bad requet, let the code return the right string
                         uiError.code = 'Unknown';
+                        uiError.internalMessage = m;
 
                         // take note of bad error format from server! bleh!
                         if (error.error) {

@@ -4,6 +4,7 @@ import { Config } from '../config';
 import { map, catchError } from 'rxjs/operators';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { IConfig } from '../core/services';
+import { GtmTracking } from '../core/gtm';
 
 
 export const configFactory = (config: ConfigService) => () =>
@@ -13,7 +14,7 @@ export const configFactory = (config: ConfigService) => () =>
     providedIn: 'root'
 })
 export class ConfigService {
-    
+
     constructor(
         private http: HttpClient,
         @Optional() @Inject('localConfig') protected localConfig: IConfig
@@ -55,12 +56,19 @@ export class ConfigService {
             return of(true);
         }
 
+        // testing GTM
+        GtmTracking.Values = GtmTracking.MapUser({name: 'userId', id: '123', email: 'email@address.com'});
+        GtmTracking.Values = GtmTracking.MapProfile({language: 'en', country: 'jo'});
+        GtmTracking.SetValues(GtmTracking.Values);
+
+
         return this.http.get(this._getUrl).pipe(
             map((response) => {
                 this.NewInstance(response, false);
                 // also state that it has been isServed
 
                 _seqlog('config next');
+
 
                 // here next
                 return true;

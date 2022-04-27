@@ -43,6 +43,7 @@ export class ProjectListComponent extends GtmComponent implements OnInit {
     }
     ngOnInit(): void {
 
+        // resources.keys.ayyash.f = '';
         // get list then update
 
         this.projects$ = of(projects).pipe(
@@ -80,22 +81,22 @@ export class ProjectListComponent extends GtmComponent implements OnInit {
 
     }
 
-setOne() {
-    // reigster event and push datalayer
-    GtmTracking.RegisterEvent({
-        event: EnumGtmEvent.Filter,
-        source: EnumGtmSource.ProjectsList,
-    }, {
-        filter: 'one'
-    });
-}
-setTwo() {
-    GtmTracking.Reset();
-    GtmTracking.RegisterEvent({
-        event: EnumGtmEvent.Filter,
-        source: EnumGtmSource.EmployeesList,
-    }, {
-        filter: null
-    });
-}
+    setOne() {
+        // reigster event and push datalayer
+        GtmTracking.RegisterEvent({
+            event: EnumGtmEvent.Filter,
+            source: EnumGtmSource.ProjectsList,
+        }, {
+            filter: 'one'
+        });
+    }
+    setTwo() {
+        GtmTracking.Reset();
+        GtmTracking.RegisterEvent({
+            event: EnumGtmEvent.Filter,
+            source: EnumGtmSource.EmployeesList,
+        }, {
+            filter: null
+        });
+    }
 }

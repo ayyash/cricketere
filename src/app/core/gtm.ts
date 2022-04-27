@@ -30,7 +30,8 @@ export enum EnumGtmEvent {
     List = 'garage_view_list',
     Share = 'garage_share',
     PageView = 'garage_page_view',
-    GroupClick = 'garage_group_click'
+    GroupClick = 'garage_group_click',
+    Error = 'garage_error'
 }
 export enum EnumGtmMethod {
     Google = 'google',
@@ -59,7 +60,13 @@ export interface IGtmTrack {
 
 export class GtmTracking {
 
-
+    private static _values = {};
+    public static get Values(): any {
+        return this._values;
+    }
+    public static set Values(value: any) {
+        this._values = {...this._values,...value};
+    }
 
     public static RegisterEvent(track: IGtmTrack, extra?: any): void {
 
@@ -69,19 +76,31 @@ export class GtmTracking {
                 ...extra
             }
         };
-        _debug(data, 'register event');
+        _debug(data, 'register event', 'ga');
 		dataLayer.push(data);
 
     }
+
+    public static SetValues(values: any): void {
+
+        let data = {
+            gr_values: {...values}
+        };
+        _debug(data, 'Set GA value', 'ga');
+        dataLayer.push(data);
+    }
     public static Reset() {
 
-        dataLayer.splice(1);
+        // dataLayer.splice(1);
 
         dataLayer.push(function () {
             this.reset();
         });
+        GtmTracking.SetValues(GtmTracking.Values);
 
     }
+
+
 
     public static MapGroup(group: EnumGtmGroup, label?: string) {
         return { group, label };
@@ -147,6 +166,18 @@ export class GtmTracking {
         return { action: action };
     }
 
+    public static MapUser(user: any) {
+        return {
+            user: user.name,
+            email: user.email
+        }
+    }
+    public static MapProfile(profile: any) {
+        return {
+            language: profile.language,
+            country: profile.country
+        }
+    }
 
     // then all other mappers for employee, and project
 }
