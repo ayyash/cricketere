@@ -65,7 +65,14 @@ export class GtmTracking {
         return this._values;
     }
     public static set Values(value: any) {
-        this._values = {...this._values,...value};
+        this._values = { ...this._values, ...value };
+    }
+
+
+    private static Push(data: any) {
+        if (window && window['dataLayer']) {
+            dataLayer.push(data);
+        }
     }
 
     public static RegisterEvent(track: IGtmTrack, extra?: any): void {
@@ -77,25 +84,24 @@ export class GtmTracking {
             }
         };
         _debug(data, 'register event', 'ga');
-		dataLayer.push(data);
+        this.Push(data)
 
     }
 
     public static SetValues(values: any): void {
 
         let data = {
-            gr_values: {...values}
+            gr_values: { ...values }
         };
         _debug(data, 'Set GA value', 'ga');
-        dataLayer.push(data);
+       this.Push(data);
     }
     public static Reset() {
 
-        // dataLayer.splice(1);
-
-        dataLayer.push(function () {
+        this.Push(function () {
             this.reset();
         });
+
         GtmTracking.SetValues(GtmTracking.Values);
 
     }
@@ -170,13 +176,13 @@ export class GtmTracking {
         return {
             user: user.name,
             email: user.email
-        }
+        };
     }
     public static MapProfile(profile: any) {
         return {
             language: profile.language,
             country: profile.country
-        }
+        };
     }
 
     // then all other mappers for employee, and project
