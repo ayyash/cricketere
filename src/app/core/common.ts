@@ -6,6 +6,7 @@ export const toSentenceCase = (s: string) => {
 
 
 export const toPrettyPrice = (s: string) => {
+    // TODO: try toLocalString
     const ret = Number(s.replace(/,/gi, ''));
     if (isNaN(ret)) { return s; }
     // read number, tofixed of 2 digits, insert "," in every three digits, if its already fixed, unfix first

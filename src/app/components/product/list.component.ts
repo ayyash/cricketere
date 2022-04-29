@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { distinctUntilChanged, distinctUntilKeyChanged, map, Observable, switchMap, tap } from 'rxjs';
 import { Config } from '../../config';
 import { hasMore } from '../../core/common';
-import { GaTracking } from '../../core/ga';
 import { EnumGtmEvent, EnumGtmSource, GtmTracking } from '../../core/gtm';
 import { IList, IListOptions } from '../../models/list.model';
 import { IProduct } from '../../models/product.model';

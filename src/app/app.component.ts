@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, Router, NavigationCancel, ActivatedRoute } from '@angular/router';
 import { LoaderService, SeoService } from './core/services';
-import { GaTracking } from './core/ga';
 import { filter } from 'rxjs/operators';
 import { ConfigInitService } from './services/configinit.service';
-import { GtmTracking } from './core/gtm';
+import { EnumGtmEvent, GtmTracking } from './core/gtm';
 @Component({
     selector: 'app-root',
     template: '<http-loader></http-loader><sh-toast *shServerRender="false"></sh-toast><router-outlet></router-outlet>'
@@ -41,7 +40,7 @@ export class AppComponent {
                         // if 404 is the url, do nothing, the 404 has already been handled
                         if (event.url !== '/404') {
                             this.LoaderService.emitUrl(event.url);
-                            GaTracking.RegisterError('404: ' + event.url, false);
+                            GtmTracking.RegisterEvent({event: EnumGtmEvent.Error}, {error: '404: ' + event.url});
                         }
                     } else {
                         this.LoaderService.emitUrl(event.urlAfterRedirects);
