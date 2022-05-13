@@ -13,7 +13,7 @@ export interface IProject {
     category?: ICategory;
 }
 
-export class Project  {
+export class Project {
 
     public static NewInstance(project: any): IProject {
         return {
@@ -22,7 +22,7 @@ export class Project  {
             description: project.description,
             image: project.image,
             category: project.category
-        }
+        };
     }
     public static NewInstances(projects: any[]): IProject[] {
         return projects.map(Project.NewInstance);
@@ -35,9 +35,12 @@ export class Project  {
     }
 
     // prepare to POST
-    public static PrepCreate(project: IProject): any {
+    public static PrepCreate(project: Partial<IProject>): any {
         return {
-            id: project.id
+            title: project.title,
+            description: project.description,
+            image: project.image,
+            category: project.category
         };
 
     }
@@ -45,8 +48,11 @@ export class Project  {
     public static PrepSave(project: IProject): any {
 
         return {
-           id: project.id
-
+            id: project.id,
+            title: project.title,
+            description: project.description,
+            image: project.image,
+            category: project.category
         };
 
     }

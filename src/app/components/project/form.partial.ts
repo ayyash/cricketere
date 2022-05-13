@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { IViewMode} from '../../core/services';
+import { IProject, IViewMode} from '../../core/services';
 import { Toast } from '../../lib/toast';
 
 
@@ -14,7 +14,7 @@ export class ProjectFormPartialComponent implements OnInit {
     // Add types
     @Input() mode: IViewMode = {forNew: true};
 
-    @Output() onSave: EventEmitter<any> = new EventEmitter<any>();
+    @Output() onSave: EventEmitter<Partial<IProject>> = new EventEmitter<Partial<IProject>>();
     @Output() onCancel: EventEmitter<void> = new EventEmitter();
 
     forceValidation = false;
@@ -50,7 +50,10 @@ export class ProjectFormPartialComponent implements OnInit {
     saveProject(): void {
         this.forceValidation = false;
         this.toast.Hide();
-
+        this.onSave.emit({
+            title: 'new project',
+            description: 'new project description'
+        })
 
         if (this.projectForm.valid) {
             // clone into a new object
@@ -59,7 +62,9 @@ export class ProjectFormPartialComponent implements OnInit {
             const _project = { ..._value};
 
             // then emit
-            this.onSave.emit(_project);
+            // this.onSave.emit(_project);
+            // test project
+
         } else {
             this.forceValidation = true;
             this.toast.Show('INVALID_FORM', { sticky: false, extracss: 'error' });

@@ -1,24 +1,20 @@
 function _debug(o, message, type) {
     if (window && window._indebug) {
         switch (type) {
-            case 'e':
+            case 'e': // error
                 console.log('%c ' + message, 'background: red; color: #fff', o);
                 break;
-            case 't':
+            case 't': // trace error
                 console.trace('%c ' + message, 'background: red; color: #fff', o);
-                // window.console.trace('%c '+ o, 'background: red; color: #fff');
                 break;
-            case 'a': // temporary attention
-                console.info('%c ' + message, 'background: orange; font-weight: bold', o);
-                break;
-            case 'p':
+            case 'p': // http response
                 console.info('%c ' + message, 'background: #222; color: #bada55', o);
                 break;
-            case 'r':
-                console.info('%c ' + message, 'background: #4f560f; color: #e6ff07', o);
+            case 'w': // warning
+                console.warn('%c ' + message, 'background: #4f560f; color: #e6ff07', o);
                 break;
-            case 'ga':
-                console.info('%c ' + message, 'background: #03dbfc; color: #000', o);
+            case 'gtm': // gtm events, special
+                console.info('%cGTM: ' + message, 'background: #03dbfc; color: #000', o);
                 break;
             default:
                 console.info('%c ' + message, 'background: #d9d9d9; color: #a82868; font-weight: bold;', o);
@@ -32,6 +28,7 @@ function _attn(o, message) {
     }
 }
 
+
 var seq = 0;
 function _seqlog(message) {
     if (window && window._indebug) {
@@ -43,3 +40,8 @@ function _seqlog(message) {
 window.WebConfig = {
     isServed: false
 };
+
+const _insearch = window.location.search.indexOf('debug=true') > -1;
+if (_insearch) {
+    _indebug = true;
+}

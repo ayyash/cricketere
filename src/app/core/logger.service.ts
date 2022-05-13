@@ -35,7 +35,7 @@ Observable.prototype.catchProjectError = function(message: string, methodName: s
             const uiError: IUiError = {
                 code: 'Unknown',
                 internalMessage: '',
-                serverMessage: undefined,
+                uiMessage: undefined,
                 status: 0
             };
             let m = error.message;
@@ -70,7 +70,7 @@ Observable.prototype.catchProjectError = function(message: string, methodName: s
                                 m += ': ' + uiError.internalMessage;
                             }
                             if (error.error.serverMessage) {
-                                uiError.serverMessage = error.error.serverMessage;
+                                uiError.uiMessage = error.error.serverMessage;
                                 uiError.code = '-1'; // force server message
                             }
                         }

@@ -1,10 +1,11 @@
 import { Location } from '@angular/common';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { distinctUntilChanged, distinctUntilKeyChanged, map, Observable, switchMap, tap } from 'rxjs';
+import { catchError, distinctUntilChanged, distinctUntilKeyChanged, map, Observable, switchMap, tap } from 'rxjs';
 import { Config } from '../../config';
 import { hasMore } from '../../core/common';
 import { EnumGtmEvent, EnumGtmSource, GtmTracking } from '../../core/gtm';
+import { Toast } from '../../lib/toast';
 import { IList, IListOptions } from '../../models/list.model';
 import { IProduct } from '../../models/product.model';
 import { ParamState } from '../../services/param.state';
@@ -29,6 +30,7 @@ export class ProductListComponent implements OnInit {
         private router: Router,
         private paramState: ParamState,
         private location: Location,
+        private toast: Toast,
         private route: ActivatedRoute) {
 
         //
@@ -36,8 +38,6 @@ export class ProductListComponent implements OnInit {
     ngOnInit(): void {
         //
         this.params$ = this.paramState.stateItem$;
-
-
 
         this.products$ = this.route.paramMap.pipe(
             map((p) => {
@@ -72,7 +72,8 @@ export class ProductListComponent implements OnInit {
                         ...params
                     });
                     return this.productState.appendList(products.matches);
-                })
+                }),
+                // catchError(e => this.toast.HandleCatchError(e))
             ))
         );
 

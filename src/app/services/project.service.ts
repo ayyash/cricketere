@@ -43,9 +43,10 @@ export class ProjectService {
 
     }
 
-    CreateProject(project: IProject): Observable<IProject> {
+    CreateProject(project: Partial<IProject>): Observable<IProject> {
         const _url = this._createUrl;
         const data = Project.PrepCreate(project);
+        // redoing this
         _debug(data, 'CreateProject data');
 
         return this._http.post(_url, data).pipe(

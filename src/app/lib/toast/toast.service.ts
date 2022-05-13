@@ -84,7 +84,7 @@ export class Toast {
                 this.Show(
                     error.code,
                     { sticky: true, extracss: 'error' },
-                    <string>error.serverMessage
+                    <string>error.uiMessage
                 );
             } else {
                 // something unpredictable happened
@@ -94,6 +94,7 @@ export class Toast {
     }
 
     public HandleCatchError(error: IUiError, code?: string): Observable<any> {
+        // probably send a GTM event
         if (error.status === 404) {
             if (code) {
                 error.code = code + '_NOT_FOUND';

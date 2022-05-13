@@ -83,7 +83,7 @@ export class GtmTracking {
                 ...extra
             }
         };
-        _debug(data, 'register event', 'ga');
+        _debug(data, 'register event', 'gtm');
         this.Push(data)
 
     }
@@ -93,7 +93,7 @@ export class GtmTracking {
         let data = {
             gr_values: { ...values }
         };
-        _debug(data, 'Set GA value', 'ga');
+        _debug(data, 'Set GA value', 'gtm');
        this.Push(data);
     }
     public static Reset() {

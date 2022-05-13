@@ -10,6 +10,7 @@ import {
     HttpHeaders
 } from '@angular/common/http';
 import { ConfigService, LoaderService } from './services';
+import { debug, debugError } from './rxjs.operators';
 
 
 @Injectable()
@@ -31,6 +32,10 @@ export class CricketereInterceptor implements HttpInterceptor {
         const adjustedReq = req.clone({ url: url, setHeaders: this.getHeaders(req.headers) });
         this.loaderService.show();
 
+        if (req.body){
+            _debug(req.body, `Request ${req.method} ${req.urlWithParams}`, 'p');
+        }
+
         return next
             .handle(adjustedReq)
             .pipe(
@@ -38,10 +43,12 @@ export class CricketereInterceptor implements HttpInterceptor {
                 map(response => this.mapData(response)),
                 finalize(() => {
                     this.loaderService.hide();
-                })
+                }),
+                debug(`${req.method} ${req.urlWithParams}`, 'p'),
+                // debugError(`${req.method} ${req.urlWithParams}`)
             )
-            .catchProjectError(req.urlWithParams, req.method)
-            .debug(req.urlWithParams, req.method, 'p');
+            // .catchProjectError(req.urlWithParams, req.method)
+            // .debug(req.urlWithParams, req.method, 'p');
         // do catch 401 here
     }
 

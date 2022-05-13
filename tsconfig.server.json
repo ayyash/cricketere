@@ -8,10 +8,11 @@
             "node"
         ]
     },
+    // "include": [
+    //     "src/typings.d.ts"
+    // ],
     "files": [
-        "server.ts"
-    ],
-    "include": [
+        "server.ts",
         "src/typings.d.ts"
     ],
     "exclude": [

@@ -5,7 +5,7 @@ const fs = require('fs');
 var config = require('./server/config').getConfig();
 
 // for ssr to run, define global
-if (config.ssr){
+if (config.ssr) {
     // global.WebSocket = require('ws');
     // global.XMLHttpRequest = require('xhr2');
 
@@ -28,14 +28,15 @@ if (config.ssr){
         }
     };
     global._debug = function (o, message, type) {
-        // if (type === 'e' || type === 'f' || type === 'ssr') {
+        if (config.env === 'local') {
             console.log(message, o);
+        }
 
-        // }
     };
     global._attn = function (o, message) {
-        // do nothing
-        // console.log(message, o);
+        if (config.env === 'local') {
+            console.log(message, o);
+        }
     }
     global._seqlog = function (message) {
         // console.log(message);
@@ -46,7 +47,7 @@ if (config.ssr){
     global.resources = {
         language: 'en',
         country: 'JO',
-        keys: { }
+        keys: {}
     };
 
     // get all languages here (keys)
@@ -55,7 +56,7 @@ if (config.ssr){
     for (let lang of config.languages) {
         const resFile = './server/locale/' + lang + '.js';
         if (fs.existsSync(resFile)) {
-            global.resources.allLanguages[lang] =  require(resFile).resources.keys;
+            global.resources.allLanguages[lang] = require(resFile).resources.keys;
         }
 
     }
@@ -77,18 +78,18 @@ var language = require('./server/language');
 app.use(language(config));
 
 // for ssr use
-app.use(function(req, res, next){
+app.use(function (req, res, next) {
 
-     // also save serverUrl to use with local interceptor
-     let proto = req.protocol;
-     if (req.headers) {
-         if (req.headers['x-forwarded-proto']) {
-             proto = req.headers['x-forwarded-proto'].toString();
-         }
+    // also save serverUrl to use with local interceptor
+    let proto = req.protocol;
+    if (req.headers) {
+        if (req.headers['x-forwarded-proto']) {
+            proto = req.headers['x-forwarded-proto'].toString();
+        }
 
-     }
-     res.locals.serverUrl = `${proto}://${req.get('host')}`;
-     next();
+    }
+    res.locals.serverUrl = `${proto}://${req.get('host')}`;
+    next();
 });
 
 // serve the right router
