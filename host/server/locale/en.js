@@ -104,7 +104,8 @@ resources.keys = {
         "ERROR": "Oh oh, an error occurred",
         "NOT_FOUND": "404! Hmm! Once in a while, we change address and forget to update the mailman.",
         "LOGIN": "Login to your sekrab account",
-        "LIST_PROJECTS": "All projects list"
+        "LIST_PROJECTS": "All projects list",
+        "PRODUCTS": "Products List"
     },
     "DEFAULT_PAGE_TITLE": "Welcome"
 };

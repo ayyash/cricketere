@@ -34,7 +34,7 @@ export class DialogComponent implements AfterViewInit, OnDestroy {
     childComponentType: Type<any>;
 
     constructor(
-        private componentFactoryResolver: ComponentFactoryResolver,
+        // private componentFactoryResolver: ComponentFactoryResolver,
         private cd: ChangeDetectorRef,
         private dialogRef: DialogRef
     ) {}
@@ -55,12 +55,12 @@ export class DialogComponent implements AfterViewInit, OnDestroy {
     }
 
     loadChildComponent(componentType: Type<any>) {
-        const componentFactory = this.componentFactoryResolver.resolveComponentFactory(componentType);
+        // const componentFactory = this.componentFactoryResolver.resolveComponentFactory(componentType);
 
         const viewContainerRef = this.contentPoint.viewContainerRef;
         viewContainerRef.clear();
 
-        this.componentRef = viewContainerRef.createComponent(componentFactory);
+        this.componentRef = viewContainerRef.createComponent(componentType);
         this.dialogTitle = this.dialogRef.dialogTitle;
         this.dialogMode = this.dialogRef.dialogMode;
         // next open

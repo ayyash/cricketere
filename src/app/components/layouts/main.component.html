@@ -2,6 +2,7 @@
     <nav>
         <ul class="boxed row">
             <li> {{ 'Welcome to Cricketere site' | translate:'WelcomeCricketere'}} </li>
+            <li><a routerLink="/">Home</a></li>
             <li><a routerLink="/projects" [shGtm]="{source: enumGtmSource.NavigationDesktop, group: enumGtmGroup.Navigation}">Projects</a></li>
             <li><a routerLink="/products" [shGtm]="{source: enumGtmSource.NavigationDesktop, group: enumGtmGroup.Navigation}">Products</a></li>
             <li><a routerLink="/projects/create" [shGtm]="{source: enumGtmSource.NavigationDesktop, group: enumGtmGroup.Navigation}">Create new</a></li>

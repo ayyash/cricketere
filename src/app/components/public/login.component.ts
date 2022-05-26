@@ -1,10 +1,10 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { catchError } from 'rxjs/operators';
 import { Config } from '../../config';
-import { GtmTracking } from '../../core/gtm';
 import { AuthService } from '../../core/services';
-import { Toast } from '../../lib/toast';
+import { Toast } from '../../lib/toaster/toast.state';
 
 @Component({
 
@@ -48,14 +48,31 @@ export class PublicLoginComponent implements OnInit {
 
             const _user = this.loginForm.value;
 
-            this.authService.Login(_user.username, _user.password).subscribe(
+            // this.router.navigateByUrl(this.authService.redirectUrl || Config.Basic.defaultRoute);
+
+            this.authService.Login(_user.username, _user.password).pipe(
+                catchError(e => {
+                    return this.toast.HandleUiError(e, {
+                        buttons: [
+                            {
+                                text: 'Login',
+                                css: 'btn-fake',
+                                click: (event) => {
+                                    // reroute
+                                    this.router.navigateByUrl(this.authService.redirectUrl || Config.Basic.defaultRoute);
+                                    this.toast.Hide();
+                                }
+                            },
+                            this.toast.dismissButton],
+                    });
+                })
+            ).subscribe(
                 {
                     next: result => {
                         if (result) {
-                            this.router.navigateByUrl(this.authService.redirectUrl || Config.Basic.defaultRoute);
                         }
                     },
-                    error: error => this.toast.HandleUiError(error)
+                    // error: error => this.toast.HandleUiError(error)
                 }
 
             );
@@ -63,7 +80,7 @@ export class PublicLoginComponent implements OnInit {
         }
         else {
             this.forceValidation = true;
-            this.toast.Show('INVALID_FORM', { sticky: false, extracss: 'error' });
+            // this.toast.Show('INVALID_FORM', { sticky: false, extracss: 'error' });
 
         }
 

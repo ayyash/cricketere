@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Res } from '../../core/resources';
 import { ConfigService, HomeSeoService } from '../../core/services';
+import { Toast } from '../../lib/toaster/toast.state';
 import { GtmComponent } from '../abstract/gtm.abstract';
 @Component({
 
@@ -11,7 +12,7 @@ export class PublicHomeComponent extends GtmComponent implements OnInit  {
     welcomeText = Res.Get('WELCOME_TEXT');
 
 
-    constructor(private seoService: HomeSeoService) {
+    constructor(private seoService: HomeSeoService, private toast: Toast) {
         //
         super();
     }
@@ -21,5 +22,21 @@ export class PublicHomeComponent extends GtmComponent implements OnInit  {
         this.seoService.setHome();
 
     }
+    showToast1() {
+        // show toast to test its working, by exaact code
+        this.toast.ShowSuccess('INVALID_VALUE');
+      }
+      showToast2() {
+        // by unknown code, without fallback, this will produce 'Unknown'
+        this.toast.ShowError('SomeCode');
+      }
+      showToast3() {
+        // by unknown code, with fallback, fallback will be produced
+        this.toast.ShowWarning('SomeCode', {text: 'Some fallback message here'});
+      }
+      showToast4() {
+        // and finally, an all corners mercedes
+        this.toast.Show('SomeCode', {text: resources.keys.INVALID_VALUE});
+      }
 
 }

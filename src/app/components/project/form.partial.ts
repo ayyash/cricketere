@@ -67,7 +67,7 @@ export class ProjectFormPartialComponent implements OnInit {
 
         } else {
             this.forceValidation = true;
-            this.toast.Show('INVALID_FORM', { sticky: false, extracss: 'error' });
+            // this.toast.Show('INVALID_FORM', { sticky: false, extracss: 'error' });
         }
     }
 }

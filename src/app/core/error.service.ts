@@ -5,7 +5,6 @@ import { EnumGtmEvent, GtmTracking } from './gtm';
 export class CricketereErrorHandler implements ErrorHandler {
 
     handleError(error: any) {
-        // TODO: log
 
         _debug(error, 'Unhandled Error', 'e');
         GtmTracking.RegisterEvent({event: EnumGtmEvent.Error}, {error: error});

@@ -1,0 +1,86 @@
+@import (reference) "sh._vars.less";
+@import (reference) "utilities/media.less";
+
+.toast {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    background-color: @grey-dark;
+    color: @white;
+    position: fixed;
+    bottom: @space;
+    left: @space;
+    right: @space;
+    font-size: 90%;
+    z-index: 5100;
+    animation: gbox-in 0.2s ease-in-out;
+    box-shadow: @shadows[deep];
+
+    &.error {
+        background-color: @red;
+    }
+    &.success {
+        background-color: @green;
+    }
+    &.warning {
+        background-color: @yellow;
+        color: @text-color;
+    }
+    &.out {
+        // animate out
+        animation-name: gbox-out;
+        animation-duration: 1s;
+        animation-timing-function: ease-in-out;
+    }
+}
+
+.text {
+    padding: @space;
+    margin-right: @halfspace;
+    flex-basis: 100%;
+}
+
+
+.buttons {
+    display: flex;
+    button {
+        text-transform: uppercase;
+        padding: @space;
+        cursor: pointer;
+        color: inherit;
+        display: block;
+
+    }
+}
+
+@keyframes gbox-in {
+    0% {
+        bottom: -100%;
+        opacity: 0;
+    }
+
+    100% {
+        bottom: 0;
+        opacity: 1;
+    }
+}
+
+@keyframes gbox-out {
+    0% {
+        bottom: 0;
+        opacity: 1;
+    }
+
+    90% {
+        bottom: -100%;
+        opacity: 0;
+    }
+}
+
+.media(md, {
+        .toast {
+            max-width: 50vw;
+        }
+    }
+
+);

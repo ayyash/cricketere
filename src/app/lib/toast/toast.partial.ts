@@ -16,7 +16,9 @@ import { IToast, IToastButton } from './toast.model';
                     class="symbol icon-close closelabel"
                     title="{{ toast.closetext }}"
                     (click)="hide(toast)"
-                ></span></div></ng-container>
+                ></span>
+            </div>
+        </ng-container>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrls: ['./toast.less']
@@ -29,7 +31,7 @@ export class ToastPartialComponent implements OnInit, OnDestroy {
     }
     ngOnInit(): void {
 
-        this.toast$ = this.toastService.toast$.debug('TOAST', 'Subject');
+        this.toast$ = this.toastService.toast$; //.debug('TOAST', 'Subject');
     }
     hide(toast: IToast): void {
         this.toastService.Hide();

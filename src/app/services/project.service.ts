@@ -47,7 +47,6 @@ export class ProjectService {
         const _url = this._createUrl;
         const data = Project.PrepCreate(project);
         // redoing this
-        _debug(data, 'CreateProject data');
 
         return this._http.post(_url, data).pipe(
             map(response => {
@@ -59,7 +58,6 @@ export class ProjectService {
     SaveProject(project: IProject): Observable<IProject> {
         const _url = this._saveUrl.replace(':id', project.id);
         const data = Project.PrepSave(project);
-        _debug(data, 'SaveProject data');
 
         return this._http.put(_url, data).pipe(
             map(response => {

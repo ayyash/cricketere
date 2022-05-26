@@ -5,6 +5,18 @@
         <p>
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Et reprehenderit impedit vero quaerat? Optio aspernatur sed corporis officia cupiditate dolores provident minus quidem atque, magnam id fugit tempore cum labore!
         </p>
+        <hr class="spaced" />
+        <button class="btn" (click)="showToast1()">Show toast of exact code</button>
+        <br />
+        <button class="btn" (click)="showToast2()">Show toast of no code</button>
+        <br />
+        <button class="btn" (click)="showToast3()">
+          Show toast with fallback message
+        </button>
+        <br />
+        <button class="btn" (click)="showToast4()">
+          Show toast with key provided message
+        </button>
         <div class="txt-c">
 
             <button class="btn-rev" routerLink="/login" [shGtm]="{source: enumGtmSource.Homepage,group: enumGtmGroup.Login}">Login</button>

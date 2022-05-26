@@ -1,9 +1,11 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Observable, tap } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { catchError, Observable, of, tap } from 'rxjs';
+import { catchAppError } from '../../core/rxjs.operators';
+import { Toast } from '../../lib/toaster/toast.state';
+import { IUiError } from '../../models/error.model';
 import { IProject } from '../../models/project.model';
 import { ProjectService } from '../../services/project.service';
-
 
 @Component({
 
@@ -13,7 +15,10 @@ import { ProjectService } from '../../services/project.service';
 export class ProjectCreateComponent implements OnInit {
     x$: Observable<any>;
 
-    constructor(private route: ActivatedRoute, private projectService: ProjectService) {
+    constructor(private route: ActivatedRoute,
+        private router: Router,
+        private toast: Toast,
+        private projectService: ProjectService) {
         //
     }
     ngOnInit(): void {
@@ -26,14 +31,26 @@ export class ProjectCreateComponent implements OnInit {
     }
 
     create(project: Partial<IProject>) {
-        this.projectService.CreateProject(project).subscribe({
-            next: (data) => {
-                _attn(data?.id, 'succeded');
-            },
-            error: (error) => {
-                _attn(error, 'failed');
-            }
-        });
+        this.projectService.CreateProject(project).pipe(
+            catchError(e => this.toast.HandleUiError(e, {
+                buttons: [{
+                    text: 'LOGIN', click: (event) => {
+                        // reroute
+                        this.router.navigate(['/login']);
+                        this.toast.Hide();
+                    }
+                }]
+            }))
+        )
+            .subscribe({
+                next: (data) => {
+                    _attn(data?.id, 'succeded');
+                },
+                error: (error: IUiError) => {
+                    _attn(error, 'error');
+                    this.toast.Show(error.code);
+                }
+            });
 
     }
 }

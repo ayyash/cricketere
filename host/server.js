@@ -19,8 +19,9 @@ if (config.ssr) {
             return null;
 
         },
-        setItem: function (key, value, expiresin) {
-            if (expiresin === void 0) { expiresin = 0; }
+        setItem: function (key, value) {
+
+            console.log('setting item', key, value);
         },
         clear: function () {
         },
@@ -28,13 +29,13 @@ if (config.ssr) {
         }
     };
     global._debug = function (o, message, type) {
-        if (config.env === 'local') {
+        if (config.name === 'local') {
             console.log(message, o);
         }
 
     };
     global._attn = function (o, message) {
-        if (config.env === 'local') {
+        if (config.name === 'local') {
             console.log(message, o);
         }
     }

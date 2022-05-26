@@ -3,6 +3,7 @@ import { IClientFile, IClientFileError, IClientFileConfig } from './clientfile.m
 import { Res } from '../../core/resources';
 import { Toast } from '../toast';
 import { DomSanitizer } from '@angular/platform-browser';
+import { toFormat } from '../../core/common';
 
 // WATCH: its better not to allow this component to render on server side ever
 @Component({
@@ -52,7 +53,7 @@ export class UploadPartialComponent implements OnInit {
 
         if (file) {
             // file types like "image/png"
-           
+
             if (this.format.findIndex(n => file.type.indexOf(n) > -1) < 0) {
                 valid.format = false;
                 _isvalid = false;
@@ -100,6 +101,7 @@ export class UploadPartialComponent implements OnInit {
             if (_size > 1000) {
                 _size = Math.floor(_size / 1000); // MB
             }
+            // this.toast.ShowError('', {text: toFormat(Res.Get('FILE_LARGE'), _size)});
             this.toast.Show('', { extracss: 'error' }, Res.Get('FILE_LARGE').replace('$0', _size.toString()));
         } else {
             this.toast.Show(valid.code, { extracss: 'error' });

@@ -9,11 +9,13 @@ import { NotFoundComponent } from './components/layouts/404.component';
 import { ErrorComponent } from './components/layouts/error.component';
 import { MainLayoutComponent } from './components/layouts/main.component';
 import { SingleLayoutComponent } from './components/layouts/single.component';
+import { ToastPartialComponent } from './lib/toaster/toast.component';
 
 @NgModule({
     declarations: [AppComponent,
         MainLayoutComponent,
         NotFoundComponent,
+        ToastPartialComponent,
         SingleLayoutComponent,
         ErrorComponent],
     imports: [

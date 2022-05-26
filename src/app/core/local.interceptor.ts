@@ -3,6 +3,7 @@ import { Injectable, Optional, Inject } from '@angular/core';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
 
 import { Config } from '../config';
+import { debug, catchAppError } from './rxjs.operators';
 
 @Injectable()
 export class LocalInterceptor implements HttpInterceptor {
@@ -22,8 +23,9 @@ export class LocalInterceptor implements HttpInterceptor {
 
         const adjustedReq = req.clone({ url: url });
         return next
-            .handle(adjustedReq)
-            .catchProjectError(req.urlWithParams, req.method)
-            .debug(req.urlWithParams, req.method, 'p');
+            .handle(adjustedReq).pipe(
+                debug(`${req.method} ${req.urlWithParams}`, 'p'),
+                catchAppError(`${req.method} ${req.urlWithParams}`)
+            );
     }
 }

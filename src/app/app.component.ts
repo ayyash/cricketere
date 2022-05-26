@@ -6,7 +6,10 @@ import { ConfigInitService } from './services/configinit.service';
 import { EnumGtmEvent, GtmTracking } from './core/gtm';
 @Component({
     selector: 'app-root',
-    template: '<http-loader></http-loader><sh-toast *shServerRender="false"></sh-toast><router-outlet></router-outlet>'
+    template: `<http-loader></http-loader>
+    <sh-toast *shServerRender="false"></sh-toast>
+    <gr-toast></gr-toast>
+    <router-outlet></router-outlet>`
 })
 export class AppComponent {
     constructor(

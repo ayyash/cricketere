@@ -5,13 +5,9 @@ import { Platform } from '../lib/platform.service';
 
 @Injectable({ providedIn: 'root' })
 export class LocalStorageService {
-    public isBrowser = false;
 
     constructor(private platform: Platform) {
-        if (this.platform.isBrowser) {
-            this.isBrowser = true;
-            this._setResetKey();
-        }
+        this._setResetKey();
 
     }
 
@@ -54,9 +50,6 @@ export class LocalStorageService {
     setObject(key: string, value: any, expiresin: number = ConfigService.Config.Cache.Timeout): void {
         // set cache with expiration time stamp, each obect has its own? or one for all?
 
-        if (!this.isBrowser) {
-            return;
-        }
 
         const _storage: ICachedStorage = {
             value: value,
@@ -72,9 +65,6 @@ export class LocalStorageService {
     getObject(key: string): any {
         // if browser get storage, else return null
 
-        if (!this.isBrowser) {
-            return null;
-        }
 
 
         const value: any = this.getItem(ConfigService.Config.Cache.Key + '.' + key);
@@ -99,27 +89,18 @@ export class LocalStorageService {
     }
 
     removeItem(key: string) {
-        if (this.isBrowser) {
-            localStorage.removeItem(key);
-        }
+        localStorage.removeItem(key);
     }
 
     setItem(key: string, value: string) {
-        if (this.isBrowser) {
-            localStorage.setItem(key, value);
-        }
+        localStorage.setItem(key, value);
     }
 
     getItem(key: string): (string | null) {
-        if (this.isBrowser) {
-            return localStorage.getItem(key);
-        }
-        return null;
+        return localStorage.getItem(key);
     }
     clear(): void {
         // TODO: may be  i should be more selective about what to clear?
-        if (this.isBrowser) {
-            localStorage.clear();
-        }
+        localStorage.clear();
     }
 }

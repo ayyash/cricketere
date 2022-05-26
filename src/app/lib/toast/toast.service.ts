@@ -1,4 +1,4 @@
-import { Observable, BehaviorSubject, of, timer, Subscription } from 'rxjs';
+import { Observable, BehaviorSubject, of, timer, Subscription, throwError } from 'rxjs';
 import { IToast } from './toast.model';
 import { Res } from '../../core/resources';
 import { Injectable } from '@angular/core';
@@ -6,7 +6,8 @@ import { IUiError } from '../../core/services';
 
 @Injectable({ providedIn: 'root' })
 export class Toast {
-    toast: BehaviorSubject<IToast | null> = new BehaviorSubject(null);
+
+    private toast: BehaviorSubject<IToast | null> = new BehaviorSubject(null);
     public toast$: Observable<IToast | null> = this.toast.asObservable();
 
     private isCancled: Subscription;
@@ -88,7 +89,8 @@ export class Toast {
                 );
             } else {
                 // something unpredictable happened
-                _debug(error, 'Something nasty', 't');
+                throw(Error(<any>error));
+                // _debug(error, 'Something nasty', 't');
             }
         }
     }

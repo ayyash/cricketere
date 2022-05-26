@@ -20,4 +20,11 @@
         </ng-container>
         <a routerLink="/projects" [queryParams]="{page: 2}">Test forward with page</a>
     </div>
+    <div>
+
+        Somethign else on the page, this works even if above failed
+        <ng-container *ngIf="params$ | async as params">
+            {{ params | json }}
+        </ng-container>
+    </div>
 </div>

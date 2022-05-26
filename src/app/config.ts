@@ -67,7 +67,7 @@ export const Config = {
         , project: {
             list: '/projects/?:options',
             details: '/projects/:id',
-            create: '/projects', // POST
+            create: '/txerror', // POST
             save: '/projects/:id', // PUT
             delete: '/projects/:id', // DELETE
         }

@@ -5,6 +5,7 @@ import { Config } from '../config';
 import { HttpClient } from '@angular/common/http';
 
 import { IData, DataClass, EnumDataType, LocalStorageService } from '../core/services';
+import { debug } from '../core/rxjs.operators';
 
 @Injectable({
     providedIn: 'root'
@@ -36,7 +37,7 @@ export class DataService {
 
         if (_data) {
             // if localStroage exist, return
-            return of(_data).debug('GetData ' + name, 'cached');
+            return of(_data).pipe(debug('Cached GetData ' + name));
         } else {
             // get from server, url is replaced for the correct id
             return this._http
@@ -56,7 +57,6 @@ export class DataService {
                         return _retdata;
                     })
                 )
-                .debug('GetData ' + name, 'code');
         }
     }
 

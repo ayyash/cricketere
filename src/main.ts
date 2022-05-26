@@ -1,8 +1,4 @@
 
-// import './app/core/common';
-// FIXME: add to tsconfig
-import './app/core/logger.service';
-
 import { enableProdMode, PLATFORM_INITIALIZER } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 

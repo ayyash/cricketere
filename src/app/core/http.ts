@@ -10,7 +10,7 @@ import {
     HttpHeaders
 } from '@angular/common/http';
 import { ConfigService, LoaderService } from './services';
-import { debug, debugError } from './rxjs.operators';
+import { debug, catchAppError } from './rxjs.operators';
 
 
 @Injectable()
@@ -45,11 +45,8 @@ export class CricketereInterceptor implements HttpInterceptor {
                     this.loaderService.hide();
                 }),
                 debug(`${req.method} ${req.urlWithParams}`, 'p'),
-                // debugError(`${req.method} ${req.urlWithParams}`)
-            )
-            // .catchProjectError(req.urlWithParams, req.method)
-            // .debug(req.urlWithParams, req.method, 'p');
-        // do catch 401 here
+                catchAppError(`${req.method} ${req.urlWithParams}`)
+            );
     }
 
     private getHeaders(reqheaders: HttpHeaders): any {
