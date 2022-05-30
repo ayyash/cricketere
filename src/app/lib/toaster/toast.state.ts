@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of, throwError } from 'rxjs';
+import { Observable, of, Subscription, throwError, timer } from 'rxjs';
+import { Config } from '../../config';
 import { Res } from '../../core/resources';
 import { IUiError } from '../../models/error.model';
 import { StateService } from '../../services/state.abstract';
-import { IToastButton, IToast } from './toast.model';
+import { IToastButton, IToast, EnumTimeout } from './toast.model';
 
 
 @Injectable({ providedIn: 'root' })
@@ -12,9 +13,13 @@ export class Toast extends StateService<IToast> {
     // private toast: BehaviorSubject<IToast | null> = new BehaviorSubject(null);
     // toast$: Observable<IToast | null> = this.toast.asObservable();
 
+    // keep track of timeout
+    private isCanceled: Subscription;
+
+
     public dismissButton: IToastButton = {
         css: 'btn-close',
-        text: 'Dismiss',
+        text: Res.Get('Dismiss'),
         click: (event: MouseEvent) => {
             this.Hide();
         }
@@ -23,18 +28,39 @@ export class Toast extends StateService<IToast> {
     private defaultOptions: IToast = {
         css: 'toast',
         extracss: '',
-        text: '',
-        buttons: [this.dismissButton]
+        text: Res.Get('ToastError'),
+        timeout: Config.Basic.defaultToastTimeout, //EnumTimeout.Short, // or config value
+        buttons: [this.dismissButton],
+        visible: false
+    }
+
+    constructor() {
+        super();
+        this.SetState({...this.defaultOptions});
     }
 
 
     Show(code: string, options?: IToast): void {
 
-        const _options: IToast = { ...this.defaultOptions, ...options };
+        this.Hide();
+
+        const _options: IToast = { ...this.defaultOptions, ...options};
 
         // get message from code
         const message = Res.Get(code, options?.text || resources.keys.Unknown);
-        this.SetState({ ..._options, text: message, });
+
+        timer(100).subscribe(() => {
+            this.SetState({ ..._options, text: message, visible: true  });
+        });
+
+
+        // timeout and hide
+        if (_options.timeout > EnumTimeout.Never) {
+            this.isCanceled = timer(_options.timeout).subscribe(() => {
+                this.Hide();
+            });
+        }
+
     }
 
     ShowError(code: string, options?: IToast) {
@@ -48,8 +74,13 @@ export class Toast extends StateService<IToast> {
     }
 
     Hide() {
-        this.RemoveState();
+        if(this.isCanceled) {
+            this.isCanceled.unsubscribe();
+        }
+        this.UpdateState({visible: false});
     }
+
+
 
     HandleUiError(error: IUiError, options?: IToast): Observable<any> {
 

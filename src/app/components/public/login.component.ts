@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { catchError } from 'rxjs/operators';
 import { Config } from '../../config';
 import { AuthService } from '../../core/services';
+import { EnumTimeout } from '../../lib/toaster/toast.model';
 import { Toast } from '../../lib/toaster/toast.state';
 
 @Component({
@@ -53,6 +54,7 @@ export class PublicLoginComponent implements OnInit {
             this.authService.Login(_user.username, _user.password).pipe(
                 catchError(e => {
                     return this.toast.HandleUiError(e, {
+                        timeout: EnumTimeout.Never,
                         buttons: [
                             {
                                 text: 'Login',

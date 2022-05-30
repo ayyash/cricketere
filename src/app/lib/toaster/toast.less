@@ -13,25 +13,37 @@
     right: @space;
     font-size: 90%;
     z-index: 5100;
-    animation: gbox-in 0.2s ease-in-out;
     box-shadow: @shadows[deep];
 
     &.error {
         background-color: @red;
     }
+
     &.success {
         background-color: @green;
     }
+
     &.warning {
         background-color: @yellow;
         color: @text-color;
     }
-    &.out {
-        // animate out
-        animation-name: gbox-out;
-        animation-duration: 1s;
-        animation-timing-function: ease-in-out;
+
+    transform: translateY(calc(100% + @space));
+    transition: transform 0.2s ease-in-out;
+
+    &.inview {
+        transform: translateY(0);
     }
+
+    // if programatic animation
+    // &.inview {
+    //     animation: toast-in .2s ease-in-out;
+    //     animation-fill-mode: forwards;
+    // }
+    // &.outview {
+    //     animation: toast-out 0.1s ease-in-out;
+    //     animation-fill-mode: forwards;
+    // }
 }
 
 .text {
@@ -43,6 +55,7 @@
 
 .buttons {
     display: flex;
+
     button {
         text-transform: uppercase;
         padding: @space;
@@ -53,29 +66,25 @@
     }
 }
 
-@keyframes gbox-in {
-    0% {
-        bottom: -100%;
-        opacity: 0;
-    }
+// @keyframes toast-in {
+//     0% {
+//         transform: translateY(calc(100% + @space));
+//     }
 
-    100% {
-        bottom: 0;
-        opacity: 1;
-    }
-}
+//     100% {
+//         transform: translateY(0);
+//     }
+// }
 
-@keyframes gbox-out {
-    0% {
-        bottom: 0;
-        opacity: 1;
-    }
+// @keyframes toast-out {
+//     0% {
+//         transform: translateY(0);
+//     }
 
-    90% {
-        bottom: -100%;
-        opacity: 0;
-    }
-}
+//     100% {
+//         transform: translateY(calc(100% + @space));
+//     }
+// }
 
 .media(md, {
         .toast {
