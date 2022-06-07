@@ -1,7 +1,7 @@
 <div class="page">
     <div class="container">
         <h4 class="f4 spaced">Create new project</h4>
-        <div *ngIf="x$ | async as x">{{ x | json}}</div>
+        <!-- <div *ngIf="x$ | async as x">{{ x | json}}</div> -->
         <cr-project-form [mode]="{forNew: true}" (onSave)="create($event)"></cr-project-form>
     </div>
 </div>

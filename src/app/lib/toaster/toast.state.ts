@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, Subscription, throwError, timer } from 'rxjs';
-import { Config } from '../../config';
 import { Res } from '../../core/resources';
 import { IUiError } from '../../models/error.model';
 import { StateService } from '../../services/state.abstract';
@@ -29,7 +28,7 @@ export class Toast extends StateService<IToast> {
         css: 'toast',
         extracss: '',
         text: Res.Get('ToastError'),
-        timeout: Config.Basic.defaultToastTimeout, //EnumTimeout.Short, // or config value
+        timeout: EnumTimeout.Short, // or config value
         buttons: [this.dismissButton],
         visible: false
     }

@@ -21,6 +21,7 @@ resources.keys = {
     "UiLanguage": "عربي",
     "Required": "Required",
     "Error": "An error occurred",
+    "ToastError": "Oh oh! We are speechless",
     "Dismiss": "Dismiss",
     "Unknown": "Oops! We could not perform the required action for some reason. We are looking into it right now.",
     "NoRes": "Oops! We could not perform the required action for some reason. We are looking into it right now.",

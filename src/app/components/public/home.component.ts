@@ -33,7 +33,8 @@ export class PublicHomeComponent extends GtmComponent implements OnInit  {
       }
       showToast3() {
         // by unknown code, with fallback, fallback will be produced
-        this.toast.ShowWarning('SomeCode', {text: 'Some fallback message here', timeout: 5000});
+        this.toast.ShowWarning('SomeCode', {text: 'Some <strong>fallback</strong> message here',
+        clickable: (e) => {_attn(e, 'clicked')}});
       }
       showToast4() {
         // and finally, an all corners mercedes

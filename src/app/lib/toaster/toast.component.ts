@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Toast } from './toast.state';
 
 @Component({
@@ -7,7 +7,7 @@ import { Toast } from './toast.state';
     <ng-container *ngIf="toastState.stateItem$ | async as toast">
       <div [class.inview]="toast.visible"
       class="{{ toast.css}} {{toast.extracss}}" >
-        <div class="text">{{toast.text }}</div>
+        <div class="text" [innerHtml]="toast.text" (click)="toast.clickable && toast.clickable($event)"></div>
         <div class="buttons" *ngIf="toast.buttons.length">
             <button *ngFor="let button of toast.buttons"
             [class]="button.css"
@@ -21,6 +21,7 @@ import { Toast } from './toast.state';
     styleUrls: ['./toast.less'],
 })
 export class ToastPartialComponent {
+
     constructor(public toastState: Toast) {
     }
 }

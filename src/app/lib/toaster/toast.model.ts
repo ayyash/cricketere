@@ -1,6 +1,7 @@
+import { Config } from '../../config';
 
 export enum EnumTimeout{
-    Short = 4000,
+    Short = Config.Basic.defaultToastTimeout,
     Long = 20000,
     Never = -1
 }
@@ -12,6 +13,7 @@ export interface IToast {
     addDismiss?: boolean;
     timeout?: EnumTimeout;
     visible?: boolean;
+    clickable?: (event: MouseEvent) => void
 }
 
 export interface IToastButton {

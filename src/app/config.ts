@@ -13,7 +13,7 @@ export const Config = {
         defaultDateFormt: 'DD-MM-YYYY',
         defaultUploadSize: 1048576,
         defaultUploadFormat: ['gif', 'jpg', 'jpeg', 'png'],
-        defaultToastTimeout: 3000
+        defaultToastTimeout: 4000
     },
     Auth: {
         userAccessKey: 'cricketere.user'
