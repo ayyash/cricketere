@@ -7,7 +7,7 @@ export const Config = {
     Basic: {
         language: resources.language,
         country: resources.country,
-        defaultRoute: '/',
+        defaultRoute: '/projects',
         loginRoute: '/login',
         defaultSize: 10,
         defaultDateFormt: 'DD-MM-YYYY',
@@ -16,12 +16,12 @@ export const Config = {
         defaultToastTimeout: 4000
     },
     Auth: {
-        userAccessKey: 'cricketere.user'
+        userAccessKey: 'user'
     },
-    Cache: {
+    Storage: {
         Timeout: 1,
-        Key: 'cricketere.cache',
-        ResetKey: 'cricketere.20180208'
+        Key: 'localkey',
+        ResetKey: '20180220'
     },
     Seo: {
         tags: [
@@ -60,7 +60,8 @@ export const Config = {
             forgot: '/auth/forgotpassword'
         },
         data: {
-            notdefined: '/data/notdefined'
+            notdefined: '/data/notdefined',
+            category: '/cats'
         },
         config: {
             local: environment.localConfig

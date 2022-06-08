@@ -7,7 +7,7 @@
     "Auth": {
         "userAccessKey": "cricketere.user"
     },
-    "Cache": {
+    "Storage": {
         "Timeout": 1,
         "Key": "cricketere.cache",
         "ResetKey": "cricketere.20190208"

@@ -5,7 +5,7 @@ export { ConfigService } from '../services/config.service';
 export { ConfigInitService } from '../services/configinit.service';
 export { DataService } from '../services/data.service';
 export { LoaderService } from '../services/loader.service';
-export { LocalStorageService } from '../services/localstorage.service';
+export { StorageService } from '../services/storage.service';
 export { ProductService } from '../services/product.service';
 export { ProjectResolve } from '../services/project.resolve';
 export { ProjectService } from '../services/project.service';

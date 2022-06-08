@@ -72,6 +72,7 @@ export class PublicLoginComponent implements OnInit {
                 {
                     next: result => {
                         if (result) {
+                            this.router.navigateByUrl(this.authService.redirectUrl || Config.Basic.defaultRoute);
                         }
                     },
                     // error: error => this.toast.HandleUiError(error)

@@ -4,11 +4,11 @@
         "apiRoot": "https://sss.azurewebsites.net/v1/api"
     },
     "Auth": {
-        "userAccessKey": "cricketere.user"
+        "userAccessKey": "user"
     },
-    "Cache": {
-        "Timeout": 1,
-        "Key": "cricketere.cache",
-        "ResetKey": "cricketere.20190208"
+    "Storage": {
+        "Timeout": 168,
+        "Key": "cricketere",
+        "ResetKey": "20190210"
     }
 }

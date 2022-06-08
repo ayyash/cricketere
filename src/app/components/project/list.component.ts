@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { map, Observable, of } from 'rxjs';
 import { EnumGtmEvent, EnumGtmSource, GtmTracking } from '../../core/gtm';
-import { IListOptions, IProject, ProjectSeoService } from '../../core/services';
+import { IListOptions, IProject, StorageService, ProjectSeoService } from '../../core/services';
 import { GtmComponent } from '../abstract/gtm.abstract';
 
 const projects: IProject[] = [
@@ -38,7 +38,7 @@ export class ProjectListComponent extends GtmComponent implements OnInit {
     projects$: Observable<any>;
     seoLink: string;
 
-    constructor(private seoService: ProjectSeoService) {
+    constructor(private seoService: ProjectSeoService, private storageService: StorageService) {
         super();
     }
     ngOnInit(): void {
@@ -89,6 +89,8 @@ export class ProjectListComponent extends GtmComponent implements OnInit {
         }, {
             filter: 'one'
         });
+
+        this.storageService.setItem('filter', 'one');
     }
     setTwo() {
         GtmTracking.Reset();
@@ -98,5 +100,7 @@ export class ProjectListComponent extends GtmComponent implements OnInit {
         }, {
             filter: null
         });
+
+        this.storageService.setItem('filter2', 'another');
     }
 }

@@ -1,5 +1,5 @@
 // OBSOLETE remove
-import './app/core/logger.service';
+// import './app/core/logger.service';
 
 import { environment } from './environments/environment';
 import { enableProdMode } from '@angular/core';

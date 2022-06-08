@@ -15,7 +15,6 @@ if (config.ssr) {
     // override localStorage on server side
     global.localStorage = {
         getItem: function (key) {
-            // return dummy object to override certain server side
             return null;
 
         },
@@ -26,17 +25,18 @@ if (config.ssr) {
         clear: function () {
         },
         removeItem: function (key) {
-        }
+        },
+        length: 0
     };
     global._debug = function (o, message, type) {
         if (config.name === 'local') {
-            console.log(message, o);
+            // console.log(message, o);
         }
 
     };
     global._attn = function (o, message) {
         if (config.name === 'local') {
-            console.log(message, o);
+            // console.log(message, o);
         }
     }
     global._seqlog = function (message) {

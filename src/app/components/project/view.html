@@ -7,6 +7,13 @@
         <img src="{{project.image}}" >
         <p>{{ project.description }}</p>
 
+        <div *ngIf="categories$ | async as cats">
+            <ul class="rowlist" >
+                <li *ngFor="let cat of cats">
+                    {{ cat.value }}
+                </li>
+            </ul>
+         </div>
         <section>
         <dl class="grid g-1 spacedout">
             <dt class="light weight-light">Title</dt>

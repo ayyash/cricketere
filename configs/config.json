@@ -4,12 +4,12 @@
         "apiRoot": "http://localhost:8888/api"
     },
     "Auth": {
-        "userAccessKey": "cricketere.user"
+        "userAccessKey": "user"
     },
-    "Cache": {
-        "Timeout": 1,
-        "Key": "cricketere.cache",
-        "ResetKey": "cricketere.20210801"
+    "Storage": {
+        "Timeout": 168,
+        "Key": "cricketere",
+        "ResetKey": "20220606"
     },
     "GTM": {
         "isEnabled": true

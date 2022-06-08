@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavigationEnd, Router, NavigationCancel, ActivatedRoute } from '@angular/router';
 import { LoaderService, SeoService } from './core/services';
 import { filter } from 'rxjs/operators';
-import { ConfigInitService } from './services/configinit.service';
+// import { ConfigInitService } from './services/configinit.service';
 import { EnumGtmEvent, GtmTracking } from './core/gtm';
 @Component({
     selector: 'app-root',
@@ -16,7 +16,7 @@ export class AppComponent {
         private router: Router,
         private activatedRoute: ActivatedRoute,
         private seoService: SeoService,
-        private configInit: ConfigInitService,
+        // private configInit: ConfigInitService,
         private LoaderService: LoaderService // @Inject(LOCALE_ID) protected localeId: string
     ) {
 

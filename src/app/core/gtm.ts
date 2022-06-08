@@ -1,4 +1,4 @@
-import { ConfigService, IProduct, IProject } from './services';
+import { IProduct, IProject } from './services';
 
 declare let dataLayer: any[]; // Declare google tag
 
@@ -70,6 +70,8 @@ export class GtmTracking {
 
 
     private static Push(data: any) {
+        // watch here if gtm is called too early config may not be set yet
+        // _attn(ConfigService.Config.Storage.Key, 'what is the key here');
         if (window && window['dataLayer']) {
             dataLayer.push(data);
         }

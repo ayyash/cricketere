@@ -4,7 +4,7 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import { AppBrowserModule } from './app/app.browser.module';
 import { environment } from './environments/environment';
-import { platformFactory } from './app/services/config.service';
+// import { platformFactory } from './app/services/config.service';
 
 if (environment.production) {
     enableProdMode();

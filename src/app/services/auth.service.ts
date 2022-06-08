@@ -5,7 +5,7 @@ import { Config } from '../config';
 import {
     IAuthInfo,
     AuthInfo,
-    LocalStorageService,
+    StorageService,
     ConfigService,
     User,
     IUser
@@ -26,24 +26,24 @@ export class AuthService {
     public profile$: Observable<IAuthInfo | null> = this.profileSubject.asObservable();
 
     get redirectUrl(): string {
-        return this.localStorage.getObject('redirectUrl');
+        return this.localStorage.getCache('redirectUrl');
     }
     set redirectUrl(value: string) {
-        this.localStorage.setObject('redirectUrl', value);
+        this.localStorage.setCache('redirectUrl', value);
     }
 
     constructor(
         private http: HttpClient, // WATCH:
         // private configService: ConfigService,
-        private localStorage: LocalStorageService
+        private localStorage: StorageService
     ) {
         // get profile from localstorage first time only
         _seqlog('auth service');
-        _attn(Config.isServed);
 
-        const _localuser = JSON.parse(
-            this.localStorage.getItem(ConfigService.Config.Auth.userAccessKey)
-        );
+
+        // this instead of the old one
+        const _localuser = this.localStorage.getItem(ConfigService.Config.Auth.userAccessKey);
+
 
         if (this.checkProfile(_localuser)) {
             this.profileSubject.next(_localuser);
@@ -87,7 +87,7 @@ export class AuthService {
         if (resUser.accessToken) {
             this.localStorage.setItem(
                 ConfigService.Config.Auth.userAccessKey,
-                JSON.stringify(resUser)
+                resUser
             );
         } else {
             // remove token from user

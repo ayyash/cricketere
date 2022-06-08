@@ -9,11 +9,6 @@ const WebConfig = {
         "shortTerm": 4,
         "longTerm": 2160
     },
-    "Cache": {
-        "Timeout": 1,
-        "Key": "edash.cache",
-        "ResetKey": "edash.20220215"
-    },
     "Upload": {
         "chunkSize": 5242880,
         "imageFormat": ["gif", "jpg", "png", "webp", "jpeg", "svg"],
@@ -21,7 +16,10 @@ const WebConfig = {
         "siteUrl": "https://dashboard.vaes.dev"
     },
     "Storage": {
-        "link": "https://vaes-files.s3.me-south-1.amazonaws.com/"
+        "link": "https://vaes-files.s3.me-south-1.amazonaws.com/",
+        "Timeout": 1,
+        "Key": "edash.cache",
+        "ResetKey": "cricketere.20210801"
     },
     "Seo": {
         "gaEnabled": false

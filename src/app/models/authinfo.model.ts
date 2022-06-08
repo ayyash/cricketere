@@ -28,7 +28,7 @@ export class AuthInfo implements IAuthInfo {
         const _expiresat = Date.now() + (auth.expiresIn * 1000);
 
         return new AuthInfo(
-            User.NewInstance(auth.user),
+            User.NewInstance(auth),
             auth.accessToken,
             _expiresat
         );

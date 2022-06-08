@@ -2,12 +2,13 @@ import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Router, } from '@
 import { Injectable } from '@angular/core';
 import { first, map, Observable, of } from 'rxjs';
 import { ConfigService } from './config.service';
-import { LocalStorageService } from '../core/services';
+import { StorageService } from '../core/services';
+import { Config } from '../config';
 
 @Injectable({ providedIn: 'root' })
 export class ProjectResolve implements Resolve<boolean> {
     constructor(private router: Router,
-        private localStorage: LocalStorageService,
+        private localStorage: StorageService,
         private configService: ConfigService) {
         //
 
@@ -16,13 +17,18 @@ export class ProjectResolve implements Resolve<boolean> {
 
 
         _seqlog('resolve');
-        _attn(ConfigService.Config, 'in resolve');
-        this.localStorage.setObject('MyAyyash', ConfigService.Config.Auth.userAccessKey);
+        _attn(ConfigService.Config.Storage.Key, 'in resolve');
+        _attn(this.localStorage.getCache('MyAyyash'));
+
 
         return this.configService.config$.pipe(
             first((n) => n.isServed),
             map((n) => {
                 // check if served with error to reroute
+                this.localStorage.setCache('MyAyyash', 'here is a cache value');
+                _attn(ConfigService.Config.Storage.Key, 'after resolve');
+
+                _attn(n.isServed, 'served');
                 return true;
             }));
 

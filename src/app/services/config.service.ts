@@ -18,7 +18,7 @@ export class ConfigService {
     constructor(
         private http: HttpClient,
         @Optional() @Inject('localConfig') protected localConfig: IConfig
-        ) {
+    ) {
     }
 
     private _getUrl = Config.API.config.local;
@@ -36,9 +36,7 @@ export class ConfigService {
     private NewInstance(config: any, withError: boolean): IConfig {
         // cast all keys as are
         const _config = { ...Config, ...<IConfig>config };
-        _config.Cache = { ..._config.Cache };
-        // adjust cache key to have language in it
-        _config.Cache.Key += '.' + Config.Basic.language;
+        _config.Storage = { ..._config.Storage };
         _config.isServed = true;
         _config.withErrors = withError; // so now we can distinguish where the config really came from
 
@@ -56,11 +54,6 @@ export class ConfigService {
             return of(true);
         }
 
-        // testing GTM
-        GtmTracking.Values = GtmTracking.MapUser({name: 'userId', id: '123', email: 'email@address.com'});
-        GtmTracking.Values = GtmTracking.MapProfile({language: 'en', country: 'jo'});
-        GtmTracking.SetValues(GtmTracking.Values);
-
 
         return this.http.get(this._getUrl).pipe(
             map((response) => {
@@ -68,6 +61,11 @@ export class ConfigService {
                 // also state that it has been isServed
 
                 _seqlog('config next');
+
+                // testing GTM
+                GtmTracking.Values = GtmTracking.MapUser({ name: 'userId', id: '123', email: 'email@address.com' });
+                GtmTracking.Values = GtmTracking.MapProfile({ language: 'en', country: 'jo' });
+                GtmTracking.SetValues(GtmTracking.Values);
 
 
                 // here next
@@ -118,9 +116,7 @@ export class StaticConfigService {
         // clone first, because in ssr the object is transfered in state to client, which adds the key again, unless u clone
         const _config = { ...Config, ...<IConfig>config };
 
-        _config.Cache = { ..._config.Cache };
-        // adjust cache key to have language in it
-        _config.Cache.Key += '.' + Config.Basic.language;
+        _config.Storage = { ..._config.Storage };
 
         // populate static element
         StaticConfigService._config = _config;

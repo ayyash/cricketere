@@ -95,18 +95,17 @@ export class AppRoutingModule {
             next: (e: Scroll) => {
                 if (e.position) {
                     // backward navigation
-                    _attn(e.position, 'position');
+                    // _attn(e.position, 'position');
                     viewportScroller.scrollToPosition(e.position);
                 } else if (e.anchor) {
                     // anchor navigation
-                    _attn(e.anchor, 'anchor');
+                    // _attn(e.anchor, 'anchor');
                     viewportScroller.scrollToAnchor(e.anchor);
                 } else {
                     // forward navigation
                     // check url if page exists do not scroll
-                    _attn(e, 'watch this');
                     if (!e.routerEvent.urlAfterRedirects.includes('page')) {
-                        _attn('no page', 'scroll top');
+                        // _attn('no page', 'scroll top');
                         viewportScroller.scrollToPosition([0, 0]);
                     }
                 }

@@ -4,38 +4,42 @@ import { map, first, share } from 'rxjs/operators';
 import { Config } from '../config';
 import { HttpClient } from '@angular/common/http';
 
-import { IData, DataClass, EnumDataType, LocalStorageService } from '../core/services';
+import { IData, DataClass, EnumDataType, StorageService } from '../core/services';
 import { debug } from '../core/rxjs.operators';
 
 @Injectable({
     providedIn: 'root'
 })
 export class DataService {
-    private _urls: { [id: number]: { url: string; expiresin?: number } } = {};
-    private inAppData: { [id: number]: IData[] } = {}; // local data in app
 
-    constructor(private _http: HttpClient, private localStorage: LocalStorageService) {
+    private inAppData: { [id: number]: IData[]; } = {}; // local data in app
+
+    private cacheUrls = new Map<EnumDataType, { url: string, expiresin?: number; }>();
+
+    constructor(private _http: HttpClient, private storageService: StorageService) {
         // instantiate
-        this._urls[EnumDataType.NotDefined] = { url: Config.API.data.notdefined };
+        this.cacheUrls.set(EnumDataType.NotDefined, { url: Config.API.data.notdefined, expiresin: 3 });
+        this.cacheUrls.set(EnumDataType.Category, { url: Config.API.data.category });
 
     }
 
-    GetData(type: EnumDataType, id: string = '0'): Observable<IData[]> {
+    private GetData(type: EnumDataType, id: string = '0'): Observable<IData[]> {
         // for typing purposes only
         return <Observable<IData[]>>this.GetCache(type, id);
 
     }
 
-    GetCache(type: EnumDataType, id: string = '0'): Observable<any> {
+    private GetCache(type: EnumDataType, id: string = '0'): Observable<any> {
+
         const name: string = EnumDataType[type];
         // replace id
-        const _cachedUrl = this._urls[type];
+
+        const _cachedUrl = this.cacheUrls.get(type);
         const _url = _cachedUrl.url.replace(':id', id);
-
-        const _data: any = this.localStorage.getObject(name + '.' + id);
+        const _data: any = this.storageService.getCache(`${name}.${id}`);
         // localdata is guarranteed to be within expiration date this way
-
         if (_data) {
+
             // if localStroage exist, return
             return of(_data).pipe(debug('Cached GetData ' + name));
         } else {
@@ -44,41 +48,36 @@ export class DataService {
                 .get(_url)
                 .pipe(
                     map(response => {
-                        let _retdata: any;
-
-                        switch (type) {
-                            default:
-                            _retdata = DataClass.NewInstances(type, <any>response);
-                        }
+                        const _retdata = DataClass.NewInstances(<any>response);
 
                         // assgin to localstorage with key and expires in hours if set
-                        this.localStorage.setObject(name + '.' + id, _retdata, _cachedUrl.expiresin);
+                        this.storageService.setCache(`${name}.${id}`, _retdata, _cachedUrl.expiresin);
 
                         return _retdata;
                     })
-                )
+                );
         }
     }
 
 
-    UpdateData(type: EnumDataType, newItem: IData, id: string = '0'): void {
-        // update localstorage by adding a new value to the existing collection
-        const name: string = EnumDataType[type];
-        const _cachedUrl = this._urls[type];
-        const _url = _cachedUrl.url.replace(':id', id);
-        const _data: any = this.localStorage.getObject(name + '.' + id);
-        if (_data && _data instanceof Array) {
-            // add item
-            _data.push(newItem);
-            this.localStorage.setObject(name + '.' + id, _data, _cachedUrl.expiresin);
-        }
-        // else nothing, there is no storag to update
-    }
-
-
-    // Example GetCategories(): Observable<IData[]> {
-    //     return this.GetData(EnumDataType.Category);
+    // UpdateData(type: EnumDataType, newItem: IData, id: string = '0'): void {
+    //     // update localstorage by adding a new value to the existing collection
+    //     const name: string = EnumDataType[type];
+    //     const _cachedUrl = this.cacheUrls.get(type);
+    //     const _url = _cachedUrl.url.replace(':id', id);
+    //     const _data: any = this.storageService.getCache(name + '.' + id);
+    //     if (_data && _data instanceof Array) {
+    //         // add item
+    //         _data.push(newItem);
+    //         this.storageService.setCache(name + '.' + id, _data, _cachedUrl.expiresin);
+    //     }
+    //     // else nothing, there is no storag to update
     // }
+
+
+    GetCategories(): Observable<IData[]> {
+        return this.GetData(EnumDataType.Category);
+    }
 
     GetSingleDataById(type: EnumDataType, id: string): Observable<IData | undefined> | null {
         if (id === null) {
@@ -99,13 +98,5 @@ export class DataService {
             map(data => data.find(n => n.key === key)));
     }
 
-    GetLocalDataByKey(type: EnumDataType, key: string): IData | null {
-        if (key === null) {
-            return null;
-        }
-        return (
-            this.inAppData[type].find(n => n.key === key) ||
-            DataClass.NewInstance(type, { id: '0', key: key, text: key })
-        );
-    }
+
 }

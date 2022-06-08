@@ -1,5 +1,5 @@
 import 'zone.js/dist/zone-node';
-import './src/app/core/logger.service';
+// import './src/app/core/logger.service';
 // CRICKET: update this file, and tsconfig server and remove main.server.ts
 import { ngExpressEngine } from '@nguniversal/express-engine';
 import { enableProdMode, PLATFORM_INITIALIZER } from '@angular/core';
