@@ -1,7 +1,7 @@
-import { HttpErrorResponse, HttpEventType, HttpResponse } from '@angular/common/http';
-import { MonoTypeOperatorFunction, of, pipe, throwError } from 'rxjs';
+import { HttpEventType, HttpResponse } from '@angular/common/http';
+import { MonoTypeOperatorFunction, pipe, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
-import { IUiError, UiError } from './services';
+import { UiError } from './services';
 
 
 export const debug = (message: string, type?: string): MonoTypeOperatorFunction<any> => {
