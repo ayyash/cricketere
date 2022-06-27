@@ -7,7 +7,7 @@
     "start:rtl": "ng serve  --configuration=rtl --port 4100 --watch  --live-reload false",
     "start:prod": "ng serve --configuration=production --port 4100 --watch  --live-reload false",
     "build": "ng build --configuration=production && gulp generateIndex",
-    "build:server": "ng run cricketereweb:server --configuration=production",
+    "build:server": "ng run cricketereweb:server:production",
     "build:ssr": "gulp critical && npm run build && npm run build:server && gulp locales"
   },
   "dependencies": {
@@ -20,8 +20,8 @@
     "@angular/platform-browser-dynamic": "^14.0.3",
     "@angular/platform-server": "^14.0.3",
     "@angular/router": "^14.0.3",
-    "@nguniversal/common": "^13.0.2",
-    "@nguniversal/express-engine": "^13.0.2",
+    "@nguniversal/common": "^14.0.2",
+    "@nguniversal/express-engine": "^14.0.2",
     "rxjs": "^7.5.4",
     "shut": "^6.3.2",
     "zone.js": "^0.11.4"

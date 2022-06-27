@@ -9,7 +9,7 @@ export interface IUiError {
 }
 
 export const UiError = (error: any): IUiError => {
-    let e: IUiError = {
+    const e: IUiError = {
         code: 'Unknown',
         message: error,
         status: 0
