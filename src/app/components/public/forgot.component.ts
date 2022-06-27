@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder } from '@angular/forms';
 import { IViewMode} from '../../core/services';
 import { Toast } from '../../lib/toast';
 import { Router } from '@angular/router';
@@ -19,9 +19,9 @@ export class PublicForgotComponent implements OnInit {
     @Output() onCancel: EventEmitter<void> = new EventEmitter();
 
     forceValidation = false;
-    forgotForm: FormGroup;
+    forgotForm: UntypedFormGroup;
 
-    constructor(private fb: FormBuilder,
+    constructor(private fb: UntypedFormBuilder,
         // private authService: AuthService,
         private router: Router,
         private toast: Toast) {

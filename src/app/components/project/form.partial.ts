@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { IProject, IViewMode} from '../../core/services';
 import { Toast } from '../../lib/toaster/toast.state';
 
@@ -18,9 +18,9 @@ export class ProjectFormPartialComponent implements OnInit {
     @Output() onCancel: EventEmitter<void> = new EventEmitter();
 
     forceValidation = false;
-    projectForm: FormGroup;
+    projectForm: UntypedFormGroup;
 
-    constructor(private fb: FormBuilder, private toast: Toast) {
+    constructor(private fb: UntypedFormBuilder, private toast: Toast) {
         //
     }
     ngOnInit(): void {

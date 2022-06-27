@@ -1,5 +1,5 @@
 import { Directive, Input, OnInit, ElementRef, forwardRef, HostListener } from '@angular/core';
-import { Validator, FormControl, NG_VALIDATORS, Validators } from '@angular/forms';
+import { Validator, UntypedFormControl, NG_VALIDATORS, Validators } from '@angular/forms';
 import { Res } from '../../core/resources';
 import { MdPatterns } from './validators';
 import { Subject, Observable } from 'rxjs';
@@ -28,7 +28,7 @@ export class MdInputDirective implements OnInit, Validator {
 
     @Input() errorMessage: string;
 
-    formControl: FormControl;
+    formControl: UntypedFormControl;
     errorText: string;
     $element: HTMLInputElement;
 
@@ -89,7 +89,7 @@ export class MdInputDirective implements OnInit, Validator {
         return isvalid;
     }
 
-    validate(c: FormControl): { [key: string]: any} | null {
+    validate(c: UntypedFormControl): { [key: string]: any} | null {
         // call the validation by attribute and return
         this.formControl = c;
 

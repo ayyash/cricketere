@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { catchError } from 'rxjs/operators';
 import { Config } from '../../config';
@@ -15,12 +15,12 @@ import { Toast } from '../../lib/toaster/toast.state';
 })
 export class PublicLoginComponent implements OnInit {
 
-    loginForm: FormGroup;
+    loginForm: UntypedFormGroup;
     forceValidation: boolean;
     constructor(
         private toast: Toast,
         private router: Router,
-        private fb: FormBuilder,
+        private fb: UntypedFormBuilder,
         private authService: AuthService
     ) {
         //

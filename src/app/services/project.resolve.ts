@@ -1,9 +1,8 @@
 import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Router, } from '@angular/router';
 import { Injectable } from '@angular/core';
-import { first, map, Observable, of } from 'rxjs';
+import { first, map, Observable } from 'rxjs';
 import { ConfigService } from './config.service';
 import { StorageService } from '../core/services';
-import { Config } from '../config';
 
 @Injectable({ providedIn: 'root' })
 export class ProjectResolve implements Resolve<boolean> {
@@ -22,6 +21,7 @@ export class ProjectResolve implements Resolve<boolean> {
 
 
         return this.configService.config$.pipe(
+            // in Angular 14, first, or filter is good enouogh, supposidly, check
             first((n) => n.isServed),
             map((n) => {
                 // check if served with error to reroute
