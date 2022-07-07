@@ -65,6 +65,9 @@ export const Config = {
         },
         config: {
             local: environment.localConfig
+        },
+        res: {
+            local: environment.localRes
         }
         , project: {
             list: '/projects/?:options',

@@ -49,6 +49,7 @@ resources.keys = {
     "DEFAULT_PAGE_TITLE": "أهلا",
     "WELCOME_TEXT": "أهلا كريكت",
     "Results": { "0": "no results", "1": "one result", "2": "two results", "3": "$0 results", "11": "$0 results" },
+    "Students": { "0": "no students", "1": "one student", "other": "$0 students"},
     "SEO_CONTENT": {
         "HOME_TITLE": "Home",
         "HOME":"Home",

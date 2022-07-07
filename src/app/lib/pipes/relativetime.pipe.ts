@@ -1,10 +1,10 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Res } from '../../core/resources';
 
-// TODO: translation and resources
 @Pipe({ name: 'relativetime' })
 export class RelativeTimePipe implements PipeTransform {
-    transform(date: Date, format: string = ''): string {
+    transform(date: Date, future: boolean = false): string {
+        // find elapsed
         const current = new Date().valueOf();
         const input = date.valueOf();
         const msPerMinute = 60 * 1000;
@@ -13,20 +13,23 @@ export class RelativeTimePipe implements PipeTransform {
         const msPerMonth = msPerDay * 30;
         const msPerYear = msPerDay * 365;
 
-        const elapsed = current - input;
+        const elapsed = Math.abs(input - current);
+        const fallBack = date.toString();
 
+        let relTime = Res.Plural('YEARS', Math.round(elapsed / msPerYear), fallBack);
         if (elapsed < msPerMinute) {
-            return Res.RelativeTime('SECONDS', Math.round(elapsed / 1000));
+            relTime = Res.Plural('SECONDS', Math.round(elapsed / 1000), fallBack);
         } else if (elapsed < msPerHour) {
-            return Res.RelativeTime('MINUTES', Math.round(elapsed / msPerMinute));
+            relTime = Res.Plural('MINUTES', Math.round(elapsed / msPerMinute), fallBack);
         } else if (elapsed < msPerDay) {
-            return Res.RelativeTime('HOURS', Math.round(elapsed / msPerHour));
+            relTime = Res.Plural('HOURS', Math.round(elapsed / msPerHour), fallBack);
         } else if (elapsed < msPerMonth) {
-            return Res.RelativeTime('DAYS', Math.round(elapsed / msPerDay));
+            relTime = Res.Plural('DAYS', Math.round(elapsed / msPerDay), fallBack);
         } else if (elapsed < msPerYear) {
-            return Res.RelativeTime('MONTHS', Math.round(elapsed / msPerMonth));
-        } else {
-            return Res.RelativeTime('YEARS', Math.round(elapsed / msPerYear));
+            relTime =  Res.Plural('MONTHS', Math.round(elapsed / msPerMonth), fallBack);
         }
+
+        // replace the $0 with the relative time
+        return (future ? Res.Get('INTIME') : Res.Get('TIMEAGO')).replace('$0', relTime);
     }
 }

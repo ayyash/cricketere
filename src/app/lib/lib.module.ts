@@ -3,7 +3,9 @@ import { CommonModule } from '@angular/common';
 
 // inject:importlibs
 import { BgDirective } from './directives/bg.directive';
+import { Cri18nDirective } from './directives/cri18n.directive';
 import { ExpandsDirective } from './directives/expands.directive';
+import { GtmDirective } from './directives/gtm.directive';
 import { LazyDirective } from './directives/lazy.directive';
 import { LetDirective } from './directives/let.directive';
 import { ModalDirective } from './directives/modal.directive';
@@ -16,7 +18,6 @@ import { RelativeTimePipe } from './pipes/relativetime.pipe';
 import { ResPipe } from './pipes/res.pipe';
 import { ToHtmlPipe } from './pipes/tohtml.pipe';
 import { TranslatePipe } from './pipes/translate.pipe';
-import { GtmDirective } from './directives/gtm.directive';
 // endinject
 
 
@@ -25,6 +26,7 @@ import { GtmDirective } from './directives/gtm.directive';
     declarations: [
          // inject:libs
         BgDirective,
+        Cri18nDirective,
         ExpandsDirective,
         GtmDirective,
         LazyDirective,
@@ -44,6 +46,7 @@ import { GtmDirective } from './directives/gtm.directive';
     exports: [
          // inject:libs
         BgDirective,
+        Cri18nDirective,
         ExpandsDirective,
         GtmDirective,
         LazyDirective,

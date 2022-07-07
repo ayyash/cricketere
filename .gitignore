@@ -4,13 +4,12 @@
 /dist
 /tmp
 /out-tsc
-/fontfiles
-/_gulpfile.js
 /.angular
 
 # dependencies
 /node_modules
 /host/node_modules
+/gulpbin
 
 # IDEs and editors
 /.idea

@@ -1,24 +1,4 @@
-
-
-function getCountry() {
-    if (window) {
-        const _country = document.cookie.split(';').find(n => n.indexOf('country') > -1);
-        if (_country) {
-           return _country.split('=')[1];
-        }
-    }
-    return 'JO';
-}
-
-const resources = {
-    language: "en",
-    country: getCountry(),
-    keys: {},
-    plural: (key, count) => {
-        return 'other';
-    }
-};
-resources.keys = {
+{
     "LANGUAGE": "English",
     "SITE_NAME": "Cricketere",
     "UiLanguage": "عربي",
@@ -112,11 +92,4 @@ resources.keys = {
         "PRODUCTS": "Products List"
     },
     "DEFAULT_PAGE_TITLE": "Welcome"
-};
-
-
-
-if (window == null){
-
-    exports.resources = resources;
 }

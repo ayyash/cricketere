@@ -5,13 +5,16 @@ import { toSentenceCase } from '../../core/common';
 @Pipe({ name: 'translate' })
 export class TranslatePipe implements PipeTransform {
 
-    transform(original: string, res: string, tocase: string = 'normal'): string {
-        const value = Res.Get(res, original);
+    transform(original: string, res: string, count: number = null, select: string = null): string {
 
-        if (value) {
-            return tocase === 'sentence' ? toSentenceCase(value) : value;
+        if (count !== null) {
+            return Res.Plural(res, count, original);
         }
-        return original;
+        if (select !== null) {
+            return Res.Select(res, select, original);
+        }
+
+        return Res.Get(res, original);
 
     }
 }

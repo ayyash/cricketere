@@ -59,6 +59,13 @@ const routes: Routes = [
         data: {preload: true}
 
     },
+    {
+        path: 'content',
+        component: SingleLayoutComponent,
+        loadChildren: () => import('./routes/content.route').then(m => m.ContentRoutingModule),
+        data: {preload: true, delay: 1000}
+
+    },
     // **gulproute**
     {
         path: '**',

@@ -1,0 +1,69 @@
+<h4>{{'Hello World' | translate:'HelloWorld'}}</h4>
+
+
+<section>
+
+    <ul class="rowlist">
+        <li>{{ 'Students' | translate:'Students':0 }}</li>
+        <li>{{ 'Students' | translate:'Students':1 }}</li>
+        <li>{{ 'Students' | translate:'Students':2 }}</li>
+        <li>{{ 'Students' | translate:'Students':3 }}</li>
+        <li>{{ 'Students' | translate:'Students':11 }}</li>
+    </ul>
+</section>
+
+
+<div class="spaced">
+    <p>Translate plurals in multiple languages:</p>
+    <ul>
+        <li *ngFor="let item of arrayOfThings">
+            {{ item.key | translate:'THINGS':null:item.key }}
+        </li>
+    </ul>
+</div>
+
+<section>
+    <p>Translate gender</p>
+    <ul>
+        <li>
+            {{ 'default male' | translate:'GENDER':null:'MALE' | titlecase}}
+        </li>
+        <li>
+            {{ 'default female' | translate:'GENDER':null:'FEMALE' | titlecase}}
+
+        </li>
+    </ul>
+</section>
+<section>
+
+    <p>Translate rate</p>
+    <ul>
+        <li *ngFor="let rate of rates">
+            <label><input type="checkbox" [value]="rate" />
+                {{ enumRate[rate] | translate:'RATING':null:enumRate[rate] | titlecase}}</label>
+        </li>
+    </ul>
+</section>
+
+<section>
+    A product is {{ productRating.toString() | translate:'RATING':null:enumRate[productRating]  }}
+</section>
+
+<p>Translate relative time</p>
+<ul>
+    <li>{{date1  | relativetime }}</li>
+    <li>{{date2  | relativetime }}</li>
+    <li>{{date3  | relativetime }}</li>
+    <li>{{date4  | relativetime }}</li>
+    <li>{{date5  | relativetime:true }}</li>
+</ul>
+<p>Translate days and months</p>
+<ul>
+    <li>Saturday</li>
+    <li>Sunday</li>
+    <li>Monday</li>
+    <li>Tuesday</li>
+    <li>Wednesday</li>
+    <li>Thursday</li>
+    <li>Friday</li>
+</ul>
