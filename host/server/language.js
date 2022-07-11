@@ -1,7 +1,10 @@
 // to make language change on ssr, use globals
 
 module.exports = function (config) {
+
     return function (req, res, next) {
+        // require can be here
+        require('../client/locale/ar-JO.js');
 
         // check cookies for language, for html request only
         res.locals.lang = req.cookies.lang || 'en';
@@ -25,6 +28,13 @@ module.exports = function (config) {
         if (config.ssr) {
             global.resources.language = res.locals.lang;
             global.resources.keys = global.resources.allLanguages[res.locals.lang];
+            console.log(res.locals.lang);
+            if (res.locals.lang === 'ar') {
+                global.resources._LOCALE_ID = 'ar-JO'; // TODO: make dynamic
+            } else {
+                global.resources._LOCALE_ID = 'en-US'; // TODO: make dynamic
+
+            }
         }
 
         // set cookie for a year

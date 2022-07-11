@@ -10,113 +10,89 @@ function getCountry() {
     return 'JO';
 }
 
+function plural(n) {
+    if (n === 0) return 0;
+
+    let i = Math.floor(Math.abs(n)), v = n.toString().replace(/^[^.]*\.?/, '').length;
+
+    if (i === 1 && v === 0) return 1;
+    return 5;
+}
+
 const resources = {
     language: "en",
     country: getCountry(),
     keys: {},
-    plural: (key, count) => {
-        return 'other';
-    }
+    _LOCALE_ID: "en-AE",
+    plural
 };
 resources.keys = {
-    "LANGUAGE": "English",
-    "SITE_NAME": "Cricketere",
-    "UiLanguage": "عربي",
-    "Required": "Required",
-    "Error": "An error occurred",
-    "ToastError": "Oh oh! We are speechless",
-    "Dismiss": "Dismiss",
-    "Unknown": "Oops! We could not perform the required action for some reason. We are looking into it right now.",
-    "NoRes": "Oops! We could not perform the required action for some reason. We are looking into it right now.",
-    "DONE": "Done",
-    "UNAUTHORIZED": "You are not authorised to view this page.",
-    "SAVED": "Saved successfully",
-    "INVALID_VALUE": "Value entered is not within the range allowed",
-    "INVALID_LENGTH": "The length of the value entered is not within range allowed",
-    "INVALID_FORMAT": "Invalid format",
-    "INAVLID_NUMBER": "Not a number",
-    "INVALID_email_FORMAT": "Invalid email format",
-    "INVALID_max_FORMAT": "Too large",
-    "INVALID_min_FORMAT": "Too small",
-    "INVALID_maxlength_FORMAT": "Too long",
-    "INVALID_minlength_FORMAT": "Too short",
-    "INVALID_password_FORMAT": "Invalid password format",
-    "INVALID_shortname_FORMAT": "Name is too long!",
-    "INVALID_url_FORMAT": "Invalid URL format",
-    "INVALID_phone_FORMAT": "Invalid phone format",
-    "ALREADY_EXISTS": "The email you used has already been signed up. Use another one, or try to sign in.",
-    "INVALID_date_FORMAT": "Invalid date format",
-    "FILE_LARGE": "The size of the file is larger than the specified limit ($0 KB)",
-    "INVALID_FILE_FORMAT": "The format of the file is not allowed. Allowed formats are: $0",
-    "PAGE_NOT_FOUND": "Hmm! Once in a while, we change address and forget to update the mailman.",
-    "INVALID_FORM": "Some fields are not valid, fix and submit again.",
-    "INVALID_LOGIN": "Wrong username or password.",
-    "Login": "Sign in",
-    "Days": ["Sunday", "Monday", "Tueday", "Wednesday", "Thursday", "Friday", "Saturday"],
-    "AM": "AM",
-    "PM": "PM",
-    "FOR": "for",
-    "SINCE": "since",
-    "RELATIVE_TIME": {
-        "AGO": "$0 ago",
-        "SECONDS": {
-            "1": "one second",
-            "2": "two seconds",
-            "3": "few seconds",
-            "11": "$0 seconds"
-        },
-        "MINUTES": {
-            "1": "one minute",
-            "2": "two minutes",
-            "3": "few minutes",
-            "11": "$0 minutes"
-        },
-        "HOURS": {
-            "1": "one hour",
-            "2": "two hours",
-            "3": "few hours",
-            "11": "$0 hours"
-        },
-        "DAYS": {
-            "1": "one day",
-            "2": "two days",
-            "3": "$0 days",
-            "11": "$0 days"
-        },
-        "MONTHS": {
-            "1": "one month",
-            "2": "two months",
-            "3": "$0 months",
-            "11": "$0 months"
-        },
-        "YEARS": {
-            "1": "one year",
-            "2": "two years",
-            "3": "$0 years",
-            "11": "$0 years"
-        }
+    SITE_NAME: 'Cricketere',
+    Required: 'Required',
+    Error: 'An error occurred',
+    Dismiss: 'Dismiss',
+    Unknown: 'Oops! We could not perform the required action for some reason. We are looking into it right now.',
+    NoRes: '', // if resource is not found
+    DONE: 'Done',
+    UNAUTHORIZED: 'Login or register first.',
+    SAVED: 'Saved successfully',
+    INVALID_VALUE: 'Value entered is not within the range allowed',
+    INVALID_LENGTH: 'The length of the value entered is not within range allowed',
+    INVALID_FORMAT: 'Invalid format',
+    INAVLID_NUMBER: 'Not a number',
+    INVALID_email_FORMAT: 'Invalid email format',
+    INVALID_url_FORMAT: 'Invalid URL format',
+    INVALID_phone_FORMAT: 'Invalid phone format',
+    INVALID_date_FORMAT: 'Invalid date format',
+    FILE_LARGE: 'The size of the file is larger than the specified limit ($0 KB)',
+    INVALID_FILE_FORMAT: 'The format of the file is not allowed. Allowed formats are: $0',
+    INVALID_FORM: 'Some fields are not valid, fix and submit again.',
+    Days: ['Sunday', 'Monday', 'Tueday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+    AM: 'AM',
+    PM: 'PM',
+    RELATIVE_TIME: {
+        AGO: '$0 ago',
+        SECONDS: { 1: 'one second', 2: 'two seconds', 3: 'few seconds', 11: '$0 seconds' },
+        MINUTES: { 1: 'one minute', 2: 'two minutes', 3: 'few minutes', 11: '$0 minutes' },
+        HOURS: { 1: 'one hour', 2: 'two hours', 3: 'few hours', 11: '$0 hours' },
+        DAYS: { 1: 'one day', 2: 'two days', 3: '$0 days', 11: '$0 days' },
+        MONTHS: { 1: 'one month', 2: 'two months', 3: '$0 months', 11: '$0 months' },
+        YEARS: { 1: 'one year', 2: 'two years', 3: '$0 years', 11: '$0 years' }
     },
-    "Results": { "0": "no results", "1": "one result", "2": "two results", "3": "$0 results", "11": "$0 results" },
-    "SEO_CONTENT": {
-        "HOME_TITLE": "Home",
-        "HOME":"Home",
-        "PRODUCT_TITLE":"$0, in $1",
-        "PROJECT_RESULTS_TITLE": "$0 projects in $1",
-        "PROJECT_RESULTS_DESC": "Found $0 projects categorized under $1"
-     },
-     "PAGE_TITLES": {
-        "ERROR": "Oh oh, an error occurred",
-        "NOT_FOUND": "404! Hmm! Once in a while, we change address and forget to update the mailman.",
-        "LOGIN": "Login to your sekrab account",
-        "LIST_PROJECTS": "All projects list",
-        "PRODUCTS": "Products List"
+    DEFAULT_PAGE_TITLE: 'Welcome',
+    WELCOME_TEXT: 'Hello Cricketere',
+    Students: {0: 'no students', 1: 'one student', 5: '$0 students' },
+    HelloWorld: 'Aloha',
+    Male: 'Male',
+    Female: 'Female',
+    RATING: {
+        AWEFUL: 'aweful',
+        POOR: 'poor',
+        OK: 'okay',
+        FAIR: 'fair',
+        GREAT: 'great'
     },
-    "DEFAULT_PAGE_TITLE": "Welcome"
+    GENDER: {
+        MALE: 'male',
+        FEMALE: 'female'
+    },
+    THINGS: {
+        elephant: 'Elephant',
+        bear: 'Bear',
+        lion: 'Lion',
+        tiger: 'Tiger'
+    },
+    SECONDS: { 1: 'one second', 2: 'few seconds', 10: '$0 seconds' },
+    MINUTES: { 1: 'one minute', 2: 'few minutes', 9: '$0 minutes' },
+    HOURS: { 1: 'one hour', 2: 'few hours', 9: '$0 hours' },
+    DAYS: { 1: 'one day', 2: 'few days', 9: '$0 days' },
+    MONTHS: { 1: 'one month', 2: 'few months', 4: '$0 months' },
+    YEARS: { 1: 'one year', 2: '$0 years', 5: 'many years' },
+    TIMEAGO: '$0 ago',
+    INTIME: 'in $0'
 };
-
 
 
 if (window == null){
-
     exports.resources = resources;
 }

@@ -4,13 +4,13 @@ const fs = require('fs');
 /*********************Configuration***********/
 var config = require('./server/config').getConfig();
 
+
 // for ssr to run, define global
 if (config.ssr) {
     // global.WebSocket = require('ws');
     // global.XMLHttpRequest = require('xhr2');
 
     global.window = undefined;
-
 
     // override localStorage on server side
     global.localStorage = {
@@ -36,7 +36,7 @@ if (config.ssr) {
     };
     global._attn = function (o, message) {
         if (config.name === 'local') {
-            // console.log(message, o);
+            console.log(message, o);
         }
     }
     global._seqlog = function (message) {
@@ -48,14 +48,15 @@ if (config.ssr) {
     global.resources = {
         language: 'en',
         country: 'JO',
-        keys: {}
+        keys: {},
+        _LOCALE_ID: 'en-US'
     };
 
     // get all languages here (keys)
-    // TODO: FIXME: change this to get files from same source as client
     global.resources.allLanguages = {}
+
     for (let lang of config.languages) {
-        const resFile = './server/locale/' + lang + '.js';
+        const resFile = './client/locale/' + lang + '.js';
         if (fs.existsSync(resFile)) {
             global.resources.allLanguages[lang] = require(resFile).resources.keys;
         }
@@ -93,10 +94,15 @@ app.use(function (req, res, next) {
     next();
 });
 
+
+
 // serve the right router
 const _routes = (config.ssr ? '-ssr' : '') + (config.urlBased ? '-url' : '');
 require('./server/routes' + _routes)(app, config);
 
+app.get('/', function (req, res) {
+    res.redirect(301, `/en/`);
+});
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

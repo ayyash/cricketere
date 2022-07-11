@@ -6,9 +6,9 @@
     "start": "ng serve  --port 4100 --watch  --live-reload false",
     "start:rtl": "ng serve  --configuration=rtl --port 4100 --watch  --live-reload false",
     "start:prod": "ng serve --configuration=production --port 4100 --watch  --live-reload false",
-    "build": "ng build --configuration=production && gulp generateIndex",
+    "build": "ng build --configuration=production",
     "build:server": "ng run cricketereweb:server:production",
-    "build:ssr": "gulp critical && npm run build && npm run build:server && gulp locales"
+    "build:ssr": "npm run build && npm run build:server"
   },
   "dependencies": {
     "@angular/animations": "^14.0.3",

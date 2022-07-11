@@ -3,19 +3,15 @@
 * from internal resources import from locale/resources.ts
 * when importing, generate multiple builds for each language with the proper file replacement
 * This file can be replaced during build by using the `fileReplacements` array. */
-import { keys, plural } from '../../locale/resources';
+// import { keys, plural } from '../../locale/resources';
 
 // from en.js (add typing entry for it)
-// FIXME: why was this copied by value?! i need to know why resources.keys is not by reference, may be nodejs module encapsulation?
-
-// const keys = resources.keys;
 
 export class Res {
 
     public static Get(key: string, fallback?: string): string {
         // if found return else generic
-        // FIXME: later
-        // const keys = resources.keys;
+        const keys = resources.keys;
 
 
         if (keys[key]) {
@@ -25,25 +21,9 @@ export class Res {
         return fallback || keys.NoRes;
     }
 
-
-
-    public static RelativeTime(key: string, value: number): string {
-
-        // FIXME: later
-
-        // no more const ret = keys.RELATIVE_TIME.AGO; // {0} ago
-        let factor = 11;
-        if (value <= 1) {
-            factor = 1;
-        } else if (value <= 2) {
-            factor = 2;
-        } else if (value < 11) {
-            factor = 3;
-        }
-        return keys.RELATIVE_TIME[key][factor].replace('$0', value);
-    }
     public static Plural(key: string, count: number, fallback?: string): string {
 
+        const keys = resources.keys;
 
         const _key = keys[key];
         if (!_key) {
@@ -69,6 +49,7 @@ export class Res {
 
     public static Select(key: string, select: any, fallback?: string): string {
         // find the match in resources
+        const keys = resources.keys;
 
         return (keys[key] && keys[key][select]) || fallback || keys.NoRes;
     }

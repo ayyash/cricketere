@@ -1,3 +1,7 @@
+import '@angular/common/locales/global/ar-JO';
+
+export const _LOCALE_ID = 'ar-JO';
+
 // example file, not used in cricketere
 export const keys = {
     SITE_NAME: 'Cricketere',

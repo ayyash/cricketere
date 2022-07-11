@@ -13,7 +13,7 @@
 </section>
 
 
-<div class="spaced">
+<div class="spaced" [attr.data-value]="'something' | translate:'Something'">
     <p>Translate plurals in multiple languages:</p>
     <ul>
         <li *ngFor="let item of arrayOfThings">
@@ -57,13 +57,22 @@
     <li>{{date4  | relativetime }}</li>
     <li>{{date5  | relativetime:true }}</li>
 </ul>
-<p>Translate days and months</p>
-<ul>
-    <li>Saturday</li>
-    <li>Sunday</li>
-    <li>Monday</li>
-    <li>Tuesday</li>
-    <li>Wednesday</li>
-    <li>Thursday</li>
-    <li>Friday</li>
-</ul>
+<p>Localize date</p>
+<p>
+    using keyword full:
+    {{ date1 | date:'full' }}
+</p>
+<div class="rtl">
+    {{ date1 | date }}
+</div>
+<p>
+    using format: {{ date1 | date:'EEE, MMM d, yy hh:mm:ss a Z' }}
+</p>
+
+<p>
+    Currency {{ 23.44 | currency }}
+</p>
+<p>A: {{0.25 | currency:'JOD'}}</p>
+<p>
+    {{'3.14159265359' | number:'4.2-4'}}
+</p>

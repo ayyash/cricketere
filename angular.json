@@ -83,6 +83,11 @@
                                 "glob": "*",
                                 "input": "configs",
                                 "output": "/localdata"
+                            },
+                            {
+                                "glob": "(ar-JO|en-AE).js",
+                                "input": "node_modules/@angular/common/locales/global",
+                                "output": "/locale"
                             }
                         ]
                     },
@@ -171,6 +176,11 @@
                                 {
                                     "glob": "*.js",
                                     "input": "src/locale",
+                                    "output": "/locale"
+                                },
+                                {
+                                    "glob": "*(ar-JO|en-AE).js",
+                                    "input": "./node_modules/@angular/common/locales/global",
                                     "output": "/locale"
                                 }
                             ],

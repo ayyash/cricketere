@@ -1,4 +1,5 @@
 
+
 function getCountry() {
     if (window) {
         const _country = document.cookie.split(';').find(n => n.indexOf('country') > -1);
@@ -8,67 +9,90 @@ function getCountry() {
     }
     return 'JO';
 }
+
+function plural(n) {
+    if (n === 0) return 0;
+
+    let i = Math.floor(Math.abs(n)), v = n.toString().replace(/^[^.]*\.?/, '').length;
+
+    if (i === 1 && v === 0) return 1;
+    return 5;
+}
+
 const resources = {
     language: "ar",
     country: getCountry(),
-    keys: {}
+    keys: {},
+    _LOCALE_ID: "ar-JO",
+    plural
 };
-
 resources.keys = {
-    "Unknown": "حسنًأ. في النظام أمرٌ لم يعمل. نحن ننظر في الأمر الآن.",
-    "SITE_NAME": "كريكت",
-    "NoRes": "",
-    "DONE": "انتهى",
-    "UNAUTHORIZED": "سجّل دخول أولًا.",
-    "SAVED": "حفظ بنجاح",
-    "INVALID_VALUE": "القيمة المدخلة في غير الحيّز المتاح",
-    "INVALID_LENGTH": "طول القيمة المدخلة في خير الحيّز المتاح",
-    "INVALID_FORMAT": "صيغة القيمة غير صحيحة",
-    "INAVLID_NUMBER": "ليس رقمًا",
-    "INVALID_email_FORMAT": "صيقة البريد الالكتروني غير صحيحة",
-    "INVALID_url_FORMAT": "صيغة عنوان الموقع الالكتروني غير صحيحة",
-    "INVALID_phone_FORMAT": "صيغة رقم الهاتف قير مقبولة",
-    "INVALID_date_FORMAT": "صيغة التاريخ غير مقبولة",
-    "FILE_LARGE": "حجم الملف أكبر من الحد المسموح ($0 KB)",
-    "INVALID_FILE_FORMAT": "نوع الملف غير مقبولة. الأنواع المسموحة هي: $0",
-    "INVALID_FORM": "بعض الحقول غير صحيحة، أصلح القيم وحاول من جديد.",
-    "Days": ["الأحد", "الاثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت"],
-    "AM": "ص",
-    "PM": "م",
-    "FOR": "لمدة",
-    "SINCE": "منذ",
-    "RELATIVE_TIME": {
-        "AGO": "قبل $0",
-        "SECONDS": { "1": "ثانية واحدة", "2": "ثانيتين", "3": "ثوانٍ", "11": "$0 ثانية" },
-        "MINUTES": { "1": "دقيقة واحدة", "2": "دقيقتين", "3": "دقائق", "11": "$0 دقيقة" },
-        "HOURS": { "1": "ساعة واحدة", "2": "ساعتين", "3": "$0 ساعات", "11": "$0 ساعة" },
-        "DAYS": { "1": "يوم واحد", "2": "يومين", "3": "$0 أيام", "11": "$0 يوما" },
-        "MONTHS": { "1": "شهر واحد", "2": "شهرين", "3": "$0 أشهر", "11": "$0 شهرا" },
-        "YEARS": { "1": "سنة واحدة", "2": "سنتين", "3": "$0 سنوات", "11": "$0 سنة" }
+    SITE_NAME: 'Cricketere',
+    Required: 'Required',
+    Error: 'An error occurred',
+    Dismiss: 'Dismiss',
+    Unknown: 'Oops! We could not perform the required action for some reason. We are looking into it right now.',
+    NoRes: '', // if resource is not found
+    DONE: 'Done',
+    UNAUTHORIZED: 'Login or register first.',
+    SAVED: 'Saved successfully',
+    INVALID_VALUE: 'Value entered is not within the range allowed',
+    INVALID_LENGTH: 'The length of the value entered is not within range allowed',
+    INVALID_FORMAT: 'Invalid format',
+    INAVLID_NUMBER: 'Not a number',
+    INVALID_email_FORMAT: 'Invalid email format',
+    INVALID_url_FORMAT: 'Invalid URL format',
+    INVALID_phone_FORMAT: 'Invalid phone format',
+    INVALID_date_FORMAT: 'Invalid date format',
+    FILE_LARGE: 'The size of the file is larger than the specified limit ($0 KB)',
+    INVALID_FILE_FORMAT: 'The format of the file is not allowed. Allowed formats are: $0',
+    INVALID_FORM: 'Some fields are not valid, fix and submit again.',
+    Days: ['Sunday', 'Monday', 'Tueday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+    AM: 'AM',
+    PM: 'PM',
+    RELATIVE_TIME: {
+        AGO: '$0 ago',
+        SECONDS: { 1: 'one second', 2: 'two seconds', 3: 'few seconds', 11: '$0 seconds' },
+        MINUTES: { 1: 'one minute', 2: 'two minutes', 3: 'few minutes', 11: '$0 minutes' },
+        HOURS: { 1: 'one hour', 2: 'two hours', 3: 'few hours', 11: '$0 hours' },
+        DAYS: { 1: 'one day', 2: 'two days', 3: '$0 days', 11: '$0 days' },
+        MONTHS: { 1: 'one month', 2: 'two months', 3: '$0 months', 11: '$0 months' },
+        YEARS: { 1: 'one year', 2: 'two years', 3: '$0 years', 11: '$0 years' }
     },
-    "DEFAULT_PAGE_TITLE": "أهلا",
-    "WELCOME_TEXT": "أهلا كريكت",
-    "Results": { "0": "no results", "1": "one result", "2": "two results", "3": "$0 results", "11": "$0 results" },
-    "SEO_CONTENT": {
-        "HOME_TITLE": "Home",
-        "HOME":"Home",
-        "PRODUCT_TITLE":"$0, in $1",
-        "PROJECT_RESULTS_TITLE": "$0 projects in $1",
-        "PROJECT_RESULTS_DESC": "Found $0 projects categorized under $1"
-     },
-     "PAGE_TITLES": {
-        "ERROR": "Oh oh, an error occurred",
-        "NOT_FOUND": "404! Hmm! Once in a while, we change address and forget to update the mailman.",
-        "LOGIN": "Login to your sekrab account",
-        "LIST_PROJECTS": "All projects list"
+    DEFAULT_PAGE_TITLE: 'Welcome',
+    WELCOME_TEXT: 'Hello Cricketere',
+    Students: {0: 'no students', 1: 'one student', 5: '$0 students' },
+    HelloWorld: 'Aloha',
+    Male: 'Male',
+    Female: 'Female',
+    RATING: {
+        AWEFUL: 'aweful',
+        POOR: 'poor',
+        OK: 'okay',
+        FAIR: 'fair',
+        GREAT: 'great'
     },
-    "DEFAULT_PAGE_TITLE": "Welcome",
-    // inject:translations
-    "ShowMore": "show more",
-    "WelcomeCricketere": "أهلا وسهلا",
-    // endinject
+    GENDER: {
+        MALE: 'male',
+        FEMALE: 'female'
+    },
+    THINGS: {
+        elephant: 'Elephant',
+        bear: 'Bear',
+        lion: 'Lion',
+        tiger: 'Tiger'
+    },
+    SECONDS: { 1: 'one second', 2: 'few seconds', 10: '$0 seconds' },
+    MINUTES: { 1: 'one minute', 2: 'few minutes', 9: '$0 minutes' },
+    HOURS: { 1: 'one hour', 2: 'few hours', 9: '$0 hours' },
+    DAYS: { 1: 'one day', 2: 'few days', 9: '$0 days' },
+    MONTHS: { 1: 'one month', 2: 'few months', 4: '$0 months' },
+    YEARS: { 1: 'one year', 2: '$0 years', 5: 'many years' },
+    TIMEAGO: '$0 ago',
+    INTIME: 'in $0'
 };
-if (window == null){
 
+
+if (window == null){
     exports.resources = resources;
 }

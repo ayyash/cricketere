@@ -1,3 +1,8 @@
+// function(global){
+//     global.WebConfig = {
+
+//     };
+// }(global || window);
 
 const WebConfig = {
 
