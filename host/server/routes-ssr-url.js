@@ -1,5 +1,5 @@
 const express = require('express');
-
+const fs = require('fs');
 // for ssr multilingual, URL driven, contains AppEngine
 const ssr = require('./main');
 
@@ -53,28 +53,36 @@ module.exports = function (app, config) {
     app.set('view engine', 'html');
     app.set('views', config.rootPath + '/client');
 
+    app.get('/:lang/locale/language.js', function (req, res) {
+        // reroute according to lang, does not matter what language is because its already set
+        res.sendFile(config.getLangPath(res.locals.lang));
+
+    });
+
     // setup path for localdata in sub projects
-    app.use(/^\/(en|ar|tr)\/localdata/, express.static(config.rootPath + '/localdata', {
+    app.use('/:lang/localdata', express.static(config.rootPath + '/localdata', {
         fallthrough: false
     }));
 
     // ignore index file from client folder
-    app.use(['/en/', '/ar/', '/tr/'], express.static(config.rootPath + '/client', {
-        index: false
-    }));
+    app.use('/:lang', express.static(config.rootPath + '/client', {index: false}));
 
     app.get('/', function (req, res) {
-        res.redirect(301, `/en/`);
+        res.redirect(301, `/${res.locals.lang}/`);
     });
 
     // note to self, do not include trailing slash for this to catch both /en and /en/
-    // TODO: test in real url
-    app.get(/^\/(en|ar|tr)\/*/, (req, res) => {
+    app.get(config.languages.map(n => `/${n}/*`), (req, res) => {
 
         // serve index file relevant to language
         // require config and inject on ssr
         // for this work, index files must have baseHref correctly set to the language it serves
-        res.render(`../index/index.${res.locals.lang}.html`, {
+        // get the index file, and replace baseHref
+
+        let content = fs.readFileSync(config.rootPath + `client/index.html`);
+        const rendered = content.toString().replace('<base href="/">', `<base href="/${res.locals.lang}/">`);
+
+        res.render(config.rootPath + `client/index.html`, {
             req,
             res,
             providers: [
@@ -86,13 +94,14 @@ module.exports = function (app, config) {
                     provide: 'localConfig',
                     useValue: localConfig
                 }
-            ]
+            ],
+            document: rendered
         });
     });
 
     app.get('/*', function (req, res) {
         // if none of the above redirect to ar/ or en/
-        res.redirect(301, `/en` + req.path);
+        res.redirect(301, `/` + res.locals.lang + req.path);
     });
 
 

@@ -47,6 +47,13 @@ module.exports = function (app, config) {
     // setup path for localdata in sub projects
 
 
+    // add longuage reroute here
+    app.get('/locale/language.js', function(req, res){
+        // reroute according to lang
+        res.sendFile(config.getLangPath(res.locals.lang));
+
+    });
+
     app.use('/localdata', express.static(config.rootPath + '/localdata', {
         fallthrough: false
     }));
@@ -68,7 +75,7 @@ module.exports = function (app, config) {
         // require config and inject on ssr
         // for this work, index files must have baseHref correctly set to the language it serves
 
-        res.render(config.rootPath + `index/index.${res.locals.lang}.html`, {
+        res.render(config.rootPath + `client/index.html`, {
             req,
             res,
             providers: [

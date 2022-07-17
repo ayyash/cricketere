@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { ICachedStorage, ConfigService } from '../core/services';
 import { first } from 'rxjs/operators';
 import { Platform } from '../lib/platform.service';
-import { Config } from '../config';
 import { debug } from '../core/rxjs.operators';
+import { Res } from '../core/resources';
 
 @Injectable({ providedIn: 'root' })
 export class StorageService {
@@ -18,7 +18,7 @@ export class StorageService {
     }
 
     private getKey(key: string, withLanguage = false): string {
-        return `${ConfigService.Config.Storage.Key}${withLanguage ? '.' + Config.Basic.language : ''}.${key}`;
+        return `${ConfigService.Config.Storage.Key}${withLanguage ? '.' + Res.language : ''}.${key}`;
     }
 
 

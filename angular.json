@@ -25,7 +25,7 @@
                         "allowedCommonJsDependencies": [
                             "express"
                         ],
-                        "index": "src/placeholder.html",
+                        "index": "src/index.html",
                         "main": "src/main.ts",
                         "polyfills": "src/polyfills.ts",
                         "tsConfig": "tsconfig.app.json",
@@ -75,17 +75,17 @@
                                 "output": "/assets"
                             },
                             {
-                                "glob": "*.js",
-                                "input": "src/locale",
-                                "output": "/locale"
-                            },
-                            {
                                 "glob": "*",
                                 "input": "configs",
                                 "output": "/localdata"
                             },
                             {
-                                "glob": "(ar-JO|en-AE).js",
+                                "glob": "*.js",
+                                "input": "src/locale",
+                                "output": "/locale"
+                            },
+                            {
+                                "glob": "*(ar-JO|en-AE).js",
                                 "input": "node_modules/@angular/common/locales/global",
                                 "output": "/locale"
                             }
@@ -174,13 +174,13 @@
                                     "output": "/assets"
                                 },
                                 {
-                                    "glob": "*.js",
+                                    "glob": "*(cr-en|cr-ar).js",
                                     "input": "src/locale",
                                     "output": "/locale"
                                 },
                                 {
                                     "glob": "*(ar-JO|en-AE).js",
-                                    "input": "./node_modules/@angular/common/locales/global",
+                                    "input": "node_modules/@angular/common/locales/global",
                                     "output": "/locale"
                                 }
                             ],

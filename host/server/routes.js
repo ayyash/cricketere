@@ -13,13 +13,25 @@ module.exports = function (app, config) {
         res.sendFile(config.rootPath + 'client/favicon.ico');
     });
 
-    // make sure to handle index seperately, or set index: false in statics
-    app.get('/', (req, res) => {
+    app.get('/locale/language.js', function (req, res) {
+        // reroute according to lang
+        res.sendFile(config.getLangPath(res.locals.lang));
 
-        // serve index file of default language
-        res.sendFile(config.rootPath + `index/index.${res.locals.lang}.html`);
     });
 
+    app.use('/localdata', express.static(config.rootPath + '/localdata'));
+
+
+
+    // make sure to handle index seperately, or set index: false in statics
+    // app.get('/', (req, res) => {
+
+    //     // serve index file of default language
+    //     res.sendFile(config.rootPath + `client/index.html`);
+    // });
+
+    // TODO: test with index:false and move above? may be
+    app.use(express.static(config.rootPath + '/client'));
 
 
     // for debugging
@@ -44,15 +56,10 @@ module.exports = function (app, config) {
         });
     });
 
-    app.use('/localdata', express.static(config.rootPath + '/localdata'));
-
-    // TODO: test with index:false and move above? may be
-    app.use(express.static(config.rootPath + '/client'));
 
     app.get('/*', (req, res) => {
-
         // serve index file of default language
-        res.sendFile(config.rootPath + `index/index.${res.locals.lang}.html`);
+        res.sendFile(config.rootPath + `client/index.html`);
     });
 
 

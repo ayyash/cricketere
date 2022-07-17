@@ -2,7 +2,7 @@ const express = require('express');
 const fs = require('fs');
 
 /*********************Configuration***********/
-var config = require('./server/config').getConfig();
+const config = require('./server/config');
 
 
 // for ssr to run, define global
@@ -29,13 +29,13 @@ if (config.ssr) {
         length: 0
     };
     global._debug = function (o, message, type) {
-        if (config.name === 'local') {
+        if (config.env === 'local') {
             // console.log(message, o);
         }
 
     };
     global._attn = function (o, message) {
-        if (config.name === 'local') {
+        if (config.env === 'local') {
             console.log(message, o);
         }
     }
@@ -43,27 +43,6 @@ if (config.ssr) {
         // console.log(message);
     }
 
-    // to make language change on ssr, use globals
-    // relying on cookie is coupling it with client side resources, unable to use reference of keys, always resources.keys, explicity
-    global.resources = {
-        language: 'en',
-        country: 'JO',
-        keys: {},
-        _LOCALE_ID: 'en-US'
-    };
-
-    // get all languages here (keys)
-    global.resources.allLanguages = {}
-
-    for (let lang of config.languages) {
-        const resFile = './client/locale/' + lang + '.js';
-        if (fs.existsSync(resFile)) {
-            global.resources.allLanguages[lang] = require(resFile).resources.keys;
-        }
-
-    }
-
-    // global.WebConfig = require('./localdata/config.js');
 
 }
 

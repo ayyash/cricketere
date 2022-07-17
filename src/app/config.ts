@@ -5,8 +5,7 @@ export const Config = {
     isServed: false,
     MyKey: 'default',
     Basic: {
-        language: resources.language,
-        country: resources.country,
+        country: 'jo',
         defaultRoute: '/projects',
         loginRoute: '/login',
         defaultSize: 10,

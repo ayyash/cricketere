@@ -3,7 +3,19 @@ const express = require('express');
 // multilingual url driven, clientside only
 
 module.exports = function (app, config) {
+    const fs = require('fs') // this engine requires the fs module
+    app.engine('html', (filePath, options, callback) => { // define the template engine
+      fs.readFile(filePath, (err, content) => {
+        if (err) return callback(err);
 
+        const rendered = content.toString()
+          .replace('<base href="/">', `<base href="/${options.lang}/">`);
+        return callback(null, rendered)
+      })
+    });
+
+    app.set('view engine', 'html');
+    app.set('views', config.rootPath + 'client');
 
     app.get('/robots.txt', function (req, res) {
         res.sendFile(config.rootPath + 'robots.txt');
@@ -35,34 +47,46 @@ module.exports = function (app, config) {
         });
     });
 
-    // setup path for localdata in sub projects
-    /************ URL DRIVEN langage *****/
+
+    app.get('/:lang/locale/language.js', function (req, res) {
+        // reroute according to lang, does not matter what language is because its already set
+        res.sendFile(config.getLangPath(res.locals.lang));
+
+    });
+
+
+    app.use('/:lang/localdata/', express.static(config.rootPath + '/localdata'));
+    // use static files in client, but skip index file
+    app.use('/:lang', express.static(config.rootPath + '/client', {index: false}));
+
     app.get('/', function (req, res) {
-        res.redirect(301, `/en/`);
-    });
-
-    // set all supported languages
-    app.get(['/en', '/ar', '/tr'], (req, res) => {
-
-        // render the right html file
-        // for this work, index files must have baseHref correctly set to the language it serves
-        res.sendFile(config.rootPath + `index/index.${res.locals.lang}.html`);
-    });
-
-    app.use(/^\/(en|ar|tr)\/localdata/, express.static(config.rootPath + '/localdata'));
-
-    // use static files in client
-    app.use(['/en', '/ar', '/tr'], express.static(config.rootPath + '/client'));
-
-    app.get(/^\/(en|ar|tr)\/*/, function (req, res) {
-        // if none of the above go back to index file of the language request
-        res.sendFile(config.rootPath + `index/index.${res.locals.lang}.html`);
+        // redirect to last saved language
+        res.redirect(301, `/${ res.locals.lang }/`);
     });
 
 
+    app.get(config.languages.map(n => `/${n}/*`), function(req, res){
+
+        res.render(config.rootPath + `client/index.html`, {lang: res.locals.lang});
+    });
+    // app.get('/:lang/*', function (req, res) {
+    //     // if none of the above go back to index file of the language request
+    //     // lets check language, if not part of existing supproted languages lets redirect
+    //     if (!config.languages.includes(req.params.lang)) {
+    //         // extract the path
+    //         res.redirect(301, `/${ res.locals.lang }/${req.params[0]}`);
+    //     } else {
+
+    //         res.render(config.rootPath + `client/index.html`, {lang: res.locals.lang});
+    //     }
+    // });
+
+
+
+    // nothing matches? redirect to /root
     app.get('/*', function (req, res) {
         // if none, redirect
-        res.redirect(301, `/en` + req.path);
+        res.redirect(301, '/' + res.locals.lang + req.path);
     });
 
 };

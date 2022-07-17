@@ -2,8 +2,8 @@ import { Observable } from 'rxjs';
 import { Injectable, Optional, Inject } from '@angular/core';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
 
-import { Config } from '../config';
 import { debug, catchAppError } from './rxjs.operators';
+import { Res } from './resources';
 
 @Injectable()
 export class LocalInterceptor implements HttpInterceptor {
@@ -18,7 +18,7 @@ export class LocalInterceptor implements HttpInterceptor {
         let url = req.url;
         if (this.serverUrl) {
             // on ssr get a full url of current server, this needs to be mapped to express in final app
-            url = `${this.serverUrl}/${Config.Basic.language}/${req.url}`;
+            url = `${this.serverUrl}/${Res.language}/${req.url}`;
         }
 
         const adjustedReq = req.clone({ url: url });

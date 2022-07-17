@@ -38,7 +38,7 @@ export class PublicHomeComponent extends GtmComponent implements OnInit  {
       }
       showToast4() {
         // and finally, an all corners mercedes
-        this.toast.Show('SomeCode', {text: resources.keys.INVALID_VALUE, timeout: EnumTimeout.Never});
+        this.toast.Show('SomeCode', {text: Res.Get('INVALID_VALUE'), timeout: EnumTimeout.Never});
       }
 
 }

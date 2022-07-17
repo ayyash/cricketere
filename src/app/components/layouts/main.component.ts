@@ -9,7 +9,7 @@ import { GtmComponent } from '../abstract/gtm.abstract';
 export class MainLayoutComponent extends GtmComponent implements OnInit {
 
 
-    constructor( private seoService: SeoService) {
+    constructor() {
         super();
      }
 

@@ -46,7 +46,7 @@ export class Toast extends StateService<IToast> {
         const _options: IToast = { ...this.defaultOptions, ...options};
 
         // get message from code
-        const message = Res.Get(code, options?.text || resources.keys.Unknown);
+        const message = Res.Get(code, options?.text || Res.Get('Unknown'));
 
         timer(100).subscribe(() => {
             this.SetState({ ..._options, text: message, visible: true  });

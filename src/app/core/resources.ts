@@ -5,14 +5,35 @@
 * This file can be replaced during build by using the `fileReplacements` array. */
 // import { keys, plural } from '../../locale/resources';
 
-// from en.js (add typing entry for it)
+declare const cr: {
+    resources: {
+        keys: any;
+        language: string;
+        localeId: string;
+    };
+
+};
+
+
+export class LocaleId extends String {
+    toString() {
+        return cr.resources.localeId || 'en-US';
+    }
+}
 
 export class Res {
 
+    private static get keys(): any {
+        return cr.resources.keys;
+    }
+
+    public static get language(): string {
+        return cr.resources.language || 'en';
+    }
+
     public static Get(key: string, fallback?: string): string {
         // if found return else generic
-        const keys = resources.keys;
-
+        const keys = Res.keys;
 
         if (keys[key]) {
             return keys[key];
@@ -23,7 +44,7 @@ export class Res {
 
     public static Plural(key: string, count: number, fallback?: string): string {
 
-        const keys = resources.keys;
+        const keys = Res.keys;
 
         const _key = keys[key];
         if (!_key) {
@@ -36,7 +57,7 @@ export class Res {
         // default is first element (the largest)
         let factor = _key[_pluralCats[0]];
 
-        for(let i = 0; i < _pluralCats.length; i++) {
+        for (let i = 0; i < _pluralCats.length; i++) {
             if (count >= parseFloat(_pluralCats[i])) {
                 factor = _key[_pluralCats[i]];
                 break;
@@ -49,7 +70,7 @@ export class Res {
 
     public static Select(key: string, select: any, fallback?: string): string {
         // find the match in resources
-        const keys = resources.keys;
+        const keys = Res.keys;
 
         return (keys[key] && keys[key][select]) || fallback || keys.NoRes;
     }

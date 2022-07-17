@@ -65,7 +65,7 @@ export class SeoService {
         return toFormat(Config.Seo.baseUrl, Config.Seo.defaultRegion, Config.Seo.defaultLanguage, '');
     }
     get siteUrl(): string {
-        return toFormat(Config.Seo.baseUrl, Config.Basic.country, Config.Basic.language, '');
+        return toFormat(Config.Seo.baseUrl, Config.Basic.country, Res.language, '');
     }
 
     private createAlternateLink(): HTMLLinkElement {

@@ -10,13 +10,7 @@ import { ErrorComponent } from './components/layouts/error.component';
 import { MainLayoutComponent } from './components/layouts/main.component';
 import { SingleLayoutComponent } from './components/layouts/single.component';
 import { ToastPartialComponent } from './lib/toaster/toast.component';
-
-class DynamicLocaleId extends String {
-
-    toString() {
-      return resources._LOCALE_ID;
-    }
-  }
+import { LocaleId } from './core/resources';
 
 
 @NgModule({
@@ -33,6 +27,6 @@ class DynamicLocaleId extends String {
         AppRoutingModule,
         CoreModule,
     ],
-    providers: [{provide: LOCALE_ID, useClass: DynamicLocaleId }]
+    providers: [{provide: LOCALE_ID, useClass: LocaleId }]
 })
 export class AppModule { }
