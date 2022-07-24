@@ -1,5 +1,4 @@
 const express = require('express');
-const fs = require('fs');
 
 /*********************Configuration***********/
 const config = require('./server/config');
@@ -73,6 +72,8 @@ app.use(function (req, res, next) {
     next();
 });
 
+
+// TODO: test language change in ssr
 
 
 // serve the right router

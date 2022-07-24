@@ -1,4 +1,32 @@
-<button class="btn" (click)="switchLanguage()">Switch language</button>
+<h5>Change cookie on client</h5>
+<ul>
+    <li>
+        <button class="btn" (click)="switchLanguage('ar')">عربي</button>
+    </li>
+    <li>
+        <button class="btn" (click)="switchLanguage('en')">English</button>
+    </li>
+</ul>
+
+<h5>Change cookie on server</h5>
+<ul>
+    <li>
+        <a [href]="switchServerLanguage('ar')">عربي</a>
+    </li>
+    <li>
+        <a [href]="switchServerLanguage('en')">English</a>
+    </li>
+</ul>
+<h5>Redirect to URL</h5>
+<ul>
+    <li>
+        <a [href]="getLanguageLink('ar')">عربي</a>
+    </li>
+    <li>
+        <a [href]="getLanguageLink('en')">English</a>
+    </li>
+</ul>
+
 <h4>{{'Hello World' | translate:'HelloWorld'}}</h4>
 
 

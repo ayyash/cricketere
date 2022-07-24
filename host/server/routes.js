@@ -1,25 +1,45 @@
 const express = require('express');
 
 // multilingual, non url driven, client side only
+const renderer = require('./renderer');
+
 
 module.exports = function (app, config) {
 
-    app.get('/robots.txt', function (req, res) {
+    renderer.htmlEngine(app);
+
+
+    app.get('/robots.txt', (req, res) => {
 
         res.sendFile(config.rootPath + 'robots.txt');
     });
 
-    app.get('/favicon.ico', function (req, res) {
+    app.get('/favicon.ico', (req, res) => {
         res.sendFile(config.rootPath + 'client/favicon.ico');
     });
 
-    app.get('/locale/language.js', function (req, res) {
+    app.get('/locale/language.js', (req, res) => {
         // reroute according to lang
         res.sendFile(config.getLangPath(res.locals.lang));
 
     });
 
-    app.use('/localdata', express.static(config.rootPath + '/localdata'));
+    // app.get('/styles.css', (req, res) => {
+    //     if (res.locals.lang === 'ar') {
+    //         res.sendFile(config.rootPath + 'client/styles.rtl.css');
+    //     } else {
+    //         res.sendFile(config.rootPath + 'client/styles.ltr.css');
+    //     }
+    // });
+    // app.get('/fonts.css', (req, res) => {
+    //     if (res.locals.lang === 'ar') {
+    //         res.sendFile(config.rootPath + 'client/fonts.rtl.css');
+    //     } else {
+    //         res.sendFile(config.rootPath + 'client/fonts.ltr.css');
+    //     }
+    // });
+
+    app.use('/localdata', express.static(config.rootPath + 'localdata'));
 
 
 
@@ -31,7 +51,7 @@ module.exports = function (app, config) {
     // });
 
     // TODO: test with index:false and move above? may be
-    app.use(express.static(config.rootPath + '/client'));
+    app.use(express.static(config.rootPath + 'client'));
 
 
     // for debugging
@@ -57,9 +77,10 @@ module.exports = function (app, config) {
     });
 
 
+
     app.get('/*', (req, res) => {
         // serve index file of default language
-        res.sendFile(config.rootPath + `client/index.html`);
+        renderer.htmlRender(res);
     });
 
 

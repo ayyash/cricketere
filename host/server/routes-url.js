@@ -1,27 +1,20 @@
 const express = require('express');
 
 // multilingual url driven, clientside only
+const renderer = require('./renderer');
 
 module.exports = function (app, config) {
-    const fs = require('fs') // this engine requires the fs module
-    app.engine('html', (filePath, options, callback) => { // define the template engine
-      fs.readFile(filePath, (err, content) => {
-        if (err) return callback(err);
 
-        const rendered = content.toString()
-          .replace('<base href="/">', `<base href="/${options.lang}/">`);
-        return callback(null, rendered)
-      })
-    });
+    renderer.htmlEngine(app);
 
-    app.set('view engine', 'html');
-    app.set('views', config.rootPath + 'client');
+    // app.set('view engine', 'html');
+    // app.set('views', config.rootPath + 'client');
 
-    app.get('/robots.txt', function (req, res) {
+    app.get('/robots.txt', (req, res) => {
         res.sendFile(config.rootPath + 'robots.txt');
     });
 
-    app.get('/favicon.ico', function (req, res) {
+    app.get('/favicon.ico', (req, res) => {
         res.sendFile(config.rootPath + 'client/favicon.ico');
     });
 
@@ -48,43 +41,43 @@ module.exports = function (app, config) {
     });
 
 
-    app.get('/:lang/locale/language.js', function (req, res) {
+    app.get('/:lang/locale/language.js', (req, res) => {
         // reroute according to lang, does not matter what language is because its already set
         res.sendFile(config.getLangPath(res.locals.lang));
 
     });
 
-
-    app.use('/:lang/localdata/', express.static(config.rootPath + '/localdata'));
-    // use static files in client, but skip index file
-    app.use('/:lang', express.static(config.rootPath + '/client', {index: false}));
-
-    app.get('/', function (req, res) {
-        // redirect to last saved language
-        res.redirect(301, `/${ res.locals.lang }/`);
-    });
-
-
-    app.get(config.languages.map(n => `/${n}/*`), function(req, res){
-
-        res.render(config.rootPath + `client/index.html`, {lang: res.locals.lang});
-    });
-    // app.get('/:lang/*', function (req, res) {
-    //     // if none of the above go back to index file of the language request
-    //     // lets check language, if not part of existing supproted languages lets redirect
-    //     if (!config.languages.includes(req.params.lang)) {
-    //         // extract the path
-    //         res.redirect(301, `/${ res.locals.lang }/${req.params[0]}`);
+    // app.get('/:lang/locale/styles.css', (req, res) => {
+    //     if (res.locals.lang === 'ar') {
+    //         res.sendFile(config.rootPath + 'client/assets/styles.rtl.css');
     //     } else {
-
-    //         res.render(config.rootPath + `client/index.html`, {lang: res.locals.lang});
+    //         res.sendFile(config.rootPath + 'client/assets/styles.ltr.css');
+    //     }
+    // });
+    // app.get('/:lang/locale/fonts.css', (req, res) => {
+    //     if (res.locals.lang === 'ar') {
+    //         res.sendFile(config.rootPath + 'client/assets/fonts.rtl.css');
+    //     } else {
+    //         res.sendFile(config.rootPath + 'client/assets/fonts.ltr.css');
     //     }
     // });
 
+    app.use('/:lang/localdata/', express.static(config.rootPath + 'localdata'));
+    // use static files in client, but skip index file
+    app.use('/:lang', express.static(config.rootPath + 'client', { index: false }));
 
+    // app.get('/', function (req, res) {
+    //     // redirect to last saved language
+    //     res.redirect(301, `/${ res.locals.lang }/`);
+    // });
+
+
+    app.get(config.languages.map(n => `/${n}/*`), (req, res) => {
+        renderer.htmlRender(res);
+    });
 
     // nothing matches? redirect to /root
-    app.get('/*', function (req, res) {
+    app.get('/*', (req, res) => {
         // if none, redirect
         res.redirect(301, '/' + res.locals.lang + req.path);
     });

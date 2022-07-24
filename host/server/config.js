@@ -8,11 +8,14 @@ module.exports = {
     languages: ['en', 'ar'],
     env: process.env.Node_ENV || 'local',
     rootPath,
-    ssr: false,
-    urlBased: false,
+    ssr: true,
+    urlBased: true,
     langCookieName: 'cr-lang',
     projectPrefix: 'cr-',
     getLangPath: function (lang) {
         return `${rootPath}client/locale/${this.projectPrefix}${lang}.js`;
+    },
+    saveLangCookie: function(res, lang) {
+        res.cookie(this.langCookieName, lang, { expires: new Date(Date.now() + 31622444360) });
     }
 };

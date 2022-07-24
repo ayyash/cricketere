@@ -3,7 +3,6 @@
 module.exports = function (config) {
 
     return function (req, res, next) {
-        // require can be here
 
         // check cookies for language, for html request only
         res.locals.lang = req.cookies[config.langCookieName] || 'en';
@@ -19,7 +18,7 @@ module.exports = function (config) {
         // if urlbased (also multilingual) derive language from url
         if (config.urlBased) {
             // check the first segment of the url, find in supported languages
-            res.locals.lang = config.languages.find(n => n === req.path.split('/')[1]) || 'en';
+            res.locals.lang = config.languages.find(n => n === req.path.split('/')[1]) || res.locals.lang;
 
         }
 
@@ -34,9 +33,12 @@ module.exports = function (config) {
         }
 
         // set cookie for a year
-        res.cookie(config.langCookieName, res.locals.lang, { expires: new Date(Date.now() + 31622444360) });
+        config.saveLangCookie(res, res.locals.lang);
+
+        // res.cookie(config.langCookieName, res.locals.lang, { expires: new Date(Date.now() + 31622444360) });
 
         next();
 
     };
 }
+

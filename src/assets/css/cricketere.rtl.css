@@ -2,8 +2,8 @@
 /* site defined vars */
 /* spacing and layout */
 :root {
-  --sh-fontface: -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI", "Fira Sans", "Helvetica Neue", Arial, sans-serif;
-  --sh-fontface-ar: "Traditional Arabic", tahoma, sans-serif;
+  --sh-fontface: -apple-system, BlinkMacSystemFont, "Signika", "Segoe UI", "Fira Sans", "Helvetica Neue", Arial, sans-serif;
+  --sh-fontface-ar: "Tajawal", "Traditional Arabic", tahoma, sans-serif;
   --sh-font-size: 1.45;
   --sh-font-weight-light: 300;
   --sh-font-weight: 400;
@@ -2373,7 +2373,7 @@ ol.extraspacedout > li {
 }
 /* CRITICAL BEGIN */
 .ar {
-  font-family: "Traditional Arabic", tahoma, sans-serif;
+  font-family: "Tajawal", "Traditional Arabic", tahoma, sans-serif;
   direction: rtl;
 }
 body,
@@ -2382,7 +2382,7 @@ select,
 option,
 button,
 input {
-  font-family: "Traditional Arabic", tahoma, sans-serif;
+  font-family: "Tajawal", "Traditional Arabic", tahoma, sans-serif;
   direction: rtl;
 }
 textarea {

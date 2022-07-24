@@ -13,6 +13,10 @@ export interface IConfig {
         Key: string;
         ResetKey: string;
     };
+    Res: {
+        languages?: string[];
+        cookieName: string;
+    }
     MyKey: string;
 
 }

@@ -14,6 +14,10 @@ export const Config = {
         defaultUploadFormat: ['gif', 'jpg', 'jpeg', 'png'],
         defaultToastTimeout: 4000
     },
+    Res: {
+        cookieName: 'cr-lang',
+        languages: ['']
+    },
     Auth: {
         userAccessKey: 'user'
     },

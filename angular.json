@@ -31,23 +31,13 @@
                         "tsConfig": "tsconfig.app.json",
                         "styles": [
                             {
-                                "input": "src/assets/css/cricketere.critical.css",
-                                "bundleName": "critical",
+                                "input": "src/assets/css/cricketere.css",
+                                "bundleName": "styles.ltr",
                                 "inject": false
                             },
                             {
-                                "input": "src/assets/css/cricketere.critical.rtl.css",
-                                "bundleName": "criticalrtl",
-                                "inject": false
-                            },
-                            {
-                                "input": "src/assets/css/cricketere.general.css",
-                                "bundleName": "styles",
-                                "inject": false
-                            },
-                            {
-                                "input": "src/assets/css/cricketere.general.rtl.css",
-                                "bundleName": "stylesrtl",
+                                "input": "src/assets/css/cricketere.rtl.css",
+                                "bundleName": "styles.rtl",
                                 "inject": false
                             }
                         ],
@@ -104,6 +94,10 @@
                             "index": "src/index.dev.html",
                             "styles": [
                                 {
+                                    "input": "src/assets/fonts/fonts.ltr.css",
+                                    "bundleName": "fonts"
+                                },
+                                {
                                     "input": "src/assets/css/cricketere.css",
                                     "bundleName": "styles"
                                 }
@@ -136,6 +130,10 @@
                             "index": "src/index.rtl.html",
                             "styles": [
                                 {
+                                    "input": "src/assets/fonts/fonts.rtl.css",
+                                    "bundleName": "fonts"
+                                },
+                                {
                                     "input": "src/assets/css/cricketere.rtl.css",
                                     "bundleName": "styles"
                                 }
@@ -152,7 +150,10 @@
                             "optimization": {
                                 "scripts": true,
                                 "fonts": false,
-                                "styles": true
+                                "styles": {
+                                    "inlineCritical": false,
+                                    "minify": true
+                                }
                             },
                             "outputHashing": "all",
                             "sourceMap": false,
@@ -225,6 +226,7 @@
                                 "./node_modules/shut/src/less"
                             ]
                         }
+
                     },
                     "configurations": {
                         "production": {

@@ -1,6 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Config } from '../../config';
 import { Res } from '../../core/resources';
+import { ConfigService } from '../../core/services';
 import { Platform } from '../../lib/platform.service';
 
 enum EnumRate {
@@ -66,17 +67,23 @@ export class ContentDetailsComponent implements OnInit {
         //
 
     }
-    switchLanguage() {
-        if (this.platform.isBrowser) {
+    switchLanguage(lang: string) {
 
-            if (Res.language === 'en') {
-                this.setCookie('ar', 'cr-lang', 365);
-            } else {
-                this.setCookie('en', 'cr-lang', 365);
+        this.setCookie(lang, ConfigService.Config.Res.cookieName, 365);
+        this.platform.doc.location.reload();
+    }
 
-            }
-            window.location.reload();
-        }
+    switchServerLanguage(lang: string):string {
+
+        // send a query param to server, try to keep the path as is
+        return this.platform.doc.URL + '?srvrlang=' + lang;
+    }
+
+    getLanguageLink(lang: string): string {
+        // go to: ...
+        // replace current language with new language
+        return this.platform.doc.URL.replace(`/${Res.language}/`, `/${lang}/`);
+
     }
 
     private setCookie(value: string, key: string, expires: number) {

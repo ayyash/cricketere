@@ -2,17 +2,20 @@ const express = require('express');
 
 // for ssr multilingual, non url driven, contains AppEngine
 const ssr = require('./main');
-
-// TODO: add to config.js
-const localConfig = require('../localdata/config.prod.json');
+const renderer = require('./renderer');
 
 module.exports = function (app, config) {
 
-    app.get('/robots.txt', function (req, res) {
+    // angular express html engine
+    app.engine('html', ssr.AppEngine);
+    app.set('view engine', 'html');
+    app.set('views', config.rootPath + 'client');
+
+    app.get('/robots.txt', (req, res) => {
         res.sendFile(config.rootPath + 'robots.txt');
     });
 
-    app.get('/favicon.ico', function (req, res) {
+    app.get('/favicon.ico', (req, res) => {
         res.sendFile(config.rootPath + 'client/favicon.ico');
     });
 
@@ -39,20 +42,32 @@ module.exports = function (app, config) {
         });
     });
 
-    // angular express html engine
-    app.engine('html', ssr.AppEngine);
-    app.set('view engine', 'html');
-    app.set('views', config.rootPath + 'client');
-
-    // setup path for localdata in sub projects
-
 
     // add longuage reroute here
-    app.get('/locale/language.js', function(req, res){
+    app.get('/locale/language.js', (req, res) => {
         // reroute according to lang
         res.sendFile(config.getLangPath(res.locals.lang));
 
     });
+
+
+    // app.get('/styles.css', (req, res) => {
+    //     if (res.locals.lang === 'ar') {
+    //         res.sendFile(config.rootPath + 'client/styles.rtl.css');
+    //     } else {
+    //         res.sendFile(config.rootPath + 'client/styles.ltr.css');
+    //     }
+    // });
+    // app.get('/fonts.css', (req, res) => {
+    //     if (res.locals.lang === 'ar') {
+    //         res.sendFile(config.rootPath + 'client/fonts.rtl.css');
+    //     } else {
+    //         res.sendFile(config.rootPath + 'client/fonts.ltr.css');
+    //     }
+    // });
+
+
+    // setup path for localdata in sub projects
 
     app.use('/localdata', express.static(config.rootPath + '/localdata', {
         fallthrough: false
@@ -74,21 +89,7 @@ module.exports = function (app, config) {
         // serve index file relevant to language
         // require config and inject on ssr
         // for this work, index files must have baseHref correctly set to the language it serves
-
-        res.render(config.rootPath + `client/index.html`, {
-            req,
-            res,
-            providers: [
-                {
-                    provide: 'serverUrl',
-                    useValue: res.locals.serverUrl
-                },
-                {
-                    provide: 'localConfig',
-                    useValue: localConfig
-                }
-            ]
-        });
+        renderer.ngEngine(req, res);
     });
 
 
