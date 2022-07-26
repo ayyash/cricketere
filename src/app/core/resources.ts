@@ -17,7 +17,7 @@ declare const cr: {
 
 export class LocaleId extends String {
     toString() {
-        return cr.resources.localeId || 'en-US';
+        return cr.resources.localeId || 'en';
     }
 }
 

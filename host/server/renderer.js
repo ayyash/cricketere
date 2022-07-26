@@ -40,6 +40,7 @@ exports.htmlRender = function(res) {
 
 exports.htmlEngine = function(app) {
     app.engine('html', (filePath, options, callback) => { // define the template engine
+
         fs.readFile(filePath, (err, content) => {
             if (err) return callback(err);
 

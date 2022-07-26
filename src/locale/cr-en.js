@@ -42,6 +42,8 @@
     // for nodejs
     global.cr.en = global.cr.resources;
 
+    // global.ng.common.locales['ar-jo'][18]['TRY'] = ['₺'];
+
 
 })(typeof globalThis !== 'undefined' && globalThis || typeof global !== 'undefined' && global ||
     typeof window !== 'undefined' && window);

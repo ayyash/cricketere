@@ -1,0 +1,10 @@
+[[redirects]]
+  from = "/en/*"
+  to = "/index.en.html"
+  status = 200
+
+[[redirects]]
+  from = "/ar/*"
+  to = "/index.ar.html"
+  status = 200
+
