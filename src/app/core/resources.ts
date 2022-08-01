@@ -5,6 +5,8 @@
 * This file can be replaced during build by using the `fileReplacements` array. */
 // import { keys, plural } from '../../locale/resources';
 
+import { Config } from '../config';
+
 declare const cr: {
     resources: {
         keys: any;
@@ -17,9 +19,10 @@ declare const cr: {
 
 export class LocaleId extends String {
     toString() {
-        return cr.resources.localeId || 'en';
+        return cr.resources.localeId || Config.Res.defaultLanguage;
     }
 }
+
 
 export class Res {
 
@@ -28,7 +31,7 @@ export class Res {
     }
 
     public static get language(): string {
-        return cr.resources.language || 'en';
+        return cr.resources.language || Config.Res.defaultLanguage;
     }
 
     public static Get(key: string, fallback?: string): string {

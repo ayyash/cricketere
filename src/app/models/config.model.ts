@@ -14,7 +14,7 @@ export interface IConfig {
         ResetKey: string;
     };
     Res: {
-        languages?: string[];
+        languages?: {name: string, display: string}[];
         cookieName: string;
     }
     MyKey: string;

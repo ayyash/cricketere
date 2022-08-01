@@ -8,8 +8,8 @@ module.exports = {
     languages: ['en', 'ar'],
     env: process.env.Node_ENV || 'local',
     rootPath,
-    ssr: true,
-    urlBased: true,
+    ssr: false,
+    urlBased: false,
     langCookieName: 'cr-lang',
     projectPrefix: 'cr-',
     getLangPath: function (lang) {

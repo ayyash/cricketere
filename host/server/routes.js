@@ -76,6 +76,12 @@ module.exports = function (app, config) {
         });
     });
 
+    app.get('/switchlang', (req, res) => {
+        // save session of language then redirect
+        config.saveLangCookie(res, req.query.lang);
+        res.redirect(req.query.red);
+
+    });
 
 
     app.get('/*', (req, res) => {

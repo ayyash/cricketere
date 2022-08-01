@@ -1,6 +1,41 @@
 // make it run on both platforms
 (function (global) {
 
+    const _LocaleId = 'en';
+    const _extend = function() {
+        if (global.ng?.common?.locales) {
+            global.ng.common.locales[_LocaleId].forEach(n => {
+                if (n){
+                    // find it by checking that is an object and not an array
+                    if (typeof n === 'object' && !Array.isArray(n)){
+                        n['WLG'] = ['₩'];
+                    }
+
+                }
+            });
+
+        }
+    };
+    if (window != null) {
+        // in browser platform
+        const script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.defer = true;
+        script.src = `locale/${_LocaleId}.js`;
+        script.onload = function () {
+            // on load, add a missing curreny symbol
+            _extend();
+
+        }
+        document.head.appendChild(script);
+
+    } else {
+        // in server platform
+        require(`./${_LocaleId}.js`);
+        _extend();
+
+    }
+
     const keys = {
         NoRes: '', // if resource is not found
         Students: { 0: 'no students', 1: 'one student', 2: '$0 students' },
@@ -36,11 +71,13 @@
     global.cr.resources = {
         language: 'en',
         keys,
-        localeId: 'en-US'
+        localeId: _LocaleId
     }
 
     // for nodejs
     global.cr.en = global.cr.resources;
+
+    // global.ng.common.locales['ar-jo'][18]['TRY'] = ['₺'];
 
 
 })(typeof globalThis !== 'undefined' && globalThis || typeof global !== 'undefined' && global ||

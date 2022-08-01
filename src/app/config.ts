@@ -12,11 +12,12 @@ export const Config = {
         defaultDateFormt: 'DD-MM-YYYY',
         defaultUploadSize: 1048576,
         defaultUploadFormat: ['gif', 'jpg', 'jpeg', 'png'],
-        defaultToastTimeout: 4000
+        defaultToastTimeout: 4000,
     },
     Res: {
         cookieName: 'cr-lang',
-        languages: ['']
+        languages: [{name: 'en', display: 'English'}, {name: 'ar', display: 'عربي'}],
+        defaultLanguage: 'en' // not maintained
     },
     Auth: {
         userAccessKey: 'user'

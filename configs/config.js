@@ -24,6 +24,19 @@ const WebConfig = {
     "Seo": {
         "gaEnabled": false
     },
-    "isServed": true
+    "isServed": true,
+    "Res": {
+        "cookieName": "cr-lang",
+        "languages": [
+            {
+                "name": "en",
+                "display": "English"
+            },
+            {
+                "name": "ar",
+                "display": "عربي"
+            }
+        ]
+    }
 };
 

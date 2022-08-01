@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { TransferHttpCacheModule } from '@nguniversal/common';
-import { LOCALE_ID, NgModule } from '@angular/core';
+import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './routing.module';
 import { CoreModule } from './core/core.module';
@@ -28,5 +28,7 @@ import { LocaleId } from './core/resources';
         CoreModule,
     ],
     providers: [{provide: LOCALE_ID, useClass: LocaleId }]
+        // do this when you have one currency, not multiple locales
+        // {provide: DEFAULT_CURRENCY_CODE, useClass: LocaleCurrency}]
 })
 export class AppModule { }

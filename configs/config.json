@@ -9,9 +9,22 @@
     "Storage": {
         "Timeout": 168,
         "Key": "cricketere",
-        "ResetKey": "20220606"
+        "ResetKey": "20220731"
     },
     "GTM": {
         "isEnabled": true
+    },
+    "Res": {
+        "cookieName": "cr-lang",
+        "languages": [
+            {
+                "name": "en",
+                "display": "English"
+            },
+            {
+                "name": "ar",
+                "display": "عربي"
+            }
+        ]
     }
 }

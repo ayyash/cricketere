@@ -1,18 +1,42 @@
 // make it run on both platforms
 (function (global) {
 
+    const _LocaleId = 'ar-JO';
+    const _extend = function() {
+        if (global.ng?.common?.locales) {
+            global.ng.common.locales[_LocaleId.toLowerCase()].forEach(n => {
+                if (n){
+                    // find it by checking that is an object and not an array
+                    if (typeof n === 'object' && !Array.isArray(n)){
+                        n['WLG'] = ['₩'];
+                        n['JPY'] = ['¥'];
+                        n['AUD'] = ['$'];
+                        n['CAD'] = ['$'];
+                    }
 
+                }
+            });
+
+        }
+    };
     if (window != null) {
         // in browser platform
         const script = document.createElement('script');
         script.type = 'text/javascript';
         script.defer = true;
-        script.src = 'locale/ar-JO.js';
+        script.src = `locale/${_LocaleId}.js`;
+        script.onload = function () {
+            // on load, add a missing curreny symbol
+            _extend();
+
+        }
         document.head.appendChild(script);
 
     } else {
         // in server platform
-        require('./ar-JO.js');
+        require(`./${_LocaleId}.js`);
+        _extend();
+
     }
 
     const keys = {
@@ -50,12 +74,14 @@
     global.cr.resources = {
         language: 'ar',
         keys,
-        localeId: 'ar-JO'
+        localeId: _LocaleId
     }
 
     // for nodejs
     global.cr['ar'] = global.cr.resources;
 
 
+
 })(typeof globalThis !== 'undefined' && globalThis || typeof global !== 'undefined' && global ||
     typeof window !== 'undefined' && window);
+

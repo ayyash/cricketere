@@ -1,31 +1,29 @@
+<section>
 <h5>Change cookie on client</h5>
-<ul>
-    <li>
-        <button class="btn" (click)="switchLanguage('ar')">عربي</button>
-    </li>
-    <li>
-        <button class="btn" (click)="switchLanguage('en')">English</button>
-    </li>
-</ul>
 
-<h5>Change cookie on server</h5>
-<ul>
-    <li>
-        <a [href]="switchServerLanguage('ar')">عربي</a>
-    </li>
-    <li>
-        <a [href]="switchServerLanguage('en')">English</a>
+<ul class="row">
+    <li *ngFor="let language of supportedlanguages">
+        <button [class.red]="language.name === currentLanguage" class="btn" (click)="switchLanguage(language.name)">{{ language.display }}</button>&nbsp;
     </li>
 </ul>
+</section>
+<section>
+    <h5>Change cookie on server</h5>
+    <ul class="row">
+        <li *ngFor="let language of supportedlanguages">
+            <a [class.red]="language.name === currentLanguage" [href]="getServerLink(language.name)">{{language.display}}</a> |&nbsp;
+        </li>
+    </ul>
+</section>
+<section>
 <h5>Redirect to URL</h5>
-<ul>
-    <li>
-        <a [href]="getLanguageLink('ar')">عربي</a>
-    </li>
-    <li>
-        <a [href]="getLanguageLink('en')">English</a>
+<ul class="row">
+    <li *ngFor="let language of supportedlanguages" >
+        <a [class.red]="language.name === currentLanguage" [href]="getLanguageLink(language.name)">{{language.display}}</a> |&nbsp;
     </li>
 </ul>
+</section>
+
 
 <h4>{{'Hello World' | translate:'HelloWorld'}}</h4>
 
@@ -99,10 +97,52 @@
 </p>
 
 <p>
+    Currency {{ 23.44 | currency:'EUR':'symbol-narrow':undefined:'en-US' }}
     Currency {{ 23.44 | currency }}
+    <!-- Currency {{ 23.44 | currency:'EUR':true:undefined:'ar-JO' }} -->
+
 </p>
-<p>A: {{0.25 | currency:'TRY':'symbol'}}</p>
+<p>{{345.25 | currency:'TRY':'symbol-narrow'}}</p>
+<p>{{345.25 | crCurrency:'TRY'}}</p>
+<p>{{0.25 | currency:'₩'}}</p>
+<p>{{35.333 | currency:'WLG':'₩'}}</p>
 <p>
     {{'3.14159265359' | number:'4.2-4'}}
 </p>
 
+<h3 class="spaced">Testing currencies to the limits</h3>
+<select (change)="setCurrency($event)">
+    <option value="USD">USD</option>
+    <option value="AUD">AUD - same look</option>
+    <option value="CAD">CAD - same look</option>
+    <option value="TRY">TRY</option>
+    <option value="EUR">EUR</option>
+    <option value="RUB">RUB</option>
+    <option value="JPY">JPY</option>
+    <option value="JOD">JOD - no symbol</option>
+    <option value="QAR">QAR</option>
+    <option value="BHD">BHD</option>
+    <option value="BBD">BBD</option>
+    <option value="EGP">EGP</option>
+    <option value="WLG">WLG - Woolong</option>
+    <option value="₩">WLG - Woolong</option>
+  </select>
+<p>
+
+    {{ 29304.34 | crCurrency:configCode}}
+</p>
+
+<p>
+
+    {{ 29304.34 | currency:configCode}}
+</p>
+
+<p>
+    ₽ 29,304.34
+</p>
+<p>
+    RUB 29,304.34
+</p>
+<p>
+    ج.م. 29,304.34
+</p>

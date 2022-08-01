@@ -1,5 +1,5 @@
+import { getCurrencySymbol, getLocaleCurrencyCode, getLocaleCurrencySymbol, registerLocaleData } from '@angular/common';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { Config } from '../../config';
 import { Res } from '../../core/resources';
 import { ConfigService } from '../../core/services';
 import { Platform } from '../../lib/platform.service';
@@ -19,6 +19,9 @@ enum EnumRate {
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContentDetailsComponent implements OnInit {
+
+    supportedlanguages = ConfigService.Config.Res.languages;
+    currentLanguage = Res.language;
 
     total: number = 0;
 
@@ -66,6 +69,13 @@ export class ContentDetailsComponent implements OnInit {
     ngOnInit(): void {
         //
 
+        // one way to get currency symbol
+        const x = getCurrencySymbol('TRY', 'narrow');
+        _attn(x, 'currency');
+        // _attn(getLocaleCurrencyCode('ar-JO'), 'getLocaleCurrencyCode');
+        // _attn(getLocaleCurrencySymbol('ar-JO'), 'getLocaleCurrencySymbol');
+
+        // registerLocaleData(, 'ar-JO');
     }
     switchLanguage(lang: string) {
 
@@ -73,10 +83,11 @@ export class ContentDetailsComponent implements OnInit {
         this.platform.doc.location.reload();
     }
 
-    switchServerLanguage(lang: string):string {
+    getServerLink(lang: string):string {
 
         // send a query param to server, try to keep the path as is
-        return this.platform.doc.URL + '?srvrlang=' + lang;
+        // remove this its useless
+        return `/switchlang?lang=${lang}&red=${this.platform.doc.URL}`;
     }
 
     getLanguageLink(lang: string): string {
@@ -99,5 +110,8 @@ export class ContentDetailsComponent implements OnInit {
         }
     }
 
-
+    configCode = 'USD';
+    setCurrency(from: any) {
+        this.configCode = from.target.value;
+    }
 }

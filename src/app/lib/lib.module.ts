@@ -11,6 +11,7 @@ import { LetDirective } from './directives/let.directive';
 import { ModalDirective } from './directives/modal.directive';
 import { AppShellRenderDirective } from './directives/render.directive';
 import { ScrollDirective } from './directives/scroll.directive';
+import { CustomCurrencyPipe } from './pipes/currency.pipe';
 import { DayNamePipe } from './pipes/dayname.pipe';
 import { PrettyPricePipe } from './pipes/prettyprice.pipe';
 import { PrettyTimePipe } from './pipes/prettytime.pipe';
@@ -34,6 +35,7 @@ import { TranslatePipe } from './pipes/translate.pipe';
         ModalDirective,
         AppShellRenderDirective,
         ScrollDirective,
+        CustomCurrencyPipe,
         DayNamePipe,
         PrettyPricePipe,
         PrettyTimePipe,
@@ -54,6 +56,7 @@ import { TranslatePipe } from './pipes/translate.pipe';
         ModalDirective,
         AppShellRenderDirective,
         ScrollDirective,
+        CustomCurrencyPipe,
         DayNamePipe,
         PrettyPricePipe,
         PrettyTimePipe,

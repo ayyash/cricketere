@@ -8,7 +8,7 @@
 
 # dependencies
 /node_modules
-/host/node_modules
+/**/node_modules
 /gulpbin
 
 # IDEs and editors

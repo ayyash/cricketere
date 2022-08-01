@@ -17,6 +17,14 @@
             "projectType": "application",
             "prefix": "cr",
             "architect": {
+                "ind": {
+                    "builder": "./src/builder:generatelocales",
+                    "options": {
+
+                        "source": "host/client/index.html",
+                        "destination": "host/client/index.ar.html"
+                    }
+                },
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
@@ -75,7 +83,7 @@
                                 "output": "/locale"
                             },
                             {
-                                "glob": "*(ar-JO|en-AE).js",
+                                "glob": "*(ar-JO|en).js",
                                 "input": "node_modules/@angular/common/locales/global",
                                 "output": "/locale"
                             }
@@ -93,7 +101,6 @@
                             "aot": true,
                             "index": "src/index.dev.html",
                             "styles": [
-
                                 {
                                     "input": "src/assets/css/cricketere.css",
                                     "bundleName": "styles"
@@ -126,7 +133,6 @@
                             "aot": true,
                             "index": "src/index.rtl.html",
                             "styles": [
-
                                 {
                                     "input": "src/assets/css/cricketere.rtl.css",
                                     "bundleName": "styles"
@@ -171,7 +177,7 @@
                                     "output": "/locale"
                                 },
                                 {
-                                    "glob": "*(ar-JO|en-AE).js",
+                                    "glob": "*(ar-JO|en).js",
                                     "input": "node_modules/@angular/common/locales/global",
                                     "output": "/locale"
                                 }
@@ -197,12 +203,12 @@
                                     "with": "src/environments/environment.prod.ts"
                                 }
                             ],
-							"optimization": {
+                            "optimization": {
                                 "scripts": true,
                                 "fonts": false,
                                 "styles": true
                             },
-							"outputHashing": "all",
+                            "outputHashing": "all",
                             "sourceMap": false,
                             "namedChunks": false,
                             "aot": true,
@@ -231,7 +237,7 @@
                                     "input": "node_modules/@angular/common/locales/global",
                                     "output": "/locale"
                                 },
-								{
+                                {
                                     "glob": "netlify.toml",
                                     "input": "",
                                     "output": "/"
@@ -266,7 +272,7 @@
                         }
                     }
                 },
-				"server": {
+                "server": {
                     "builder": "@angular-devkit/build-angular:server",
                     "options": {
                         "outputPath": "./host/server",
@@ -278,7 +284,6 @@
                                 "./node_modules/shut/src/less"
                             ]
                         }
-
                     },
                     "configurations": {
                         "production": {
