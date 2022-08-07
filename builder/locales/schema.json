@@ -1,0 +1,26 @@
+{
+    "$schema": "http://json-schema.org/schema",
+    "type": "object",
+    "properties": {
+        "source": {
+            "type": "string"
+        },
+        "destination": {
+            "type": "string"
+        },
+        "languages": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "isRtl": {
+                        "type": "boolean"
+                    }
+                }
+            }
+        }
+    }
+}

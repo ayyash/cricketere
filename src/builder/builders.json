@@ -1,9 +1,0 @@
-{
-    "builders": {
-      "generatelocales": {
-        "implementation": "./dist/locales.js",
-        "schema": "./schema.json",
-        "description": "Custom Builder"
-      }
-    }
-  }

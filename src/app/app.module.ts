@@ -10,7 +10,8 @@ import { ErrorComponent } from './components/layouts/error.component';
 import { MainLayoutComponent } from './components/layouts/main.component';
 import { SingleLayoutComponent } from './components/layouts/single.component';
 import { ToastPartialComponent } from './lib/toaster/toast.component';
-import { LocaleId } from './core/resources';
+import { LocaleId, RootHref } from './core/resources';
+import { APP_BASE_HREF } from '@angular/common';
 
 
 @NgModule({
@@ -27,8 +28,12 @@ import { LocaleId } from './core/resources';
         AppRoutingModule,
         CoreModule,
     ],
-    providers: [{provide: LOCALE_ID, useClass: LocaleId }]
+    providers: [
+        { provide: LOCALE_ID, useClass: LocaleId }
+        // for hosts like netlify
+        // , { provide: APP_BASE_HREF, useClass: RootHref }
         // do this when you have one currency, not multiple locales
-        // {provide: DEFAULT_CURRENCY_CODE, useClass: LocaleCurrency}]
+        // , {provide: DEFAULT_CURRENCY_CODE, useClass: LocaleCurrency}]
+    ]
 })
 export class AppModule { }

@@ -79,6 +79,7 @@ export class ContentDetailsComponent implements OnInit {
     }
     switchLanguage(lang: string) {
 
+        // for netlify set nf_lang
         this.setCookie(lang, ConfigService.Config.Res.cookieName, 365);
         this.platform.doc.location.reload();
     }

@@ -1,0 +1,9 @@
+{
+    "builders": {
+      "localizeIndex": {
+        "implementation": "./dist/locales/index.js",
+        "schema": "./locales/schema.json",
+        "description": "Generate locales index files"
+      }
+    }
+  }

@@ -77,8 +77,15 @@ app.use(function (req, res, next) {
 
 
 // serve the right router
-const _routes = (config.ssr ? '-ssr' : '') + (config.urlBased ? '-url' : '');
-require('./server/routes' + _routes)(app, config);
+const _routes = (config.ssr ? '-ssr' : '') + (config.urlBased ? '-url' : '') + (config.prepared ? '-pre' : '');
+if (config.withAppBaseHref) {
+    // special case with appbase href used in client
+
+    require('./server/routes-base' + (config.ssr ? '-ssr' : ''))(app, config);
+} else {
+
+    require('./server/routes' + _routes)(app, config);
+}
 
 app.get('/', function (req, res) {
     res.redirect(301, `/en/`);

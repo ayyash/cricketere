@@ -17,12 +17,25 @@
             "projectType": "application",
             "prefix": "cr",
             "architect": {
-                "ind": {
-                    "builder": "./src/builder:generatelocales",
+                "writeindex": {
+                    "builder": "./builder:localizeIndex",
                     "options": {
-
-                        "source": "host/client/index.html",
-                        "destination": "host/client/index.ar.html"
+                        "source": "host/client/placeholder.html",
+                        "destination": "host/index",
+                        "languages": [
+                            {
+                                "name": "ar",
+                                "isRtl": true
+                            },
+                            {
+                                "name": "en",
+                                "isRtl": false
+                            },
+                            {
+                                "name": "fr",
+                                "isRtl": false
+                            }
+                        ]
                     }
                 },
                 "build": {
@@ -33,7 +46,7 @@
                         "allowedCommonJsDependencies": [
                             "express"
                         ],
-                        "index": "src/index.html",
+                        "index": "src/placeholder.html",
                         "main": "src/main.ts",
                         "polyfills": "src/polyfills.ts",
                         "tsConfig": "tsconfig.app.json",

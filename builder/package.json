@@ -1,0 +1,8 @@
+{
+    "name": "angularbuilders",
+    "builders": "builders.json",
+    "devDependencies": {
+        "@angular-devkit/architect": "^0.1401.0"
+    },
+    "type": "module"
+}

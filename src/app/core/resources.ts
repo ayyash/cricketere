@@ -17,9 +17,17 @@ declare const cr: {
 };
 
 
+
 export class LocaleId extends String {
     toString() {
         return cr.resources.localeId || Config.Res.defaultLanguage;
+    }
+}
+export class RootHref extends String {
+    // for browser platform needs to be in constructor
+    // this for netlify like, not recomended for expressjs
+    constructor() {
+        super('/'+ (cr.resources.language || Config.Res.defaultLanguage));
     }
 }
 
