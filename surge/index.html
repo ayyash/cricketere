@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <script>
+    function getLanguage() {
+      const _lang = document.cookie.split(';').find(n => n.indexOf('cr-lang') > -1);
+      if (_lang) {
+        return _lang.split('=')[1];
+      }
+      return 'en';
+    }
+
+    window.onload = () => {
+      const lang = getLanguage();
+      window.location.replace('/' + lang);
+    }
+
+  </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

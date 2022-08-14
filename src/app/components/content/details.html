@@ -19,7 +19,10 @@
 <h5>Redirect to URL</h5>
 <ul class="row">
     <li *ngFor="let language of supportedlanguages" >
-        <a [class.red]="language.name === currentLanguage" [href]="getLanguageLink(language.name)">{{language.display}}</a> |&nbsp;
+        <a [class.red]="language.name === currentLanguage"
+        [href]="getLanguageLink(language.name)"
+        (click)="saveLanguage(language.name)"
+        >{{language.display}}</a> |&nbsp;
     </li>
 </ul>
 </section>

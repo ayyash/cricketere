@@ -22,6 +22,7 @@ function LocalizeIndex(
     context: BuilderContext,
 ): BuilderOutput {
 
+
     try {
         // create destination  folder if not found
         if (!existsSync(options.destination)){
@@ -43,6 +44,8 @@ function LocalizeIndex(
 
             // also replace lang
             contents = contents.replace(reLang, lang.name);
+
+            // for tutorial only, in real life use just one
 
             // save file with index.lang.html, base href = /
             writeFileSync(`${options.destination}/index.${lang.name}.html`, contents.replace(reBase, '/'));

@@ -27,8 +27,9 @@ export class RootHref extends String {
     // for browser platform needs to be in constructor
     // this for netlify like, not recomended for expressjs
     constructor() {
-        super('/'+ (cr.resources.language || Config.Res.defaultLanguage));
+      super('/'+ (cr.resources.language || Config.Res.defaultLanguage));
     }
+
 }
 
 

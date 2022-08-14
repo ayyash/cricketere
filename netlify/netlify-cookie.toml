@@ -1,0 +1,20 @@
+[build]
+  publish = "client/"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.ar.html"
+  status = 200
+  conditions = {Language = ["ar"]}
+
+[[redirects]]
+  from = "/*"
+  to = "/index.fr.html"
+  status = 200
+  conditions = {Language = ["fr"]}
+
+# all other languages
+[[redirects]]
+  from = "/*"
+  to = "/index.en.html"
+  status = 200

@@ -84,6 +84,12 @@ export class ContentDetailsComponent implements OnInit {
         this.platform.doc.location.reload();
     }
 
+    saveLanguage(lang: string) {
+
+      this.setCookie(lang, ConfigService.Config.Res.cookieName, 365);
+  }
+
+
     getServerLink(lang: string):string {
 
         // send a query param to server, try to keep the path as is
@@ -93,6 +99,7 @@ export class ContentDetailsComponent implements OnInit {
 
     getLanguageLink(lang: string): string {
         // go to: ...
+
         // replace current language with new language
         return this.platform.doc.URL.replace(`/${Res.language}/`, `/${lang}/`);
 

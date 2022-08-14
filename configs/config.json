@@ -1,30 +1,30 @@
 {
-    "isServed": true,
-    "API": {
-        "apiRoot": "http://localhost:8888/api"
-    },
-    "Auth": {
-        "userAccessKey": "user"
-    },
-    "Storage": {
-        "Timeout": 168,
-        "Key": "cricketere",
-        "ResetKey": "20220731"
-    },
-    "GTM": {
-        "isEnabled": true
-    },
-    "Res": {
-        "cookieName": "cr-lang",
-        "languages": [
-            {
-                "name": "en",
-                "display": "English"
-            },
-            {
-                "name": "ar",
-                "display": "عربي"
-            }
-        ]
-    }
+  "isServed": true,
+  "API": {
+    "apiRoot": "http://localhost:8888/api"
+  },
+  "Auth": {
+    "userAccessKey": "user"
+  },
+  "Storage": {
+    "Timeout": 168,
+    "Key": "cricketere",
+    "ResetKey": "20220731"
+  },
+  "GTM": {
+    "isEnabled": true
+  },
+  "Res": {
+    "cookieName": "cr-lang",
+    "languages": [
+      {
+        "name": "en",
+        "display": "English"
+      },
+      {
+        "name": "ar",
+        "display": "عربي"
+      }
+    ]
+  }
 }

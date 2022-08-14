@@ -1,0 +1,23 @@
+{
+  "hosting": [
+    {
+      "target": "web",
+      "public": "client",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "/ar{,/**}",
+          "destination": "/index.ar.html"
+        },
+        {
+          "source": "**",
+          "destination": "/index.en.html"
+        }
+      ]
+    }
+  ]
+}

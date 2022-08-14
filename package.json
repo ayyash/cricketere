@@ -4,13 +4,25 @@
   "license": "MIT",
   "scripts": {
     "start": "ng serve  --port 4100 --watch  --live-reload false",
-    "postbuild:ssr": "ng run cricketereweb:writeindex",
     "start:rtl": "ng serve  --configuration=rtl --port 4100 --watch  --live-reload false",
     "start:prod": "ng serve --configuration=production --port 4100 --watch  --live-reload false",
     "build": "ng build --configuration=production",
     "build:server": "ng run cricketereweb:server:production",
     "build:ssr": "npm run build && npm run build:server",
-    "postbuildgulp": "cd ./gulp && gulp writeindex"
+    "postbuild:ssr": "ng run cricketereweb:writeindex",
+    "postbuildgulp": "cd ./gulp && gulp writeindex",
+
+    "build:netlify": "ng  build --configuration=production,netlify",
+    "postbuild:netlify": "ng run cricketereweb:writeindex-netlify",
+    "build:netlify:url": "ng build --configuration=production,netlify,netlifyUrl && npm run postbuild:netlify",
+
+    "build:firebase": "ng build --configuration=production,firebase && ng run cricketereweb:writeindex-firebase",
+    "build:firebase:i18n": "ng build --configuration=production,firebase && ng run cricketereweb:writeindex-firebase-i18n",
+    "build:firebase:url": "ng build --configuration=production,firebase,firebaseUrl && ng run cricketereweb:writeindex-firebase",
+    "build:firebase:url:i18n": "ng build --configuration=production,firebase,firebaseUrl && ng run cricketereweb:writeindex-firebase-i18n",
+
+    "postbuild:surge": "ng run cricketereweb:writeindex-surge",
+    "build:surge": "ng  build --configuration=production,surge"
   },
   "dependencies": {
     "@angular/animations": "^14.0.3",

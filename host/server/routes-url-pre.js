@@ -43,6 +43,8 @@ module.exports = function (app, config) {
 
 
     app.get(config.languages.map(n => `/${n}/*`), (req, res) => {
+      // index/en/index.html better than index/index.en.url.index
+      // or index/index.en.html for non url
         res.sendFile(config.rootPath + `index/index.${res.locals.lang}.url.html`);
     });
 

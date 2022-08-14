@@ -1,0 +1,49 @@
+[build]
+  publish = "client/"
+
+# redirect anything with query nf_route
+
+# plain redirects need to be handled first
+[[redirects]]
+  from = "/en"
+  to = "/index.en.url.html"
+  status = 200
+
+[[redirects]]
+  from = "/ar"
+  to = "/index.ar.url.html"
+  status = 200
+
+[[redirects]]
+  from = "/en/*"
+  to = "/index.en.url.html"
+  status = 200
+  query = {nf_route = "1"}
+
+[[redirects]]
+  from = "/ar/*"
+  to = "/index.ar.url.html"
+  status = 200
+  query = {nf_route = "1"}
+
+# catch resources and rewrite, this will fail if url is /products without query
+[[redirects]]
+  from = "/:lang/*"
+  to = "/:splat"
+  status = 200
+
+
+# if nothing matches redirect root to language cookie
+
+[[redirects]]
+  from = "/*"
+  to = "/ar/"
+  status = 301
+  conditions = {Language = ["ar"]}
+
+# default redirect
+[[redirects]]
+  from = "/*"
+  to = "/en/"
+  status = 301
+

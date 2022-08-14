@@ -1,0 +1,22 @@
+{
+  "hosting": [
+    {
+      "target": "web",
+      "public": "client",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "function": "serveLocalized"
+        }
+      ]
+    }
+  ],
+  "functions": {
+    "runtime": "nodejs16"
+  }
+}

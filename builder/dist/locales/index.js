@@ -8,7 +8,7 @@ const reBase = /\$basehref/gim;
 export default createBuilder(LocalizeIndex);
 function LocalizeIndex(options, context) {
     try {
-        // create detination folder if not found
+        // create destination  folder if not found
         if (!existsSync(options.destination)) {
             mkdirSync(options.destination);
         }
@@ -25,6 +25,7 @@ function LocalizeIndex(options, context) {
             }
             // also replace lang
             contents = contents.replace(reLang, lang.name);
+            // for tutorial only, in real life use just one
             // save file with index.lang.html, base href = /
             writeFileSync(`${options.destination}/index.${lang.name}.html`, contents.replace(reBase, '/'));
             // save file with index.lang.url.html with base href = /lang/

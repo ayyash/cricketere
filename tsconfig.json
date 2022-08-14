@@ -38,5 +38,6 @@
         "strictTemplates": true,
         // "fullTemplateTypeCheck": true,
         "preserveWhitespaces": false
-    }
+    },
+    "exclude": ["src/app/app.prefix.module.ts"]
 }

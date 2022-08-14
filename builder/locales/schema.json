@@ -8,6 +8,9 @@
         "destination": {
             "type": "string"
         },
+        "fileName": {
+            "type": "string"
+        },
         "languages": {
             "type": "array",
             "items": {

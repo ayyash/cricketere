@@ -1,0 +1,21 @@
+<!-- Use this file to place under firebase direct public host, it is supposed to redirect the / root url to the correct
+selected language
+Solution: URL based with APP_BASE_URL, and no i18n
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <script>
+
+  const cookie = document.cookie;
+  let root = 'en';
+  if (cookie.indexOf('cr-lang') > -1) {
+    root = cookie.split('cr-lang=')[1].split(';')[0];
+  }
+  window.location.replace(`/${root}`);
+ </script>
+</head>
+<body>
+
+</body>
+</html>

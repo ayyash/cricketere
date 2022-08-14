@@ -4,6 +4,11 @@
         "implementation": "./dist/locales/index.js",
         "schema": "./locales/schema.json",
         "description": "Generate locales index files"
+      },
+      "localizeIndexFolders": {
+        "implementation": "./dist/locales/host.js",
+        "schema": "./locales/schema.json",
+        "description": "Generate locales index files for cloud hosts like surge.sh"
       }
     }
   }

@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <script>
+        if (window.location.href.indexOf('.') < 0) {
+            // do nothing if its a resource file
+            window.location.replace(window.location.href + '?nf_route=1');
+        }
+    </script>
+</body>
+</html>
