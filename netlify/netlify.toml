@@ -1,35 +1,26 @@
 [build]
   publish = "client/"
 
-# redirect anything with query nf_route
+# we can do this with physical sub folders
+# [[redirects]]
+#  from = "/en/*"
+#  to = "/en/index.html"
+#  status = 200
 
-# plain redirects need to be handled first
-[[redirects]]
-  from = "/en"
-  to = "/index.en.url.html"
-  status = 200
-
-[[redirects]]
-  from = "/ar"
-  to = "/index.ar.url.html"
-  status = 200
 
 [[redirects]]
   from = "/en/*"
-  to = "/index.en.url.html"
+  to = "/index.en.html"
   status = 200
-  query = {nf_route = "1"}
 
 [[redirects]]
   from = "/ar/*"
-  to = "/index.ar.url.html"
+  to = "/index.ar.html"
   status = 200
-  query = {nf_route = "1"}
 
-# catch resources and rewrite, this will fail if url is /products without query
 [[redirects]]
-  from = "/:lang/*"
-  to = "/:splat"
+  from = "/fr/*"
+  to = "/index.fr.html"
   status = 200
 
 
@@ -40,6 +31,13 @@
   to = "/ar/"
   status = 301
   conditions = {Language = ["ar"]}
+
+[[redirects]]
+  from = "/*"
+  to = "/fr/"
+  status = 301
+  conditions = {Language = ["fr"]}
+
 
 # default redirect
 [[redirects]]

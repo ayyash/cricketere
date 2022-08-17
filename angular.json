@@ -22,6 +22,7 @@
           "options": {
             "source": "host/client/placeholder.html",
             "destination": "host/index",
+            "isUrlBased": true,
             "languages": [
               {
                 "name": "ar",
@@ -36,6 +37,14 @@
                 "isRtl": false
               }
             ]
+          }
+        },
+        "extract": {
+          "builder": "./builder:extract",
+          "options": {
+            "destination": "./src/locale",
+            "scan": "./src/app/components",
+            "languages": ["ar", "en"]
           }
         },
         "writeindex-netlify": {
@@ -82,11 +91,11 @@
           }
         },
         "writeindex-firebase-i18n": {
-          "builder": "./builder:localizeIndexFolders",
+          "builder": "./builder:localizeIndex",
           "options": {
             "source": "firebase/client/placeholder.html",
             "destination": "firebase/client",
-            "fileName": "index.html",
+            "withFolders": true,
             "languages": [
               {
                 "name": "ar",
@@ -104,10 +113,11 @@
           }
         },
         "writeindex-surge": {
-          "builder": "./builder:localizeIndexFolders",
+          "builder": "./builder:localizeIndex",
           "options": {
-            "source": "surge/placeholder.html",
-            "destination": "surge",
+            "source": "surge/client/placeholder.html",
+            "destination": "surge/client",
+            "withFolders": true,
             "fileName": "200.html",
             "languages": [
               {
@@ -393,7 +403,7 @@
               ]
             },
             "surge": {
-              "outputPath": "./host/surge/",
+              "outputPath": "./surge/client",
               "baseHref": "/",
               "fileReplacements": [
                 {
@@ -413,7 +423,7 @@
                 },
                 {
                   "glob": "config.prod.json",
-                  "input": "configs",
+                  "input": "surge",
                   "output": "/localdata"
                 },
                 {
@@ -433,12 +443,12 @@
                 },
                 {
                   "glob": "CNAME",
-                  "input": "src/surge",
+                  "input": "surge",
                   "output": "/"
                 },
                 {
                   "glob": "index.html",
-                  "input": "src/surge",
+                  "input": "surge",
                   "output": "/"
                 }
               ]

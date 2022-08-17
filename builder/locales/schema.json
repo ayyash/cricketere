@@ -8,8 +8,17 @@
         "destination": {
             "type": "string"
         },
+        "isUrlBased": {
+          "type": "boolean"
+        },
+        "withFolders": {
+          "type": "boolean"
+        },
         "fileName": {
             "type": "string"
+        },
+        "prefix": {
+          "type": "string"
         },
         "languages": {
             "type": "array",

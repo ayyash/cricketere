@@ -1,6 +1,7 @@
 import { BuilderContext, BuilderOutput, createBuilder } from '@angular-devkit/architect';
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
 
+// TODO: remove this
 interface Options  {
     source: string;
     destination: string;

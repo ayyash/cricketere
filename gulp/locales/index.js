@@ -5,26 +5,23 @@ const gulp = require('gulp');
 const rename = require('gulp-rename');
 const transform = require('gulp-transform');
 
-const options = {
-  // relative to gulpfile.js location
-  source: '../host/client/placeholder.html',
-  destination: '../host/newindex',
-  // allow both types of apps
-  isUrlBased: false,
-  languages: [
-    { name: 'ar', isRtl: true },
-    { name: 'en', isRtl: false },
-    { name: 'fr', isRtl: false },
-  ],
-};
 
 const reLTR = /<!-- #LTR -->([\s\S]*?)<!-- #ENDLTR -->/gim;
 const reRTL = /<!-- #RTL -->([\s\S]*?)<!-- #ENDRTL -->/gim;
 const reLang = /\$lang/gim;
+const rePrefix = /\$prefix/gim;
 const reBase = /\$basehref/gim;
 
+
+const getName = function (options, lang) {
+  if (options.withFolders) {
+    return options.fileName;
+  }
+
+  return `index.${lang.name}${options.isUrlBased ? '.url' : ''}.html`
+}
 // base function, returns a function to be used as a task
-const baseFunction = function (urlBased, lang) {
+const baseFunction = function (options, lang) {
   // read placeholder.html
   return function () {
     // source the placeholder.html
@@ -40,28 +37,24 @@ const baseFunction = function (urlBased, lang) {
         }
 
         //  replace lang
-        contents = contents.replace(reLang, lang.name);
+        contents = contents.replace(reLang, lang.name).replace(rePrefix, options.prefix);;
         // replace base href
-        return contents.replace(reBase, urlBased ? `/${lang.name}/` : '/');
+        return contents.replace(reBase, options.isUrlBased ? `/${lang.name}/` : '/');
 
       }, { encoding: 'utf8' }))
       // rename file to index.lang.url.html
-      .pipe(rename({ basename: `index.${lang.name}${urlBased ? '.url' : ''}` }))
+      .pipe(rename(getName(options, lang)))
       // save to destination
-      .pipe(gulp.dest(options.destination));
+      .pipe(gulp.dest(options.destination + (options.withFolders ? lang.name : '')));
   };
 };
 
-// for tutorual purposes, create both url and cookie based files
-const allIndexFiles = [];
+module.exports = function (options) {
+  // real life, one option
 
-options.languages.forEach((n) => {
-  allIndexFiles.push(baseFunction(true, n));
-  allIndexFiles.push(baseFunction(false, n));
-});
+  const allIndexFiles = options.languages.map(language => baseFunction(options, language));
+  // run in parallel
+  return gulp.parallel(...allIndexFiles);
 
-// real life, one option
-// const allIndexFiles = options.languages.map(language => baseFunction(options.isUrlBased, language));
 
-// run in parallel
-exports.LocalizeIndex = gulp.parallel(...allIndexFiles);
+};

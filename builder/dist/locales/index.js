@@ -4,9 +4,11 @@ import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'fs';
 const reLTR = /<!-- #LTR -->([\s\S]*?)<!-- #ENDLTR -->/gim;
 const reRTL = /<!-- #RTL -->([\s\S]*?)<!-- #ENDRTL -->/gim;
 const reLang = /\$lang/gim;
+const rePrefix = /\$prefix/gim;
 const reBase = /\$basehref/gim;
 export default createBuilder(LocalizeIndex);
-function LocalizeIndex(options, context) {
+async function LocalizeIndex(options, context) {
+    const { prefix } = await context.getProjectMetadata(context.target.project);
     try {
         // create destination  folder if not found
         if (!existsSync(options.destination)) {
@@ -24,12 +26,27 @@ function LocalizeIndex(options, context) {
                 contents = contents.replace(reRTL, '');
             }
             // also replace lang
-            contents = contents.replace(reLang, lang.name);
-            // for tutorial only, in real life use just one
-            // save file with index.lang.html, base href = /
-            writeFileSync(`${options.destination}/index.${lang.name}.html`, contents.replace(reBase, '/'));
-            // save file with index.lang.url.html with base href = /lang/
-            writeFileSync(`${options.destination}/index.${lang.name}.url.html`, contents.replace(reBase, `/${lang.name}/`));
+            contents = contents.replace(reLang, lang.name).replace(rePrefix, options.prefix || prefix.toString());
+            // for urlbased create index.en.url.html
+            // for withFolders create /en/fileName.html
+            // else create index.en.html
+            if (options.withFolders) {
+                if (!existsSync(options.destination + '/' + lang.name)) {
+                    mkdirSync(options.destination + '/' + lang.name);
+                }
+                // save file with index.html, base href = /
+                writeFileSync(`${options.destination}/${lang.name}/${options.fileName || 'index.html'}`, contents);
+            }
+            else {
+                if (options.isUrlBased) {
+                    // save file with index.lang.url.html with base href = /lang/
+                    writeFileSync(`${options.destination}/index.${lang.name}.url.html`, contents.replace(reBase, `/${lang.name}/`));
+                }
+                else {
+                    // save file with index.lang.html, base href = /
+                    writeFileSync(`${options.destination}/index.${lang.name}.html`, contents.replace(reBase, '/'));
+                }
+            }
         }
     }
     catch (err) {

@@ -64,7 +64,23 @@
         MONTHS: { 1: 'one month', 2: 'few months', 4: '$0 months' },
         YEARS: { 1: 'one year', 2: '$0 years', 5: 'many years' },
         TIMEAGO: '$0 ago',
-        INTIME: 'in $0'
+        INTIME: 'in $0',
+        ShowMore: 'show more',
+Something: 'something',
+WelcomeCricketere: 'Welcome to Cricketere site',
+ForgotTitle: 'Request a new password',
+YourEmail: 'Your email',
+RemindMe: 'Remind me',
+WELCOME_TEXT: 'Hello cricketers',
+SinginGoogle: 'Sign in with Google',
+SinginMicrosoft: 'Sign in with Microsoft',
+SinginFacebook: 'Sign in with Facebook',
+SinginTwitter: 'Sign in with Twitter',
+Password: 'Password',
+SignIn: 'Sign in',
+ForgotPassword: 'Forgot password?',
+// inject:translations
+        // endinject
     };
 
     global.cr = global.cr || {};

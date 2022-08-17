@@ -2,7 +2,9 @@
     "name": "angularbuilders",
     "builders": "builders.json",
     "devDependencies": {
-        "@angular-devkit/architect": "^0.1401.0"
+        "@angular-devkit/architect": "^0.1401.0",
+        "@types/glob": "^7.2.0",
+        "glob": "^8.0.3"
     },
     "type": "module"
 }
