@@ -6,8 +6,8 @@
         "description": "Generate locales index files"
       },
       "extract": {
-        "implementation": "./dist/locales/extract.js",
-        "schema": "./locales/extractSchema.json",
+        "implementation": "./dist/extract/index.js",
+        "schema": "./extract/schema.json",
         "description": "Extract translation terms"
       }
     }

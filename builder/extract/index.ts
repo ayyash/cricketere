@@ -2,10 +2,12 @@ import { BuilderContext, BuilderOutput, createBuilder } from '@angular-devkit/ar
 import { readFileSync, writeFileSync, existsSync, mkdirSync, readdirSync } from 'fs';
 import glob from 'glob';
 
+interface ILanguage { name: string, localeId: string, isDefault?: boolean; }
+
 interface IOptions {
   scan: string;
   destination: string;
-  languages: string[];
+  languages: ILanguage[];
   prefix: string;
 
 }
@@ -16,14 +18,44 @@ const _translateReg = /\s*["']([\w\d?.,!\s\(\)]+)["']\s*\|\s*translate:['"]([\w]
 export default createBuilder(ExtractKeys);
 
 
-const extractFunction = (options: IOptions, prefix: string, lang: string) => {
+const getScriptContent = (options: IOptions, prefix: string, lang: ILanguage): string => {
+
+  // find // task:replace and replace the two keys with language and localId
+  // save and return
+
+  // read file /destination/prefix-lang.js
+  const fileName = `${options.destination}/${prefix}-${lang.name}.js`;
+
+  let content = '';
+  // if does not eixst, create it, copy the default language content
+  if (!existsSync(fileName)) {
+    const defaultLanguage = options.languages.find(x => x.isDefault);
+    const defaultFileName = `${options.destination}/${prefix}-${defaultLanguage.name}.js`;
+    const defaultContent = readFileSync(defaultFileName, 'utf8');
+
+    // example replace 'ar-JO' with 'fr-CA;
+    content = defaultContent
+      .replace(`'${defaultLanguage.localeId}'`, `'${lang.localeId}'`)
+      .replace(`'${defaultLanguage.name}'`, `'${lang.name}'`);
+
+    writeFileSync(fileName, content);
+  } else {
+    content = readFileSync(fileName, 'utf8');
+  }
+
+  return content;
+
+};
+const extractFunction = (options: IOptions, prefix: string, lang: ILanguage) => {
   // per language
-  const fileName = `${options.destination}/${prefix}-${lang}.js`;
-  const script = (readFileSync(fileName, 'utf8')).toString();
+  const fileName = `${options.destination}/${prefix}-${lang.name}.js`;
+  const script = getScriptContent(options, prefix, lang);
+
+  // (readFileSync(fileName, 'utf8')).toString();
   // find // inject:translations
 
   const files = glob.sync(options.scan + '/**/*.@(ts|html)');
-  // read files, for each, extract translation regex, and place in array, for now
+  // read files, for each, extract translation regex, add key if it does not exist
 
   let _keys: string = '';
   files.forEach(file => {
@@ -48,7 +80,7 @@ async function ExtractKeys(
 ): Promise<BuilderOutput> {
 
 
-  const  { prefix } = await context.getProjectMetadata(context.target.project);
+  const { prefix } = await context.getProjectMetadata(context.target.project);
 
   // extract keys from all .ts and .html into cr-lang.js files
   // find the comment string, and prepend
@@ -61,7 +93,7 @@ async function ExtractKeys(
 
 
   } catch (err) {
-    context.logger.error('Failed to generate locales.');
+    context.logger.error('Failed to extract.');
     return {
       success: false,
       error: err.message,

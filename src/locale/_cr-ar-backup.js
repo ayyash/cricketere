@@ -1,20 +1,46 @@
 // make it run on both platforms
 (function (global) {
 
+   // task:replace
    const _LocaleId = 'ar-JO';
    const _Language = 'ar';
+   // task:endreplace
 
+  const _extend = function () {
+    if (global.ng?.common?.locales) {
+      global.ng.common.locales[_LocaleId.toLowerCase()].forEach(n => {
+        if (n) {
+          // find it by checking that is an object and not an array
+          if (typeof n === 'object' && !Array.isArray(n)) {
+            n['WLG'] = ['₩'];
+            n['JPY'] = ['¥'];
+            n['AUD'] = ['$'];
+            n['CAD'] = ['$'];
+          }
+
+        }
+      });
+
+    }
+  };
   if (window != null) {
     // in browser platform
     const script = document.createElement('script');
     script.type = 'text/javascript';
     script.defer = true;
     script.src = `locale/${_LocaleId}.js`;
+    script.onload = function () {
+      // on load, add a missing curreny symbol
+      _extend();
+
+    }
     document.head.appendChild(script);
 
   } else {
     // in server platform
     require(`./${_LocaleId}.js`);
+    _extend();
+
   }
 
   const keys = {
@@ -47,24 +73,21 @@
     TIMEAGO: 'قيل $0',
     INTIME: 'في $0',
 
-
-   ShowMore: 'show more',
-   Something: 'something',
-   WelcomeCricketere: 'Welcome to Cricketere site',
-   ForgotTitle: 'Request a new password',
+    ShowMore: 'show more',
+Something: 'something',
+WelcomeCricketere: 'Welcome to Cricketere site',
+ForgotTitle: 'Request a new password',
 YourEmail: 'Your email',
 RemindMe: 'Remind me',
-   WELCOME_TEXT: 'Hello cricketers',
-   SinginGoogle: 'Sign in with Google',
+WELCOME_TEXT: 'Hello cricketers',
+SinginGoogle: 'Sign in with Google',
 SinginMicrosoft: 'Sign in with Microsoft',
 SinginFacebook: 'Sign in with Facebook',
 SinginTwitter: 'Sign in with Twitter',
-Email: 'Email',
 Password: 'Password',
 SignIn: 'Sign in',
 ForgotPassword: 'Forgot password?',
-
-   // inject:translations
+// inject:translations
    // endinject
   };
 

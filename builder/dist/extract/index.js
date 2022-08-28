@@ -1,15 +1,38 @@
 import { createBuilder } from '@angular-devkit/architect';
-import { readFileSync, writeFileSync } from 'fs';
+import { readFileSync, writeFileSync, existsSync } from 'fs';
 import glob from 'glob';
 const _translateReg = /\s*["']([\w\d?.,!\s\(\)]+)["']\s*\|\s*translate:['"]([\w]+)['"]\s*/gim;
 export default createBuilder(ExtractKeys);
+const getScriptContent = (options, prefix, lang) => {
+    // find // task:replace and replace the two keys with language and localId
+    // save and return
+    // read file /destination/prefix-lang.js
+    const fileName = `${options.destination}/${prefix}-${lang.name}.js`;
+    let content = '';
+    // if does not eixst, create it, copy the default language content
+    if (!existsSync(fileName)) {
+        const defaultLanguage = options.languages.find(x => x.isDefault);
+        const defaultFileName = `${options.destination}/${prefix}-${defaultLanguage.name}.js`;
+        const defaultContent = readFileSync(defaultFileName, 'utf8');
+        // example replace 'ar-JO' with 'fr-CA;
+        content = defaultContent
+            .replace(`'${defaultLanguage.localeId}'`, `'${lang.localeId}'`)
+            .replace(`'${defaultLanguage.name}'`, `'${lang.name}'`);
+        writeFileSync(fileName, content);
+    }
+    else {
+        content = readFileSync(fileName, 'utf8');
+    }
+    return content;
+};
 const extractFunction = (options, prefix, lang) => {
     // per language
-    const fileName = `${options.destination}/${prefix}-${lang}.js`;
-    const script = (readFileSync(fileName, 'utf8')).toString();
+    const fileName = `${options.destination}/${prefix}-${lang.name}.js`;
+    const script = getScriptContent(options, prefix, lang);
+    // (readFileSync(fileName, 'utf8')).toString();
     // find // inject:translations
     const files = glob.sync(options.scan + '/**/*.@(ts|html)');
-    // read files, for each, extract translation regex, and place in array, for now
+    // read files, for each, extract translation regex, add key if it does not exist
     let _keys = '';
     files.forEach(file => {
         const content = readFileSync(file, 'utf8');

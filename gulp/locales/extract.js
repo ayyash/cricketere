@@ -1,6 +1,8 @@
 const gulp = require('gulp');
 const inject = require('gulp-inject');
 const transform = require('gulp-transform');
+const rename = require('gulp-rename');
+const {  existsSync } = require('fs');
 
 const _translateReg = /\s*["']([\w\d?.,!\s\(\)]+)["']\s*\|\s*translate:['"]([\w]+)['"]\s*/gim;
 
@@ -21,11 +23,48 @@ const getSources = function (scan) {
   return gulp.src([scan + '/**/*.ts', scan + '/**/*.html']);
 }
 
+// const createFile = function (options, lang) {
+
+//   const fileName = `${options.prefix}-${lang.name}.js`;
+//   const defaultLanguage = options.languages.find(x => x.isDefault);
+//   const defaultFileName = `${options.translate.destination}/${options.prefix}-${defaultLanguage.name}.js`;
+
+//   return gulp.src(defaultFileName)
+//     .pipe(rename(fileName))
+//     .pipe(gulp.dest(options.translate.destination));
+
+// }
+
+const missingFile = function (options, lang) {
+  return function () {
+    const fileName = `${options.prefix}-${lang.name}.js`;
+
+
+    if (existsSync(`${options.translate.destination}${fileName}`)) {
+      return gulp.src('.');
+    }
+
+    const defaultLanguage = options.languages.find(x => x.isDefault);
+    const defaultFileName = `${options.translate.destination}/${options.prefix}-${defaultLanguage.name}.js`;
+
+    return gulp.src(defaultFileName)
+      .pipe(transform(function (contents, file) {
+        // replace 'ar-JO' with 'fr-CA;
+        return contents
+          .replace(`'${defaultLanguage.localeId}'`, `'${lang.localeId}'`)
+          .replace(`'${defaultLanguage.name}'`, `'${lang.name}'`);;
+      }, { encoding: 'utf8' }))
+      .pipe(rename(fileName))
+      .pipe(gulp.dest(options.translate.destination));
+  }
+}
+
 const extractFunction = function (options, lang) {
   return function () {
-    // let returnStr = '';
     let allKeys = [];
+    // read all scripts in locale
     return gulp.src(`${options.translate.destination}${options.prefix}-${lang.name}.js`)
+      // inject the terms found in all ts and html files
       .pipe(inject(getSources(options.translate.scan), {
         starttag: '// inject:translations',
         endtag: '// endinject',
@@ -40,7 +79,6 @@ const extractFunction = function (options, lang) {
           // for every translate pipe found, insert a new line name: 'value'
           // before you do, check if the match already exists
 
-          // returnStr = '';
           const content = file.contents.toString('utf8');
           const destination = targetFile.contents.toString('utf8');
 
@@ -48,10 +86,10 @@ const extractFunction = function (options, lang) {
           let keys = [];
           while ((_match = _translateReg.exec(content))) {
             // extract first and second match
-            if (destination.indexOf(_match[2] + ':') < 0 && allKeys.indexOf(_match[2]) < 0) {
-              // returnStr += `${_match[2]}: '${_match[1]}',`;
-              allKeys.push(_match[2]);
-              keys.push(`${_match[2]}: '${_match[1]}',`);
+            const key = _match[2];
+            if (destination.indexOf(key + ':') < 0 && allKeys.indexOf(key) < 0) {
+              allKeys.push(key);
+              keys.push(`${key}: '${_match[1]}',`);
             }
           }
           return keys.length ? keys.join('\n') : null;
@@ -65,11 +103,21 @@ const extractFunction = function (options, lang) {
           .replace('// endinject', '// inject:translations \n   // endinject');
       }, { encoding: 'utf8' }))
       .pipe(gulp.dest(options.translate.destination));
+
   }
 }
+
 module.exports = (options) => {
+  // TODO: check unexistent file
+
+  const allMissingFiles = options.languages.map(language => missingFile(options, language));
+  const a = gulp.parallel(...allMissingFiles);
+
 
   const _extract = options.languages.map(language => extractFunction(options, language));
-  return gulp.parallel(..._extract);
+  const b = gulp.parallel(..._extract);
+
+  // first create missing files, then append
+  return gulp.series(a, b);
 
 }

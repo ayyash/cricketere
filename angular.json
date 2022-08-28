@@ -44,7 +44,21 @@
           "options": {
             "destination": "./src/locale",
             "scan": "./src/app/components",
-            "languages": ["ar", "en"]
+            "languages": [
+              {
+                "name": "en",
+                "localeId": "en"
+              },
+              {
+                "name": "ar",
+                "localeId": "ar-JO",
+                "isDefault": true
+              },
+              {
+                "name": "fr",
+                "localeId": "fr-CA"
+              }
+            ]
           }
         },
         "writeindex-netlify": {
@@ -68,7 +82,6 @@
             ]
           }
         },
-
         "writeindex-firebase": {
           "builder": "./builder:localizeIndex",
           "options": {
@@ -135,7 +148,6 @@
             ]
           }
         },
-
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
@@ -173,7 +185,6 @@
               }
             ],
             "assets": [
-
               {
                 "glob": "favicon.ico",
                 "input": "src",

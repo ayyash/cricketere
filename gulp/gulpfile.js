@@ -9,8 +9,10 @@ const options = {
   isUrlBased: false,
   withFolders: false,
   languages: [
-    { name: 'ar', isRtl: true },
-    { name: 'en', isRtl: false }
+    { name: 'ar', isRtl: true , localeId: 'ar-JO', isDefault: true},
+    { name: 'en', isRtl: false , localeId: 'en'},
+    { name: 'fr', isRtl: false , localeId: 'fr-CA'}
+
   ],
   prefix: 'cr'
 };

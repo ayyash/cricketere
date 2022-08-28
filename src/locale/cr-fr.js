@@ -1,8 +1,10 @@
 // make it run on both platforms
 (function (global) {
 
-   const _LocaleId = 'ar-JO';
-   const _Language = 'ar';
+   // task:replace
+   const _LocaleId = 'fr-CA';
+   const _Language = 'fr';
+   // task:endreplace
 
   if (window != null) {
     // in browser platform
@@ -46,8 +48,7 @@
     YEARS: { 1: 'سنة واحدة', 2: 'سنتين', 3: '$0 سنوات', 5: 'سنين' },
     TIMEAGO: 'قيل $0',
     INTIME: 'في $0',
-
-
+   
    ShowMore: 'show more',
    Something: 'something',
    WelcomeCricketere: 'Welcome to Cricketere site',
@@ -63,8 +64,7 @@ Email: 'Email',
 Password: 'Password',
 SignIn: 'Sign in',
 ForgotPassword: 'Forgot password?',
-
-   // inject:translations
+   // inject:translations 
    // endinject
   };
 

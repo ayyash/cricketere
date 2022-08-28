@@ -2,6 +2,9 @@
 (function (global) {
 
     const _LocaleId = 'en';
+    const _Language = 'en';
+
+    /* followng not needed for english if not overriding specific library valies
     const _extend = function() {
         if (global.ng?.common?.locales) {
             global.ng.common.locales[_LocaleId].forEach(n => {
@@ -35,6 +38,7 @@
         _extend();
 
     }
+    */
 
     const keys = {
         NoRes: '', // if resource is not found
@@ -65,35 +69,38 @@
         YEARS: { 1: 'one year', 2: '$0 years', 5: 'many years' },
         TIMEAGO: '$0 ago',
         INTIME: 'in $0',
-        ShowMore: 'show more',
-Something: 'something',
-WelcomeCricketere: 'Welcome to Cricketere site',
-ForgotTitle: 'Request a new password',
+
+
+   ShowMore: 'show more',
+   Something: 'something',
+   WelcomeCricketere: 'Welcome to Cricketere site',
+   ForgotTitle: 'Request a new password',
 YourEmail: 'Your email',
 RemindMe: 'Remind me',
-WELCOME_TEXT: 'Hello cricketers',
-SinginGoogle: 'Sign in with Google',
+   WELCOME_TEXT: 'Hello cricketers',
+   SinginGoogle: 'Sign in with Google',
 SinginMicrosoft: 'Sign in with Microsoft',
 SinginFacebook: 'Sign in with Facebook',
 SinginTwitter: 'Sign in with Twitter',
+Email: 'Email',
 Password: 'Password',
 SignIn: 'Sign in',
 ForgotPassword: 'Forgot password?',
-// inject:translations
-        // endinject
+
+   // inject:translations
+   // endinject
     };
 
     global.cr = global.cr || {};
     global.cr.resources = {
-        language: 'en',
+        language: _Language,
         keys,
         localeId: _LocaleId
     }
 
     // for nodejs
-    global.cr.en = global.cr.resources;
+    global.cr[_Language] = global.cr.resources;
 
-    // global.ng.common.locales['ar-jo'][18]['TRY'] = ['₺'];
 
 
 })(typeof globalThis !== 'undefined' && globalThis || typeof global !== 'undefined' && global ||

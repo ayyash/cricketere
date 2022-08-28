@@ -46,6 +46,7 @@ const baseFunction = function (options, lang) {
       .pipe(rename(getName(options, lang)))
       // save to destination
       .pipe(gulp.dest(options.destination + (options.withFolders ? lang.name : '')));
+
   };
 };
 
