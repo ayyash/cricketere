@@ -60,7 +60,7 @@ async function ExtractKeys(options, context) {
         });
     }
     catch (err) {
-        context.logger.error('Failed to generate locales.');
+        context.logger.error('Failed to extract.');
         return {
             success: false,
             error: err.message,

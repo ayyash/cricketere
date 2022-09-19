@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable, of } from 'rxjs';
 import { Res } from '../../core/resources';
 import { ConfigService, HomeSeoService } from '../../core/services';
 import { EnumTimeout } from '../../lib/toaster/toast.model';
@@ -12,6 +13,7 @@ export class PublicHomeComponent extends GtmComponent implements OnInit  {
 
     welcomeText = Res.Get('WELCOME_TEXT');
 
+    x$: Observable<any>;
 
     constructor(private seoService: HomeSeoService, private toast: Toast) {
         //
@@ -21,6 +23,8 @@ export class PublicHomeComponent extends GtmComponent implements OnInit  {
         // _attn(this.configService.xConfig?.API?.apiRoot, 'on init');
         _attn(ConfigService.Config.isServed, 'served');
         this.seoService.setHome();
+
+        this.x$ = of(NaN);
 
     }
     showToast1() {

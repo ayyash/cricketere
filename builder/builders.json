@@ -9,6 +9,11 @@
         "implementation": "./dist/extract/index.js",
         "schema": "./extract/schema.json",
         "description": "Extract translation terms"
+      },
+      "pre": {
+        "implementation": "./dist/prerender/index.js",
+        "schema": "./prerender/schema.json",
+        "description": "prerendder"
       }
     }
 

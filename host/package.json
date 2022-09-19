@@ -3,14 +3,12 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "install": "npm install express ws xhr2 cookie-parser"
+    "prerender": "SET PRERENDER=true && node server"
+
   },
   "dependencies": {
     "cookie-parser": "^1.4.6",
-    "express": "^4.17.3",
-    "ws": "^8.5.0",
-    "xhr2": "^0.2.1"
+    "express": "^4.17.3"
   }
 }

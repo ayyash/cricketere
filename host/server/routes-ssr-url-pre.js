@@ -3,6 +3,7 @@ const express = require('express');
 const ssr = require('./main');
 const localConfig = require('../localdata/config.prod.json');
 
+
 module.exports = function (app, config) {
 
      // angular express html engine
@@ -61,10 +62,11 @@ module.exports = function (app, config) {
     // ignore index file from client folder
     app.use('/:lang', express.static(config.rootPath + 'client', {index: false}));
 
+    // lets add static, cannot afford this
+    app.use('/', express.static(config.rootPath + 'client/static'));
 
     app.get(config.languages.map(n => `/${n}/*`), (req, res) => {
 
-        //
         res.render(config.rootPath + `index/index.${res.locals.lang}.url.html`, {
             req,
             res,

@@ -17,6 +17,7 @@
         <button class="btn" (click)="showToast4()">
           Show toast with key provided message
         </button>
+        <div>{{ x$ | async}}</div>
         <div class="txt-c">
 
             <button class="btn-rev" routerLink="/login" [shGtm]="{source: enumGtmSource.Homepage,group: enumGtmGroup.Login}">Login</button>

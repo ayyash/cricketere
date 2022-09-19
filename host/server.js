@@ -19,7 +19,7 @@ if (config.ssr) {
         },
         setItem: function (key, value) {
 
-            console.log('setting item', key, value);
+            // console.log('setting item', key, value);
         },
         clear: function () {
         },
@@ -35,7 +35,7 @@ if (config.ssr) {
     };
     global._attn = function (o, message) {
         if (config.env === 'local') {
-            console.log(message, o);
+            // console.log(message, o);
         }
     }
     global._seqlog = function (message) {
@@ -110,10 +110,22 @@ app.use(function (err, req, res, next) {
 
 var port = process.env.PORT || 1212;
 
-app.listen(port, function (err) {
+// two solutions either if else ports, or seperate this into a different file, create another listenered for prerender
+const server =  app.listen(port, async function (err) {
     console.log('started to listen to port: ' + port);
+
     if (err) {
         console.log(err);
         return;
     }
+    // if proces.env.PRERENDER, then run this and close
+
+    if (process.env.PRERENDER) {
+      const prerender = require('./prerender/fetch');
+      await prerender(port, config);
+      console.log('Done prerendering');
+      server.close();
+
+    }
+
 });

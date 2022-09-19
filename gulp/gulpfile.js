@@ -17,7 +17,7 @@ const options = {
   prefix: 'cr'
 };
 
-exports.writeindex = locales({ ...options, isUrlBased: true }).LocalizeIndex;
+exports.writeindex = locales({ ...options, isUrlBased: true });
 exports.writenetlify = locales({
   ...options,
   source: '../netlify/client/placeholder.html',

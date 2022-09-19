@@ -5,9 +5,7 @@ module.exports = function (config) {
     return function (req, res, next) {
 
         // check cookies for language, for html request only
-        res.locals.lang = req.cookies[config.langCookieName] || 'en';
-
-
+        res.locals.lang = req.get(config.langCookieName) || req.cookies[config.langCookieName] || 'en';
         // exclude non html sources, for now exclude all resources with extension
         if (req.path.indexOf('.') > 1) {
             next();

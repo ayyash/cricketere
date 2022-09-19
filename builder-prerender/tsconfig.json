@@ -1,0 +1,16 @@
+{
+    "extends": "../tsconfig.json",
+    "compilerOptions": {
+      "outDir": "dist",
+      "sourceMap": false,
+      "module": "CommonJS",
+      "noImplicitAny": false
+    },
+    "include": ["**/*.ts"],
+    "exclude": [
+        "node_modules"
+    ],
+    "watchOptions": {
+      "watchFile": "useFsEvents"
+    }
+  }

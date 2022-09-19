@@ -5,8 +5,6 @@ import { AppModule } from './app.module';
 import { AppComponent } from './app.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
-// replace leaflet with something else
-
 @NgModule({
     imports: [
         NoopAnimationsModule,

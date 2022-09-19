@@ -11,9 +11,10 @@ module.exports = {
     ssr: true,
     urlBased: true,
     prepared: true,
-    withAppBaseHref: false, // for hosts like netlify, express wont run for that
+    withAppBaseHref: true, // for hosts like netlify, express wont run for that
     langCookieName: 'cr-lang',
     projectPrefix: 'cr-',
+    prerenderOut: './client/static/',
     getLangPath: function (lang) {
         return `${rootPath}client/locale/${this.projectPrefix}${lang}.js`;
     },

@@ -13,7 +13,7 @@ module.exports = function (app, config) {
 
 
     app.get(config.languages.map(n => `/${n}/*`), (req, res) => {
-        res.sendFile(config.rootPath + `index/index.${res.locals.lang}.url.html`);
+        res.sendFile(config.rootPath + `index/index.${res.locals.lang}.html`);
     });
 
     // nothing matches? redirect to /root

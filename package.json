@@ -11,16 +11,15 @@
     "build:ssr": "npm run build && npm run build:server",
     "postbuild:ssr": "ng run cricketereweb:writeindex",
     "postbuildgulp": "cd ./gulp && gulp writeindex",
-
     "build:netlify": "ng  build --configuration=production,netlify && ng run cricketereweb:writeindex-netlify",
     "build:netlify:url": "ng build --configuration=production,netlify,netlifyUrl && ng run cricketereweb:writeindex-netlify",
-
     "build:firebase": "ng build --configuration=production,firebase && ng run cricketereweb:writeindex-firebase",
     "build:firebase:i18n": "ng build --configuration=production,firebase && ng run cricketereweb:writeindex-firebase-i18n",
     "build:firebase:url": "ng build --configuration=production,firebase,firebaseUrl && ng run cricketereweb:writeindex-firebase",
     "build:firebase:url:i18n": "ng build --configuration=production,firebase,firebaseUrl && ng run cricketereweb:writeindex-firebase-i18n",
-
-    "build:surge": "ng  build --configuration=production,surge && ng run cricketereweb:writeindex-surge"
+    "build:surge": "ng  build --configuration=production,surge && ng run cricketereweb:writeindex-surge",
+    "pre": "ng run cricketereweb:pre",
+    "prerender": "cd host && SET PRERENDER=true && node server"
   },
   "dependencies": {
     "@angular/animations": "^14.0.3",
@@ -42,6 +41,7 @@
     "@angular-devkit/build-angular": "^14.0.3",
     "@angular/cli": "^14.0.3",
     "@angular/compiler-cli": "^14.0.3",
+    "@nguniversal/builders": "^14.0.2",
     "@types/express": "^4.17.13",
     "@types/node": "^16.7.10",
     "rxjs-tslint": "^0.1.8",

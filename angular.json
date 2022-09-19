@@ -509,6 +509,12 @@
               "deleteOutputPath": false
             }
           }
+        },
+        "pre": {
+          "builder": "./builder-prerender:prerender",
+          "options": {
+            "source": "host/client/placeholder.html"
+          }
         }
       }
     }

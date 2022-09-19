@@ -17,14 +17,17 @@ module.exports = function (app, config) {
         fallthrough: false
     }));
 
+
     // ignore index file from client folder
     app.use('/', express.static(config.rootPath + 'client', {index: false}));
 
+    // lets add static, cannot afford this
+    app.use('/', express.static(config.rootPath + 'client/static'));
 
     app.get(config.languages.map(n => `/${n}/*`), (req, res) => {
 
         //
-        res.render(config.rootPath + `index/index.${res.locals.lang}.url.html`, {
+        res.render(config.rootPath + `index/index.${res.locals.lang}.html`, {
             req,
             res,
             providers: [

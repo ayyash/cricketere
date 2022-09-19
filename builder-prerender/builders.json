@@ -1,0 +1,10 @@
+{
+    "builders": {
+      "prerender": {
+        "implementation": "./dist/index.js",
+        "schema": "./prerender/schema.json",
+        "description": "Create prerendered routes"
+      }
+    }
+
+  }
