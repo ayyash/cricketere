@@ -1,19 +1,19 @@
 {
-    "extends": "../tsconfig.json",
-    "compilerOptions": {
-      "baseUrl": ".",
-      "rootDir": "./",
-      "outDir": "dist",
-      "sourceMap": false,
-      "target": "es2020",
-      "noImplicitAny": false,
-      "types": ["node"]
-    },
-    "include": ["**/*.ts"],
-    "exclude": [
-        "node_modules"
-    ],
-    "watchOptions": {
-      "watchFile": "useFsEvents"
-    }
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "sourceMap": false,
+    "module": "CommonJS",
+    "esModuleInterop": true,
+    "noImplicitAny": false,
+  },
+  "include": [
+    "**/*.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ],
+  "watchOptions": {
+    "watchFile": "useFsEvents"
   }
+}

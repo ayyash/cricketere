@@ -4,6 +4,5 @@
     "devDependencies": {
         "@angular-devkit/architect": "^0.1401.0",
         "@angular/platform-server": "^14.2.3"
-    },
-    "type": "module"
+    }
 }

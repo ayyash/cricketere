@@ -112,7 +112,7 @@ async function _renderUniversal(
 
   const { baseOutputPath = '' } = serverResult;
   const worker = new Piscina({
-    filename: path.join('builder-prerender/dist/prerender', 'worker.js'),
+    filename: path.join(__dirname, 'worker.js'),
     name: 'render',
     maxThreads: numProcesses,
   });

@@ -4,6 +4,11 @@
         "implementation": "./dist/prerender/index.js",
         "schema": "./prerender/schema.json",
         "description": "Create prerendered routes"
+      },
+      "nothing": {
+        "implementation": "./dist/nothing/index.js",
+        "schema": "./nothing/schema.json",
+        "description": "Create nothing routes"
       }
     }
 

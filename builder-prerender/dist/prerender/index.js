@@ -1,13 +1,17 @@
-import { createBuilder, targetFromTargetString, } from '@angular-devkit/architect';
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.execute = exports.readFile = void 0;
+const tslib_1 = require("tslib");
+const architect_1 = require("@angular-devkit/architect");
 // import { BrowserBuilderOptions } from '@angular-devkit/build-angular';
 // import { normalizeOptimization } from '@angular-devkit/build-angular/src/utils/normalize-optimization';
 // import { augmentAppWithServiceWorker } from '@angular-devkit/build-angular/src/utils/service-worker';
-import * as fs from 'fs';
-import ora from 'ora';
-import * as path from 'path';
-import Piscina from 'piscina';
-import { promisify } from 'util';
-export const readFile = promisify(fs.readFile);
+const fs = (0, tslib_1.__importStar)(require("fs"));
+const ora_1 = (0, tslib_1.__importDefault)(require("ora"));
+const path = (0, tslib_1.__importStar)(require("path"));
+const piscina_1 = (0, tslib_1.__importDefault)(require("piscina"));
+const util_1 = require("util");
+exports.readFile = (0, util_1.promisify)(fs.readFile);
 async function getRoutes(options) {
     let routes = options.routes || [];
     routes = routes.map((r) => (r === '' ? '/' : r));
@@ -25,8 +29,8 @@ function getIndexOutputFile(options) {
  * Schedules the server and browser builds and returns their results if both builds are successful.
  */
 async function _scheduleBuilds(options, context) {
-    const browserTarget = targetFromTargetString(options.browserTarget);
-    const serverTarget = targetFromTargetString(options.serverTarget);
+    const browserTarget = (0, architect_1.targetFromTargetString)(options.browserTarget);
+    const serverTarget = (0, architect_1.targetFromTargetString)(options.serverTarget);
     const browserTargetRun = await context.scheduleTarget(browserTarget, {
         watch: false,
         serviceWorker: false
@@ -67,9 +71,8 @@ async function _renderUniversal(routes, context, browserResult, serverResult, br
     //   browserOptions.optimization,
     // );
     const { baseOutputPath = '' } = serverResult;
-    console.log('ffffffffffffffff', __dirname);
-    const worker = new Piscina({
-        filename: path.join('builder-prerender/dist/prerender', 'worker.js'),
+    const worker = new piscina_1.default({
+        filename: path.join(__dirname, 'worker.js'),
         name: 'render',
         maxThreads: numProcesses,
     });
@@ -81,7 +84,7 @@ async function _renderUniversal(routes, context, browserResult, serverResult, br
             if (!fs.existsSync(serverBundlePath)) {
                 throw new Error(`Could not find the main bundle: ${serverBundlePath}`);
             }
-            const spinner = ora(`Prerendering ${routes.length} route(s) to ${outputPath}...`).start();
+            const spinner = (0, ora_1.default)(`Prerendering ${routes.length} route(s) to ${outputPath}...`).start();
             try {
                 const results = (await Promise.all(routes.map((route) => {
                     const options = {
@@ -140,8 +143,8 @@ async function _renderUniversal(routes, context, browserResult, serverResult, br
  * and writes them to prerender/<route>/index.html for each output path in
  * the browser result.
  */
-export async function execute(options, context) {
-    const browserTarget = targetFromTargetString(options.browserTarget);
+async function execute(options, context) {
+    const browserTarget = (0, architect_1.targetFromTargetString)(options.browserTarget);
     const browserOptions = (await context.getTargetOptions(browserTarget));
     const tsConfigPath = typeof browserOptions.tsConfig === 'string' ? browserOptions.tsConfig : undefined;
     const routes = await getRoutes(options);
@@ -155,4 +158,5 @@ export async function execute(options, context) {
     }
     return _renderUniversal(routes, context, browserResult, serverResult, browserOptions, options.numProcesses);
 }
-export default createBuilder(execute);
+exports.execute = execute;
+exports.default = (0, architect_1.createBuilder)(execute);

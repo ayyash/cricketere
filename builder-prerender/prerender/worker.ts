@@ -37,7 +37,7 @@ export async function render({
   const outputIndexPath = path.join(outputFolderPath, 'index.html');
   console.log('yyyyyyyyyyyyyyyyyserverbundlepath', serverBundlePath);
   console.log('oxxxxxxxxxxutputIndexPath', outputIndexPath);
-  const { renderModule, AppServerModule } = await import('file://' + serverBundlePath);
+  const { renderModule, AppServerModule } = await import( serverBundlePath);
 
   const indexBaseName = fs.existsSync(path.join(outputPath, 'index.original.html'))
     ? 'index.original.html'

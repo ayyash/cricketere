@@ -519,6 +519,22 @@
               "/content/details"
             ]
           }
+        },
+        "pre2": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "browserTarget": "cricketereweb:build:production",
+            "serverTarget": "cricketereweb:server:production",
+            "routes": [
+              "/content/details"
+            ]
+          }
+        },
+        "pre3": {
+          "builder": "./builder-prerender:nothing",
+          "options": {
+            "name": "nothing"
+          }
         }
       }
     }
