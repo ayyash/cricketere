@@ -11,7 +11,7 @@ module.exports = {
     ssr: true,
     urlBased: true,
     prepared: true,
-    withAppBaseHref: true, // for hosts like netlify, express wont run for that
+    withAppBaseHref: false, // for hosts like netlify, express wont run for that
     langCookieName: 'cr-lang',
     projectPrefix: 'cr-',
     prerenderOut: './client/static/',

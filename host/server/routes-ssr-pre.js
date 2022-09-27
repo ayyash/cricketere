@@ -2,7 +2,7 @@ const express = require('express');
 const { existsSync } = require('fs');
 
 // for ssr multilingual, non url driven, contains AppEngine
-const ssr = require('./main');
+const ssr = require('./ng/main');
 const localConfig = require('../localdata/config.prod.json');
 
 module.exports = function (app, config) {

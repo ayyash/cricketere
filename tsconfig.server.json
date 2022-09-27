@@ -3,14 +3,11 @@
     "compilerOptions": {
         "outDir": "./out-tsc/app",
         "baseUrl": "./",
-        "module": "commonjs",
+        "target": "es2020",
         "types": [
             "node"
         ]
     },
-    // "include": [
-    //     "src/typings.d.ts"
-    // ],
     "files": [
         "server.ts",
         "src/typings.d.ts"
@@ -18,8 +15,5 @@
     "exclude": [
         "test.ts",
         "**/*.spec.ts"
-    ],
-    "angularCompilerOptions": {
-        "entryModule": "src/app/app.server.module#AppServerModule"
-    }
+    ]
 }

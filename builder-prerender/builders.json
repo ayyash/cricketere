@@ -1,7 +1,7 @@
 {
     "builders": {
       "prerender": {
-        "implementation": "./dist/index.js",
+        "implementation": "./dist/prerender/index.js",
         "schema": "./prerender/schema.json",
         "description": "Create prerendered routes"
       }

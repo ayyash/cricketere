@@ -1,6 +1,6 @@
 const express = require('express');
 // for ssr multilingual, URL driven, contains AppEngine
-const ssr = require('./main');
+const ssr = require('./ng/main');
 const localConfig = require('../localdata/config.prod.json');
 
 

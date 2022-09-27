@@ -1,10 +1,13 @@
 {
     "extends": "../tsconfig.json",
     "compilerOptions": {
+      "baseUrl": ".",
+      "rootDir": "./",
       "outDir": "dist",
       "sourceMap": false,
-      "module": "CommonJS",
-      "noImplicitAny": false
+      "target": "es2020",
+      "noImplicitAny": false,
+      "types": ["node"]
     },
     "include": ["**/*.ts"],
     "exclude": [

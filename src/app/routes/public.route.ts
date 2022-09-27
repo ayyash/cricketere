@@ -10,16 +10,12 @@ const routes: Routes = [
     {
         path: '',
         component: PublicHomeComponent,
-        data: {
-            title: 'SITE_NAME'
-        }
+        title: 'SITE_NAME'
     }
     , {
         path: 'login',
         component: PublicLoginComponent,
-        data: {
-            title: 'LOGIN'
-        }
+        title: 'LOGIN'
     }
 
     , {

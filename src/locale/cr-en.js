@@ -78,11 +78,13 @@
     },
     PAGE_TITLES: {
       ERROR: 'Oh oh, an error occurred',
-      NOT_FOUND: '404! Hmm! Once in a while, we change address and forget to update the mailman.',
+      NOT_FOUND: '404! ',
       LOGIN: 'Login to your sekrab account',
       LIST_PROJECTS: 'All projects list',
-      PRODUCTS: 'Products List'
+      PRODUCTS: 'Products List',
+      CREATE_PROJECT: 'Create a new project'
     },
+    NOT_FOUND: 'Hmm! Once in a while, we change address and forget to update the mailman.',
     DEFAULT_PAGE_TITLE: 'Welcome',
     LANGUAGE: 'English',
     SITE_NAME: 'Cricketere',

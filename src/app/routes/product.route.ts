@@ -8,9 +8,7 @@ const routes: Routes = [
    {
     path: '',
     component: ProductListComponent,
-    data: {
-        title: 'PRODUCTS'
-    }
+    title: 'PRODUCTS'
 }
 
 // **gulproute**

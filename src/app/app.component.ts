@@ -14,8 +14,8 @@ import { EnumGtmEvent, GtmTracking } from './core/gtm';
 export class AppComponent {
     constructor(
         private router: Router,
-        private activatedRoute: ActivatedRoute,
-        private seoService: SeoService,
+        // private activatedRoute: ActivatedRoute,
+        // private seoService: SeoService,
         // private configInit: ConfigInitService,
         private LoaderService: LoaderService // @Inject(LOCALE_ID) protected localeId: string
     ) {
@@ -30,10 +30,11 @@ export class AppComponent {
                 _seqlog('router event');
                 // use snapshot to get title, instead of data subscribe?
                 // note to self: this is okay because the main trigger is the event change
-                let route = this.activatedRoute.snapshot;
-                while (route.firstChild) {
-                    route = route.firstChild;
-                }
+                // with titleStrategy i don't need these
+                // let route = this.activatedRoute.snapshot;
+                // while (route.firstChild) {
+                //     route = route.firstChild;
+                // }
 
 
 
@@ -48,8 +49,8 @@ export class AppComponent {
                     } else {
                         this.LoaderService.emitUrl(event.urlAfterRedirects);
 
-                         // return route.data;
-                        this.seoService.setPage(route.data?.title);
+                         // return route.data; no need to pass title with titleStrategy
+                        // this.seoService.setPage(route.data?.title);
                     }
                 } else if (event instanceof NavigationCancel) {
                     this.LoaderService.emitUrl(event.url);

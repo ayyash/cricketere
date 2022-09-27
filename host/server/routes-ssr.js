@@ -1,7 +1,7 @@
 const express = require('express');
 
 // for ssr multilingual, non url driven, contains AppEngine
-const ssr = require('./main');
+const ssr = require('./ng/main');
 const renderer = require('./renderer');
 
 module.exports = function (app, config) {

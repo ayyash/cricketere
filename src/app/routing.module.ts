@@ -1,6 +1,6 @@
 import { ViewportScroller, Location } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { NavigationEnd, Router, RouteReuseStrategy, RouterModule, Routes, Scroll } from '@angular/router';
+import { NavigationEnd, Router, RouteReuseStrategy, RouterModule, Routes, Scroll, TitleStrategy } from '@angular/router';
 import { filter } from 'rxjs';
 import { NotFoundComponent } from './components/layouts/404.component';
 import { ErrorComponent } from './components/layouts/error.component';
@@ -8,6 +8,7 @@ import { MainLayoutComponent } from './components/layouts/main.component';
 import { SingleLayoutComponent } from './components/layouts/single.component';
 import { PreloadService } from './core/preload.service';
 import { RouteReuseService } from './core/routereuse.service';
+import { CricketTitleStrategy } from './services/title.service';
 
 
 const routes: Routes = [
@@ -18,9 +19,7 @@ const routes: Routes = [
       {
         path: '',
         component: ErrorComponent,
-        data: {
-          title: 'ERROR'
-        }
+        title: 'ERROR'
       }
     ]
   },
@@ -31,9 +30,7 @@ const routes: Routes = [
       {
         path: '',
         component: NotFoundComponent,
-        data: {
-          title: 'NOT_FOUND'
-        }
+        title: 'NOT_FOUND'
       }
     ]
   },
@@ -87,7 +84,8 @@ const routes: Routes = [
     })
   ],
   exports: [RouterModule],
-  providers: [{ provide: RouteReuseStrategy, useClass: RouteReuseService }]
+  providers: [{ provide: RouteReuseStrategy, useClass: RouteReuseService },
+  { provide: TitleStrategy, useClass: CricketTitleStrategy }]
 
 })
 export class AppRoutingModule {

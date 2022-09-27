@@ -7,7 +7,8 @@ import { ContentDetailsComponent } from '../components/content/details.component
 const routes: Routes = [
    {
     path: 'details',
-    component: ContentDetailsComponent
+    component: ContentDetailsComponent,
+    title: 'Details'
 }
 
 // **gulproute**

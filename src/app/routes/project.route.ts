@@ -12,11 +12,13 @@ import { ProjectResolve } from '../services/project.resolve';
 const routes: Routes = [
     {
         path: '',
-        component: ProjectListComponent
+        component: ProjectListComponent,
+        title: 'LIST_PROJECTS'
     }
     , {
         path: 'create',
         component: ProjectCreateComponent,
+        title: 'CREATE_PROJECT',
         resolve: {
             ready: ProjectResolve
         }
