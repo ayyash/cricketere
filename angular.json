@@ -23,6 +23,7 @@
             "source": "host/client/placeholder.html",
             "destination": "host/index",
             "isUrlBased": true,
+            "prefix": "cr",
             "languages": [
               {
                 "name": "ar",
@@ -153,9 +154,7 @@
           "options": {
             "outputPath": "dist",
             "resourcesOutputPath": "assets/",
-            "allowedCommonJsDependencies": [
-              "express"
-            ],
+
             "index": "src/placeholder.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -273,7 +272,10 @@
               "optimization": {
                 "scripts": true,
                 "fonts": true,
-                "styles": true
+                "styles": {
+                  "inlineCritical": true,
+                  "minify": true
+                }
               },
               "outputHashing": "all",
               "sourceMap": false,
@@ -463,6 +465,32 @@
                   "output": "/"
                 }
               ]
+            },
+            "simple": {
+              "outputPath": "./simple2/client/",
+              "index": "src/index.html",
+              "assets": [
+                {
+                  "glob": "favicon.ico",
+                  "input": "src",
+                  "output": "/"
+                },
+                {
+                  "glob": "images/**/*",
+                  "input": "src/assets",
+                  "output": "/assets"
+                },
+                {
+                  "glob": "*",
+                  "input": "configs",
+                  "output": "/localdata"
+                },
+                {
+                  "glob": "cr-en.js",
+                  "input": "src/locale",
+                  "output": "/locale"
+                }
+              ]
             }
           }
         },
@@ -507,6 +535,21 @@
               "namedChunks": true,
               "extractLicenses": true,
               "deleteOutputPath": false
+            },
+            "simple": {
+              "outputPath": "./simple2/server",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": false,
+              "outputHashing": "media",
+              "sourceMap": false,
+              "namedChunks": true,
+              "extractLicenses": true,
+              "deleteOutputPath": false
             }
           }
         },
@@ -516,24 +559,36 @@
             "browserTarget": "cricketereweb:build:production",
             "serverTarget": "cricketereweb:server:production",
             "routes": [
+              "/projects/create",
+              "/projects/1",
               "/content/details"
             ]
           }
         },
-        "pre2": {
-          "builder": "@nguniversal/builders:prerender",
+        "pre-multi": {
+          "builder": "./builder-prerender:prerender-multi",
           "options": {
             "browserTarget": "cricketereweb:build:production",
             "serverTarget": "cricketereweb:server:production",
+            "indexTarget": "cricketereweb:writeindex",
+            "localePath": "locale",
             "routes": [
+              "/projects/create",
+              "/projects/1",
               "/content/details"
             ]
           }
         },
-        "pre3": {
-          "builder": "./builder-prerender:nothing",
+        "pre-simple": {
+          "builder": "@nguniversal/builders:prerender",
           "options": {
-            "name": "nothing"
+            "browserTarget": "cricketereweb:build:simple",
+            "serverTarget": "cricketereweb:server:simple",
+            "guessRoutes": false,
+            "routes": [
+              "/projects/create",
+              "/projects/1"
+            ]
           }
         }
       }

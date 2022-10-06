@@ -4,6 +4,9 @@ export const toSentenceCase = (s: string) => {
     return s.substring(0, 1).toUpperCase() + s.substring(1);
 };
 
+export const _global: any = typeof globalThis !== 'undefined' && globalThis || typeof global !== 'undefined' && global || typeof window !== 'undefined' && window;
+
+
 
 export const toPrettyPrice = (s: string) => {
     // TODO: try toLocalString
@@ -73,7 +76,7 @@ export const GetMatrixParamsAsString = (urlParams: any): string => {
 export const toFormat = (s:string, ...args: any) => {
     const regExp = /\$(\d+)/gi;
     // match $1 $2 ...
-    return s.replace(regExp, (match, index) => {
+    return s?.replace(regExp, (match, index) => {
         return args[index] ?? match;
     });
 

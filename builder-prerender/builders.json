@@ -5,10 +5,10 @@
         "schema": "./prerender/schema.json",
         "description": "Create prerendered routes"
       },
-      "nothing": {
-        "implementation": "./dist/nothing/index.js",
-        "schema": "./nothing/schema.json",
-        "description": "Create nothing routes"
+      "prerender-multi": {
+        "implementation": "./dist/prerender-multi/index.js",
+        "schema": "./prerender-multi/schema.json",
+        "description": "Create prerendered routes for multilingual app"
       }
     }
 

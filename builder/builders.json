@@ -10,7 +10,7 @@
         "schema": "./extract/schema.json",
         "description": "Extract translation terms"
       },
-      "pre": {
+      "prerender": {
         "implementation": "./dist/prerender/index.js",
         "schema": "./prerender/schema.json",
         "description": "prerendder"

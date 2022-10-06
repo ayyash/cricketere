@@ -10,7 +10,6 @@ import { AppServerModule } from './src/app/app.server.module';
 export { AppServerModule } from './src/app/app.server.module';
 export { renderModule } from '@angular/platform-server';
 
-
 // The Express app is exported so that it can be used by serverless Functions.
 // *************************AYYASH********************/
 // export the bare minimum, let nodejs take care of everything else

@@ -2,7 +2,6 @@
     "name": "prerenderbuilder",
     "builders": "builders.json",
     "devDependencies": {
-        "@angular-devkit/architect": "^0.1401.0",
-        "@angular/platform-server": "^14.2.3"
+        "@angular-devkit/architect": "^0.1401.0"
     }
 }

@@ -14,6 +14,7 @@ export class StorageService {
 
     }
     private get ourStorage(): Storage {
+      // TODO: check if in global, return a dummy object
         return localStorage;
     }
 

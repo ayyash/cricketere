@@ -19,7 +19,9 @@
     "build:firebase:url:i18n": "ng build --configuration=production,firebase,firebaseUrl && ng run cricketereweb:writeindex-firebase-i18n",
     "build:surge": "ng  build --configuration=production,surge && ng run cricketereweb:writeindex-surge",
     "pre": "ng run cricketereweb:pre",
-    "prerender": "cd host && SET PRERENDER=true && node server"
+    "pre:multi": "ng run cricketereweb:pre-multi",
+    "prerender": "cd host && SET PRERENDER=true && node server",
+    "prerender:simple": "ng run cricketereweb:pre-simple"
   },
   "dependencies": {
     "@angular/animations": "^14.2.3",

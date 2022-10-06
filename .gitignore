@@ -5,6 +5,9 @@
 /tmp
 /out-tsc
 /.angular
+/backup
+/**/dist
+/_*
 
 # dependencies
 /node_modules

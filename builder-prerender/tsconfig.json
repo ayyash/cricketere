@@ -3,9 +3,10 @@
   "compilerOptions": {
     "outDir": "dist",
     "sourceMap": false,
-    "module": "CommonJS",
-    "esModuleInterop": true,
+    "rootDir": ".",
+    // "esModuleInterop": true,
     "noImplicitAny": false,
+    "module": "CommonJs"
   },
   "include": [
     "**/*.ts"

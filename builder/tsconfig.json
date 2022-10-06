@@ -3,8 +3,9 @@
     "compilerOptions": {
       "outDir": "dist",
       "rootDir": "./",
-      "sourceMap": false
-    //   "module": "es2020" or commonjs
+      "sourceMap": false,
+      "noImplicitAny": false,
+      "module": "es2020"
     },
     "include": ["**/*.ts"],
     "exclude": [
