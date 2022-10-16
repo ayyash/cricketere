@@ -10,8 +10,12 @@
       ],
       "rewrites": [
         {
+          "source": "/ar{,/**}",
+          "destination": "/ar/index.html"
+        },
+        {
           "source": "**",
-          "function": "serveLocalized"
+          "destination": "/en/index.html"
         }
       ]
     }
