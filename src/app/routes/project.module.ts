@@ -1,23 +1,21 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '../core/shared.module';
 import { RouterModule } from '@angular/router';
-import { ProjectCardPartialComponent } from '../components/project/card.partial';
 import { ProjectFormPartialComponent } from '../components/project/form.partial';
+import { StarsPartialComponent } from '../components/common/stars.partial';
 // **gulpimport**
 
 @NgModule({
     imports: [
         SharedModule,
-        RouterModule
+        RouterModule,
     ],
     declarations: [
-        ProjectCardPartialComponent
-        , ProjectFormPartialComponent
+         ProjectFormPartialComponent
         // **gulpcomponent**
     ],
     exports: [
-        ProjectCardPartialComponent
-        , ProjectFormPartialComponent
+         ProjectFormPartialComponent
         // **gulpcomponent**
     ]
 })

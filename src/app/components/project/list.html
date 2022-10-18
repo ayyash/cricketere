@@ -7,6 +7,8 @@
         <ul class="row row-gap boxed umd-3">
             <li class="box-shadow-normal spaced" *ngFor="let project of projects$ | async">
                 <a class="f3 a" routerLink="/projects/{{project.id}}">{{ project.title }}</a>
+            <cr-stars [rating]="4"></cr-stars>
+
                 <img src="{{project.image}}" >
                 <p>{{ project.description }}</p>
                 <!-- <cr-project-card [mode]="{compact: true}"></cr-project-card> -->

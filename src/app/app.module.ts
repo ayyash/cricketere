@@ -18,7 +18,6 @@ import { APP_BASE_HREF } from '@angular/common';
     declarations: [AppComponent,
         MainLayoutComponent,
         NotFoundComponent,
-        ToastPartialComponent,
         SingleLayoutComponent,
         ErrorComponent],
     imports: [
@@ -26,6 +25,7 @@ import { APP_BASE_HREF } from '@angular/common';
         TransferHttpCacheModule,
         SharedModule,
         AppRoutingModule,
+        ToastPartialComponent,
         CoreModule,
     ],
     providers: [

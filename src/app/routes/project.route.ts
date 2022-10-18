@@ -7,6 +7,8 @@ import { ProjectEditComponent } from '../components/project/edit.component';
 import { ProjectListComponent } from '../components/project/list.component';
 import { ProjectViewComponent } from '../components/project/view.component';
 import { ProjectResolve } from '../services/project.resolve';
+import { StarsPartialComponent } from '../components/common/stars.partial';
+import { ProjectCardPartialComponent } from '../components/project/card.partial';
 // **gulpimport**
 
 const routes: Routes = [
@@ -42,6 +44,8 @@ const routes: Routes = [
     imports: [
         SharedModule,
         ProjectModule,
+        StarsPartialComponent,
+        ProjectCardPartialComponent,
         RouterModule.forChild(routes)
     ],
     declarations: [

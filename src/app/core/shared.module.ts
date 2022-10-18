@@ -10,7 +10,7 @@ import { DataPartialComponent } from '../components/common/data.partial';
 import { LoaderComponent } from '../components/common/loader.partial';
 import { ModalPartialComponent } from '../components/common/modal.partial';
 import { PagerPartialComponent } from '../components/common/pager.partial';
-import { StarsPartialComponent } from '../components/common/stars.partial';
+// import { StarsPartialComponent } from '../components/common/stars.partial';
 
 @NgModule({
     imports: [CommonModule, MdInputModule, LibModule, ToastModule, DialogModule],
@@ -19,14 +19,14 @@ import { StarsPartialComponent } from '../components/common/stars.partial';
         ModalPartialComponent,
         PagerPartialComponent,
         DataPartialComponent,
-        StarsPartialComponent
+        // StarsPartialComponent
     ],
     exports: [
         LoaderComponent,
         ModalPartialComponent,
         DataPartialComponent,
         PagerPartialComponent,
-        StarsPartialComponent,
+        // StarsPartialComponent,
         CommonModule,
         FormsModule,
         MdInputModule,

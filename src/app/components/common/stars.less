@@ -1,14 +1,14 @@
 @import (reference) "sh._vars.less";
-// @import (reference) "css.Icon.less";
-// @import (reference) "ui.icons.less";
+@import (reference) "css.Icon.less";
+@import (reference) "ui.icons.less";
 
 .stars-outer {
     display: inline-block;
     position: relative;
 
-    // .getIcon(@icon-star);
+    .getIcon(@icon-heart);
     &:before {
-        // content: "@{icon-star}@{icon-star}@{icon-star}@{icon-star}@{icon-star}";
+        content: "@{icon-heart}@{icon-heart}@{icon-heart}@{icon-heart}@{icon-heart}";
         font-size: 100%;
         letter-spacing: -2px;
         color: @grey-light;
@@ -23,9 +23,9 @@
     white-space: nowrap;
     overflow: hidden;
     width: 0;
-    // .getIcon(@icon-star);
+    .getIcon(@icon-heart);
     &:before {
-        // content: "@{icon-star}@{icon-star}@{icon-star}@{icon-star}@{icon-star}";
+        content: "@{icon-heart}@{icon-heart}@{icon-heart}@{icon-heart}@{icon-heart}";
         color: @green;
         font-size: 100%;
         letter-spacing: -2px;
@@ -34,10 +34,10 @@
 }
 
 .stars-5:before {
-    color: @green;
+    color: @red;
 }
 .stars-4:before {
-    color: #a1db48;
+    color: @red;
 }
 .stars-3:before {
     color: #f3cf6f;

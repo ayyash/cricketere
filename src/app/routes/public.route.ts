@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { PublicForgotComponent } from '../components/public/forgot.component';
 import { PublicHomeComponent } from '../components/public/home.component';
 import { PublicLoginComponent } from '../components/public/login.component';
+import { ProjectCardPartialComponent } from '../components/project/card.partial';
 // **gulpimport**
 
 const routes: Routes = [
@@ -29,7 +30,8 @@ const routes: Routes = [
 @NgModule({
     imports: [
         SharedModule,
-        RouterModule.forChild(routes)
+        RouterModule.forChild(routes),
+        ProjectCardPartialComponent
     ],
     declarations: [
         PublicHomeComponent

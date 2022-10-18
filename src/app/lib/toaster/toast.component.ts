@@ -1,8 +1,11 @@
+import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Toast } from './toast.state';
 
 @Component({
     selector: 'gr-toast',
+    standalone: true,
+    imports: [CommonModule],
     template: `
     <ng-container *ngIf="toastState.stateItem$ | async as toast">
       <div [class.inview]="toast.visible"
