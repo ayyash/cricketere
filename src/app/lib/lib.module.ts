@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 // inject:importlibs
 import { BgDirective } from './directives/bg.directive';
@@ -23,7 +22,7 @@ import { TranslatePipe } from './pipes/translate.pipe';
 
 
 @NgModule({
-    imports: [CommonModule],
+    // imports: [CommonModule],
     declarations: [
          // inject:libs
         BgDirective,
