@@ -26,6 +26,7 @@ const routes: Routes = [
   imports: [
     SharedModule,
     RouterModule.forChild(routes),
+    StarsPartialComponent,
     CustomCurrencyPipe
   ],
   declarations: [

@@ -1,4 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { CustomCurrencyPipe } from '../../lib/pipes/currency.pipe';
 import { StarsPartialComponent } from '../common/stars.partial';
 
@@ -6,7 +7,7 @@ import { StarsPartialComponent } from '../common/stars.partial';
 
     templateUrl: './standalone.html',
     standalone: true,
-    imports: [StarsPartialComponent, CustomCurrencyPipe],
+    imports: [StarsPartialComponent, CustomCurrencyPipe, RouterModule],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContentStandaloneComponent implements OnInit {

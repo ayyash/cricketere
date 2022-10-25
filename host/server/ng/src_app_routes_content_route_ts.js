@@ -3,6 +3,42 @@ exports.id = "src_app_routes_content_route_ts";
 exports.ids = ["src_app_routes_content_route_ts"];
 exports.modules = {
 
+/***/ 25015:
+/*!****************************************************!*\
+  !*** ./src/app/components/common/stars.partial.ts ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "StarsPartialComponent": () => (/* binding */ StarsPartialComponent)
+/* harmony export */ });
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ 94650);
+
+class StarsPartialComponent {
+    constructor() {
+        //
+    }
+    ngOnInit() {
+        // const starPercentage = (this.rating / 5) * 100;
+        this.raterounded = (Math.round(this.rating * 2) * 10 + 1) + '%';
+        this.starCss = 'stars-' + Math.floor(this.rating);
+    }
+}
+StarsPartialComponent.ɵfac = function StarsPartialComponent_Factory(t) { return new (t || StarsPartialComponent)(); };
+StarsPartialComponent.ɵcmp = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: StarsPartialComponent, selectors: [["cr-stars"]], inputs: { rating: "rating" }, standalone: true, features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵStandaloneFeature"]], decls: 2, vars: 5, consts: [[1, "stars-outer"]], template: function StarsPartialComponent_Template(rf, ctx) { if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "span", 0);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](1, "span");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    } if (rf & 2) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵclassMapInterpolate1"]("stars-inner ", ctx.starCss, "");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵstyleProp"]("width", ctx.raterounded);
+    } }, styles: [".stars-outer:before,\n.stars-inner:before {\n  --sh-only-display: inline-block;font-family: \"cr\";text-transform: none;font-style: normal;font-weight: normal;font-variant: normal;display: inline-block;-webkit-font-smoothing: antialiased;text-rendering: optimizeLegibility;-moz-osx-font-smoothing: grayscale;speak: none;font-smooth: always;/* Enable Ligatures ================ */\n  letter-spacing: 0;-ms-font-feature-settings: \"liga\" 1;-o-font-feature-settings: \"liga\";font-feature-settings: \"liga\", normal, \"dlig\";font-variant-ligatures: discretionary-ligatures;/* ligatures? */\n  content: attr(data-icon);font-size: 150%;line-height: 1;\n}\n.stars-outer {\n  display: inline-block;\n  position: relative;\n}\n.stars-outer:before {\n  content: \"\\e90f\";\n}\n.stars-outer:before {\n  content: \"\\e90f\\e90f\\e90f\\e90f\\e90f\";\n  font-size: 100%;\n  letter-spacing: -2px;\n  color: #f3f3f3;\n  vertical-align: inherit;\n}\n.stars-inner {\n  position: absolute;\n  top: 0;\n  left: 0;\n  white-space: nowrap;\n  overflow: hidden;\n  width: 0;\n}\n.stars-inner:before {\n  content: \"\\e90f\";\n}\n.stars-inner:before {\n  content: \"\\e90f\\e90f\\e90f\\e90f\\e90f\";\n  color: #57b347;\n  font-size: 100%;\n  letter-spacing: -2px;\n  vertical-align: inherit;\n}\n.stars-5:before {\n  color: #f31109;\n}\n.stars-4:before {\n  color: #f31109;\n}\n.stars-3:before {\n  color: #f3cf6f;\n}\n.stars-2:before {\n  color: #f3bd8c;\n}\n.stars-1:before {\n  color: #f6baa2;\n}\n"], encapsulation: 2, changeDetection: 0 });
+
+
+/***/ }),
+
 /***/ 13651:
 /*!*********************************************************!*\
   !*** ./src/app/components/content/details.component.ts ***!
@@ -19,9 +55,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/core */ 94650);
 /* harmony import */ var _lib_platform_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../lib/platform.service */ 28137);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/forms */ 24006);
-/* harmony import */ var _lib_pipes_currency_pipe__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../lib/pipes/currency.pipe */ 1126);
-/* harmony import */ var _lib_pipes_relativetime_pipe__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../lib/pipes/relativetime.pipe */ 14582);
-/* harmony import */ var _lib_pipes_translate_pipe__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../lib/pipes/translate.pipe */ 44029);
+/* harmony import */ var _lib_pipes_relativetime_pipe__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../lib/pipes/relativetime.pipe */ 14582);
+/* harmony import */ var _lib_pipes_translate_pipe__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../lib/pipes/translate.pipe */ 44029);
+/* harmony import */ var _lib_pipes_currency_pipe__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../lib/pipes/currency.pipe */ 1126);
 
 
 
@@ -460,7 +496,87 @@ ContentDetailsComponent.ɵcmp = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MO
         _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtextInterpolate1"](" ", _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵpipeBind2"](142, 121, 29304.34, ctx.configCode), "\n");
         _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵadvance"](3);
         _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtextInterpolate1"](" ", _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵpipeBind2"](145, 124, 29304.34, ctx.configCode), "\n");
-    } }, dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_7__.NgForOf, _angular_forms__WEBPACK_IMPORTED_MODULE_8__.NgSelectOption, _angular_forms__WEBPACK_IMPORTED_MODULE_8__["ɵNgSelectMultipleOption"], _angular_common__WEBPACK_IMPORTED_MODULE_7__.DecimalPipe, _angular_common__WEBPACK_IMPORTED_MODULE_7__.TitleCasePipe, _angular_common__WEBPACK_IMPORTED_MODULE_7__.CurrencyPipe, _angular_common__WEBPACK_IMPORTED_MODULE_7__.DatePipe, _lib_pipes_currency_pipe__WEBPACK_IMPORTED_MODULE_3__.CustomCurrencyPipe, _lib_pipes_relativetime_pipe__WEBPACK_IMPORTED_MODULE_4__.RelativeTimePipe, _lib_pipes_translate_pipe__WEBPACK_IMPORTED_MODULE_5__.TranslatePipe], encapsulation: 2, changeDetection: 0 });
+    } }, dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_7__.NgForOf, _angular_forms__WEBPACK_IMPORTED_MODULE_8__.NgSelectOption, _angular_forms__WEBPACK_IMPORTED_MODULE_8__["ɵNgSelectMultipleOption"], _angular_common__WEBPACK_IMPORTED_MODULE_7__.DecimalPipe, _angular_common__WEBPACK_IMPORTED_MODULE_7__.TitleCasePipe, _angular_common__WEBPACK_IMPORTED_MODULE_7__.CurrencyPipe, _angular_common__WEBPACK_IMPORTED_MODULE_7__.DatePipe, _lib_pipes_relativetime_pipe__WEBPACK_IMPORTED_MODULE_3__.RelativeTimePipe, _lib_pipes_translate_pipe__WEBPACK_IMPORTED_MODULE_4__.TranslatePipe, _lib_pipes_currency_pipe__WEBPACK_IMPORTED_MODULE_5__.CustomCurrencyPipe], encapsulation: 2, changeDetection: 0 });
+
+
+/***/ }),
+
+/***/ 31378:
+/*!************************************************************!*\
+  !*** ./src/app/components/content/standalone.component.ts ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ContentStandaloneComponent": () => (/* binding */ ContentStandaloneComponent)
+/* harmony export */ });
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ 34793);
+/* harmony import */ var _lib_pipes_currency_pipe__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../lib/pipes/currency.pipe */ 1126);
+/* harmony import */ var _common_stars_partial__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../common/stars.partial */ 25015);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 94650);
+
+
+
+
+
+class ContentStandaloneComponent {
+    constructor() {
+        //
+    }
+    ngOnInit() {
+        //
+    }
+}
+ContentStandaloneComponent.ɵfac = function ContentStandaloneComponent_Factory(t) { return new (t || ContentStandaloneComponent)(); };
+ContentStandaloneComponent.ɵcmp = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineComponent"]({ type: ContentStandaloneComponent, selectors: [["ng-component"]], standalone: true, features: [_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵStandaloneFeature"]], decls: 13, vars: 5, consts: [[1, "page"], [1, "container"], [1, "box"], [3, "rating"], ["routerLink", "/projects"]], template: function ContentStandaloneComponent_Template(rf, ctx) { if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 0)(1, "div", 1)(2, "h4");
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](3, "Stand alone stuff in here");
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](4, "p");
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](5);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵpipe"](6, "crCurrency");
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](7, "div", 2)(8, "h4");
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](9, "Stand alone partial common component");
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelement"](10, "cr-stars", 3);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](11, "a", 4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](12, "Go to projects");
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]()()();
+    } if (rf & 2) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](5);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵpipeBind2"](6, 2, 345.25, "TRY"));
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](5);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("rating", 4);
+    } }, dependencies: [_common_stars_partial__WEBPACK_IMPORTED_MODULE_1__.StarsPartialComponent, _lib_pipes_currency_pipe__WEBPACK_IMPORTED_MODULE_0__.CustomCurrencyPipe, _angular_router__WEBPACK_IMPORTED_MODULE_3__.RouterModule, _angular_router__WEBPACK_IMPORTED_MODULE_3__.RouterLinkWithHref], encapsulation: 2, changeDetection: 0 });
+
+
+/***/ }),
+
+/***/ 1126:
+/*!********************************************!*\
+  !*** ./src/app/lib/pipes/currency.pipe.ts ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "CustomCurrencyPipe": () => (/* binding */ CustomCurrencyPipe)
+/* harmony export */ });
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/common */ 36895);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 94650);
+
+
+class CustomCurrencyPipe extends _angular_common__WEBPACK_IMPORTED_MODULE_0__.CurrencyPipe {
+    transform(value, currencyCode) {
+        // get symbol
+        return super.transform(value, currencyCode, 'symbol-narrow');
+    }
+}
+CustomCurrencyPipe.ɵfac = /*@__PURE__*/ function () { let ɵCustomCurrencyPipe_BaseFactory; return function CustomCurrencyPipe_Factory(t) { return (ɵCustomCurrencyPipe_BaseFactory || (ɵCustomCurrencyPipe_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetInheritedFactory"](CustomCurrencyPipe)))(t || CustomCurrencyPipe); }; }();
+CustomCurrencyPipe.ɵpipe = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefinePipe"]({ name: "crCurrency", type: CustomCurrencyPipe, pure: true, standalone: true });
 
 
 /***/ }),
@@ -476,9 +592,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "ContentRoutingModule": () => (/* binding */ ContentRoutingModule)
 /* harmony export */ });
 /* harmony import */ var _core_shared_module__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core/shared.module */ 36182);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ 34793);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ 34793);
 /* harmony import */ var _components_content_details_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/content/details.component */ 13651);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 94650);
+/* harmony import */ var _lib_pipes_currency_pipe__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../lib/pipes/currency.pipe */ 1126);
+/* harmony import */ var _components_content_standalone_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/content/standalone.component */ 31378);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 94650);
+
+
 
 
 
@@ -490,18 +610,22 @@ const routes = [
         path: 'details',
         component: _components_content_details_component__WEBPACK_IMPORTED_MODULE_1__.ContentDetailsComponent,
         title: 'Details'
+    },
+    {
+        path: 'standalone',
+        component: _components_content_standalone_component__WEBPACK_IMPORTED_MODULE_3__.ContentStandaloneComponent
     }
     // **gulproute**
 ];
 class ContentRoutingModule {
 }
 ContentRoutingModule.ɵfac = function ContentRoutingModule_Factory(t) { return new (t || ContentRoutingModule)(); };
-ContentRoutingModule.ɵmod = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineNgModule"]({ type: ContentRoutingModule });
-ContentRoutingModule.ɵinj = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineInjector"]({ imports: [_core_shared_module__WEBPACK_IMPORTED_MODULE_0__.SharedModule,
-        _angular_router__WEBPACK_IMPORTED_MODULE_3__.RouterModule.forChild(routes)] });
-(function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵsetNgModuleScope"](ContentRoutingModule, { declarations: [_components_content_details_component__WEBPACK_IMPORTED_MODULE_1__.ContentDetailsComponent
+ContentRoutingModule.ɵmod = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineNgModule"]({ type: ContentRoutingModule });
+ContentRoutingModule.ɵinj = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineInjector"]({ imports: [_core_shared_module__WEBPACK_IMPORTED_MODULE_0__.SharedModule,
+        _angular_router__WEBPACK_IMPORTED_MODULE_5__.RouterModule.forChild(routes)] });
+(function () { (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵsetNgModuleScope"](ContentRoutingModule, { declarations: [_components_content_details_component__WEBPACK_IMPORTED_MODULE_1__.ContentDetailsComponent
         // **gulpcomponent**
-    ], imports: [_core_shared_module__WEBPACK_IMPORTED_MODULE_0__.SharedModule, _angular_router__WEBPACK_IMPORTED_MODULE_3__.RouterModule] }); })();
+    ], imports: [_core_shared_module__WEBPACK_IMPORTED_MODULE_0__.SharedModule, _angular_router__WEBPACK_IMPORTED_MODULE_5__.RouterModule, _lib_pipes_currency_pipe__WEBPACK_IMPORTED_MODULE_2__.CustomCurrencyPipe] }); })();
 
 
 /***/ })
