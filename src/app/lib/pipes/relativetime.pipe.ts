@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { Res } from '../../core/resources';
 
-@Pipe({ name: 'relativetime' })
+@Pipe({ name: 'relativetime' , standalone: true})
 export class RelativeTimePipe implements PipeTransform {
     transform(date: Date, future: boolean = false): string {
         // find elapsed

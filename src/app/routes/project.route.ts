@@ -1,21 +1,29 @@
-import { NgModule } from '@angular/core';
-import { SharedModule } from '../core/shared.module';
-import { Routes, RouterModule } from '@angular/router';
-import { ProjectModule } from './project.module';
+import { ENVIRONMENT_INITIALIZER } from '@angular/core';
+import { Routes} from '@angular/router';
 import { ProjectCreateComponent } from '../components/project/create.component';
 import { ProjectEditComponent } from '../components/project/edit.component';
 import { ProjectListComponent } from '../components/project/list.component';
 import { ProjectViewComponent } from '../components/project/view.component';
+import { ConfigService } from '../services/config.service';
 import { ProjectResolve } from '../services/project.resolve';
-import { StarsPartialComponent } from '../components/common/stars.partial';
-import { ProjectCardPartialComponent } from '../components/project/card.partial';
 // **gulpimport**
 
-const routes: Routes = [
+export const ProjectRoutes: Routes = [
     {
         path: '',
         component: ProjectListComponent,
-        title: 'LIST_PROJECTS'
+        title: 'LIST_PROJECTS',
+        providers: [
+          {
+            provide: ENVIRONMENT_INITIALIZER,
+            multi: true,
+            useValue() {
+              // same effect everywhere
+              _seqlog('PublicRoutes');
+              _attn('this is nothing', 'list of projects');
+            },
+          }
+        ]
     }
     , {
         path: 'create',
@@ -23,7 +31,17 @@ const routes: Routes = [
         title: 'CREATE_PROJECT',
         resolve: {
             ready: ProjectResolve
-        }
+        },
+        providers: [
+          {
+            provide: ENVIRONMENT_INITIALIZER,
+            multi: true,
+            useValue() {
+              _seqlog('PublicRoutes');
+              _attn(ConfigService.Config.isServed, 'create');
+            },
+          }
+        ]
     }
 
     , {
@@ -39,22 +57,3 @@ const routes: Routes = [
 
     // **gulproute**
 ];
-
-@NgModule({
-    imports: [
-        SharedModule,
-        ProjectModule,
-        StarsPartialComponent,
-        ProjectCardPartialComponent,
-        RouterModule.forChild(routes)
-    ],
-    declarations: [
-        ProjectListComponent
-        , ProjectViewComponent
-        , ProjectCreateComponent
-        , ProjectEditComponent
-        // **gulpcomponent**
-    ]
-})
-
-export class ProjectRoutingModule { }

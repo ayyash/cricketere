@@ -1,10 +1,15 @@
 import { Component } from '@angular/core';
-import { NavigationEnd, Router, NavigationCancel } from '@angular/router';
+import { NavigationEnd, Router, NavigationCancel, RouterModule } from '@angular/router';
 import { LoaderService } from './core/services';
 import { filter } from 'rxjs/operators';
 import { EnumGtmEvent, GtmTracking } from './core/gtm';
+import { LoaderComponent } from './components/common/loader.partial';
+import { ToastPartialComponent } from './lib/toaster/toast.component';
+import { AppShellRenderDirective } from './lib/directives/render.directive';
 @Component({
     selector: 'app-root',
+    standalone: true,
+    imports: [RouterModule, LoaderComponent, ToastPartialComponent, AppShellRenderDirective],
     template: `<http-loader></http-loader>
     <gr-toast *shServerRender="false"></gr-toast>
     <router-outlet></router-outlet>`

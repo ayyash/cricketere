@@ -2,7 +2,8 @@ import { Directive, OnInit, ViewContainerRef, TemplateRef, Inject, PLATFORM_ID, 
 import { isPlatformServer } from '@angular/common';
 
 @Directive({
-    selector: '[shServerRender]'
+    selector: '[shServerRender]',
+    standalone: true
 })
 export class AppShellRenderDirective implements OnInit {
     @Input() shServerRender: boolean;

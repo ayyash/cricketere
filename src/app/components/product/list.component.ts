@@ -1,6 +1,6 @@
-import { Location } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { catchError, distinctUntilChanged, distinctUntilKeyChanged, map, Observable, of, switchMap, tap } from 'rxjs';
 import { Config } from '../../config';
 import { hasMore } from '../../core/common';
@@ -16,7 +16,9 @@ import { ProductState } from '../../services/product.state';
 
     templateUrl: './list.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [ParamState]
+    providers: [ParamState],
+    standalone: true,
+    imports: [CommonModule, RouterModule]
 })
 export class ProductListComponent implements OnInit {
 

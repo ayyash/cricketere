@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { catchError, Observable, of, tap } from 'rxjs';
@@ -6,11 +7,14 @@ import { Toast } from '../../lib/toaster/toast.state';
 import { IUiError } from '../../models/error.model';
 import { IProject } from '../../models/project.model';
 import { ProjectService } from '../../services/project.service';
+import { ProjectFormPartialComponent } from './form.partial';
 
 @Component({
 
     templateUrl: './create.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [ProjectFormPartialComponent, CommonModule]
 })
 export class ProjectCreateComponent implements OnInit {
     x$: Observable<any>;

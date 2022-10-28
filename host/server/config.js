@@ -8,7 +8,7 @@ module.exports = {
     languages: ['en', 'ar'],
     env: process.env.Node_ENV || 'local',
     rootPath,
-    ssr: true,
+    ssr: false,
     urlBased: true,
     prepared: true,
     withAppBaseHref: false, // for hosts like netlify, express wont run for that

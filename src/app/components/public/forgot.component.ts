@@ -1,14 +1,19 @@
 import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
-import { UntypedFormGroup, UntypedFormBuilder } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { IViewMode} from '../../core/services';
 import { Toast } from '../../lib/toast';
 import { Router } from '@angular/router';
-import { Config } from '../../config';
+import { CommonModule } from '@angular/common';
+import { TranslatePipe } from '../../lib/pipes/translate.pipe';
+import { MdInputModule } from '../../lib/mdinput/mdinput.module';
+import { ProjectCardPartialComponent } from '../project/card.partial';
 
 
 @Component({
     templateUrl: './forgot.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [CommonModule, TranslatePipe, ReactiveFormsModule, MdInputModule, ProjectCardPartialComponent],
+    standalone: true
 })
 export class PublicForgotComponent implements OnInit {
 

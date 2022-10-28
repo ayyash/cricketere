@@ -4,7 +4,6 @@ import { ngExpressEngine } from '@nguniversal/express-engine';
 import { enableProdMode} from '@angular/core';
 // import { platformFactory } from './src/app/services/config.service';
 import { environment } from './src/environments/environment';
-import { AppServerModule } from './src/app/app.server.module';
 
 // following lines is for prerender to work
 export { AppServerModule } from './src/app/app.server.module';

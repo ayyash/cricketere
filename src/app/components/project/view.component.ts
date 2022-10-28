@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, of, switchMap, tap } from 'rxjs';
@@ -16,7 +17,11 @@ const mockProject: IProject = {
 @Component({
 
     templateUrl: './view.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [
+      CommonModule
+    ]
 })
 export class ProjectViewComponent implements OnInit {
 

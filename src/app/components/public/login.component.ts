@@ -1,9 +1,12 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { UntypedFormGroup, UntypedFormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
+import { UntypedFormGroup, UntypedFormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
 import { catchError } from 'rxjs/operators';
 import { Config } from '../../config';
 import { AuthService } from '../../core/services';
+import { MdInputModule } from '../../lib/mdinput/mdinput.module';
+import { TranslatePipe } from '../../lib/pipes/translate.pipe';
 import { EnumTimeout } from '../../lib/toaster/toast.model';
 import { Toast } from '../../lib/toaster/toast.state';
 
@@ -11,7 +14,9 @@ import { Toast } from '../../lib/toaster/toast.state';
 
     templateUrl: './login.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    styleUrls: ['./login.less']
+    styleUrls: ['./login.less'],
+    standalone: true,
+    imports: [CommonModule, ReactiveFormsModule, TranslatePipe, MdInputModule, RouterModule]
 })
 export class PublicLoginComponent implements OnInit {
 

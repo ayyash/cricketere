@@ -13,9 +13,6 @@ MIT
 @angular/router
 MIT
 
-@nguniversal/common
-MIT
-
 rxjs
 Apache-2.0
                                Apache License

@@ -1,23 +1,23 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+// import { CommonModule } from '@angular/common';
 
 // inject:importlibs
 import { BgDirective } from './directives/bg.directive';
 import { ExpandsDirective } from './directives/expands.directive';
-import { GtmDirective } from './directives/gtm.directive';
+// import { GtmDirective } from './directives/gtm.directive';
 import { LazyDirective } from './directives/lazy.directive';
 import { LetDirective } from './directives/let.directive';
 import { ModalDirective } from './directives/modal.directive';
-import { AppShellRenderDirective } from './directives/render.directive';
+// import { AppShellRenderDirective } from './directives/render.directive';
 import { ScrollDirective } from './directives/scroll.directive';
 // import { CustomCurrencyPipe } from './pipes/currency.pipe';
 import { DayNamePipe } from './pipes/dayname.pipe';
 import { PrettyPricePipe } from './pipes/prettyprice.pipe';
 import { PrettyTimePipe } from './pipes/prettytime.pipe';
-import { RelativeTimePipe } from './pipes/relativetime.pipe';
+// import { RelativeTimePipe } from './pipes/relativetime.pipe';
 import { ResPipe } from './pipes/res.pipe';
 import { ToHtmlPipe } from './pipes/tohtml.pipe';
-import { TranslatePipe } from './pipes/translate.pipe';
+// import { TranslatePipe } from './pipes/translate.pipe';
 // endinject
 
 
@@ -27,40 +27,40 @@ import { TranslatePipe } from './pipes/translate.pipe';
          // inject:libs
         BgDirective,
         ExpandsDirective,
-        GtmDirective,
+        // GtmDirective,
         LazyDirective,
         LetDirective,
         ModalDirective,
-        AppShellRenderDirective,
+        // AppShellRenderDirective,
         ScrollDirective,
         // CustomCurrencyPipe,
         DayNamePipe,
         PrettyPricePipe,
         PrettyTimePipe,
-        RelativeTimePipe,
+        // RelativeTimePipe,
         ResPipe,
         ToHtmlPipe,
-        TranslatePipe,
+        // TranslatePipe,
         // endinject
     ],
     exports: [
          // inject:libs
         BgDirective,
         ExpandsDirective,
-        GtmDirective,
+        // GtmDirective,
         LazyDirective,
         LetDirective,
         ModalDirective,
-        AppShellRenderDirective,
+        // AppShellRenderDirective,
         ScrollDirective,
         // CustomCurrencyPipe,
         DayNamePipe,
         PrettyPricePipe,
         PrettyTimePipe,
-        RelativeTimePipe,
+        // RelativeTimePipe,
         ResPipe,
         ToHtmlPipe,
-        TranslatePipe,
+        // TranslatePipe,
         // endinject
     ]
 })

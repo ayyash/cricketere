@@ -1,7 +1,12 @@
-import { getCurrencySymbol, getLocaleCurrencyCode, getLocaleCurrencySymbol, registerLocaleData } from '@angular/common';
+import { CommonModule, getCurrencySymbol, getLocaleCurrencyCode, getLocaleCurrencySymbol, registerLocaleData } from '@angular/common';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { Res } from '../../core/resources';
 import { ConfigService } from '../../core/services';
+import { LibModule } from '../../lib/lib.module';
+import { CustomCurrencyPipe } from '../../lib/pipes/currency.pipe';
+import { RelativeTimePipe } from '../../lib/pipes/relativetime.pipe';
+import { TranslatePipe } from '../../lib/pipes/translate.pipe';
 import { Platform } from '../../lib/platform.service';
 
 enum EnumRate {
@@ -16,7 +21,15 @@ enum EnumRate {
 @Component({
 
     templateUrl: './details.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [
+      CommonModule,
+      RouterModule,
+      CustomCurrencyPipe,
+      TranslatePipe,
+      RelativeTimePipe
+    ]
 })
 export class ContentDetailsComponent implements OnInit {
 

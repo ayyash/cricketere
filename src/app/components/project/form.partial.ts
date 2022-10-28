@@ -1,13 +1,17 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
-import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { IProject, IViewMode} from '../../core/services';
+import { MdInputModule } from '../../lib/mdinput/mdinput.module';
 import { Toast } from '../../lib/toaster/toast.state';
 
 
 @Component({
     selector: 'cr-project-form',
     templateUrl: './form.partial.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [CommonModule, ReactiveFormsModule, MdInputModule]
 })
 export class ProjectFormPartialComponent implements OnInit {
 

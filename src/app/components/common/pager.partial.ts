@@ -10,6 +10,8 @@ import {
 import { LoaderService, ILoaderState, SeoService } from '../../core/services';
 import { share } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
+import { CommonModule } from '@angular/common';
+import { TranslatePipe } from '../../lib/pipes/translate.pipe';
 
 @Component({
   selector: 'cr-pager',
@@ -23,6 +25,8 @@ import { Subscription } from 'rxjs';
   `,
   styleUrls: ['./pager.less'],
   encapsulation: ViewEncapsulation.None,
+  standalone: true,
+  imports: [CommonModule, TranslatePipe]
   // changeDetection: ChangeDetectionStrategy.OnPush // note to self, very little changes here so its okay
 })
 export class PagerPartialComponent implements OnInit, OnDestroy {

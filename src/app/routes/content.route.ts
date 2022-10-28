@@ -1,13 +1,9 @@
-import { NgModule } from '@angular/core';
-import { SharedModule } from '../core/shared.module';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes } from '@angular/router';
 import { ContentDetailsComponent } from '../components/content/details.component';
-import { CustomCurrencyPipe } from '../lib/pipes/currency.pipe';
 import { ContentStandaloneComponent } from '../components/content/standalone.component';
-import { StarsPartialComponent } from '../components/common/stars.partial';
 // **gulpimport**
 
-const routes: Routes = [
+export const ContentRoutes: Routes = [
   {
     path: 'details',
     component: ContentDetailsComponent,
@@ -22,17 +18,3 @@ const routes: Routes = [
   // **gulproute**
 ];
 
-@NgModule({
-  imports: [
-    SharedModule,
-    RouterModule.forChild(routes),
-    StarsPartialComponent,
-    CustomCurrencyPipe
-  ],
-  declarations: [
-    ContentDetailsComponent
-    // **gulpcomponent**
-  ]
-})
-
-export class ContentRoutingModule { }

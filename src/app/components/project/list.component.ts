@@ -1,8 +1,12 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { map, Observable, of } from 'rxjs';
 import { EnumGtmEvent, EnumGtmSource, GtmTracking } from '../../core/gtm';
 import { IListOptions, IProject, StorageService, ProjectSeoService } from '../../core/services';
 import { GtmComponent } from '../abstract/gtm.abstract';
+import { StarsPartialComponent } from '../common/stars.partial';
+import { ProjectCardPartialComponent } from './card.partial';
 
 const projects: IProject[] = [
     {
@@ -31,7 +35,9 @@ const projects: IProject[] = [
 @Component({
 
     templateUrl: './list.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [CommonModule, ProjectCardPartialComponent, RouterModule, StarsPartialComponent]
 })
 export class ProjectListComponent extends GtmComponent implements OnInit {
 

@@ -8,7 +8,9 @@ import { GtmTracking } from '../core/gtm';
 
 
 export const configFactory = (config: ConfigService) => () =>
-    config.loadAppConfig();
+    {
+      _seqlog('configFactory');
+      return config.loadAppConfig();}
 
 @Injectable({
     providedIn: 'root'
@@ -19,6 +21,7 @@ export class ConfigService {
         private http: HttpClient,
         @Optional() @Inject('localConfig') protected localConfig: IConfig
     ) {
+      _seqlog('ConfigService');
     }
 
     private _getUrl = Config.API.config.local;
@@ -48,7 +51,7 @@ export class ConfigService {
     }
 
     loadAppConfig(): Observable<boolean> {
-
+        _seqlog('LoadAppConfig');
         if (this.localConfig) {
             this.NewInstance(this.localConfig, true);
             return of(true);
@@ -89,15 +92,13 @@ export class ConfigService {
 
 
 
-
-
-
 // PLATFORMINIT: for platform_init token, use this
 declare const WebConfig: any;
 
 export const platformFactory = (): (() => void) => {
-    _attn(WebConfig, 'platformFactory');
-    StaticConfigService.loadAppConfig();
+
+    _attn('WebConfig', 'platformFactory');
+    // StaticConfigService.loadAppConfig();
     return () => null;
 };
 
