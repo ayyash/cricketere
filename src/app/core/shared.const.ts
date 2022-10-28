@@ -1,12 +1,14 @@
-import { DataPartialComponent } from '../components/common/data.partial';
 import { LoaderComponent } from '../components/common/loader.partial';
-import { ModalPartialComponent } from '../components/common/modal.partial';
-import { PagerPartialComponent } from '../components/common/pager.partial';
+import { GtmDirective } from '../lib/directives/gtm.directive';
+import { AppShellRenderDirective } from '../lib/directives/render.directive';
+import { TranslatePipe } from '../lib/pipes/translate.pipe';
+import { ToastPartialComponent } from '../lib/toaster/toast.component';
 
 export const SHARED_COMPONENTS = [
   // add common standalone components
   LoaderComponent,
-  ModalPartialComponent,
-  PagerPartialComponent,
-  DataPartialComponent,
+  ToastPartialComponent,
+  AppShellRenderDirective,
+  TranslatePipe,
+  GtmDirective
 ] as const;

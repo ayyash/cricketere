@@ -9,9 +9,7 @@ import { Toast } from '../../lib/toaster/toast.state';
 @Component({
     selector: 'cr-project-form',
     templateUrl: './form.partial.html',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [CommonModule, ReactiveFormsModule, MdInputModule]
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProjectFormPartialComponent implements OnInit {
 

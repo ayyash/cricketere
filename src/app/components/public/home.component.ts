@@ -1,19 +1,13 @@
-import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { RouterModule } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { Res } from '../../core/resources';
 import { ConfigService, HomeSeoService } from '../../core/services';
-import { GtmDirective } from '../../lib/directives/gtm.directive';
-import { TranslatePipe } from '../../lib/pipes/translate.pipe';
 import { EnumTimeout } from '../../lib/toaster/toast.model';
 import { Toast } from '../../lib/toaster/toast.state';
 import { GtmComponent } from '../abstract/gtm.abstract';
 @Component({
 
-    templateUrl: './home.html',
-    standalone: true,
-    imports: [CommonModule, TranslatePipe, RouterModule, GtmDirective]
+    templateUrl: './home.html'
 })
 export class PublicHomeComponent extends GtmComponent implements OnInit  {
 

@@ -1,29 +1,24 @@
-import { ENVIRONMENT_INITIALIZER } from '@angular/core';
-import { Routes} from '@angular/router';
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 import { ProjectCreateComponent } from '../components/project/create.component';
 import { ProjectEditComponent } from '../components/project/edit.component';
 import { ProjectListComponent } from '../components/project/list.component';
 import { ProjectViewComponent } from '../components/project/view.component';
-import { ConfigService } from '../services/config.service';
 import { ProjectResolve } from '../services/project.resolve';
+import { StarsPartialComponent } from '../components/common/stars.partial';
+import { ProjectCardPartialComponent } from '../components/project/card.partial';
+import { SHARED_COMPONENTS } from '../core/shared.const';
+import { CommonModule } from '@angular/common';
+import { ProjectFormPartialComponent } from '../components/project/form.partial';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MdInputModule } from '../lib/mdinput/mdinput.module';
 // **gulpimport**
 
-export const ProjectRoutes: Routes = [
+const routes: Routes = [
     {
         path: '',
         component: ProjectListComponent,
-        title: 'LIST_PROJECTS',
-        providers: [
-          {
-            provide: ENVIRONMENT_INITIALIZER,
-            multi: true,
-            useValue() {
-              // same effect everywhere
-              _seqlog('PublicRoutes');
-              _attn('this is nothing', 'list of projects');
-            },
-          }
-        ]
+        title: 'LIST_PROJECTS'
     }
     , {
         path: 'create',
@@ -31,17 +26,7 @@ export const ProjectRoutes: Routes = [
         title: 'CREATE_PROJECT',
         resolve: {
             ready: ProjectResolve
-        },
-        providers: [
-          {
-            provide: ENVIRONMENT_INITIALIZER,
-            multi: true,
-            useValue() {
-              _seqlog('PublicRoutes');
-              _attn(ConfigService.Config.isServed, 'create');
-            },
-          }
-        ]
+        }
     }
 
     , {
@@ -57,3 +42,24 @@ export const ProjectRoutes: Routes = [
 
     // **gulproute**
 ];
+
+@NgModule({
+    imports: [
+      CommonModule,
+        StarsPartialComponent,
+        ProjectCardPartialComponent,
+        ReactiveFormsModule,
+        MdInputModule,
+        RouterModule.forChild(routes)
+    ],
+    declarations: [
+        ProjectListComponent
+        , ProjectViewComponent
+        , ProjectCreateComponent
+        , ProjectEditComponent
+        , ProjectFormPartialComponent,
+        // **gulpcomponent**
+    ]
+})
+
+export class ProjectRoutingModule { }

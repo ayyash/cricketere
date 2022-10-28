@@ -18,10 +18,7 @@ const mockProject: IProject = {
 
     templateUrl: './view.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [
-      CommonModule
-    ]
+
 })
 export class ProjectViewComponent implements OnInit {
 

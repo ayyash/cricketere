@@ -13,8 +13,7 @@ import { ProjectFormPartialComponent } from './form.partial';
 
     templateUrl: './create.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [ProjectFormPartialComponent, CommonModule]
+
 })
 export class ProjectCreateComponent implements OnInit {
     x$: Observable<any>;

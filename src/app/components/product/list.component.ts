@@ -16,9 +16,7 @@ import { ProductState } from '../../services/product.state';
 
     templateUrl: './list.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [ParamState],
-    standalone: true,
-    imports: [CommonModule, RouterModule]
+    providers: [ParamState]
 })
 export class ProductListComponent implements OnInit {
 
