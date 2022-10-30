@@ -1,6 +1,6 @@
 import { ViewportScroller } from '@angular/common';
 import { ENVIRONMENT_INITIALIZER, importProvidersFrom, inject } from '@angular/core';
-import { Router, RouteReuseStrategy, RouterModule, Routes, Scroll, TitleStrategy } from '@angular/router';
+import { provideRouter, Router, RouteReuseStrategy, RouterModule, Routes, Scroll, TitleStrategy, withDebugTracing, withEnabledBlockingInitialNavigation, withInMemoryScrolling, withPreloading, withRouterConfig } from '@angular/router';
 import { filter } from 'rxjs';
 import { NotFoundComponent } from './components/layouts/404.component';
 import { ErrorComponent } from './components/layouts/error.component';
@@ -80,7 +80,7 @@ const AppRoutes: Routes = [
 const appFactory = (router: Router) => () => {
   _seqlog('appFactory');
   _attn(ConfigService.Config.isServed, 'config served');
-   router.events.pipe(
+  router.events.pipe(
     filter(event => event instanceof Scroll)
   ).subscribe({
     next: (e: Scroll) => {
@@ -92,6 +92,18 @@ const appFactory = (router: Router) => () => {
 };
 
 export const AppRouteProviders = [
+  // provideRouter(AppRoutes,
+  //   // withPreloading(PreloadService),
+  //   // withInMemoryScrolling({
+  //   //   scrollPositionRestoration: 'disabled',
+  //   // }),
+  //   // withEnabledBlockingInitialNavigation(),
+  //   // withRouterConfig({
+  //   //   paramsInheritanceStrategy: 'always',
+  //   //   onSameUrlNavigation: 'reload'
+  //   // }),
+  //   // withDebugTracing()
+  // ),
   importProvidersFrom(RouterModule.forRoot(AppRoutes, {
     preloadingStrategy: PreloadService,
     paramsInheritanceStrategy: 'always',
