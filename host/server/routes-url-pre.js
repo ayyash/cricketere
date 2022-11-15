@@ -1,5 +1,5 @@
 const express = require('express');
-
+const existsSync = require('fs').existsSync;
 // multilingual url driven, clientside only
 
 module.exports = function (app, config) {
@@ -35,16 +35,34 @@ module.exports = function (app, config) {
             }
         });
     });
+    app.use('/:lang/localdata', express.static(config.rootPath + 'localdata'));
 
 
-    app.use('/:lang/localdata/', express.static(config.rootPath + 'localdata'));
-    // use static files in client, but skip index file
-    app.use('/:lang', express.static(config.rootPath + 'client', { index: false }));
+  // to prerender en and ar, open up client on root, wont work with slash
+    // app.use(express.static(config.rootPath + 'client'));
+    app.use(express.static(config.rootPath + 'client', {extensions: ['html'], redirect: false}));
+
+
+    // use static files in client, but skip index file, we cannot use "*.*" here
+    app.use('/:lang', express.static(config.rootPath + 'client', {index: false, redirect: false}));
+
+    // to get trailing slash, doesnt matter, angular will place the slash
+    // app.get(config.languages.map(n => `/${n}`), (req, res) => {
+    //   res.sendFile(config.rootPath + `index/index.${res.locals.lang}.url.html`);
+    // });
 
 
     app.get(config.languages.map(n => `/${n}/*`), (req, res) => {
+
       // index/en/index.html better than index/index.en.url.index
       // or index/index.en.html for non url
+      // for prerendering and no slash, you might use this without langage, its part of url
+      // const static = config.rootPath + 'client/' + req.path.split(';')[0] + '/index.html';
+      // if (existsSync(static)) {
+      //   res.sendFile(static);
+      //   return;
+      // }
+
         res.sendFile(config.rootPath + `index/index.${res.locals.lang}.url.html`);
     });
 

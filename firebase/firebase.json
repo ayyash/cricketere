@@ -3,6 +3,7 @@
     {
       "target": "web",
       "public": "client",
+      "cleanUrls": true,
       "ignore": [
         "firebase.json",
         "**/.*",
@@ -11,11 +12,11 @@
       "rewrites": [
         {
           "source": "/ar{,/**}",
-          "destination": "/ar/index.html"
+          "destination": "/index.ar.html"
         },
         {
           "source": "**",
-          "destination": "/en/index.html"
+          "destination": "/index.en.html"
         }
       ]
     }

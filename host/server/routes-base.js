@@ -8,11 +8,18 @@ module.exports = function (app, config) {
 
 
     app.use('/localdata/', express.static(config.rootPath + 'localdata'));
+
+
+    app.get('*.*', express.static(config.rootPath + 'client'));
+
     // use static files in client, but skip index file
-    app.use('/', express.static(config.rootPath + 'client', { index: false }));
+    app.use(express.static(config.rootPath + 'client', {  extensions: ['html'], redirect: false, index: false}));
 
 
     app.get(config.languages.map(n => `/${n}/*`), (req, res) => {
+      // check existence of file first
+      console.log(req.url);
+      // check existence of file first
         res.sendFile(config.rootPath + `index/index.${res.locals.lang}.html`);
     });
 

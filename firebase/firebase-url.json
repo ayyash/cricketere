@@ -3,6 +3,7 @@
     {
       "target": "web",
       "public": "client",
+      "cleanUrls": true,
       "ignore": [
         "firebase.json",
         "**/.*",

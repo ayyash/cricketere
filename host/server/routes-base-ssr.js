@@ -19,14 +19,14 @@ module.exports = function (app, config) {
 
 
     // ignore index file from client folder
-    app.use('/', express.static(config.rootPath + 'client', {index: false}));
+    app.get('*.*', express.static(config.rootPath + 'client', {index: false}));
 
-    // lets add static, cannot afford this
-    app.use('/', express.static(config.rootPath + 'client/static'));
+    // no need for this
+    // app.use(express.static(config.rootPath + 'client/', {redirect: false, extensions: ['html']}));
 
     app.get(config.languages.map(n => `/${n}/*`), (req, res) => {
+        // this is supposed to serve the right physical file
 
-        //
         res.render(config.rootPath + `index/index.${res.locals.lang}.html`, {
             req,
             res,

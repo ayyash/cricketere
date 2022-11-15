@@ -59,20 +59,27 @@ module.exports = function (app, config) {
   }));
 
 
-  app.use(express.static(config.rootPath + 'client', {
-    index: false
-  }));
+  app.get('*.*', express.static(config.rootPath + 'client'));
 
+  // can't use this with prerender and no slash
+  // app.use(express.static(config.rootPath + 'client', {
+  //   index: false
+  // }));
+
+  app.use(express.static(config.rootPath + 'client/en', {extensions: ['html'], redirect: false, index: false}));
+  app.use(express.static(config.rootPath + 'client/ar', {extensions: ['html'], redirect: false, index: false}));
 
 
   app.get('/*', (req, res) => {
     // first find the static page
     // console.log(req.path.split(';')[0] + '/index.html');
-    const static = config.rootPath + 'client/static/' + res.locals.lang + req.path.split(';')[0] + '/index.html';
-    if (existsSync(static)) {
-      res.sendFile(static);
-      return;
-    }
+
+    // const static = config.rootPath + 'client/' + res.locals.lang + req.path.split(';')[0] + '.html';
+    // console.log('ssssss', static);
+    // if (existsSync(static)) {
+    //   res.sendFile(static);
+    //   return;
+    // }
     res.render(config.rootPath + `index/index.${res.locals.lang}.html`, {
       req,
       res,

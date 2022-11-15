@@ -69,6 +69,7 @@ export async function PreRender({
 
 
   // correct route without main folder
+  // TODO: cutup route, use subroute then leaf
   const outputFolderPath = path.join(clientPath, route);
 
   // added index.html inside of it
