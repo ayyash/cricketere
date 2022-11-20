@@ -79,7 +79,8 @@ const routes: Routes = [
       preloadingStrategy: PreloadService,
       paramsInheritanceStrategy: 'always',
       onSameUrlNavigation: 'reload',
-      scrollPositionRestoration: 'disabled',
+      scrollPositionRestoration: 'enabled',
+      // anchorScrolling: 'enabled',
       initialNavigation: 'enabledBlocking'
     })
   ],
@@ -101,22 +102,28 @@ export class AppRoutingModule {
       filter(event => event instanceof Scroll)
     ).subscribe({
       next: (e: Scroll) => {
-        if (e.position) {
-          // backward navigation
-          // _attn(e.position, 'position');
-          viewportScroller.scrollToPosition(e.position);
-        } else if (e.anchor) {
-          // anchor navigation
-          // _attn(e.anchor, 'anchor');
-          viewportScroller.scrollToAnchor(e.anchor);
-        } else {
-          // forward navigation
-          // check url if page exists do not scroll
-          if (!e.routerEvent.urlAfterRedirects.includes('page')) {
-            // _attn('no page', 'scroll top');
-            viewportScroller.scrollToPosition([0, 0]);
-          }
-        }
+         if (e.anchor) {
+            setTimeout(() => {
+
+              viewportScroller.scrollToAnchor(e.anchor);
+            });
+         }
+        // if (e.position) {
+        //   // backward navigation
+        //   // _attn(e.position, 'position');
+        //   viewportScroller.scrollToPosition(e.position);
+        // } else if (e.anchor) {
+        //   // anchor navigation
+        //   // _attn(e.anchor, 'anchor');
+        //   viewportScroller.scrollToAnchor(e.anchor);
+        // } else {
+        //   // forward navigation
+        //   // check url if page exists do not scroll
+        //   if (!e.routerEvent.urlAfterRedirects.includes('page')) {
+        //     // _attn('no page', 'scroll top');
+        //     viewportScroller.scrollToPosition([0, 0]);
+        //   }
+        // }
       }
     });
 
