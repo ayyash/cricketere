@@ -79,8 +79,8 @@ const routes: Routes = [
       preloadingStrategy: PreloadService,
       paramsInheritanceStrategy: 'always',
       onSameUrlNavigation: 'reload',
-      scrollPositionRestoration: 'enabled',
-      // anchorScrolling: 'enabled',
+      scrollPositionRestoration: 'top',
+      anchorScrolling: 'enabled',
       initialNavigation: 'enabledBlocking'
     })
   ],
@@ -102,12 +102,9 @@ export class AppRoutingModule {
       filter(event => event instanceof Scroll)
     ).subscribe({
       next: (e: Scroll) => {
-         if (e.anchor) {
-            setTimeout(() => {
-
-              viewportScroller.scrollToAnchor(e.anchor);
-            });
-         }
+        //  if (e.anchor) {
+        //     viewportScroller.scrollToAnchor(e.anchor);
+        //  }
         // if (e.position) {
         //   // backward navigation
         //   // _attn(e.position, 'position');
