@@ -1,7 +1,7 @@
 import { ViewportScroller, Location } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { NgModule, NgZone } from '@angular/core';
 import { NavigationEnd, Router, RouteReuseStrategy, RouterModule, Routes, Scroll, TitleStrategy } from '@angular/router';
-import { filter } from 'rxjs';
+import { filter, timer } from 'rxjs';
 import { NotFoundComponent } from './components/layouts/404.component';
 import { ErrorComponent } from './components/layouts/error.component';
 import { MainLayoutComponent } from './components/layouts/main.component';
@@ -94,6 +94,7 @@ export class AppRoutingModule {
     router: Router,
     // location: Location, // angular/common
     viewportScroller: ViewportScroller,
+    zone: NgZone
 
   ) {
     _seqlog('app routing');
@@ -102,9 +103,18 @@ export class AppRoutingModule {
       filter(event => event instanceof Scroll)
     ).subscribe({
       next: (e: Scroll) => {
-        //  if (e.anchor) {
-        //     viewportScroller.scrollToAnchor(e.anchor);
-        //  }
+         if (e.anchor) {
+            // zone.runOutsideAngular(() => {
+            //    setTimeout(() => {
+            //      zone.run(() => {
+            //       viewportScroller.scrollToAnchor(e.anchor);
+            //      });
+            //    }, 1000);
+            //  });
+          //  viewportScroller.scrollToAnchor(e.anchor);
+            // timer(700).subscribe(() => {
+            // });
+         }
         // if (e.position) {
         //   // backward navigation
         //   // _attn(e.position, 'position');

@@ -12,12 +12,14 @@
                 <a [href]="getShowLink(false)" (click)="showProducts(false, $event)">Private</a>
             </div>
             <ul class="rowlist" >
-                <li *ngFor="let item of products">
+                <li *ngFor="let item of products" id="item{{ item.name}}">
                     {{ item.name }} - {{item.price }}
                 </li>
             </ul>
             Page {{params.page}}
             <a class="btn" [href]="getNextLink()" (click)="nextPage($event)" *ngIf="params.hasMore">Next</a>
+            <p id="ayyash"></p>
+
         </ng-container>
         <a routerLink="/projects" [queryParams]="{page: 2}">Test forward with page</a>
     </div>
@@ -29,4 +31,3 @@
         </ng-container>
     </div>
 </div>
-<p id="ayyash"></p>

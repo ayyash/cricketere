@@ -1,10 +1,12 @@
 // for page state
+import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { clone } from '../core/common';
 import { debug } from '../core/rxjs.operators';
 import { IListItem } from '../models/list.model';
 
 
+// @Injectable()
 export class ListStateService<T extends IListItem>  {
 
     protected stateList: BehaviorSubject<T[]> = new BehaviorSubject([]);
