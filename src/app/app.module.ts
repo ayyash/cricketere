@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { TransferHttpCacheModule } from '@nguniversal/common';
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { AppRoutingModule } from './routing.module';
-import { CoreModule } from './core/core.module';
+import {  CoreProviders } from './core/core.module';
 import { LocaleId, RootHref } from './core/resources';
 import { AppComponent } from './app.component';
 import { SHARED_COMPONENTS } from './core/shared.const';
@@ -19,11 +19,12 @@ import { SingleLayoutComponent } from './components/layouts/single.component';
     BrowserModule.withServerTransition({ appId: 'crsr' }),
     TransferHttpCacheModule,
     AppRoutingModule,
-    CoreModule,
+    // CoreModule,
     ...SHARED_COMPONENTS
   ],
   providers: [
-    { provide: LOCALE_ID, useClass: LocaleId }
+    { provide: LOCALE_ID, useClass: LocaleId },
+    ...CoreProviders
     // for hosts like netlify
     // , { provide: APP_BASE_HREF, useClass: RootHref }
     // do this when you have one currency, not multiple locales

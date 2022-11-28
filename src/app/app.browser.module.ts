@@ -7,6 +7,6 @@ import { AppModule } from './app.module';
     imports: [
         AppModule
     ],
-    // bootstrap: [AppComponent]
+    bootstrap: [AppComponent]
 })
 export class AppBrowserModule {}
