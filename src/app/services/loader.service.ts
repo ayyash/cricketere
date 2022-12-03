@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { share } from 'rxjs';
 import { ILoaderState, EnumLoaderSource } from '../core/services';
 import { StateService } from './state.abstract';
 
@@ -14,6 +15,8 @@ export class LoaderService extends StateService<ILoaderState> {
         this.SetState({
             show: false, source: null, url: null
         });
+
+        this.stateItem$ = this.stateItem$.pipe(share());
     }
     show(source: EnumLoaderSource = EnumLoaderSource.HTTP) {
         this.UpdateState({show: true, source});

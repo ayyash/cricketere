@@ -19,8 +19,10 @@
             <a class="btn" [href]="getNextLink()" (click)="nextPage($event)" *ngIf="params.hasMore">Next</a>
         </ng-container>
         <a routerLink="/projects" [queryParams]="{page: 2}">Test forward with page</a>
+
     </div>
     <div>
+      <cr-pager [isLoadMore]="true" (onPage)="nextPage($event)" ></cr-pager>
 
         Somethign else on the page, this works even if above failed
         <ng-container *ngIf="params$ | async as params">

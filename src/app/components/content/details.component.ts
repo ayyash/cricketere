@@ -3,7 +3,6 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Res } from '../../core/resources';
 import { ConfigService } from '../../core/services';
-import { LibModule } from '../../lib/lib.module';
 import { CustomCurrencyPipe } from '../../lib/pipes/currency.pipe';
 import { RelativeTimePipe } from '../../lib/pipes/relativetime.pipe';
 import { TranslatePipe } from '../../lib/pipes/translate.pipe';
