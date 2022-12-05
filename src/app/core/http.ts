@@ -7,11 +7,21 @@ import {
     HttpHandler,
     HttpRequest,
     HttpResponse,
-    HttpHeaders
+    HttpHeaders,
+    HttpContextToken,
+    HttpContext
 } from '@angular/common/http';
 import { ConfigService, LoaderService } from './services';
 import { debug, catchAppError } from './rxjs.operators';
 
+
+
+// create a context token
+const LOADING_SOURCE = new HttpContextToken<string>(() => '');
+
+export const applyContext = (src: string) => {
+  return { context: new HttpContext().set(LOADING_SOURCE, src) };
+};
 
 @Injectable()
 export class CricketereInterceptor implements HttpInterceptor {
@@ -30,7 +40,7 @@ export class CricketereInterceptor implements HttpInterceptor {
 
 
         const adjustedReq = req.clone({ url: url, setHeaders: this.getHeaders(req.headers) });
-        this.loaderService.show();
+        this.loaderService.show(req.context.get(LOADING_SOURCE));
 
         if (req.body){
             _debug(req.body, `Request ${req.method} ${req.urlWithParams}`, 'p');
@@ -42,7 +52,7 @@ export class CricketereInterceptor implements HttpInterceptor {
                 shareReplay(),
                 map(response => this.mapData(response)),
                 finalize(() => {
-                    this.loaderService.hide();
+                    this.loaderService.hide(req.context.get(LOADING_SOURCE));
                 }),
                 debug(`${req.method} ${req.urlWithParams}`, 'p'),
                 catchAppError(`${req.method} ${req.urlWithParams}`)

@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { GetParamsAsString } from '../core/common';
 import { IProduct, Product, IListOptions, IList, ListOptions } from '../core/services';
+import { applyContext } from '../core/http.fn';
 
 
 
@@ -21,7 +22,8 @@ export class ProductService {
         const params = GetParamsAsString(ListOptions.MapSearchListOptions(options));
         const _url = this._listUrl.replace(':options', params);
 
-        return this._http.get(_url).pipe(
+        // if params options contain context, set it
+        return this._http.get(_url, options.source ? applyContext(options.source) : {}).pipe(
             map(response => {
                 return Product.NewList(<any>response);
             })

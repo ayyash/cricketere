@@ -1,8 +1,16 @@
-import { HttpHeaders, HttpResponse, HttpInterceptorFn, HttpRequest, HttpHandlerFn } from '@angular/common/http';
+import { HttpHeaders, HttpResponse, HttpInterceptorFn, HttpRequest, HttpHandlerFn, HttpContextToken, HttpContext } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { shareReplay, map, finalize } from 'rxjs';
 import { debug, catchAppError } from './rxjs.operators';
 import { ConfigService, LoaderService } from './services';
+
+
+// create a context token
+const LOADING_SOURCE = new HttpContextToken<string>(() => '');
+
+export const applyContext = (src: string) => {
+  return { context: new HttpContext().set(LOADING_SOURCE, src) };
+};
 
 
 const getHeaders = (reqheaders: HttpHeaders): any => {
@@ -38,7 +46,7 @@ export const CricketereInterceptorFn: HttpInterceptorFn = (req: HttpRequest<any>
 
 
    const adjustedReq = req.clone({ url: url, setHeaders: getHeaders(req.headers) });
-   loaderService.show();
+   loaderService.show(req.context.get(LOADING_SOURCE));
 
    if (req.body) {
       _debug(req.body, `Request ${req.method} ${req.urlWithParams}`, 'p');
@@ -49,7 +57,7 @@ export const CricketereInterceptorFn: HttpInterceptorFn = (req: HttpRequest<any>
          shareReplay(),
          map(response => mapData(response)),
          finalize(() => {
-            loaderService.hide();
+            loaderService.hide(req.context.get(LOADING_SOURCE));
          }),
          debug(`${req.method} ${req.urlWithParams}`, 'p'),
          catchAppError(`${req.method} ${req.urlWithParams}`)

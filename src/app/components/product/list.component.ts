@@ -44,7 +44,8 @@ export class ProductListComponent implements OnInit {
                 return {
                     page: +p.get('page') || 1,
                     isPublic: p.get('public') === 'true',
-                    size: Config.Basic.defaultSize
+                    size: Config.Basic.defaultSize,
+                    source: p.get('source') // lousy solution but it works
                 };
             }),
             // here add a filter to filter out changes we do not want to trigger
@@ -84,15 +85,16 @@ export class ProductListComponent implements OnInit {
 
 
     }
-    nextPage(event: MouseEvent) {
-        event.preventDefault();
+    nextPage(e: {event: MouseEvent, source?: string}) {
+        e.event.preventDefault();
 
         // increase page, and get all other params
         const page = this.paramState.currentItem.page + 1;
         const isPublic = this.paramState.currentItem.isPublic;
 
+        // this.paramState.UpdateState({source});
         // dependency of Angular router
-        this.router.navigate(['.', { page, public: isPublic }], {
+        this.router.navigate(['.', { page, public: isPublic, source: e.source }], {
           skipLocationChange: true
         });
 

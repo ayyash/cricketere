@@ -19,6 +19,7 @@ export interface IListOptions {
     hasMore?: boolean;
     category?: ICategory;
     isPublic?: boolean;
+    source?: string;
 }
 
 

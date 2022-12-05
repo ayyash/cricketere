@@ -16,13 +16,14 @@
                 </li>
             </ul>
             Page {{params.page}}
-            <a class="btn" [href]="getNextLink()" (click)="nextPage($event)" *ngIf="params.hasMore">Next</a>
+            <a class="btn" [href]="getNextLink()" (click)="nextPage({event: $event})" *ngIf="params.hasMore">Next</a>
         </ng-container>
         <a routerLink="/projects" [queryParams]="{page: 2}">Test forward with page</a>
 
     </div>
     <div>
-      <cr-pager [isLoadMore]="true" (onPage)="nextPage($event)" ></cr-pager>
+      <cr-pager [isLoadMore]="true" source="pager1" #pager1 (onPage)="nextPage($event)" ></cr-pager>
+      <cr-pager [isLoadMore]="true" source="pager2" (onPage)="nextPage($event)" ></cr-pager>
 
         Somethign else on the page, this works even if above failed
         <ng-container *ngIf="params$ | async as params">

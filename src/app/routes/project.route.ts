@@ -7,7 +7,6 @@ import { ProjectViewComponent } from '../components/project/view.component';
 import { ProjectResolve } from '../services/project.resolve';
 import { StarsPartialComponent } from '../components/common/stars.partial';
 import { ProjectCardPartialComponent } from '../components/project/card.partial';
-import { SHARED_COMPONENTS } from '../core/shared.const';
 import { CommonModule } from '@angular/common';
 import { ProjectFormPartialComponent } from '../components/project/form.partial';
 import { ReactiveFormsModule } from '@angular/forms';

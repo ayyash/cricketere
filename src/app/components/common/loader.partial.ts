@@ -1,8 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Observable, Subscription } from 'rxjs';
-import { LoaderService, ILoaderState } from '../../core/services';
-import { map, share } from 'rxjs/operators';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
+import { LoaderService } from '../../services/loader.service';
 
 @Component({
     selector: 'http-loader',
@@ -14,9 +14,7 @@ import { CommonModule } from '@angular/common';
     standalone: true,
     imports: [CommonModule]
 })
-export class LoaderComponent implements OnInit, OnDestroy {
-    show = false;
-    private subscription: Subscription;
+export class LoaderComponent implements OnInit {
 
     show$: Observable<boolean>;
 
@@ -31,7 +29,5 @@ export class LoaderComponent implements OnInit, OnDestroy {
 
 
     }
-    ngOnDestroy() {
-         this.subscription.unsubscribe();
-    }
+
 }

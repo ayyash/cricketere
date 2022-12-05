@@ -5,17 +5,16 @@ import {
   Output,
   EventEmitter,
   ViewEncapsulation,
-  OnDestroy
 } from '@angular/core';
-import { LoaderService, ILoaderState, SeoService } from '../../core/services';
-import { map, share } from 'rxjs/operators';
-import { Observable, Subscription } from 'rxjs';
+import { filter, map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { TranslatePipe } from '../../lib/pipes/translate.pipe';
+import { LoaderService } from '../../services/loader.service';
+import { SeoService } from '../../services/seo.service';
 
 @Component({
   selector: 'cr-pager',
-  // templateUrl: './pager.partial.html',
   template: `
     <div class="pager" [class.loading]="loading$ | async">
         <button class="btn-fake" *ngIf="isLoadMore" (click)="page($event)" title="{{'show more' | translate:'ShowMore'}}">More</button>
@@ -27,33 +26,23 @@ import { TranslatePipe } from '../../lib/pipes/translate.pipe';
   encapsulation: ViewEncapsulation.None,
   standalone: true,
   imports: [CommonModule, TranslatePipe]
-  // changeDetection: ChangeDetectionStrategy.OnPush // note to self, very little changes here so its okay
 })
-export class PagerPartialComponent implements OnInit, OnDestroy {
+export class PagerPartialComponent implements OnInit {
   @Input() isLoadMore = false;
+  @Input() source?: string;
   @Output() onPage: EventEmitter<any> = new EventEmitter();
 
-  // private subscription: Subscription;
 
 
   mimicHref = '';
-
-  // loading = false;
-
   loading$: Observable<boolean>;
 
   constructor(private loaderService: LoaderService, private seoService: SeoService) {
-    //
   }
   ngOnInit(): void {
-    //
-    // this.subscription = this.loaderService.stateItem$.pipe(share()).subscribe((state: ILoaderState) => {
-    //   // if state is false, paging has ended, hide loader
-    //   if (!state.show) {
-    //     this.loading = false;
-    //   }
-    // });
+
     this.loading$ = this.loaderService.stateItem$.pipe(
+      filter(state => state.context === this.source),
       map(state => state ? state.show : false)
     );
 
@@ -61,12 +50,8 @@ export class PagerPartialComponent implements OnInit, OnDestroy {
 
   }
   page(event: any): void {
-    this.onPage.emit(event);
+    this.onPage.emit({event, source: this.source});
     // emit a show event, no just show a loading effect
-    // this.loading = true;
-  }
-  ngOnDestroy() {
-    // this.subscription.unsubscribe();
   }
 
   getMimicHref() {
