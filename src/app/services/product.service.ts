@@ -18,7 +18,7 @@ export class ProductService {
 
     }
 
-    GetProducts(options: IListOptions = {}): Observable<IList<IProduct>> {
+    GetProducts(options: IListOptions = {}, context?: any): Observable<IList<IProduct>> {
         const params = GetParamsAsString(ListOptions.MapSearchListOptions(options));
         const _url = this._listUrl.replace(':options', params);
 

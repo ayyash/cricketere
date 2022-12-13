@@ -22,7 +22,7 @@
 
     </div>
     <div>
-      <cr-pager [isLoadMore]="true" source="pager1" #pager1 (onPage)="nextPage($event)" ></cr-pager>
+      <cr-pager [isLoadMore]="true" source="pager1" (onPage)="nextPage($event)" ></cr-pager>
       <cr-pager [isLoadMore]="true" source="pager2" (onPage)="nextPage($event)" ></cr-pager>
 
         Somethign else on the page, this works even if above failed

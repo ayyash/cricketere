@@ -30,7 +30,7 @@ import { SeoService } from '../../services/seo.service';
 export class PagerPartialComponent implements OnInit {
   @Input() isLoadMore = false;
   @Input() source?: string;
-  @Output() onPage: EventEmitter<any> = new EventEmitter();
+  @Output() onPage: EventEmitter<{event: MouseEvent, source: string}> = new EventEmitter();
 
 
 
@@ -49,7 +49,8 @@ export class PagerPartialComponent implements OnInit {
     this.mimicHref = this.getMimicHref();
 
   }
-  page(event: any): void {
+  page(event: MouseEvent): void {
+   // pass back the source
     this.onPage.emit({event, source: this.source});
     // emit a show event, no just show a loading effect
   }

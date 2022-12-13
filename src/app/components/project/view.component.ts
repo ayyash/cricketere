@@ -1,8 +1,7 @@
-import { CommonModule } from '@angular/common';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, of, switchMap, tap } from 'rxjs';
-import { DataService, IData, IProject, ProjectSeoService } from '../../core/services';
+import { map, Observable, of, switchMap, tap } from 'rxjs';
+import { DataService, IData, IProject, ProjectSeoService, ProjectService } from '../../core/services';
 
 const mockProject: IProject = {
     title: 'Turtle Rock',
@@ -27,6 +26,7 @@ export class ProjectViewComponent implements OnInit {
 
     constructor(private route: ActivatedRoute,
         private dataService: DataService,
+        private projectService: ProjectService,
         private seoService: ProjectSeoService) {
         //
     }
@@ -36,9 +36,9 @@ export class ProjectViewComponent implements OnInit {
 
 
         this.project$ = this.route.paramMap.pipe(
-            switchMap(params => {
-                // get project from service by params
-                return of(mockProject);
+            switchMap(params => this.projectService.GetProject(params.get('id'))),
+            map(response => {
+               return mockProject;
             }),
             tap(project => {
                 _seqlog('title');

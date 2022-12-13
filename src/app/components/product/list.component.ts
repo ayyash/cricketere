@@ -94,7 +94,8 @@ export class ProductListComponent implements OnInit {
 
         // this.paramState.UpdateState({source});
         // dependency of Angular router
-        this.router.navigate(['.', { page, public: isPublic, source: e.source }], {
+        // having multple paginators that control the url is a lousy idea
+        this.router.navigate(['.', { page, public: isPublic}], {
           skipLocationChange: true
         });
 

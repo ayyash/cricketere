@@ -42,10 +42,10 @@ export const CricketereInterceptorFn: HttpInterceptorFn = (req: HttpRequest<any>
       // pass through
       return next(req);
    }
-   const url = ConfigService.Config.API.apiRoot + req.url;
+   const url = 'https://slowfil.es/file?type=js&delay=2500'; // ConfigService.Config.API.apiRoot + req.url;
 
 
-   const adjustedReq = req.clone({ url: url, setHeaders: getHeaders(req.headers) });
+   const adjustedReq = req.clone({ url: url, setHeaders: getHeaders(req.headers), responseType: 'text' });
    loaderService.show(req.context.get(LOADING_SOURCE));
 
    if (req.body) {

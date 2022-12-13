@@ -12,3 +12,7 @@ export interface ILoaderState {
     context?: string;
 }
 
+export interface ISourceEvent {
+   event: MouseEvent;
+   source?: string;
+}
