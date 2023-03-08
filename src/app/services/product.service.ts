@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { GetParamsAsString } from '../core/common';
 import { IProduct, Product, IListOptions, IList, ListOptions } from '../core/services';
-import { applyContext } from '../core/http.fn';
+import { applyContext } from '../core/http';
 
 
 

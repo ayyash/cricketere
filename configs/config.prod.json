@@ -1,7 +1,7 @@
 {
     "isServed": true,
     "API": {
-        "apiRoot": "https://sss.azurewebsites.net/v1/api"
+        "apiRoot": "https://saphire.sekrab.com/api"
     },
     "Auth": {
         "userAccessKey": "user"

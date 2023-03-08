@@ -1,65 +1,65 @@
-import { HttpHeaders, HttpResponse, HttpInterceptorFn, HttpRequest, HttpHandlerFn, HttpContextToken, HttpContext } from '@angular/common/http';
-import { inject } from '@angular/core';
-import { shareReplay, map, finalize } from 'rxjs';
-import { debug, catchAppError } from './rxjs.operators';
-import { ConfigService, LoaderService } from './services';
+// import { HttpHeaders, HttpResponse, HttpInterceptorFn, HttpRequest, HttpHandlerFn, HttpContextToken, HttpContext } from '@angular/common/http';
+// import { inject } from '@angular/core';
+// import { shareReplay, map, finalize } from 'rxjs';
+// import { debug, catchAppError } from './rxjs.operators';
+// import { ConfigService, LoaderService } from './services';
 
 
-// create a context token
-const LOADING_SOURCE = new HttpContextToken<string>(() => '');
+// // create a context token
+// const LOADING_SOURCE = new HttpContextToken<string>(() => '');
 
-export const applyContext = (src: string) => {
-  return { context: new HttpContext().set(LOADING_SOURCE, src) };
-};
-
-
-const getHeaders = (reqheaders: HttpHeaders): any => {
-   //  authorization here
-   let headers: any = {};
+// export const applyContext = (src: string) => {
+//   return { context: new HttpContext().set(LOADING_SOURCE, src) };
+// };
 
 
-   return headers;
-};
-
-// if response wrapped with "data"
-const mapData = (response: any) => {
-   if (response instanceof HttpResponse) {
-
-      // clone body and modify so that "data" is removed as a wrapper
-      if (response.body && response.body.data) {
-         response = response.clone({ body: response.body.data });
-      }
-   }
-   return response;
-};
-
-export const CricketereInterceptorFn: HttpInterceptorFn = (req: HttpRequest<any>, next: HttpHandlerFn) => {
-
-   const loaderService = inject(LoaderService);
+// const getHeaders = (reqheaders: HttpHeaders): any => {
+//    //  authorization here
+//    let headers: any = {};
 
 
-   if (req.url.indexOf('localdata') > -1 || req.url.indexOf('http') > -1) {
-      // pass through
-      return next(req);
-   }
-   const url = 'https://slowfil.es/file?type=js&delay=2500'; // ConfigService.Config.API.apiRoot + req.url;
+//    return headers;
+// };
+
+// // if response wrapped with "data"
+// const mapData = (response: any) => {
+//    if (response instanceof HttpResponse) {
+
+//       // clone body and modify so that "data" is removed as a wrapper
+//       if (response.body && response.body.data) {
+//          response = response.clone({ body: response.body.data });
+//       }
+//    }
+//    return response;
+// };
+
+// export const CricketereInterceptorFn: HttpInterceptorFn = (req: HttpRequest<any>, next: HttpHandlerFn) => {
+
+//    const loaderService = inject(LoaderService);
 
 
-   const adjustedReq = req.clone({ url: url, setHeaders: getHeaders(req.headers), responseType: 'text' });
-   loaderService.show(req.context.get(LOADING_SOURCE));
+//    if (req.url.indexOf('localdata') > -1 || req.url.indexOf('http') > -1) {
+//       // pass through
+//       return next(req);
+//    }
+//    const url = ConfigService.Config.API.apiRoot + req.url;
 
-   if (req.body) {
-      _debug(req.body, `Request ${req.method} ${req.urlWithParams}`, 'p');
-   }
 
-   return next(adjustedReq)
-      .pipe(
-         shareReplay(),
-         map(response => mapData(response)),
-         finalize(() => {
-            loaderService.hide(req.context.get(LOADING_SOURCE));
-         }),
-         debug(`${req.method} ${req.urlWithParams}`, 'p'),
-         catchAppError(`${req.method} ${req.urlWithParams}`)
-      );
-};
+//    const adjustedReq = req.clone({ url: url, setHeaders: getHeaders(req.headers), responseType: 'text' });
+//    loaderService.show(req.context.get(LOADING_SOURCE));
+
+//    if (req.body) {
+//       _debug(req.body, `Request ${req.method} ${req.urlWithParams}`, 'p');
+//    }
+
+//    return next(adjustedReq)
+//       .pipe(
+//          shareReplay(),
+//          map(response => mapData(response)),
+//          finalize(() => {
+//             loaderService.hide(req.context.get(LOADING_SOURCE));
+//          }),
+//          debug(`${req.method} ${req.urlWithParams}`, 'p'),
+//          catchAppError(`${req.method} ${req.urlWithParams}`)
+//       );
+// };

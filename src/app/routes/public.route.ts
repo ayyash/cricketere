@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { SHARED_COMPONENTS} from '../core/shared.const';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MdInputModule } from '../lib/mdinput/mdinput.module';
+import { LoginResolve } from '../services/login.resolve';
 // **gulpimport**
 
 const routes: Routes = [
@@ -19,7 +20,10 @@ const routes: Routes = [
     , {
         path: 'login',
         component: PublicLoginComponent,
-        title: 'LOGIN'
+        title: 'LOGIN',
+        resolve: {
+          ready: LoginResolve
+      },
     }
 
     , {

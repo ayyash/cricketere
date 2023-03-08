@@ -6,6 +6,7 @@ import { Config } from '../../config';
 import { AuthService } from '../../core/services';
 import { EnumTimeout } from '../../lib/toaster/toast.model';
 import { Toast } from '../../lib/toaster/toast.state';
+import { AuthState } from '../../services/auth.state';
 
 @Component({
 
@@ -21,6 +22,7 @@ export class PublicLoginComponent implements OnInit {
         private toast: Toast,
         private router: Router,
         private fb: UntypedFormBuilder,
+        private authState: AuthState,
         private authService: AuthService
     ) {
         //
@@ -61,7 +63,7 @@ export class PublicLoginComponent implements OnInit {
                                 css: 'btn-fake',
                                 click: (event) => {
                                     // reroute
-                                    this.router.navigateByUrl(this.authService.redirectUrl || Config.Basic.defaultRoute);
+                                    this.router.navigateByUrl(this.authState.redirectUrl || Config.Basic.defaultRoute);
                                     this.toast.Hide();
                                 }
                             },
@@ -72,7 +74,8 @@ export class PublicLoginComponent implements OnInit {
                 {
                     next: result => {
                         if (result) {
-                            this.router.navigateByUrl(this.authService.redirectUrl || Config.Basic.defaultRoute);
+                          _attn(result);
+                            this.router.navigateByUrl(this.authState.redirectUrl || Config.Basic.defaultRoute);
                         }
                     },
                     // error: error => this.toast.HandleUiError(error)
@@ -83,7 +86,7 @@ export class PublicLoginComponent implements OnInit {
         }
         else {
             this.forceValidation = true;
-            // this.toast.Show('INVALID_FORM', { sticky: false, extracss: 'error' });
+            this.toast.ShowError('INVALID_FORM');
 
         }
 

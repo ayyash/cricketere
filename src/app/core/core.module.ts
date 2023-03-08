@@ -1,28 +1,46 @@
 import { ErrorHandler, APP_INITIALIZER } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CricketereErrorHandler } from './error.service';
 import { configFactory, ConfigService } from '../services/config.service';
-import { LocalInterceptorFn } from './local.fn';
-import { CricketereInterceptorFn } from './http.fn';
+import { AuthState } from '../services/auth.state';
+import { CricketereInterceptor } from './http';
+import { LocalInterceptor } from './local.interceptor';
 
 
 export const CoreProviders = [
-   provideHttpClient(
-      // do this, to keep using your class-based interceptors.
-      withInterceptors([
-         LocalInterceptorFn,
-         CricketereInterceptorFn
-      ])
-   ),
-   Title,
-   {
-      provide: APP_INITIALIZER,
-      useFactory: configFactory,
+  // provideHttpClient(
+  //   // do this, to keep using your class-based interceptors.
+  //   // withInterceptors([
+  //   //   LocalInterceptorFn
+  //   // ]),
+  //   withInterceptorsFromDi()
+  // ),
+  Title,
+  {
+    provide: APP_INITIALIZER,
+    // dummy factory
+    useFactory: (): any => (): any => { },
+    multi: true,
+    deps: [AuthState]
+  },
+  {
+    provide: APP_INITIALIZER,
+    useFactory: configFactory,
+    multi: true,
+    deps: [ConfigService]
+  },
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: LocalInterceptor,
+    multi: true
+ },
+  {
+      provide: HTTP_INTERCEPTORS,
+      useClass: CricketereInterceptor,
       multi: true,
-      deps: [ConfigService]
-   },
-   { provide: ErrorHandler, useClass: CricketereErrorHandler }
+  },
+  { provide: ErrorHandler, useClass: CricketereErrorHandler }
 ];
 
 // services singletons here

@@ -66,7 +66,6 @@ module.exports = function (app, config) {
     app.use('/', express.static(config.rootPath + 'client/static'));
 
     app.get(config.languages.map(n => `/${n}/*`), (req, res) => {
-      console.log('ffffffffff', res.locals.serverUrl);
 
         res.render(config.rootPath + `index/index.${res.locals.lang}.url.html`, {
             req,

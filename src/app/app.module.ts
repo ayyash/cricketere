@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { SHARED_COMPONENTS } from './core/shared.const';
 import { MainLayoutComponent } from './components/layouts/main.component';
 import { SingleLayoutComponent } from './components/layouts/single.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { SingleLayoutComponent } from './components/layouts/single.component';
     MainLayoutComponent,
     SingleLayoutComponent],
   imports: [
+    HttpClientModule,
     // ...SHARED_COMPONENTS,
     BrowserModule.withServerTransition({ appId: 'crsr' }),
     TransferHttpCacheModule,

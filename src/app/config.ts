@@ -20,7 +20,9 @@ export const Config = {
         defaultLanguage: 'en' // not maintained
     },
     Auth: {
-        userAccessKey: 'user'
+        userAccessKey: 'user',
+        redirectKey: 'redirectUrl',
+        serverCookieKey: '_CrCookie',
     },
     Storage: {
         Timeout: 1,
@@ -61,7 +63,8 @@ export const Config = {
             register: '/auth/register',
             reset: '/auth/reset',
             password: '/auth/changepassword',
-            forgot: '/auth/forgotpassword'
+            forgot: '/auth/forgotpassword',
+            refresh: '/auth/refresh'
         },
         data: {
             notdefined: '/data/notdefined',

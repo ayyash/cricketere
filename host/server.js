@@ -6,8 +6,7 @@ const config = require('./server/config');
 
 // for ssr to run, define global
 if (config.ssr) {
-    // global.WebSocket = require('ws');
-    // global.XMLHttpRequest = require('xhr2');
+
 
     global.window = undefined;
 
@@ -34,12 +33,15 @@ if (config.ssr) {
 
     };
     global._attn = function (o, message) {
+
         if (config.env === 'local') {
             // console.log(message, o);
         }
     }
     global._seqlog = function (message) {
+      if (config.env === 'local') {
         // console.log(message);
+    }
     }
 
 

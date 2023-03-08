@@ -53,7 +53,7 @@ export class ConfigService {
     loadAppConfig(): Observable<boolean> {
         _seqlog('LoadAppConfig');
         if (this.localConfig) {
-            this.NewInstance(this.localConfig, true);
+            this.NewInstance(this.localConfig, false);
             return of(true);
         }
 

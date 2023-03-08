@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable, of, tap } from 'rxjs';
 import { Res } from '../../core/resources';
-import { ConfigService, HomeSeoService } from '../../core/services';
+import { ConfigService, HomeSeoService, IList, IProject, ProjectService } from '../../core/services';
 import { EnumTimeout } from '../../lib/toaster/toast.model';
 import { Toast } from '../../lib/toaster/toast.state';
 import { GtmComponent } from '../abstract/gtm.abstract';
@@ -15,9 +15,13 @@ export class PublicHomeComponent extends GtmComponent implements OnInit  {
 
     x$: Observable<any>;
 
-    constructor(private seoService: HomeSeoService, private toast: Toast) {
+    xx$: Observable<IList<IProject>>;
+
+    constructor(private seoService: HomeSeoService, private toast: Toast, private projectService: ProjectService) {
         //
+
         super();
+
     }
     ngOnInit(): void {
         // _attn(this.configService.xConfig?.API?.apiRoot, 'on init');
@@ -25,6 +29,8 @@ export class PublicHomeComponent extends GtmComponent implements OnInit  {
         this.seoService.setHome();
 
         this.x$ = of(NaN);
+        this.xx$ = this.projectService.GetProjects();
+
 
     }
     showToast1() {

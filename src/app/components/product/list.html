@@ -1,6 +1,9 @@
 
 
 <div class="page">
+  <ng-container *ngIf="user$ | async as user">
+    Hello {{ user.firstName }}
+  </ng-container>
     <div class="container" *ngIf="products$ | async as products">
         <ng-container *ngIf="params$ | async as params">
             <a routerLink="/" target="_blank">Route to blank page</a>
@@ -10,6 +13,7 @@
                 Show: <a [href]="getShowLink(true)" (click)="showProducts(true, $event)">Public</a> |
                 <a [href]="getShowLink(false)" (click)="showProducts(false, $event)">Private</a>
             </div>
+
             <ul class="rowlist" >
                 <li *ngFor="let item of products">
                     {{ item.name }} - {{item.price }}

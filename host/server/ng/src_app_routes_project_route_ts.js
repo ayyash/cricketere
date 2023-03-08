@@ -145,9 +145,7 @@ class ProjectCardPartialComponent {
     //
   }
 
-  ngOnInit() {
-    //
-  }
+  ngOnInit() {}
 }
 ProjectCardPartialComponent.ɵfac = function ProjectCardPartialComponent_Factory(t) {
   return new (t || ProjectCardPartialComponent)();
@@ -940,18 +938,18 @@ const mockProject = {
   }
 };
 class ProjectViewComponent {
-  constructor(route, dataService, seoService) {
+  constructor(route, dataService, projectService, seoService) {
     this.route = route;
     this.dataService = dataService;
+    this.projectService = projectService;
     this.seoService = seoService;
     //
   }
 
   ngOnInit() {
     this.categories$ = this.dataService.GetCategories();
-    this.project$ = this.route.paramMap.pipe((0,rxjs__WEBPACK_IMPORTED_MODULE_2__.switchMap)(params => {
-      // get project from service by params
-      return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.of)(mockProject);
+    this.project$ = this.route.paramMap.pipe((0,rxjs__WEBPACK_IMPORTED_MODULE_2__.switchMap)(params => this.projectService.GetProject(params.get('id'))), (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.map)(response => {
+      return mockProject;
     }), (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.tap)(project => {
       _seqlog('title');
       this.seoService.setProject(project);
@@ -967,7 +965,7 @@ class ProjectViewComponent {
 }
 
 ProjectViewComponent.ɵfac = function ProjectViewComponent_Factory(t) {
-  return new (t || ProjectViewComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_3__.ActivatedRoute), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_core_services__WEBPACK_IMPORTED_MODULE_0__.DataService), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_core_services__WEBPACK_IMPORTED_MODULE_0__.ProjectSeoService));
+  return new (t || ProjectViewComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_router__WEBPACK_IMPORTED_MODULE_3__.ActivatedRoute), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_core_services__WEBPACK_IMPORTED_MODULE_0__.DataService), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_core_services__WEBPACK_IMPORTED_MODULE_0__.ProjectService), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_core_services__WEBPACK_IMPORTED_MODULE_0__.ProjectSeoService));
 };
 ProjectViewComponent.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({
   type: ProjectViewComponent,

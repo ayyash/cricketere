@@ -2,6 +2,13 @@
 
         <h2 class="f2 txt-c"> {{ 'Hello cricketers' | translate:'WELCOME_TEXT' }}</h2>
 
+        <ng-container *ngIf="xx$ | async as projects">
+          <ul class="spaced">
+            <li *ngFor="let item of projects.matches">
+              {{ item.id }}
+            </li>
+          </ul>
+        </ng-container>
         <p>
             Lorem ipsum dolor, sit amet consectetur adipisicing elit. Et reprehenderit impedit vero quaerat? Optio aspernatur sed corporis officia cupiditate dolores provident minus quidem atque, magnam id fugit tempore cum labore!
         </p>

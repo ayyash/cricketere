@@ -15,7 +15,7 @@ export { HomeSeoService } from '../services/seo.home.service';
 // endinject
 
 // inject:models
-export * from '../models/authinfo.model';
+export * from '../models/auth.model';
 export * from '../models/cachedstorage.model';
 export * from '../models/config.model';
 export * from '../models/data.model';

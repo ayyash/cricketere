@@ -1,13 +1,15 @@
 import { CommonModule, Location } from '@angular/common';
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { catchError, distinctUntilChanged, distinctUntilKeyChanged, map, Observable, of, switchMap, tap } from 'rxjs';
+import { catchError, distinctUntilChanged, map, Observable, switchMap, tap } from 'rxjs';
 import { Config } from '../../config';
 import { hasMore } from '../../core/common';
 import { EnumGtmEvent, EnumGtmSource, GtmTracking } from '../../core/gtm';
 import { Toast } from '../../lib/toaster/toast.state';
 import { IList, IListOptions } from '../../models/list.model';
 import { IProduct } from '../../models/product.model';
+import { IUser } from '../../models/user.model';
+import { AuthState } from '../../services/auth.state';
 import { ParamState } from '../../services/param.state';
 import { ProductService } from '../../services/product.service';
 import { ProductState } from '../../services/product.state';
@@ -24,6 +26,7 @@ export class ProductListComponent implements OnInit {
     params$: Observable<IListOptions>;
 
     everything$: Observable<IList<IProduct> & IListOptions>;
+    user$: Observable<IUser>;
 
     constructor(private productService: ProductService,
         private productState: ProductState,
@@ -31,12 +34,16 @@ export class ProductListComponent implements OnInit {
         private paramState: ParamState,
         private location: Location,
         private toast: Toast,
+        private authState: AuthState,
         private route: ActivatedRoute) {
 
         //
     }
     ngOnInit(): void {
         //
+        _attn(this.authState.currentItem?.profile?.firstName, 'xxxxxxxxxxxxxxx');
+        this.user$ = this.authState.stateItem$.pipe(map(n => n?.profile), tap(n => _attn(n, 'ffffffffffffff')));
+
         this.params$ = this.paramState.stateItem$;
 
         this.products$ = this.route.paramMap.pipe(

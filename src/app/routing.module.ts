@@ -8,6 +8,7 @@ import { MainLayoutComponent } from './components/layouts/main.component';
 import { SingleLayoutComponent } from './components/layouts/single.component';
 import { PreloadService } from './core/preload.service';
 import { RouteReuseService } from './core/routereuse.service';
+import { AuthGuard } from './services/auth.guard';
 import { CricketTitleStrategy } from './services/title.service';
 
 
@@ -41,7 +42,8 @@ const AppRoutes: Routes = [
     path: 'projects',
     component: MainLayoutComponent,
     loadChildren: () => import('./routes/project.route').then(m => m.ProjectRoutingModule),
-    data: { preload: true, delay: 4000 }
+    data: { preload: true, delay: 4000 },
+    canActivate: [AuthGuard],
 
   },
   {
