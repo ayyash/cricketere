@@ -61,11 +61,12 @@ export class AuthState extends StateService<IAuthInfo> {
     // when in production
     // cookieStr += ';secure';
 
-    document.cookie = cookieStr;
+    // document.cookie = cookieStr;
   }
   private _DeleteCookie(): void {
     this._SetCookie({ accessToken: '', expiresAt: 0 });
   }
+
 
   private _SaveUser(user: IAuthInfo) {
     this.localStorage.setItem(

@@ -7,6 +7,7 @@
             <li><a routerLink="/products" [shGtm]="{source: enumGtmSource.NavigationDesktop, group: enumGtmGroup.Navigation}">Products</a></li>
             <li><a routerLink="/projects/create" [shGtm]="{source: enumGtmSource.NavigationDesktop, group: enumGtmGroup.Navigation}">Create new</a></li>
             <li><a routerLink="/login" [shGtm]="{source: enumGtmSource.NavigationDesktop, group: enumGtmGroup.Navigation}">Login</a></li>
+            <li><a (click)="logout()">Logout</a></li>
         </ul>
 
     </nav>

@@ -64,7 +64,9 @@ export const Config = {
             reset: '/auth/reset',
             password: '/auth/changepassword',
             forgot: '/auth/forgotpassword',
-            refresh: '/auth/refresh'
+            refresh: '/auth/refresh',
+            setSession: 'localdata/setsession',
+            logout: 'localdata/logout'
         },
         data: {
             notdefined: '/data/notdefined',

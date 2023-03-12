@@ -1,7 +1,7 @@
 {
     "isServed": true,
     "API": {
-        "apiRoot": "http://localhost:8888/api"
+        "apiRoot": "https://saphire.sekrab.com/api"
     },
     "Auth": {
         "userAccessKey": "user"

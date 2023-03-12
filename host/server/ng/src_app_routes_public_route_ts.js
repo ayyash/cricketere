@@ -578,7 +578,6 @@ class PublicLoginComponent {
       })).subscribe({
         next: result => {
           if (result) {
-            _attn(result);
             this.router.navigateByUrl(this.authState.redirectUrl || _config__WEBPACK_IMPORTED_MODULE_0__.Config.Basic.defaultRoute);
           }
         }

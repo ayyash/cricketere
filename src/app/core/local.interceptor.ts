@@ -15,6 +15,7 @@ export class LocalInterceptor implements HttpInterceptor {
             return next.handle(req);
         }
 
+        // let url = 'http://localhost:1212/en/' + req.url;
         let url = req.url;
         if (this.serverUrl) {
             // on ssr get a full url of current server, this needs to be mapped to express in final app

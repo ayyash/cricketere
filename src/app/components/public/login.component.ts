@@ -10,86 +10,85 @@ import { AuthState } from '../../services/auth.state';
 
 @Component({
 
-    templateUrl: './login.html',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    styleUrls: ['./login.less']
+  templateUrl: './login.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  styleUrls: ['./login.less']
 })
 export class PublicLoginComponent implements OnInit {
 
-    loginForm: UntypedFormGroup;
-    forceValidation: boolean;
-    constructor(
-        private toast: Toast,
-        private router: Router,
-        private fb: UntypedFormBuilder,
-        private authState: AuthState,
-        private authService: AuthService
-    ) {
-        //
-    }
-    ngOnInit(): void {
-        //
-        this.loginForm = this.fb.group({
-            username: [],
-            password: []
-        });
+  loginForm: UntypedFormGroup;
+  forceValidation: boolean;
+  constructor(
+    private toast: Toast,
+    private router: Router,
+    private fb: UntypedFormBuilder,
+    private authState: AuthState,
+    private authService: AuthService
+  ) {
+    //
+  }
+  ngOnInit(): void {
+    //
+    this.loginForm = this.fb.group({
+      username: [],
+      password: []
+    });
 
 
-    }
+  }
 
-    login(): void {
-        // stage 2: normal login
-        this.forceValidation = false;
-        this.toast.Hide();
-
-
+  login(): void {
+    // stage 2: normal login
+    this.forceValidation = false;
+    this.toast.Hide();
 
 
 
-        if (this.loginForm.valid) {
 
 
-            const _user = this.loginForm.value;
+    if (this.loginForm.valid) {
 
-            // this.router.navigateByUrl(this.authService.redirectUrl || Config.Basic.defaultRoute);
 
-            this.authService.Login(_user.username, _user.password).pipe(
-                catchError(e => {
-                    return this.toast.HandleUiError(e, {
-                        timeout: EnumTimeout.Never,
-                        buttons: [
-                            {
-                                text: 'Login',
-                                css: 'btn-fake',
-                                click: (event) => {
-                                    // reroute
-                                    this.router.navigateByUrl(this.authState.redirectUrl || Config.Basic.defaultRoute);
-                                    this.toast.Hide();
-                                }
-                            },
-                            this.toast.dismissButton],
-                    });
-                })
-            ).subscribe(
-                {
-                    next: result => {
-                        if (result) {
-                          _attn(result);
-                            this.router.navigateByUrl(this.authState.redirectUrl || Config.Basic.defaultRoute);
-                        }
-                    },
-                    // error: error => this.toast.HandleUiError(error)
+      const _user = this.loginForm.value;
+
+      // this.router.navigateByUrl(this.authService.redirectUrl || Config.Basic.defaultRoute);
+
+      this.authService.Login(_user.username, _user.password).pipe(
+        catchError(e => {
+          return this.toast.HandleUiError(e, {
+            timeout: EnumTimeout.Never,
+            buttons: [
+              {
+                text: 'Login',
+                css: 'btn-fake',
+                click: (event) => {
+                  // reroute
+                  this.router.navigateByUrl(this.authState.redirectUrl || Config.Basic.defaultRoute);
+                  this.toast.Hide();
                 }
-
-            );
-
+              },
+              this.toast.dismissButton],
+          });
+        })
+      ).subscribe(
+        {
+          next: result => {
+            if (result) {
+              this.router.navigateByUrl(this.authState.redirectUrl || Config.Basic.defaultRoute);
+            }
+          },
+          // error: error => this.toast.HandleUiError(error)
         }
-        else {
-            this.forceValidation = true;
-            this.toast.ShowError('INVALID_FORM');
 
-        }
+      );
 
     }
+    else {
+      this.forceValidation = true;
+      this.toast.ShowError('INVALID_FORM');
+
+    }
+
+  }
 
 }

@@ -113,10 +113,11 @@ export class CricketereInterceptor implements HttpInterceptor {
 
       return this.authService.RefreshToken()
         .pipe(
-          switchMap((result: boolean) => {
+          switchMap((result: any) => {
             if (result) {
               // tokens saved, re-adjust request with new access token
               this.recall.next(true);
+              // you need to call setlocal session here again
               return next.handle(req.clone({ setHeaders: this.getHeaders() }));
             }
             throw (false);

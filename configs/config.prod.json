@@ -9,7 +9,7 @@
     "Storage": {
         "Timeout": 168,
         "Key": "cricketere",
-        "ResetKey": "20190210"
+        "ResetKey": "20230210"
     },
     "Res": {
         "cookieName": "cr-lang",

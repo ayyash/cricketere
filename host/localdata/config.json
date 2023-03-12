@@ -1,0 +1,14 @@
+{
+    "isServed": true,
+    "API": {
+        "apiRoot": "http://localhost:8888/api"
+    },
+    "Auth": {
+        "userAccessKey": "user"
+    },
+    "Storage": {
+        "Timeout": 168,
+        "Key": "cricketere",
+        "ResetKey": "20230209"
+    }
+}

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
 import { Config } from '../config';
 import {
   IAuthInfo,
@@ -11,6 +11,7 @@ import {
 
 import { HttpClient } from '@angular/common/http';
 import { AuthState } from './auth.state';
+import { response } from 'express';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -20,6 +21,8 @@ export class AuthService {
   private _passwordUrl = Config.API.auth.password;
   private _forgotUrl = Config.API.auth.forgot;
   private _registerUrl = Config.API.auth.register;
+  private _setLocalSession = Config.API.auth.setSession;
+  private _logoutUrl = Config.API.auth.logout;
 
 
   constructor(private http: HttpClient, private authState: AuthState) {
@@ -34,14 +37,12 @@ export class AuthService {
         // prepare the response to be handled, then return
         const resUser: IAuthInfo = AuthInfo.NewInstance(<any>response);
         return this.authState.SaveSession(resUser);
-        // we'll tidy up later
-
-
-      })
+      }),
+      switchMap(user => this.SetLocalSession(user))
     );
   }
 
-  RefreshToken(): Observable<boolean> {
+  RefreshToken(): Observable<IAuthInfo> {
     return this.http.post(this._refreshUrl, { token: this.authState.GetRefreshToken() }).pipe(
 
       map(response => {
@@ -55,8 +56,9 @@ export class AuthService {
 
         this.authState.UpdateSession(retUser);
 
-        return true;
-      })
+        return retUser;
+      }),
+      switchMap(response => this.SetLocalSession(response))
     );
   }
 
@@ -122,4 +124,26 @@ export class AuthService {
     );
   }
 
+  SetLocalSession(user: IAuthInfo): Observable<IAuthInfo> {
+    const data = AuthInfo.PrepSetSession(user);
+    _debug(data, 'SetLocalSession data');
+
+    return this.http.post(this._setLocalSession, data).pipe(
+      map(response => {
+        return user;
+      })
+    );
+  }
+
+  Logout(): Observable<boolean> {
+    // logout locally
+    const data = AuthInfo.PrepLogout();
+    _debug(data, 'Logout data');
+
+    return this.http.post(this._logoutUrl, data).pipe(
+      map(response => {
+        return true;
+      })
+    );
+  }
 }

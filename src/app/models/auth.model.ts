@@ -1,3 +1,4 @@
+import { Config } from '../config';
 import { IUser, User } from '../core/services';
 
 export enum EnumRole {
@@ -66,4 +67,15 @@ export class AuthInfo implements IAuthInfo {
         };
     }
 
+    public static PrepSetSession(auth: IAuthInfo): any {
+      return {
+        auth: auth,
+        cookieName: Config.Auth.serverCookieKey
+      };
+    }
+    public static PrepLogout(): any {
+      return {
+        cookieName: Config.Auth.serverCookieKey
+      };
+    }
 }
