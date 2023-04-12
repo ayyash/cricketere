@@ -35,7 +35,7 @@ export class SeoService {
         // add tags
         this.meta.addTags(Config.Seo.tags);
 
-
+      _attn(this.platform.doc);
         // if (environment.production && this.platform.isBrowser) return;
         const _canonical = this.platform.doc.querySelector('link[rel="canonical"]');
         this._canonicalLink = (_canonical as HTMLLinkElement) || this.createCanonicalLink();

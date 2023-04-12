@@ -5,7 +5,8 @@
       "rootDir": "./",
       "sourceMap": false,
       "noImplicitAny": false,
-      "module": "es2020"
+      "module": "es2020",
+      "ignoreDeprecations": "5.0"
     },
     "include": ["**/*.ts"],
     "exclude": [

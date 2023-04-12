@@ -41,8 +41,7 @@ export class ProductListComponent implements OnInit {
     }
     ngOnInit(): void {
         //
-        _attn(this.authState.currentItem?.profile?.firstName, 'xxxxxxxxxxxxxxx');
-        this.user$ = this.authState.stateItem$.pipe(map(n => n?.profile), tap(n => _attn(n, 'ffffffffffffff')));
+        // this.user$ = this.authState.stateItem$.pipe(map(n => n?.profile), tap(n => _attn(n, 'ffffffffffffff')));
 
         this.params$ = this.paramState.stateItem$;
 
