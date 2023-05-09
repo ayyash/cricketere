@@ -92,18 +92,7 @@ const appFactory = (router: Router) => () => {
 };
 
 export const AppRouteProviders = [
-  // provideRouter(AppRoutes,
-  //   // withPreloading(PreloadService),
-  //   // withInMemoryScrolling({
-  //   //   scrollPositionRestoration: 'disabled',
-  //   // }),
-  //   // withEnabledBlockingInitialNavigation(),
-  //   // withRouterConfig({
-  //   //   paramsInheritanceStrategy: 'always',
-  //   //   onSameUrlNavigation: 'reload'
-  //   // }),
-  //   // withDebugTracing()
-  // ),
+
   importProvidersFrom(RouterModule.forRoot(AppRoutes, {
     preloadingStrategy: PreloadService,
     paramsInheritanceStrategy: 'always',
@@ -120,98 +109,3 @@ export const AppRouteProviders = [
     deps: [Router]
   }
 ];
-
-/*
- useValue() {
-      _seqlog('AppRouteProviders');
-      const router = inject(Router);
-      const viewportScroller = inject(ViewportScroller);
-
-      router.events.pipe(
-        filter(event => event instanceof Scroll)
-      ).subscribe({
-        next: (e: Scroll) => {
-          if (e.position) {
-            // backward navigation
-            _attn(e.position, 'position');
-            viewportScroller.scrollToPosition(e.position);
-          } else if (e.anchor) {
-            // anchor navigation
-            _attn(e.anchor, 'anchor');
-            viewportScroller.scrollToAnchor(e.anchor);
-          } else {
-            // forward navigation
-            // check url if page exists do not scroll
-            if (!e.routerEvent.urlAfterRedirects.includes('page')) {
-              _attn('no page', 'scroll top');
-              viewportScroller.scrollToPosition([0, 0]);
-            }
-          }
-        }
-      });
-    },
-    */
-
-// @NgModule({
-//   imports: [
-//     RouterModule.forRoot(AppRoutes, {
-//       preloadingStrategy: PreloadService,
-//       paramsInheritanceStrategy: 'always',
-//       onSameUrlNavigation: 'reload',
-//       scrollPositionRestoration: 'disabled',
-//       initialNavigation: 'enabledBlocking'
-//     })
-//   ],
-//   exports: [RouterModule],
-//   providers: [{ provide: RouteReuseStrategy, useClass: RouteReuseService },
-//   { provide: TitleStrategy, useClass: CricketTitleStrategy }]
-
-// })
-// export class AppRoutingModule {
-//   constructor(
-//     router: Router,
-//     // location: Location, // angular/common
-//     viewportScroller: ViewportScroller,
-
-//   ) {
-//     _seqlog('app routing');
-
-//     router.events.pipe(
-//       filter(event => event instanceof Scroll)
-//     ).subscribe({
-//       next: (e: Scroll) => {
-//         if (e.position) {
-//           // backward navigation
-//           // _attn(e.position, 'position');
-//           viewportScroller.scrollToPosition(e.position);
-//         } else if (e.anchor) {
-//           // anchor navigation
-//           // _attn(e.anchor, 'anchor');
-//           viewportScroller.scrollToAnchor(e.anchor);
-//         } else {
-//           // forward navigation
-//           // check url if page exists do not scroll
-//           if (!e.routerEvent.urlAfterRedirects.includes('page')) {
-//             // _attn('no page', 'scroll top');
-//             viewportScroller.scrollToPosition([0, 0]);
-//           }
-//         }
-//       }
-//     });
-
-    // for netlify solution for URL based with /en/ base href, use query
-    // router.events.pipe(
-    //   filter(event => event instanceof NavigationEnd)
-    // ).subscribe({
-    //   next: (e: NavigationEnd) => {
-    //     if (router.url.indexOf('nf_route=') < 0 ) {
-    //       // not good enough this ignores other params
-    //       location.go(router.url, 'nf_route=1');
-    //     }
-    //   }
-    // });
-
-//   }
-// }
-
-

@@ -43,7 +43,7 @@ export class Res {
     return _global.cr?.resources.language || Config.Res.defaultLanguage;
   }
 
-  public static Get(key: string, fallback?: string): string {
+  public static Get(key: string, fallback?: string): string | any {
     // if found return else generic
     const keys = Res.keys;
 

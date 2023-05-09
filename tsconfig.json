@@ -20,8 +20,8 @@
     // "emitDecoratorMetadata": false,
     "resolveJsonModule": true,
     // "esModuleInterop": true,
-    "noImplicitAny": true,
-    "suppressImplicitAnyIndexErrors": true,
+    "noImplicitAny": false,
+    // "suppressImplicitAnyIndexErrors": true,
     "allowSyntheticDefaultImports": true,
     "typeRoots": [
       "node_modules/@types"

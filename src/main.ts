@@ -14,21 +14,6 @@ if (environment.production) {
   enableProdMode();
 }
 
-// document.addEventListener('DOMContentLoaded', () => {
-//     platformBrowserDynamic(
-//     // PLATFORMINIT: use this for static injected config
-    //    [
-    //     {
-    //         provide: PLATFORM_INITIALIZER,
-    //         useFactory: platformFactory,
-    //         multi: true,
-    //     }
-    // ]
-//     )
-//         .bootstrapModule(AppBrowserModule)
-//         .catch(err => console.log(err));
-// });
-
 
 
 bootstrapApplication(AppComponent, {
@@ -37,12 +22,7 @@ bootstrapApplication(AppComponent, {
     { provide: LOCALE_ID, useClass: LocaleId },
     { provide: APP_BASE_HREF, useClass: RootHref },
     ...CoreProviders,
-    ...AppRouteProviders,
-    // {
-    //     provide: PLATFORM_INITIALIZER,
-    //     useFactory: platformFactory,
-    //     multi: true,
-    // }
+    ...AppRouteProviders
 
   ],
 });
