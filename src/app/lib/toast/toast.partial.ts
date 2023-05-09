@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, OnDestroy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Toast } from './toast.service';
 import { IToast, IToastButton } from './toast.model';
@@ -21,6 +21,7 @@ import { IToast, IToastButton } from './toast.model';
         </ng-container>
     `,
     changeDetection: ChangeDetectionStrategy.OnPush,
+    encapsulation: ViewEncapsulation.None,
     styleUrls: ['./toast.less']
 })
 export class ToastPartialComponent implements OnInit, OnDestroy {

@@ -5,8 +5,6 @@
     "outDir": "./out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": false,
-    // "strictPropertyInitialization": false,
-    // "strictNullChecks": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
@@ -15,13 +13,10 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "es2020",
+    "target": "ES2022",
     "module": "es2020",
-    // "emitDecoratorMetadata": false,
     "resolveJsonModule": true,
-    // "esModuleInterop": true,
     "noImplicitAny": false,
-    // "suppressImplicitAnyIndexErrors": true,
     "allowSyntheticDefaultImports": true,
     "typeRoots": [
       "node_modules/@types"
@@ -29,7 +24,8 @@
     "lib": [
       "es2020",
       "dom"
-    ]
+    ],
+    "useDefineForClassFields": false
   },
   "angularCompilerOptions": {
     "strictInjectionParameters": true,
@@ -37,8 +33,5 @@
     "strictTemplates": true,
     // "fullTemplateTypeCheck": true,
     "preserveWhitespaces": false
-  },
-  "exclude": [
-    "src/app/app.prefix.module.ts"
-  ]
+  }
 }

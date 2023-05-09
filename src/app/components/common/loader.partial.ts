@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { LoaderService, ILoaderState } from '../../core/services';
 import { share } from 'rxjs/operators';
@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
     <div class="subline dec"></div></div>`,
     styleUrls: ['./loader.less'],
     standalone: true,
+    encapsulation: ViewEncapsulation.None,
     imports: [CommonModule]
 })
 export class LoaderComponent implements OnInit, OnDestroy {
