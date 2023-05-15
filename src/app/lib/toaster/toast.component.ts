@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { Toast } from './toast.state';
 
 @Component({
-    selector: 'gr-toast',
+    // selector: 'gr-toast',
     standalone: true,
     imports: [CommonModule],
     template: `

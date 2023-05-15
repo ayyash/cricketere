@@ -19,8 +19,8 @@ export const ProjectRoutes: Routes = [
             multi: true,
             useValue() {
               // same effect everywhere
-              _seqlog('PublicRoutes');
-              _attn('this is nothing', 'list of projects');
+              // _seqlog('PublicRoutes');
+              // _attn('this is nothing', 'list of projects');
             },
           }
         ]
@@ -37,8 +37,8 @@ export const ProjectRoutes: Routes = [
             provide: ENVIRONMENT_INITIALIZER,
             multi: true,
             useValue() {
-              _seqlog('PublicRoutes');
-              _attn(ConfigService.Config.isServed, 'create');
+              // _seqlog('PublicRoutes');
+              // _attn(ConfigService.Config.isServed, 'create');
             },
           }
         ]

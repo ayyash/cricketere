@@ -1,0 +1,78 @@
+@import (reference) "sh._vars.less";
+@import (reference) "utilities/media.less";
+
+.toast {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    background-color: @grey-dark;
+    color: @white;
+    position: fixed;
+    bottom: @space;
+    left: @space;
+    right: @space;
+    font-size: 90%;
+    z-index: 5100;
+    box-shadow: @shadows[deep];
+
+    &.error {
+        background-color: @red;
+    }
+
+    &.success {
+        background-color: @green;
+    }
+
+    &.warning {
+        background-color: @yellow;
+        color: @text-color;
+    }
+
+    transform: translateY(calc(100% + @space));
+    // transition: transform 0.2s ease-in-out;
+
+
+    &.inview {
+        animation: toast-in .2s ease-in-out;
+        animation-fill-mode: forwards;
+    }
+
+}
+
+.text {
+    padding: @space;
+    margin-right: @halfspace;
+    flex-basis: 100%;
+}
+
+
+.buttons {
+    display: flex;
+
+    button {
+        text-transform: uppercase;
+        padding: @space;
+        cursor: pointer;
+        color: inherit;
+        display: block;
+
+    }
+}
+
+@keyframes toast-in {
+    0% {
+        transform: translateY(calc(100% + @space));
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.media(md, {
+        .toast {
+            max-width: 50vw;
+        }
+    }
+
+);
