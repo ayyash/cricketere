@@ -1,0 +1,17 @@
+<div class="dr-modal-overlay {{mode}}" (click)="onOverlayClicked($event)">
+  <div class="dialog modal dr-window" role="dialog" aria-labelledby="modaltitle" tabindex="-1">
+    <div class="modal-dialog" (click)="onDialogClicked($event)">
+      <div class="modal-content dr-content">
+        <div class="modal-header">
+          <h6 class="f6 modal-title dr-title" id="modaltitle">{{ title }}</h6>
+          <button type="button" class="modal-close dr-close" aria-label="Close" (click)="close()"></button>
+        </div>
+
+        <div class="modal-body" id="dialogchild">
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
