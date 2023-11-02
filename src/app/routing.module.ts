@@ -180,10 +180,10 @@ export class AppRoutingModule {
         } else {
           // forward navigation
           // check url if page exists do not scroll
-          if (!e.routerEvent.urlAfterRedirects.includes('page')) {
-            // _attn('no page', 'scroll top');
-            viewportScroller.scrollToPosition([0, 0]);
-          }
+          // if (!e.routerEvent.urlAfterRedirects.includes('page')) {
+          //   // _attn('no page', 'scroll top');
+          //   viewportScroller.scrollToPosition([0, 0]);
+          // }
         }
       }
     });
