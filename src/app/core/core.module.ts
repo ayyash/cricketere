@@ -1,19 +1,15 @@
-import { ErrorHandler, APP_INITIALIZER, importProvidersFrom, ENVIRONMENT_INITIALIZER } from '@angular/core';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { APP_INITIALIZER, ENVIRONMENT_INITIALIZER, ErrorHandler } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { provideHttpClient, withInterceptors, withInterceptorsFromDi } from '@angular/common/http';
-// import { HTTP_INTERCEPTORS } from '@angular/common/http';
-// import { CricketereInterceptor } from './http';
-// import { LocalInterceptor } from './local.interceptor';
+import { ConfigService, configFactory } from '../services/config.service';
 import { CricketereErrorHandler } from './error.service';
-import { configFactory, ConfigService } from '../services/config.service';
-import { LocalInterceptorFn } from './local.fn';
 import { CricketereInterceptorFn } from './http.fn';
+import { LocalInterceptorFn } from './local.fn';
 
 
 export const CoreProviders = [
 
    provideHttpClient(
-      // withInterceptorsFromDi()
       withInterceptors([
          LocalInterceptorFn,
          CricketereInterceptorFn

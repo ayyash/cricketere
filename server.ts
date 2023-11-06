@@ -1,31 +1,41 @@
 
-import 'zone.js/dist/zone-node';
+import { LOCALE_ID, enableProdMode, importProvidersFrom } from '@angular/core';
 import { ngExpressEngine } from '@nguniversal/express-engine';
-import { enableProdMode} from '@angular/core';
+import 'zone.js/dist/zone-node';
 // import { platformFactory } from './src/app/services/config.service';
+import { APP_BASE_HREF } from '@angular/common';
+import { bootstrapApplication } from '@angular/platform-browser';
+import { ServerModule } from '@angular/platform-server';
+import { AppComponent } from './src/app/app.component';
+import { CoreProviders } from './src/app/core/core.module';
+import { LocaleId, RootHref } from './src/app/core/resources';
+import { AppRouteProviders } from './src/app/routing.module';
 import { environment } from './src/environments/environment';
 
 // following lines is for prerender to work
-export { AppServerModule } from './src/app/app.server.module';
-export { renderModule } from '@angular/platform-server';
+// export { renderModule } from '@angular/platform-server';
+// export { AppServerModule } from './src/app/app.server.module';
 
-// The Express app is exported so that it can be used by serverless Functions.
-// *************************AYYASH********************/
+
+
+const _app = () => bootstrapApplication(AppComponent, {
+  providers: [
+    importProvidersFrom(ServerModule),
+    // pass the routes from existin RouteModule
+    { provide: LOCALE_ID, useClass: LocaleId },
+    { provide: APP_BASE_HREF, useClass: RootHref },
+    ...CoreProviders,
+    ...AppRouteProviders
+  ],
+});
+
 // export the bare minimum, let nodejs take care of everything else
 export const AppEngine = ngExpressEngine({
-    bootstrap: AppServerModule,
-    // PLATFORMINIT: use this for static injected config
-    // providers:[
-        // {
-        //     provide: PLATFORM_INITIALIZER,
-        //     useFactory: platformFactory,
-        //     multi: true,
-        // }
-    // ]
+  bootstrap: _app
 });
 
 
 if (environment.production) {
-    enableProdMode();
-  }
+  enableProdMode();
+}
 

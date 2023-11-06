@@ -108,7 +108,7 @@ app.use(function (err, req, res, next) {
 
 /*************** listening  ***************/
 
-var port = process.env.PORT || 1212;
+var port = process.env.PORT || 1201;
 
 // two solutions either if else ports, or seperate this into a different file, create another listenered for prerender
 const server =  app.listen(port, async function (err) {

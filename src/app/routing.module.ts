@@ -1,6 +1,5 @@
-import { ViewportScroller } from '@angular/common';
-import { ENVIRONMENT_INITIALIZER, importProvidersFrom, inject } from '@angular/core';
-import { provideRouter, Router, RouteReuseStrategy, RouterModule, Routes, Scroll, TitleStrategy, withDebugTracing, withEnabledBlockingInitialNavigation, withInMemoryScrolling, withPreloading, withRouterConfig } from '@angular/router';
+import { ENVIRONMENT_INITIALIZER, importProvidersFrom } from '@angular/core';
+import { RouteReuseStrategy, Router, RouterModule, Routes, Scroll, TitleStrategy } from '@angular/router';
 import { filter } from 'rxjs';
 import { NotFoundComponent } from './components/layouts/404.component';
 import { ErrorComponent } from './components/layouts/error.component';
@@ -93,16 +92,16 @@ const appFactory = (router: Router) => () => {
 
 export const AppRouteProviders = [
   // provideRouter(AppRoutes,
-  //   // withPreloading(PreloadService),
-  //   // withInMemoryScrolling({
-  //   //   scrollPositionRestoration: 'disabled',
-  //   // }),
-  //   // withEnabledBlockingInitialNavigation(),
-  //   // withRouterConfig({
-  //   //   paramsInheritanceStrategy: 'always',
-  //   //   onSameUrlNavigation: 'reload'
-  //   // }),
-  //   // withDebugTracing()
+    // withPreloading(PreloadService),
+    // withInMemoryScrolling({
+    //   scrollPositionRestoration: 'disabled',
+    // }),
+    // withEnabledBlockingInitialNavigation(),
+    // withRouterConfig({
+    //   paramsInheritanceStrategy: 'always',
+    //   onSameUrlNavigation: 'reload'
+    // }),
+    // withDebugTracing()
   // ),
   importProvidersFrom(RouterModule.forRoot(AppRoutes, {
     preloadingStrategy: PreloadService,
