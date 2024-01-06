@@ -1,5 +1,5 @@
 
-import { LOCALE_ID, enableProdMode, importProvidersFrom } from '@angular/core';
+import { APP_ID, LOCALE_ID, enableProdMode, importProvidersFrom } from '@angular/core';
 import { ngExpressEngine } from '@nguniversal/express-engine';
 import 'zone.js/dist/zone-node';
 // import { platformFactory } from './src/app/services/config.service';
@@ -24,6 +24,7 @@ const _app = () => bootstrapApplication(AppComponent, {
     // pass the routes from existin RouteModule
     { provide: LOCALE_ID, useClass: LocaleId },
     { provide: APP_BASE_HREF, useClass: RootHref },
+    { provide: APP_ID, useValue: 'cricketere' },
     ...CoreProviders,
     ...AppRouteProviders
   ],

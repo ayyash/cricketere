@@ -111308,6 +111308,9 @@ const _app = () => (0,_angular_platform_browser__WEBPACK_IMPORTED_MODULE_7__.boo
   }, {
     provide: _angular_common__WEBPACK_IMPORTED_MODULE_10__.APP_BASE_HREF,
     useClass: _src_app_core_resources__WEBPACK_IMPORTED_MODULE_4__.RootHref
+  }, {
+    provide: _angular_core__WEBPACK_IMPORTED_MODULE_8__.APP_ID,
+    useValue: 'cricketere'
   }, ..._src_app_core_core_module__WEBPACK_IMPORTED_MODULE_3__.CoreProviders, ..._src_app_routing_module__WEBPACK_IMPORTED_MODULE_5__.AppRouteProviders]
 });
 // export the bare minimum, let nodejs take care of everything else

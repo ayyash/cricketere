@@ -1,6 +1,6 @@
 
 import { APP_BASE_HREF } from '@angular/common';
-import { enableProdMode, LOCALE_ID } from '@angular/core';
+import { APP_ID, enableProdMode, LOCALE_ID } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
 import { AppComponent } from './app/app.component';
 import { CoreProviders } from './app/core/core.module';
@@ -36,6 +36,7 @@ bootstrapApplication(AppComponent, {
     // pass the routes from existin RouteModule
     { provide: LOCALE_ID, useClass: LocaleId },
     { provide: APP_BASE_HREF, useClass: RootHref },
+    { provide: APP_ID, useValue: 'cricketere' },
     ...CoreProviders,
     ...AppRouteProviders,
     // {
