@@ -14,23 +14,6 @@ if (environment.production) {
   enableProdMode();
 }
 
-// document.addEventListener('DOMContentLoaded', () => {
-//     platformBrowserDynamic(
-//     // PLATFORMINIT: use this for static injected config
-    //    [
-    //     {
-    //         provide: PLATFORM_INITIALIZER,
-    //         useFactory: platformFactory,
-    //         multi: true,
-    //     }
-    // ]
-//     )
-//         .bootstrapModule(AppBrowserModule)
-//         .catch(err => console.log(err));
-// });
-
-
-
 bootstrapApplication(AppComponent, {
   providers: [
     // pass the routes from existin RouteModule

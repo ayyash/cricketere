@@ -168,8 +168,7 @@ let ProjectCardPartialComponent = /*#__PURE__*/(() => {
       consts: [[4, "ngIf"], [1, "card", "card-v"], [1, "dblock"], ["src", "https://eu.ui-avatars.com/api/?name=John+Doe&size=250", 1, "h-1", "hm-3", "image-fill"], [1, "box"], [1, "f6", "weight-bold"], ["routerLink", "/projects/34"], [1, "small", "light"], [1, "corner"], ["title", "Link", 1, "btn"], [1, "liga"], [1, "card", "box", "valign-center"], [1, "dblock", "c-2", "rspace"], ["src", "https://via.placeholder.com/50?text=RM", 1, "image-cover", "image-circle"], [1, "f6", "weight-normal"], [1, "card"], [1, "image"], ["src", "https://via.placeholder.com/300", 1, "h-2", "hm-2", "image-fill"], [1, "content", "hspace", "card", "card-v", "c-7"], [3, "rating"], [1, "tail-v"], [1, "dinline", 2, "width", "20px"], ["src", "https://via.placeholder.com/50?text=RM", 1, "box-shadow-shallow", "image-cover", "image-circle"], [1, "dinline", 2, "width", "20px", "margin-left", "-5px"], [1, "extra", "c-2"], [1, "lighter", "smaller"], [1, "tail"]],
       template: function ProjectCardPartialComponent_Template(rf, ctx) {
         if (rf & 1) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](0, ProjectCardPartialComponent_ng_container_0_Template, 21, 0, "ng-container", 0);
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](1, ProjectCardPartialComponent_ng_container_1_Template, 26, 1, "ng-container", 0);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](0, ProjectCardPartialComponent_ng_container_0_Template, 21, 0, "ng-container", 0)(1, ProjectCardPartialComponent_ng_container_1_Template, 26, 1, "ng-container", 0);
         }
         if (rf & 2) {
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx.mode.compact);
@@ -212,11 +211,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-const _c0 = function () {
-  return {
-    forNew: true
-  };
-};
+const _c0 = () => ({
+  forNew: true
+});
 let ProjectCreateComponent = /*#__PURE__*/(() => {
   class ProjectCreateComponent {
     constructor(route, router, toast, projectService) {
@@ -380,9 +377,7 @@ function ProjectFormPartialComponent_option_12_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtextInterpolate"](item_r1);
   }
 }
-const _c0 = function () {
-  return [1, 2, 3, 4];
-};
+const _c0 = () => [1, 2, 3, 4];
 let ProjectFormPartialComponent = /*#__PURE__*/(() => {
   class ProjectFormPartialComponent {
     constructor(fb, toast) {
@@ -603,29 +598,19 @@ function ProjectListComponent_li_17_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
   }
 }
-const _c0 = function () {
-  return [1, 2, 3, 4, 5, 6];
-};
-const _c1 = function () {
-  return {
-    public: true,
-    page: 1
-  };
-};
-const _c2 = function (a1) {
-  return ["/products", a1];
-};
-const _c3 = function () {
-  return {
-    public: false
-  };
-};
-const _c4 = function () {
-  return {
-    public: false,
-    page: 2
-  };
-};
+const _c0 = () => [1, 2, 3, 4, 5, 6];
+const _c1 = () => ({
+  public: true,
+  page: 1
+});
+const _c2 = a1 => ["/products", a1];
+const _c3 = () => ({
+  public: false
+});
+const _c4 = () => ({
+  public: false,
+  page: 2
+});
 const projects = [{
   id: '1',
   title: 'Turtle Rock',
@@ -1558,7 +1543,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 2859);
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ 3409);
 /**
- * @license Angular v16.2.11
+ * @license Angular v17.0.8
  * (c) 2010-2022 Google LLC. https://angular.io/
  * License: MIT
  */
@@ -1631,7 +1616,7 @@ let BaseControlValueAccessor = /*#__PURE__*/(() => {
   }
   return BaseControlValueAccessor;
 })();
-/*#__PURE__*/(function () {
+/*#__PURE__*/(() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && void 0;
 })();
 /**
@@ -1645,12 +1630,12 @@ let BaseControlValueAccessor = /*#__PURE__*/(() => {
  */
 let BuiltInControlValueAccessor = /*#__PURE__*/(() => {
   class BuiltInControlValueAccessor extends BaseControlValueAccessor {
-    static #_ = this.ɵfac = /* @__PURE__ */function () {
+    static #_ = this.ɵfac = /* @__PURE__ */(() => {
       let ɵBuiltInControlValueAccessor_BaseFactory;
       return function BuiltInControlValueAccessor_Factory(t) {
         return (ɵBuiltInControlValueAccessor_BaseFactory || (ɵBuiltInControlValueAccessor_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](BuiltInControlValueAccessor)))(t || BuiltInControlValueAccessor);
       };
-    }();
+    })();
     static #_2 = this.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
       type: BuiltInControlValueAccessor,
       features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"]]
@@ -1658,7 +1643,7 @@ let BuiltInControlValueAccessor = /*#__PURE__*/(() => {
   }
   return BuiltInControlValueAccessor;
 })();
-/*#__PURE__*/(function () {
+/*#__PURE__*/(() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && void 0;
 })();
 /**
@@ -1706,12 +1691,12 @@ let CheckboxControlValueAccessor = /*#__PURE__*/(() => {
     writeValue(value) {
       this.setProperty('checked', value);
     }
-    static #_ = this.ɵfac = /* @__PURE__ */function () {
+    static #_ = this.ɵfac = /* @__PURE__ */(() => {
       let ɵCheckboxControlValueAccessor_BaseFactory;
       return function CheckboxControlValueAccessor_Factory(t) {
         return (ɵCheckboxControlValueAccessor_BaseFactory || (ɵCheckboxControlValueAccessor_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](CheckboxControlValueAccessor)))(t || CheckboxControlValueAccessor);
       };
-    }();
+    })();
     static #_2 = this.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
       type: CheckboxControlValueAccessor,
       selectors: [["input", "type", "checkbox", "formControlName", ""], ["input", "type", "checkbox", "formControl", ""], ["input", "type", "checkbox", "ngModel", ""]],
@@ -1729,7 +1714,7 @@ let CheckboxControlValueAccessor = /*#__PURE__*/(() => {
   }
   return CheckboxControlValueAccessor;
 })();
-/*#__PURE__*/(function () {
+/*#__PURE__*/(() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && void 0;
 })();
 const DEFAULT_VALUE_ACCESSOR = {
@@ -1845,7 +1830,7 @@ let DefaultValueAccessor = /*#__PURE__*/(() => {
   }
   return DefaultValueAccessor;
 })();
-/*#__PURE__*/(function () {
+/*#__PURE__*/(() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && void 0;
 })();
 function isEmptyInputValue(value) {
@@ -2950,7 +2935,7 @@ let NgControlStatus = /*#__PURE__*/(() => {
   }
   return NgControlStatus;
 })();
-/*#__PURE__*/(function () {
+/*#__PURE__*/(() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && void 0;
 })();
 /**
@@ -2987,7 +2972,7 @@ let NgControlStatusGroup = /*#__PURE__*/(() => {
   }
   return NgControlStatusGroup;
 })();
-/*#__PURE__*/(function () {
+/*#__PURE__*/(() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && void 0;
 })();
 const formControlNameExample = `
@@ -4216,6 +4201,7 @@ class FormGroup extends AbstractControl {
    */
   constructor(controls, validatorOrOpts, asyncValidator) {
     super(pickValidators(validatorOrOpts), pickAsyncValidators(asyncValidator, validatorOrOpts));
+    (typeof ngDevMode === 'undefined' || ngDevMode) && validateFormGroupControls(controls);
     this.controls = controls;
     this._initObservables();
     this._setUpdateStrategy(validatorOrOpts);
@@ -4520,6 +4506,17 @@ class FormGroup extends AbstractControl {
   /** @internal */
   _find(name) {
     return this.controls.hasOwnProperty(name) ? this.controls[name] : null;
+  }
+}
+/**
+ * Will validate that none of the controls has a key with a dot
+ * Throws other wise
+ */
+function validateFormGroupControls(controls) {
+  const invalidKeys = Object.keys(controls).filter(key => key.includes('.'));
+  if (invalidKeys.length > 0) {
+    // TODO: make this an error once there are no more uses in G3
+    console.warn(`FormGroup keys cannot include \`.\`, please replace the keys for: ${invalidKeys.join(',')}.`);
   }
 }
 const UntypedFormGroup = FormGroup;
@@ -5160,7 +5157,7 @@ let NgForm = /*#__PURE__*/(() => {
   }
   return NgForm;
 })();
-/*#__PURE__*/(function () {
+/*#__PURE__*/(() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && void 0;
 })();
 function removeListItem(list, el) {
@@ -5326,12 +5323,12 @@ let AbstractFormGroupDirective = /*#__PURE__*/(() => {
     }
     /** @internal */
     _checkParentType() {}
-    static #_ = this.ɵfac = /* @__PURE__ */function () {
+    static #_ = this.ɵfac = /* @__PURE__ */(() => {
       let ɵAbstractFormGroupDirective_BaseFactory;
       return function AbstractFormGroupDirective_Factory(t) {
         return (ɵAbstractFormGroupDirective_BaseFactory || (ɵAbstractFormGroupDirective_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](AbstractFormGroupDirective)))(t || AbstractFormGroupDirective);
       };
-    }();
+    })();
     static #_2 = this.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
       type: AbstractFormGroupDirective,
       features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵInheritDefinitionFeature"]]
@@ -5339,7 +5336,7 @@ let AbstractFormGroupDirective = /*#__PURE__*/(() => {
   }
   return AbstractFormGroupDirective;
 })();
-/*#__PURE__*/(function () {
+/*#__PURE__*/(() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && void 0;
 })();
 function modelParentException() {
@@ -5451,7 +5448,7 @@ let NgModelGroup = /*#__PURE__*/(() => {
   }
   return NgModelGroup;
 })();
-/*#__PURE__*/(function () {
+/*#__PURE__*/(() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && void 0;
 })();
 const formControlBinding$1 = {
@@ -5729,7 +5726,7 @@ let NgModel = /*#__PURE__*/(() => {
   }
   return NgModel;
 })();
-/*#__PURE__*/(function () {
+/*#__PURE__*/(() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && void 0;
 })();
 
@@ -5763,7 +5760,7 @@ let ɵNgNoValidate = /*#__PURE__*/(() => {
   }
   return ɵNgNoValidate;
 })();
-/*#__PURE__*/(function () {
+/*#__PURE__*/(() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && void 0;
 })();
 const NUMBER_VALUE_ACCESSOR = {
@@ -5815,12 +5812,12 @@ let NumberValueAccessor = /*#__PURE__*/(() => {
         fn(value == '' ? null : parseFloat(value));
       };
     }
-    static #_ = this.ɵfac = /* @__PURE__ */function () {
+    static #_ = this.ɵfac = /* @__PURE__ */(() => {
       let ɵNumberValueAccessor_BaseFactory;
       return function NumberValueAccessor_Factory(t) {
         return (ɵNumberValueAccessor_BaseFactory || (ɵNumberValueAccessor_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](NumberValueAccessor)))(t || NumberValueAccessor);
       };
-    }();
+    })();
     static #_2 = this.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
       type: NumberValueAccessor,
       selectors: [["input", "type", "number", "formControlName", ""], ["input", "type", "number", "formControl", ""], ["input", "type", "number", "ngModel", ""]],
@@ -5838,7 +5835,7 @@ let NumberValueAccessor = /*#__PURE__*/(() => {
   }
   return NumberValueAccessor;
 })();
-/*#__PURE__*/(function () {
+/*#__PURE__*/(() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && void 0;
 })();
 const RADIO_VALUE_ACCESSOR = {
@@ -5870,7 +5867,7 @@ let RadioControlRegistryModule = /*#__PURE__*/(() => {
   }
   return RadioControlRegistryModule;
 })();
-/*#__PURE__*/(function () {
+/*#__PURE__*/(() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && void 0;
 })();
 /**
@@ -5927,7 +5924,7 @@ let RadioControlRegistry = /*#__PURE__*/(() => {
   }
   return RadioControlRegistry;
 })();
-/*#__PURE__*/(function () {
+/*#__PURE__*/(() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && void 0;
 })();
 /**
@@ -6062,7 +6059,7 @@ let RadioControlValueAccessor = /*#__PURE__*/(() => {
   }
   return RadioControlValueAccessor;
 })();
-/*#__PURE__*/(function () {
+/*#__PURE__*/(() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && void 0;
 })();
 const RANGE_VALUE_ACCESSOR = {
@@ -6112,12 +6109,12 @@ let RangeValueAccessor = /*#__PURE__*/(() => {
         fn(value == '' ? null : parseFloat(value));
       };
     }
-    static #_ = this.ɵfac = /* @__PURE__ */function () {
+    static #_ = this.ɵfac = /* @__PURE__ */(() => {
       let ɵRangeValueAccessor_BaseFactory;
       return function RangeValueAccessor_Factory(t) {
         return (ɵRangeValueAccessor_BaseFactory || (ɵRangeValueAccessor_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](RangeValueAccessor)))(t || RangeValueAccessor);
       };
-    }();
+    })();
     static #_2 = this.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
       type: RangeValueAccessor,
       selectors: [["input", "type", "range", "formControlName", ""], ["input", "type", "range", "formControl", ""], ["input", "type", "range", "ngModel", ""]],
@@ -6137,7 +6134,7 @@ let RangeValueAccessor = /*#__PURE__*/(() => {
   }
   return RangeValueAccessor;
 })();
-/*#__PURE__*/(function () {
+/*#__PURE__*/(() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && void 0;
 })();
 
@@ -6282,7 +6279,7 @@ let FormControlDirective = /*#__PURE__*/(() => {
   }
   return FormControlDirective;
 })();
-/*#__PURE__*/(function () {
+/*#__PURE__*/(() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && void 0;
 })();
 const formDirectiveProvider = {
@@ -6616,7 +6613,7 @@ let FormGroupDirective = /*#__PURE__*/(() => {
   }
   return FormGroupDirective;
 })();
-/*#__PURE__*/(function () {
+/*#__PURE__*/(() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && void 0;
 })();
 const formGroupNameProvider = {
@@ -6708,7 +6705,7 @@ let FormGroupName = /*#__PURE__*/(() => {
   }
   return FormGroupName;
 })();
-/*#__PURE__*/(function () {
+/*#__PURE__*/(() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && void 0;
 })();
 const formArrayNameProvider = {
@@ -6816,7 +6813,7 @@ let FormArrayName = /*#__PURE__*/(() => {
   }
   return FormArrayName;
 })();
-/*#__PURE__*/(function () {
+/*#__PURE__*/(() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && void 0;
 })();
 function _hasInvalidParent(parent) {
@@ -6983,7 +6980,7 @@ let FormControlName = /*#__PURE__*/(() => {
   }
   return FormControlName;
 })();
-/*#__PURE__*/(function () {
+/*#__PURE__*/(() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && void 0;
 })();
 const SELECT_VALUE_ACCESSOR = {
@@ -7112,12 +7109,12 @@ let SelectControlValueAccessor = /*#__PURE__*/(() => {
       const id = _extractId$1(valueString);
       return this._optionMap.has(id) ? this._optionMap.get(id) : valueString;
     }
-    static #_ = this.ɵfac = /* @__PURE__ */function () {
+    static #_ = this.ɵfac = /* @__PURE__ */(() => {
       let ɵSelectControlValueAccessor_BaseFactory;
       return function SelectControlValueAccessor_Factory(t) {
         return (ɵSelectControlValueAccessor_BaseFactory || (ɵSelectControlValueAccessor_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](SelectControlValueAccessor)))(t || SelectControlValueAccessor);
       };
-    }();
+    })();
     static #_2 = this.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
       type: SelectControlValueAccessor,
       selectors: [["select", "formControlName", "", 3, "multiple", ""], ["select", "formControl", "", 3, "multiple", ""], ["select", "ngModel", "", 3, "multiple", ""]],
@@ -7138,7 +7135,7 @@ let SelectControlValueAccessor = /*#__PURE__*/(() => {
   }
   return SelectControlValueAccessor;
 })();
-/*#__PURE__*/(function () {
+/*#__PURE__*/(() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && void 0;
 })();
 /**
@@ -7204,7 +7201,7 @@ let NgSelectOption = /*#__PURE__*/(() => {
   }
   return NgSelectOption;
 })();
-/*#__PURE__*/(function () {
+/*#__PURE__*/(() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && void 0;
 })();
 const SELECT_MULTIPLE_VALUE_ACCESSOR = {
@@ -7351,12 +7348,12 @@ let SelectMultipleControlValueAccessor = /*#__PURE__*/(() => {
       const id = _extractId(valueString);
       return this._optionMap.has(id) ? this._optionMap.get(id)._value : valueString;
     }
-    static #_ = this.ɵfac = /* @__PURE__ */function () {
+    static #_ = this.ɵfac = /* @__PURE__ */(() => {
       let ɵSelectMultipleControlValueAccessor_BaseFactory;
       return function SelectMultipleControlValueAccessor_Factory(t) {
         return (ɵSelectMultipleControlValueAccessor_BaseFactory || (ɵSelectMultipleControlValueAccessor_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](SelectMultipleControlValueAccessor)))(t || SelectMultipleControlValueAccessor);
       };
-    }();
+    })();
     static #_2 = this.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
       type: SelectMultipleControlValueAccessor,
       selectors: [["select", "multiple", "", "formControlName", ""], ["select", "multiple", "", "formControl", ""], ["select", "multiple", "", "ngModel", ""]],
@@ -7377,7 +7374,7 @@ let SelectMultipleControlValueAccessor = /*#__PURE__*/(() => {
   }
   return SelectMultipleControlValueAccessor;
 })();
-/*#__PURE__*/(function () {
+/*#__PURE__*/(() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && void 0;
 })();
 /**
@@ -7454,7 +7451,7 @@ let ɵNgSelectMultipleOption = /*#__PURE__*/(() => {
   }
   return ɵNgSelectMultipleOption;
 })();
-/*#__PURE__*/(function () {
+/*#__PURE__*/(() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && void 0;
 })();
 
@@ -7526,7 +7523,7 @@ let AbstractValidatorDirective = /*#__PURE__*/(() => {
   }
   return AbstractValidatorDirective;
 })();
-/*#__PURE__*/(function () {
+/*#__PURE__*/(() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && void 0;
 })();
 /**
@@ -7570,12 +7567,12 @@ let MaxValidator = /*#__PURE__*/(() => {
       /** @internal */
       this.createValidator = max => maxValidator(max);
     }
-    static #_ = this.ɵfac = /* @__PURE__ */function () {
+    static #_ = this.ɵfac = /* @__PURE__ */(() => {
       let ɵMaxValidator_BaseFactory;
       return function MaxValidator_Factory(t) {
         return (ɵMaxValidator_BaseFactory || (ɵMaxValidator_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](MaxValidator)))(t || MaxValidator);
       };
-    }();
+    })();
     static #_2 = this.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
       type: MaxValidator,
       selectors: [["input", "type", "number", "max", "", "formControlName", ""], ["input", "type", "number", "max", "", "formControl", ""], ["input", "type", "number", "max", "", "ngModel", ""]],
@@ -7593,7 +7590,7 @@ let MaxValidator = /*#__PURE__*/(() => {
   }
   return MaxValidator;
 })();
-/*#__PURE__*/(function () {
+/*#__PURE__*/(() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && void 0;
 })();
 /**
@@ -7637,12 +7634,12 @@ let MinValidator = /*#__PURE__*/(() => {
       /** @internal */
       this.createValidator = min => minValidator(min);
     }
-    static #_ = this.ɵfac = /* @__PURE__ */function () {
+    static #_ = this.ɵfac = /* @__PURE__ */(() => {
       let ɵMinValidator_BaseFactory;
       return function MinValidator_Factory(t) {
         return (ɵMinValidator_BaseFactory || (ɵMinValidator_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](MinValidator)))(t || MinValidator);
       };
-    }();
+    })();
     static #_2 = this.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
       type: MinValidator,
       selectors: [["input", "type", "number", "min", "", "formControlName", ""], ["input", "type", "number", "min", "", "formControl", ""], ["input", "type", "number", "min", "", "ngModel", ""]],
@@ -7660,7 +7657,7 @@ let MinValidator = /*#__PURE__*/(() => {
   }
   return MinValidator;
 })();
-/*#__PURE__*/(function () {
+/*#__PURE__*/(() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && void 0;
 })();
 /**
@@ -7715,12 +7712,12 @@ let RequiredValidator = /*#__PURE__*/(() => {
     enabled(input) {
       return input;
     }
-    static #_ = this.ɵfac = /* @__PURE__ */function () {
+    static #_ = this.ɵfac = /* @__PURE__ */(() => {
       let ɵRequiredValidator_BaseFactory;
       return function RequiredValidator_Factory(t) {
         return (ɵRequiredValidator_BaseFactory || (ɵRequiredValidator_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](RequiredValidator)))(t || RequiredValidator);
       };
-    }();
+    })();
     static #_2 = this.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
       type: RequiredValidator,
       selectors: [["", "required", "", "formControlName", "", 3, "type", "checkbox"], ["", "required", "", "formControl", "", 3, "type", "checkbox"], ["", "required", "", "ngModel", "", 3, "type", "checkbox"]],
@@ -7738,7 +7735,7 @@ let RequiredValidator = /*#__PURE__*/(() => {
   }
   return RequiredValidator;
 })();
-/*#__PURE__*/(function () {
+/*#__PURE__*/(() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && void 0;
 })();
 /**
@@ -7769,12 +7766,12 @@ let CheckboxRequiredValidator = /*#__PURE__*/(() => {
       /** @internal */
       this.createValidator = input => requiredTrueValidator;
     }
-    static #_ = this.ɵfac = /* @__PURE__ */function () {
+    static #_ = this.ɵfac = /* @__PURE__ */(() => {
       let ɵCheckboxRequiredValidator_BaseFactory;
       return function CheckboxRequiredValidator_Factory(t) {
         return (ɵCheckboxRequiredValidator_BaseFactory || (ɵCheckboxRequiredValidator_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](CheckboxRequiredValidator)))(t || CheckboxRequiredValidator);
       };
-    }();
+    })();
     static #_2 = this.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
       type: CheckboxRequiredValidator,
       selectors: [["input", "type", "checkbox", "required", "", "formControlName", ""], ["input", "type", "checkbox", "required", "", "formControl", ""], ["input", "type", "checkbox", "required", "", "ngModel", ""]],
@@ -7789,7 +7786,7 @@ let CheckboxRequiredValidator = /*#__PURE__*/(() => {
   }
   return CheckboxRequiredValidator;
 })();
-/*#__PURE__*/(function () {
+/*#__PURE__*/(() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && void 0;
 })();
 /**
@@ -7843,12 +7840,12 @@ let EmailValidator = /*#__PURE__*/(() => {
     enabled(input) {
       return input;
     }
-    static #_ = this.ɵfac = /* @__PURE__ */function () {
+    static #_ = this.ɵfac = /* @__PURE__ */(() => {
       let ɵEmailValidator_BaseFactory;
       return function EmailValidator_Factory(t) {
         return (ɵEmailValidator_BaseFactory || (ɵEmailValidator_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](EmailValidator)))(t || EmailValidator);
       };
-    }();
+    })();
     static #_2 = this.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
       type: EmailValidator,
       selectors: [["", "email", "", "formControlName", ""], ["", "email", "", "formControl", ""], ["", "email", "", "ngModel", ""]],
@@ -7860,7 +7857,7 @@ let EmailValidator = /*#__PURE__*/(() => {
   }
   return EmailValidator;
 })();
-/*#__PURE__*/(function () {
+/*#__PURE__*/(() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && void 0;
 })();
 /**
@@ -7904,12 +7901,12 @@ let MinLengthValidator = /*#__PURE__*/(() => {
       /** @internal */
       this.createValidator = minlength => minLengthValidator(minlength);
     }
-    static #_ = this.ɵfac = /* @__PURE__ */function () {
+    static #_ = this.ɵfac = /* @__PURE__ */(() => {
       let ɵMinLengthValidator_BaseFactory;
       return function MinLengthValidator_Factory(t) {
         return (ɵMinLengthValidator_BaseFactory || (ɵMinLengthValidator_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](MinLengthValidator)))(t || MinLengthValidator);
       };
-    }();
+    })();
     static #_2 = this.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
       type: MinLengthValidator,
       selectors: [["", "minlength", "", "formControlName", ""], ["", "minlength", "", "formControl", ""], ["", "minlength", "", "ngModel", ""]],
@@ -7927,7 +7924,7 @@ let MinLengthValidator = /*#__PURE__*/(() => {
   }
   return MinLengthValidator;
 })();
-/*#__PURE__*/(function () {
+/*#__PURE__*/(() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && void 0;
 })();
 /**
@@ -7971,12 +7968,12 @@ let MaxLengthValidator = /*#__PURE__*/(() => {
       /** @internal */
       this.createValidator = maxlength => maxLengthValidator(maxlength);
     }
-    static #_ = this.ɵfac = /* @__PURE__ */function () {
+    static #_ = this.ɵfac = /* @__PURE__ */(() => {
       let ɵMaxLengthValidator_BaseFactory;
       return function MaxLengthValidator_Factory(t) {
         return (ɵMaxLengthValidator_BaseFactory || (ɵMaxLengthValidator_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](MaxLengthValidator)))(t || MaxLengthValidator);
       };
-    }();
+    })();
     static #_2 = this.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
       type: MaxLengthValidator,
       selectors: [["", "maxlength", "", "formControlName", ""], ["", "maxlength", "", "formControl", ""], ["", "maxlength", "", "ngModel", ""]],
@@ -7994,7 +7991,7 @@ let MaxLengthValidator = /*#__PURE__*/(() => {
   }
   return MaxLengthValidator;
 })();
-/*#__PURE__*/(function () {
+/*#__PURE__*/(() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && void 0;
 })();
 /**
@@ -8040,12 +8037,12 @@ let PatternValidator = /*#__PURE__*/(() => {
       /** @internal */
       this.createValidator = input => patternValidator(input);
     }
-    static #_ = this.ɵfac = /* @__PURE__ */function () {
+    static #_ = this.ɵfac = /* @__PURE__ */(() => {
       let ɵPatternValidator_BaseFactory;
       return function PatternValidator_Factory(t) {
         return (ɵPatternValidator_BaseFactory || (ɵPatternValidator_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](PatternValidator)))(t || PatternValidator);
       };
-    }();
+    })();
     static #_2 = this.ɵdir = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineDirective"]({
       type: PatternValidator,
       selectors: [["", "pattern", "", "formControlName", ""], ["", "pattern", "", "formControl", ""], ["", "pattern", "", "ngModel", ""]],
@@ -8063,7 +8060,7 @@ let PatternValidator = /*#__PURE__*/(() => {
   }
   return PatternValidator;
 })();
-/*#__PURE__*/(function () {
+/*#__PURE__*/(() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && void 0;
 })();
 const SHARED_FORM_DIRECTIVES = [ɵNgNoValidate, NgSelectOption, ɵNgSelectMultipleOption, DefaultValueAccessor, NumberValueAccessor, RangeValueAccessor, CheckboxControlValueAccessor, SelectControlValueAccessor, SelectMultipleControlValueAccessor, RadioControlValueAccessor, NgControlStatus, NgControlStatusGroup, RequiredValidator, MinLengthValidator, MaxLengthValidator, PatternValidator, CheckboxRequiredValidator, EmailValidator, MinValidator, MaxValidator];
@@ -8086,7 +8083,7 @@ let ɵInternalFormsSharedModule = /*#__PURE__*/(() => {
   }
   return ɵInternalFormsSharedModule;
 })();
-/*#__PURE__*/(function () {
+/*#__PURE__*/(() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && void 0;
 })();
 
@@ -8754,7 +8751,7 @@ let FormBuilder = /*#__PURE__*/(() => {
   }
   return FormBuilder;
 })();
-/*#__PURE__*/(function () {
+/*#__PURE__*/(() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && void 0;
 })();
 /**
@@ -8771,15 +8768,13 @@ let NonNullableFormBuilder = /*#__PURE__*/(() => {
     };
     static #_2 = this.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
       token: NonNullableFormBuilder,
-      factory: function () {
-        return (() => (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__.inject)(FormBuilder).nonNullable)();
-      },
+      factory: () => (() => (0,_angular_core__WEBPACK_IMPORTED_MODULE_0__.inject)(FormBuilder).nonNullable)(),
       providedIn: 'root'
     });
   }
   return NonNullableFormBuilder;
 })();
-/*#__PURE__*/(function () {
+/*#__PURE__*/(() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && void 0;
 })();
 /**
@@ -8802,12 +8797,12 @@ let UntypedFormBuilder = /*#__PURE__*/(() => {
     array(controlsConfig, validatorOrOpts, asyncValidator) {
       return super.array(controlsConfig, validatorOrOpts, asyncValidator);
     }
-    static #_ = this.ɵfac = /* @__PURE__ */function () {
+    static #_ = this.ɵfac = /* @__PURE__ */(() => {
       let ɵUntypedFormBuilder_BaseFactory;
       return function UntypedFormBuilder_Factory(t) {
         return (ɵUntypedFormBuilder_BaseFactory || (ɵUntypedFormBuilder_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetInheritedFactory"](UntypedFormBuilder)))(t || UntypedFormBuilder);
       };
-    }();
+    })();
     static #_2 = this.ɵprov = /* @__PURE__ */_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
       token: UntypedFormBuilder,
       factory: UntypedFormBuilder.ɵfac,
@@ -8816,7 +8811,7 @@ let UntypedFormBuilder = /*#__PURE__*/(() => {
   }
   return UntypedFormBuilder;
 })();
-/*#__PURE__*/(function () {
+/*#__PURE__*/(() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && void 0;
 })();
 
@@ -8828,7 +8823,7 @@ let UntypedFormBuilder = /*#__PURE__*/(() => {
 /**
  * @publicApi
  */
-const VERSION = /*#__PURE__*/new _angular_core__WEBPACK_IMPORTED_MODULE_0__.Version('16.2.11');
+const VERSION = /*#__PURE__*/new _angular_core__WEBPACK_IMPORTED_MODULE_0__.Version('17.0.8');
 
 /**
  * Exports the required providers and directives for template-driven forms,
@@ -8873,7 +8868,7 @@ let FormsModule = /*#__PURE__*/(() => {
   }
   return FormsModule;
 })();
-/*#__PURE__*/(function () {
+/*#__PURE__*/(() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && void 0;
 })();
 /**
@@ -8924,7 +8919,7 @@ let ReactiveFormsModule = /*#__PURE__*/(() => {
   }
   return ReactiveFormsModule;
 })();
-/*#__PURE__*/(function () {
+/*#__PURE__*/(() => {
   (typeof ngDevMode === "undefined" || ngDevMode) && void 0;
 })();
 

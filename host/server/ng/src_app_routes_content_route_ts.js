@@ -188,9 +188,7 @@ function ContentDetailsComponent_li_57_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵtextInterpolate1"](" ", _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵpipeBind1"](4, 2, _angular_core__WEBPACK_IMPORTED_MODULE_6__["ɵɵpipeBind4"](5, 4, ctx_r4.enumRate[rate_r13], "RATING", null, ctx_r4.enumRate[rate_r13])), "");
   }
 }
-const _c0 = function () {
-  return [23.44, "EUR", "symbol-narrow", undefined, "en-US"];
-};
+const _c0 = () => [23.44, "EUR", "symbol-narrow", undefined, "en-US"];
 var EnumRate = /*#__PURE__*/function (EnumRate) {
   EnumRate[EnumRate["AWEFUL"] = 1] = "AWEFUL";
   EnumRate[EnumRate["POOR"] = 2] = "POOR";
@@ -655,12 +653,12 @@ let CustomCurrencyPipe = /*#__PURE__*/(() => {
       // get symbol
       return super.transform(value, currencyCode, 'symbol-narrow');
     }
-    static #_ = this.ɵfac = /*@__PURE__*/function () {
+    static #_ = this.ɵfac = /*@__PURE__*/(() => {
       let ɵCustomCurrencyPipe_BaseFactory;
       return function CustomCurrencyPipe_Factory(t) {
         return (ɵCustomCurrencyPipe_BaseFactory || (ɵCustomCurrencyPipe_BaseFactory = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetInheritedFactory"](CustomCurrencyPipe)))(t || CustomCurrencyPipe);
       };
-    }();
+    })();
     static #_2 = this.ɵpipe = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefinePipe"]({
       name: "crCurrency",
       type: CustomCurrencyPipe,

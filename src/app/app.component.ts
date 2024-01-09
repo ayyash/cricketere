@@ -1,14 +1,15 @@
 import { Component } from '@angular/core';
-import { NavigationEnd, Router, NavigationCancel, RouterModule } from '@angular/router';
-import { LoaderService } from './core/services';
+import { NavigationCancel, NavigationEnd, Router, RouterModule } from '@angular/router';
 import { filter } from 'rxjs/operators';
-import { EnumGtmEvent, GtmTracking } from './core/gtm';
 import { LoaderComponent } from './components/common/loader.partial';
-import { ToastPartialComponent } from './lib/toaster/toast.component';
+import { EnumGtmEvent, GtmTracking } from './core/gtm';
+import { LoaderService } from './core/services';
 import { AppShellRenderDirective } from './lib/directives/render.directive';
+import { ToastPartialComponent } from './lib/toaster/toast.component';
 @Component({
     selector: 'app-root',
     standalone: true,
+    // host: {ngSkipHydration: 'true'},
     imports: [RouterModule, LoaderComponent, ToastPartialComponent, AppShellRenderDirective],
     template: `<http-loader></http-loader>
     <gr-toast *shServerRender="false"></gr-toast>

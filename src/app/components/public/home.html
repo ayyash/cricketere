@@ -24,3 +24,6 @@
         </div>
 
         <a [routerLink]="['/content/details', {p: '1'}]">Details content</a>
+
+        <div *shServerRender="true">for server</div>
+        <div *shServerRender="false">for client</div>

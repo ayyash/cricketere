@@ -130,11 +130,9 @@ function ProductListComponent_div_1_ng_container_1_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵproperty"]("ngIf", params_r4.hasMore);
   }
 }
-const _c0 = function () {
-  return {
-    page: 2
-  };
-};
+const _c0 = () => ({
+  page: 2
+});
 function ProductListComponent_div_1_Template(rf, ctx) {
   if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵelementStart"](0, "div", 3);

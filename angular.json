@@ -157,7 +157,7 @@
 
             "index": "src/placeholder.html",
             "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
+            "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "styles": [
               {
@@ -497,14 +497,14 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "cricketereweb:build:serve"
+            "buildTarget": "cricketereweb:build:serve"
           },
           "configurations": {
             "production": {
-              "browserTarget": "cricketereweb:build:serveProduction"
+              "buildTarget": "cricketereweb:build:serveProduction"
             },
             "rtl": {
-              "browserTarget": "cricketereweb:build:serveRtl"
+              "buildTarget": "cricketereweb:build:serveRtl"
             }
           }
         },
@@ -591,6 +591,7 @@
             ]
           }
         }
+
       }
     }
   },
