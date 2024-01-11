@@ -1,29 +1,29 @@
+<h2 class="f2 txt-c"> {{ 'Hello cricketers' | translate:'WELCOME_TEXT' }}</h2>
 
+<p>
+  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Et reprehenderit impedit vero quaerat? Optio aspernatur sed
+  corporis officia cupiditate dolores provident minus quidem atque, magnam id fugit tempore cum labore!
+</p>
+<hr class="spaced" />
+<button class="btn" (click)="showToast1()">Show toast of exact code</button>
+<br />
+<button class="btn" (click)="showToast2()">Show toast of no code</button>
+<br />
+<button class="btn" (click)="showToast3()">
+  Show toast with fallback message
+</button>
+<br />
+<button class="btn" (click)="showToast4()">
+  Show toast with key provided message
+</button>
+<div>{{ x$ | async}}</div>
+<div class="txt-c">
 
-        <h2 class="f2 txt-c"> {{ 'Hello cricketers' | translate:'WELCOME_TEXT' }}</h2>
+  <button class="btn-rev" routerLink="/login"
+    [shGtm]="{source: enumGtmSource.Homepage,group: enumGtmGroup.Login}">Login</button>
+</div>
 
-        <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Et reprehenderit impedit vero quaerat? Optio aspernatur sed corporis officia cupiditate dolores provident minus quidem atque, magnam id fugit tempore cum labore!
-        </p>
-        <hr class="spaced" />
-        <button class="btn" (click)="showToast1()">Show toast of exact code</button>
-        <br />
-        <button class="btn" (click)="showToast2()">Show toast of no code</button>
-        <br />
-        <button class="btn" (click)="showToast3()">
-          Show toast with fallback message
-        </button>
-        <br />
-        <button class="btn" (click)="showToast4()">
-          Show toast with key provided message
-        </button>
-        <div>{{ x$ | async}}</div>
-        <div class="txt-c">
+<a [routerLink]="['/content/details', {p: '1'}]">Details content</a>
 
-            <button class="btn-rev" routerLink="/login" [shGtm]="{source: enumGtmSource.Homepage,group: enumGtmGroup.Login}">Login</button>
-        </div>
-
-        <a [routerLink]="['/content/details', {p: '1'}]">Details content</a>
-
-        <div *shServerRender="true">for server</div>
-        <div *shServerRender="false">for client</div>
+<div *shServerRender="true">for server</div>
+<div *shServerRender="false">for client</div>

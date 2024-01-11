@@ -1,36 +1,32 @@
 
-import { APP_ID, LOCALE_ID, enableProdMode, importProvidersFrom } from '@angular/core';
-// import { ngExpressEngine } from '@nguniversal/express-engine';
+import { enableProdMode } from '@angular/core';
 import 'zone.js';
 
-import { APP_BASE_HREF } from '@angular/common';
 import { bootstrapApplication } from '@angular/platform-browser';
-import { ServerModule } from '@angular/platform-server';
+import { provideServerRendering } from '@angular/platform-server';
 import { CommonEngine, CommonEngineRenderOptions } from '@angular/ssr';
+import { appProviders } from './src/app.config';
 import { AppComponent } from './src/app/app.component';
-import { CoreProviders } from './src/app/core/core.module';
-import { LocaleId, RootHref } from './src/app/core/resources';
-import { AppRouteProviders } from './src/app/routing.module';
 import { environment } from './src/environments/environment';
 
 // following lines is for prerender to work
-// export { renderModule } from '@angular/platform-server';
+// export { renderApplication } from '@angular/platform-server';
 // export { AppServerModule } from './src/app/app.server.module';
 
-// export { CommonEngine } from '@angular/ssr';
+// const serverConfig: ApplicationConfig = {
+//   providers: [
+//     provideServerRendering()
+//   ]
+// };
 
 
 const _app = () => bootstrapApplication(AppComponent, {
   providers: [
-    importProvidersFrom(ServerModule),
-    // pass the routes from existin RouteModule
-    { provide: LOCALE_ID, useClass: LocaleId },
-    { provide: APP_BASE_HREF, useClass: RootHref },
-    { provide: APP_ID, useValue: 'cricketere' },
-    ...CoreProviders,
-    ...AppRouteProviders
-  ],
-});
+    provideServerRendering(),
+    ...appProviders
+  ]
+}
+);
 
 // create engine
 const engine = new CommonEngine({ bootstrap: _app });
@@ -63,7 +59,6 @@ export function crExpressEgine(
     callback(err);
   }
 };
-// }
 
 // export AppEngine
 if (environment.production) {

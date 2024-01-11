@@ -444,7 +444,7 @@ let PublicHomeComponent = /*#__PURE__*/(() => {
           _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵpipe"](2, "translate");
           _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵelementEnd"]();
           _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵelementStart"](3, "p");
-          _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵtext"](4, " Lorem ipsum dolor, sit amet consectetur adipisicing elit. Et reprehenderit impedit vero quaerat? Optio aspernatur sed corporis officia cupiditate dolores provident minus quidem atque, magnam id fugit tempore cum labore! ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵtext"](4, " Lorem ipsum dolor, sit amet consectetur adipisicing elit. Et reprehenderit impedit vero quaerat? Optio aspernatur sed corporis officia cupiditate dolores provident minus quidem atque, magnam id fugit tempore cum labore!\n");
           _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵelementEnd"]();
           _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵelement"](5, "hr", 1);
           _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵelementStart"](6, "button", 2);
@@ -465,14 +465,14 @@ let PublicHomeComponent = /*#__PURE__*/(() => {
           _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵlistener"]("click", function PublicHomeComponent_Template_button_click_12_listener() {
             return ctx.showToast3();
           });
-          _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵtext"](13, " Show toast with fallback message ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵtext"](13, " Show toast with fallback message\n");
           _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵelementEnd"]();
           _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵelement"](14, "br");
           _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵelementStart"](15, "button", 2);
           _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵlistener"]("click", function PublicHomeComponent_Template_button_click_15_listener() {
             return ctx.showToast4();
           });
-          _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵtext"](16, " Show toast with key provided message ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵtext"](16, " Show toast with key provided message\n");
           _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵelementEnd"]();
           _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵelementStart"](17, "div");
           _angular_core__WEBPACK_IMPORTED_MODULE_8__["ɵɵtext"](18);

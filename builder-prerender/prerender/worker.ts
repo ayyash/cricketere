@@ -94,6 +94,7 @@ export async function PreRender({
   );
 
   // now get those out of the bundle, notice the dynamic import
+  // for standalone, this needs to change
   const { renderModule, AppServerModule } = await import(serverBundlePath);
 
   // now pass thru renderModule
@@ -103,6 +104,7 @@ export async function PreRender({
   });
 
   // this is scary business
+  // TODO: fix this, no more nguniversal
   const { ɵInlineCriticalCssProcessor: InlineCriticalCssProcessor } = await loadEsmModule<
     typeof import('@nguniversal/common/tools')
   >('@nguniversal/common/tools');

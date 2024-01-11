@@ -1,5 +1,5 @@
-import { Directive, Input, HostListener, AfterViewInit, ElementRef } from '@angular/core';
-import { EnumGtmEvent, EnumGtmGroup, EnumGtmSource, GtmTracking, IGtmTrack } from '../../core/gtm';
+import { AfterViewInit, Directive, ElementRef, HostListener, Input } from '@angular/core';
+import { EnumGtmEvent, EnumGtmGroup, EnumGtmSource, GtmTracking } from '../../core/gtm';
 
 
 @Directive({

@@ -9,7 +9,6 @@ import { ToastPartialComponent } from './lib/toaster/toast.component';
 @Component({
     selector: 'app-root',
     standalone: true,
-    // host: {ngSkipHydration: 'true'},
     imports: [RouterModule, LoaderComponent, ToastPartialComponent, AppShellRenderDirective],
     template: `<http-loader></http-loader>
     <gr-toast *shServerRender="false"></gr-toast>
