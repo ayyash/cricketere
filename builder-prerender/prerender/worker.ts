@@ -2,7 +2,6 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { URL } from 'url';
 
-
 export interface RenderOptions {
   indexFile: string;
   clientPath: string;
@@ -88,39 +87,48 @@ export async function PreRender({
 
   // change critical css
   // Workaround for https://github.com/GoogleChromeLabs/critters/issues/64
-  indexHtml = indexHtml.replace(
-    / media="print" onload="this\.media='all'"><noscript><link .+?><\/noscript>/g,
-    '>',
-  );
+  // indexHtml = indexHtml.replace(
+  //   / media="print" onload="this\.media='all'"><noscript><link .+?><\/noscript>/g,
+  //   '>',
+  // );
 
-  // now get those out of the bundle, notice the dynamic import
-  // for standalone, this needs to change
-  const { renderModule, AppServerModule } = await import(serverBundlePath);
+  // change this to renderApplication
+  const { renderModule, AppServerModule, renderApplication, default: bootstrapAppFn } = await import(serverBundlePath);
+
+
+
+  let html = await renderApplication(bootstrapAppFn, {
+    document: indexHtml,
+    url: route
+  });
 
   // now pass thru renderModule
-  let html = await renderModule(AppServerModule, {
-    document: indexHtml,
-    url: route,
-  });
+  // let html = await renderModule(AppServerModule, {
+  //   document: indexHtml,
+  //   url: route,
+  // });
 
   // this is scary business
   // TODO: fix this, no more nguniversal
-  const { ɵInlineCriticalCssProcessor: InlineCriticalCssProcessor } = await loadEsmModule<
-    typeof import('@nguniversal/common/tools')
-  >('@nguniversal/common/tools');
+  // const { ɵInlineCriticalCssProcessor: InlineCriticalCssProcessor } = await loadEsmModule<
+  //   typeof import('@nguniversal/common/tools')
+  // >('@nguniversal/common/tools');
+  // const { InlineCriticalCssProcessor } = await import(
+  //   '../../utils/index-file/inline-critical-css'
+  // );
 
-  const inlineCriticalCssProcessor = new InlineCriticalCssProcessor({
-    deployUrl: '',
-    minify: true
-  });
+  // const inlineCriticalCssProcessor = new InlineCriticalCssProcessor({
+  //   deployUrl: '',
+  //   minify: true
+  // });
 
-  const { content, warnings, errors } = await inlineCriticalCssProcessor.process(html, {
-    outputPath: clientPath,
-  });
+  // const { content, warnings, errors } = await inlineCriticalCssProcessor.process(html, {
+  //   outputPath: clientPath,
+  // });
 
-  result.errors = errors;
-  result.warnings = warnings;
-  html = content;
+  // result.errors = errors;
+  // result.warnings = warnings;
+  // html = content;
 
   // This case happens when we are prerendering "/".
   // if (browserIndexOutputPath === outputIndexPath) {

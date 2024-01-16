@@ -70,11 +70,11 @@ module.exports = function (app, config) {
 
     res.render(config.rootPath + `index/index.${res.locals.lang}.url.html`, {
       url: `${res.locals.serverUrl}${req.originalUrl}`,
+      serverUrlPath: res.locals.serverUrl,
+      res,
+      req,
       providers: [
-        {
-          provide: 'serverUrl',
-          useValue: res.locals.serverUrl
-        },
+
         {
           provide: 'localConfig',
           useValue: localConfig

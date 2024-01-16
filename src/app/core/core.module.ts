@@ -9,12 +9,13 @@ import { LocalInterceptorFn } from './local.fn';
 
 export const CoreProviders = [
 
-   provideHttpClient(
-      withInterceptors([
-         LocalInterceptorFn,
-         CricketereInterceptorFn
-      ])
-   ),
+  provideHttpClient(
+    // withInterceptorsFromDi(),
+    withInterceptors([
+      LocalInterceptorFn,
+      CricketereInterceptorFn
+    ])
+  ),
   Title,
   {
     provide: APP_INITIALIZER,

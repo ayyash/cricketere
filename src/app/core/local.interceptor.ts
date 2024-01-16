@@ -1,9 +1,9 @@
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { Inject, Injectable, Optional } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Injectable, Optional, Inject } from '@angular/core';
-import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
 
-import { debug, catchAppError } from './rxjs.operators';
 import { Res } from './resources';
+import { catchAppError, debug } from './rxjs.operators';
 
 @Injectable()
 export class LocalInterceptor implements HttpInterceptor {
@@ -11,6 +11,8 @@ export class LocalInterceptor implements HttpInterceptor {
         @Optional() @Inject('serverUrl') protected serverUrl: string
     ) {}
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+      console.log('xxxx', this.serverUrl);
+
         if (req.url.indexOf('localdata') < 0) {
             return next.handle(req);
         }

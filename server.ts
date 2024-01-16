@@ -7,6 +7,7 @@ import { provideServerRendering } from '@angular/platform-server';
 import { CommonEngine, CommonEngineRenderOptions } from '@angular/ssr';
 import { appProviders } from './src/app.config';
 import { AppComponent } from './src/app/app.component';
+import { REQUEST, RESPONSE } from './src/app/core/server.token';
 import { environment } from './src/environments/environment';
 
 // following lines is for prerender to work
@@ -31,6 +32,12 @@ const _app = () => bootstrapApplication(AppComponent, {
 // create engine
 const engine = new CommonEngine({ bootstrap: _app });
 
+export interface RenderOptions extends CommonEngineRenderOptions {
+  req: Request;
+  res?: Response;
+  serverUrlPath: string;
+}
+
 // express engine
 export function crExpressEgine(
   filePath: string,
@@ -39,7 +46,7 @@ export function crExpressEgine(
 ) {
   try {
     // we'll grab the options from external call in express
-    const renderOptions = { ...options } as CommonEngineRenderOptions;
+    const renderOptions = { ...options } as RenderOptions;
 
     // the url is the only option we should no longer set in Angular, so we'll set in Express route
 
@@ -50,6 +57,22 @@ export function crExpressEgine(
     renderOptions.publicPath = (options as any).settings?.views;
 
     // an old feature that was never documented, now it is, inlineCriticalCss
+
+    // append the new providers
+
+    renderOptions.providers = [...(renderOptions.providers ?? []),
+    {
+      provide: 'SERVER_URL',
+      useValue: renderOptions.serverUrlPath
+    },
+    {
+      provide: REQUEST,
+      useValue: renderOptions.req
+    },
+    {
+      provide: RESPONSE,
+      useValue: renderOptions.res
+    }];
 
     engine
       .render(renderOptions)

@@ -1,16 +1,16 @@
-import { Observable } from 'rxjs';
-import { finalize, shareReplay, map } from 'rxjs/operators';
-import { Injectable } from '@angular/core';
 import {
-    HttpEvent,
-    HttpInterceptor,
-    HttpHandler,
-    HttpRequest,
-    HttpResponse,
-    HttpHeaders
+  HttpEvent,
+  HttpHandler,
+  HttpHeaders,
+  HttpInterceptor,
+  HttpRequest,
+  HttpResponse
 } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { finalize, map, shareReplay } from 'rxjs/operators';
+import { catchAppError, debug } from './rxjs.operators';
 import { ConfigService, LoaderService } from './services';
-import { debug, catchAppError } from './rxjs.operators';
 
 
 @Injectable()
@@ -22,7 +22,7 @@ export class CricketereInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         // FIXME: remove http later
 
-        if (req.url.indexOf('localdata') > -1  || req.url.indexOf('http') > -1) {
+        if (req.url.indexOf('localdata') > -1) {
             // pass through
            return next.handle(req);
         }

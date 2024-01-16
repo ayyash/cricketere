@@ -1,7 +1,7 @@
-import { HttpHeaders, HttpResponse, HttpInterceptorFn, HttpRequest, HttpHandlerFn } from '@angular/common/http';
+import { HttpHandlerFn, HttpHeaders, HttpInterceptorFn, HttpRequest, HttpResponse } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { shareReplay, map, finalize } from 'rxjs';
-import { debug, catchAppError } from './rxjs.operators';
+import { finalize, map, shareReplay } from 'rxjs';
+import { catchAppError, debug } from './rxjs.operators';
 import { ConfigService, LoaderService } from './services';
 
 
