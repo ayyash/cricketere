@@ -37,6 +37,7 @@
      "strictInputAccessModifiers": false,
      "strictTemplates": true,
      // "fullTemplateTypeCheck": true,
-     "preserveWhitespaces": false
+     "preserveWhitespaces": false,
+     "disableTypeScriptVersionCheck": true
   }
 }
