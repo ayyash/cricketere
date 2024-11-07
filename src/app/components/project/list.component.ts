@@ -1,9 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { map, Observable, of } from 'rxjs';
 import { EnumGtmEvent, EnumGtmSource, GtmTracking } from '../../core/gtm';
-import { IListOptions, IProject, StorageService, ProjectSeoService } from '../../core/services';
+import { IListOptions } from '../../models/list.model';
+import { IProject } from '../../models/project.model';
+import { ProjectSeoService } from '../../services/seo.project.service';
+import { StorageService } from '../../services/storage.service';
 import { GtmComponent } from '../abstract/gtm.abstract';
 import { StarsPartialComponent } from '../common/stars.partial';
 import { ProjectCardPartialComponent } from './card.partial';

@@ -1,22 +1,10 @@
-@import (reference) 'sh._vars.less';
-// @import (reference) "css.Icon.less";
-// @import (reference) "ui.icons.less";
+@import (reference) "sh._vars.less";
 @import (reference) "utilities/media.less";
 
-.closelabel {
-    color: @white;
-    margin: @space;
-    margin-left: @halfspace;
-   display: block;
-    cursor: pointer;
-}
-
-// VER_NEXT: rely on transition instead of animation, animation is quite unreliable and cannot be customized
 .toast {
     display: flex;
     flex-wrap: nowrap;
     align-items: center;
-
     background-color: @grey-dark;
     color: @white;
     position: fixed;
@@ -24,72 +12,84 @@
     left: @space;
     right: @space;
     font-size: 90%;
-
     z-index: 5100;
-
-    div {
-        margin: @space;
-        margin-right: @halfspace;
-        flex-basis: 100%;
-    }
-    animation: gbox-in 0.2s ease-in-out;
     box-shadow: @shadows[deep];
-
-    // stop doin gthis
 
     &.error {
         background-color: @red;
     }
+
     &.success {
         background-color: @green;
     }
-    &.fordone {
 
-        background-color: @green;
-        font-weight: 500;
-        text-transform: uppercase;
+    &.warning {
+        background-color: @yellow;
+        color: @text-color;
     }
-    &.app {
-        // for refresh, install, and subscibe banners
-        .btn {
-            background-color: transparent;
-            color: @yellow;
+
+    transform: translateY(calc(100% + @space));
+    transition: transform 0.2s ease-in-out;
+
+    &.inview {
+        transform: translateY(0);
+    }
+
+    // if programatic animation
+    // &.inview {
+    //     animation: toast-in .2s ease-in-out;
+    //     animation-fill-mode: forwards;
+    // }
+    // &.outview {
+    //     animation: toast-out 0.1s ease-in-out;
+    //     animation-fill-mode: forwards;
+    // }
+}
+
+.text {
+    padding: @space;
+    margin-right: @halfspace;
+    flex-basis: 100%;
+}
+
+
+.buttons {
+    display: flex;
+
+    button {
+        text-transform: uppercase;
+        padding: @space;
+        cursor: pointer;
+        color: inherit;
+        display: block;
+
+    }
+}
+
+// @keyframes toast-in {
+//     0% {
+//         transform: translateY(calc(100% + @space));
+//     }
+
+//     100% {
+//         transform: translateY(0);
+//     }
+// }
+
+// @keyframes toast-out {
+//     0% {
+//         transform: translateY(0);
+//     }
+
+//     100% {
+//         transform: translateY(calc(100% + @space));
+//     }
+// }
+
+.media(md, {
+        .toast {
+            max-width: 50vw;
         }
     }
 
-    &.out {
-        // animate out
-        animation-name: gbox-out;
-        animation-duration: 1s;
-        animation-timing-function: ease-in-out;
-    }
-}
-
-
-@keyframes gbox-in {
-    0% {
-        bottom: -100%;
-        opacity: 0;
-    }
-    100% {
-        bottom: 0;
-        opacity: 1;
-    }
-}
-
-@keyframes gbox-out {
-    0% {
-        bottom: 0;
-        opacity: 1;
-    }
-    90% {
-        bottom: -100%;
-        opacity: 0;
-    }
-}
-
-.media(md, {
-    .toast {
-        max-width: 50vw;
-    }
-});
+);

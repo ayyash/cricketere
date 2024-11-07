@@ -1,13 +1,12 @@
-import { CommonModule, getCurrencySymbol, getLocaleCurrencyCode, getLocaleCurrencySymbol, registerLocaleData } from '@angular/common';
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { CommonModule, getCurrencySymbol } from '@angular/common';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Res } from '../../core/resources';
-import { ConfigService } from '../../core/services';
-import { LibModule } from '../../lib/lib.module';
 import { CustomCurrencyPipe } from '../../lib/pipes/currency.pipe';
 import { RelativeTimePipe } from '../../lib/pipes/relativetime.pipe';
 import { TranslatePipe } from '../../lib/pipes/translate.pipe';
 import { Platform } from '../../lib/platform.service';
+import { ConfigService } from '../../services/config.service';
 
 enum EnumRate {
     AWEFUL = 1,

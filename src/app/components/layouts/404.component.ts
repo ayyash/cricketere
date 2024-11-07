@@ -1,6 +1,6 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { LoaderService } from '../../core/services';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { TranslatePipe } from '../../lib/pipes/translate.pipe';
+import { LoaderService } from '../../services/loader.service';
 
 @Component({
     templateUrl: './404.component.html',

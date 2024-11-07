@@ -2,7 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { share } from 'rxjs/operators';
-import { ILoaderState, LoaderService } from '../../core/services';
+import { ILoaderState } from '../../models/loaderstate.model';
+import { LoaderService } from '../../services/loader.service';
 
 @Component({
   selector: 'http-loader',

@@ -1,8 +1,8 @@
-import { Resolve, ActivatedRouteSnapshot, RouterStateSnapshot, Router, } from '@angular/router';
 import { Injectable } from '@angular/core';
+import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot, } from '@angular/router';
 import { first, map, Observable } from 'rxjs';
 import { ConfigService } from './config.service';
-import { StorageService } from '../core/services';
+import { StorageService } from './storage.service';
 
 @Injectable({ providedIn: 'root' })
 export class ProjectResolve implements Resolve<boolean> {

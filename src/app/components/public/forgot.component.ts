@@ -1,11 +1,12 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input, Output, EventEmitter } from '@angular/core';
-import { UntypedFormGroup, UntypedFormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { IViewMode} from '../../core/services';
-import { Toast } from '../../lib/toast';
-import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { TranslatePipe } from '../../lib/pipes/translate.pipe';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { MdInputModule } from '../../lib/mdinput/mdinput.module';
+import { TranslatePipe } from '../../lib/pipes/translate.pipe';
+import { EnumTimeout } from '../../lib/toast/toast.model';
+import { Toast } from '../../lib/toast/toast.state';
+import { IViewMode } from '../../models/viewmode.model';
 import { ProjectCardPartialComponent } from '../project/card.partial';
 
 
@@ -59,7 +60,7 @@ export class PublicForgotComponent implements OnInit {
 
         } else {
             this.forceValidation = true;
-            this.toast.Show('INVALID_FORM', { sticky: false, extracss: 'error' });
+            this.toast.Show('INVALID_FORM', { timeout: EnumTimeout.Never, extracss: 'error' });
 
         }
     }

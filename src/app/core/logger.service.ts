@@ -1,5 +1,4 @@
 // import { throwError, Observable } from 'rxjs';
-// import { IUiError } from '../core/services';
 // import { HttpResponse, HttpErrorResponse, HttpEventType } from '@angular/common/http';
 // import { tap, catchError } from 'rxjs/operators';
 

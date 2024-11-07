@@ -1,8 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, of, switchMap, tap } from 'rxjs';
-import { DataService, IData, IProject, ProjectSeoService } from '../../core/services';
+import { IData } from '../../models/data.model';
+import { IProject } from '../../models/project.model';
+import { DataService } from '../../services/data.service';
+import { ProjectSeoService } from '../../services/seo.project.service';
 
 const mockProject: IProject = {
     title: 'Turtle Rock',

@@ -8,6 +8,7 @@
 /backup
 /**/dist
 /_*
+/**/x*
 
 # dependencies
 /node_modules

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { IProduct } from '../core/services';
+import { IProduct } from '../models/product.model';
 import { ListStateService } from './state.abstract';
 
 @Injectable({ providedIn: 'root' })

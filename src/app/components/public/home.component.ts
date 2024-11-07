@@ -3,12 +3,13 @@ import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { Res } from '../../core/resources';
-import { ConfigService, HomeSeoService } from '../../core/services';
 import { GtmDirective } from '../../lib/directives/gtm.directive';
 import { AppShellRenderDirective } from '../../lib/directives/render.directive';
 import { TranslatePipe } from '../../lib/pipes/translate.pipe';
-import { EnumTimeout } from '../../lib/toaster/toast.model';
-import { Toast } from '../../lib/toaster/toast.state';
+import { EnumTimeout } from '../../lib/toast/toast.model';
+import { Toast } from '../../lib/toast/toast.state';
+import { ConfigService } from '../../services/config.service';
+import { HomeSeoService } from '../../services/seo.home.service';
 import { GtmComponent } from '../abstract/gtm.abstract';
 @Component({
 

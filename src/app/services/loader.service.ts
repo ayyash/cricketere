@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ILoaderState, EnumLoaderSource } from '../core/services';
+import { EnumLoaderSource, ILoaderState } from '../models/loaderstate.model';
 import { StateService } from './state.abstract';
 
 

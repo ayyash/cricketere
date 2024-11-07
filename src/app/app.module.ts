@@ -9,7 +9,6 @@
 // import { ErrorComponent } from './components/layouts/error.component';
 // import { MainLayoutComponent } from './components/layouts/main.component';
 // import { SingleLayoutComponent } from './components/layouts/single.component';
-// import { ToastPartialComponent } from './lib/toaster/toast.component';
 // import { LocaleId, RootHref } from './core/resources';
 // import { APP_BASE_HREF } from '@angular/common';
 // import { SHARED_COMPONENTS } from './core/shared.const';

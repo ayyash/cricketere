@@ -1,4 +1,4 @@
-import { IUser, User } from '../core/services';
+import { IUser, User } from './user.model';
 
 export enum EnumRole {
     Admin = 'admin',

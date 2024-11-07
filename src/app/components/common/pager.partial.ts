@@ -1,17 +1,19 @@
+import { CommonModule } from '@angular/common';
 import {
   Component,
-  OnInit,
-  Input,
-  Output,
   EventEmitter,
-  ViewEncapsulation,
-  OnDestroy
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  ViewEncapsulation
 } from '@angular/core';
-import { LoaderService, ILoaderState, SeoService } from '../../core/services';
-import { share } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
-import { CommonModule } from '@angular/common';
+import { share } from 'rxjs/operators';
 import { TranslatePipe } from '../../lib/pipes/translate.pipe';
+import { ILoaderState } from '../../models/loaderstate.model';
+import { LoaderService } from '../../services/loader.service';
+import { SeoService } from '../../services/seo.service';
 
 @Component({
   selector: 'cr-pager',

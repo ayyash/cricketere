@@ -1,10 +1,10 @@
-import { ComponentRef, Inject, Injectable, Optional } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Config } from '../config';
-import { map, catchError } from 'rxjs/operators';
+import { Inject, Injectable, Optional } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
-import { IConfig } from '../core/services';
+import { catchError, map } from 'rxjs/operators';
+import { Config } from '../config';
 import { GtmTracking } from '../core/gtm';
+import { IConfig } from '../models/config.model';
 
 
 export const configFactory = (config: ConfigService) => () =>

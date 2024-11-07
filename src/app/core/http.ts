@@ -9,8 +9,9 @@ import {
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { finalize, map, shareReplay } from 'rxjs/operators';
+import { ConfigService } from '../services/config.service';
+import { LoaderService } from '../services/loader.service';
 import { catchAppError, debug } from './rxjs.operators';
-import { ConfigService, LoaderService } from './services';
 
 
 @Injectable()

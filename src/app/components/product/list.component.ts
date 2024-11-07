@@ -1,11 +1,11 @@
 import { CommonModule, Location } from '@angular/common';
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { catchError, distinctUntilChanged, distinctUntilKeyChanged, map, Observable, of, switchMap, tap } from 'rxjs';
+import { catchError, distinctUntilChanged, map, Observable, switchMap } from 'rxjs';
 import { Config } from '../../config';
 import { hasMore } from '../../core/common';
 import { EnumGtmEvent, EnumGtmSource, GtmTracking } from '../../core/gtm';
-import { Toast } from '../../lib/toaster/toast.state';
+import { Toast } from '../../lib/toast/toast.state';
 import { IList, IListOptions } from '../../models/list.model';
 import { IProduct } from '../../models/product.model';
 import { ParamState } from '../../services/param.state';

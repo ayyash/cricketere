@@ -1,8 +1,9 @@
 import { HttpHandlerFn, HttpHeaders, HttpInterceptorFn, HttpRequest, HttpResponse } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { finalize, map, shareReplay } from 'rxjs';
+import { ConfigService } from '../services/config.service';
+import { LoaderService } from '../services/loader.service';
 import { catchAppError, debug } from './rxjs.operators';
-import { ConfigService, LoaderService } from './services';
 
 
 const getHeaders = (reqheaders: HttpHeaders): any => {

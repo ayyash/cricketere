@@ -1,17 +1,14 @@
 import { Injectable } from '@angular/core';
-import { Observable, BehaviorSubject } from 'rxjs';
-import { first, map } from 'rxjs/operators';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Config } from '../config';
-import {
-    IAuthInfo,
-    AuthInfo,
-    StorageService,
-    ConfigService,
-    User,
-    IUser
-} from '../core/services';
+
 
 import { HttpClient } from '@angular/common/http';
+import { AuthInfo, IAuthInfo } from '../models/authinfo.model';
+import { IUser, User } from '../models/user.model';
+import { ConfigService } from './config.service';
+import { StorageService } from './storage.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {

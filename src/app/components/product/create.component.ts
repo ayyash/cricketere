@@ -1,48 +1,40 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { MdInputModule } from '../../lib/mdinput/mdinput.module';
 import { Toast } from '../../lib/toast/toast.state';
-import { IProject } from '../../models/project.model';
 import { IViewMode } from '../../models/viewmode.model';
 
-
 @Component({
-    selector: 'cr-project-form',
-    templateUrl: './form.partial.html',
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [CommonModule, ReactiveFormsModule, MdInputModule]
+
+    templateUrl: './create.html',
+    changeDetection: ChangeDetectionStrategy.OnPush
+    , standalone: true
+    , imports: [CommonModule, RouterModule, MdInputModule]
 })
-export class ProjectFormPartialComponent implements OnInit {
+export class ProductCreateFormPartial implements OnInit {
 
     // Add types
     @Input() mode: IViewMode = {forNew: true};
 
-    @Output() onSave: EventEmitter<Partial<IProject>> = new EventEmitter<Partial<IProject>>();
+    @Output() onSave: EventEmitter<any> = new EventEmitter<any>();
     @Output() onCancel: EventEmitter<void> = new EventEmitter();
 
     forceValidation = false;
-    projectForm: UntypedFormGroup;
+    productForm: UntypedFormGroup;
 
     constructor(private fb: UntypedFormBuilder, private toast: Toast) {
         //
     }
     ngOnInit(): void {
         //
-        this.projectForm = this.fb.group({
+        this.productForm = this.fb.group({
             fieldname: [],
-            name: [],
-            list: [],
-            email: [],
-            number: [],
-            checkme: [],
-            minlength: [],
-            maxlength: [],
-            minvalue: [],
-            maxvalue: [],
-            phone: [],
-            range: []
+            fieldgroup: this.fb.group({
+                fieldname: []
+            }),
+            list: []
         });
     }
 
@@ -52,22 +44,19 @@ export class ProjectFormPartialComponent implements OnInit {
         return c1 && c2 ? c1.id == c2.id : false;
     }
 
-    saveProject(): void {
+    saveProduct(): void {
         this.forceValidation = false;
         this.toast.Hide();
 
 
-        if (this.projectForm.valid) {
+        if (this.productForm.valid) {
             // clone into a new object
-            const _value = this.projectForm.value;
+            const _value = this.productForm.value;
 
-            const _project = { ..._value};
+            const _product = { ..._value};
 
             // then emit
-            this.onSave.emit(_project);
-            // test project
-
-
+            this.onSave.emit(_product);
         } else {
             this.forceValidation = true;
             this.toast.ShowError('INVALID_FORM');

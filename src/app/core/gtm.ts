@@ -1,5 +1,6 @@
+import { IProduct } from '../models/product.model';
+import { IProject } from '../models/project.model';
 import { _global } from './common';
-import { IProduct, IProject } from './services';
 
 declare let dataLayer: any[]; // Declare google tag
 

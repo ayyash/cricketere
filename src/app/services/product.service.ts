@@ -1,10 +1,11 @@
-import { Injectable } from '@angular/core';
-import { Config } from '../config';
-import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Config } from '../config';
 import { GetParamsAsString } from '../core/common';
-import { IProduct, Product, IListOptions, IList, ListOptions } from '../core/services';
+import { IList, IListOptions, ListOptions } from '../models/list.model';
+import { IProduct, Product } from '../models/product.model';
 
 
 

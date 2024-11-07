@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { IViewMode } from '../../core/services';
+import { IViewMode } from '../../models/viewmode.model';
 import { StarsPartialComponent } from '../common/stars.partial';
 
 @Component({

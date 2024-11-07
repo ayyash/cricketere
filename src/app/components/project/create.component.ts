@@ -1,9 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { catchError, Observable, of, tap } from 'rxjs';
-import { catchAppError } from '../../core/rxjs.operators';
-import { Toast } from '../../lib/toaster/toast.state';
+import { catchError, Observable, tap } from 'rxjs';
+import { Toast } from '../../lib/toast/toast.state';
 import { IUiError } from '../../models/error.model';
 import { IProject } from '../../models/project.model';
 import { ProjectService } from '../../services/project.service';
