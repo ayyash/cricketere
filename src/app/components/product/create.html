@@ -1,48 +1,30 @@
-<form [formGroup]="productForm" novalidate (ngSubmit)="saveProduct()" [class.was-validated]="forceValidation">
-	
-		<md-input placeholder="Name">
-			<input
-				type="text"
-				id="fieldname"
-				class="md-input w100"
-				mdinput
-				formControlName="fieldname"
-				[required]="true"
-			/>
-			<div class="md-help-text" helptext>help text</div>
-		</md-input>	
-	
-		<div class="spaced">
-			<md-input placeholder="List">
-				<select
-					formControlName="list"
-					mdinput
-					class="md-input w100"
-					[required]="true"
-					[compareWith]="compareFn"
-				>
-					<option *ngFor="let item of [1,2,3,4,5]" [ngValue]="item">{{ item }}</option>
-				</select>
-			</md-input>
-		</div>
+<div class="page">
+  <div class="container">
+    <app-product-form></app-product-form>
 
-	<fieldset formGroupName="fieldgroup">
-		<legend>Group</legend>
+    <!-- <form [formGroup]="productForm" novalidate (ngSubmit)="saveProduct()" [class.was-validated]="forceValidation"> -->
 
-		<div class="breath">
-			<md-input placeholder="group name">
-				<input
-					type="text"
-					class="md-input w100"
-					mdinput
-					mdpattern="email"
-					id="groupfieldname"
-					formControlName="fieldname"
-					[required]="true"
-				/>
-			</md-input>
-		</div>
-	</fieldset>
-	<button class="btn-rev" type="submit" >Save</button>
+<!--
+      <div class="spaced">
+        <md-input placeholder="List">
+          <select formControlName="list" mdinput class="md-input w100" [required]="true" [compareWith]="compareFn">
+            <option *ngFor="let item of [1,2,3,4,5]" [ngValue]="item">{{ item }}</option>
+          </select>
+        </md-input>
+      </div> -->
 
-</form>
+      <!-- <fieldset formGroupName="fieldgroup">
+        <legend>Group</legend>
+
+        <div class="breath">
+          <md-input placeholder="group name">
+            <input type="text" class="md-input w100" mdinput mdpattern="email" id="groupfieldname"
+              formControlName="fieldname" [required]="true" />
+          </md-input>
+        </div>
+      </fieldset> -->
+      <!-- <button class="btn-rev" type="submit">Save</button> -->
+
+    <!-- </form> -->
+  </div>
+</div>

@@ -1,0 +1,50 @@
+/* .cr-input {
+  outline: 1px solid #ccc;
+  border: 0;
+  appearance: none;
+}
+
+
+.cr-input ~ .cr-feedback {
+  display: none;
+  color: red;
+  font-weight: bold;
+}
+.ng-submitted {
+  .cr-input.ng-invalid {
+    outline: 1px solid red;
+  }
+  .cr-input.ng-invalid ~ .cr-feedback {
+    display: block;
+  }
+}
+
+.cr-input:focus-visible {
+  outline: 1px solid #007bff;
+}
+
+.cr-input ~ .cr-required {
+  display: none;
+  color: red;
+  font-weight: bold;
+}
+.cr-input[required] ~ .cr-required {
+  display: block;
+}
+
+.cr-label {
+  display: block;
+  margin-block-end: 5px;
+}
+.cr-input:placeholder-shown {
+  outline: 1px solid green;
+}
+.cr-input::placeholder {
+  color: transparent;
+}
+.cr-label:has(~ .cr-input:placeholder-shown) {
+  color: red;
+}
+.cr-label:has(~ .cr-input:focus-visible) {
+  color: #007bff;
+} */

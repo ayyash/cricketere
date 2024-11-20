@@ -1,34 +1,31 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup } from '@angular/forms';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { MdInputModule } from '../../lib/mdinput/mdinput.module';
 import { Toast } from '../../lib/toast/toast.state';
-import { IViewMode } from '../../models/viewmode.model';
+import { ProductFormPartial } from './form.component';
 
 @Component({
 
     templateUrl: './create.html',
     changeDetection: ChangeDetectionStrategy.OnPush
     , standalone: true
-    , imports: [CommonModule, RouterModule, MdInputModule]
+    , imports: [CommonModule, RouterModule, ReactiveFormsModule, ProductFormPartial]
 })
 export class ProductCreateFormPartial implements OnInit {
 
-    // Add types
-    @Input() mode: IViewMode = {forNew: true};
-
-    @Output() onSave: EventEmitter<any> = new EventEmitter<any>();
-    @Output() onCancel: EventEmitter<void> = new EventEmitter();
 
     forceValidation = false;
-    productForm: UntypedFormGroup;
+    productForm: FormGroup;
 
-    constructor(private fb: UntypedFormBuilder, private toast: Toast) {
+
+
+    constructor(private fb: FormBuilder, private toast: Toast) {
         //
     }
     ngOnInit(): void {
         //
+
         this.productForm = this.fb.group({
             fieldname: [],
             fieldgroup: this.fb.group({
@@ -56,7 +53,6 @@ export class ProductCreateFormPartial implements OnInit {
             const _product = { ..._value};
 
             // then emit
-            this.onSave.emit(_product);
         } else {
             this.forceValidation = true;
             this.toast.ShowError('INVALID_FORM');
