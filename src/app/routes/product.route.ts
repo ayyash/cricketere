@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { ProductCreateFormPartial } from '../components/product/create.component';
 import { ProductListComponent } from '../components/product/list.component';
+import { ProductTypesComponent } from '../components/product/types.component';
 // **gulpimport**
 
 export const ProductRoutes: Routes = [
@@ -13,6 +14,11 @@ export const ProductRoutes: Routes = [
     path: 'create',
     component: ProductCreateFormPartial,
     title: 'PRODUCTS_CREATE'
+  },
+  {
+    path: 'types',
+    component: ProductTypesComponent,
+    title: 'PRODUCTS_TYPES'
   }
 
 ];

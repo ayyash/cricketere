@@ -1,13 +1,15 @@
-import { Directive, ElementRef, Input, OnInit, signal } from '@angular/core';
+import { AfterViewInit, Directive, ElementRef, Input, signal } from '@angular/core';
 import { AbstractControl, NG_VALIDATORS, ValidationErrors, Validator, Validators } from '@angular/forms';
 import { InputPatterns } from './patterns';
+import { InputValidators } from './validators';
 
 @Directive({
   selector: '[crinput]',
   providers: [{ provide: NG_VALIDATORS, multi: true, useExisting: InputDirective }],
   standalone: true,
+  exportAs: 'crinput',
 })
-export class InputDirective implements OnInit, Validator {
+export class InputDirective implements AfterViewInit, Validator {
 
   @Input() min?: number;
   @Input() max?: number;
@@ -18,21 +20,46 @@ export class InputDirective implements OnInit, Validator {
   @Input() crpattern?: string;
   @Input() email?: boolean;
 
+  @Input() validator?: string;
+  @Input() params?: any;
 
-  constructor(private el: ElementRef) { }
+  constructor(private el: ElementRef) {
+  }
 
+  ngAfterViewInit(): void {
+    // if (this.element.getAttribute('type') === 'file') {
+    //   // catch size on change
+    //   this.element.addEventListener('change', (e) => {
+    //     const files = (e.target as HTMLInputElement).files;
+    //     if (files && files[0]) {
+    //       const size = files[0].size;
+    //       _attn(size);
+    //         this.errorText.set('File too large');
+    //     }
+    //   });
+    // }
+  }
   public get element(): HTMLElement {
     return this.el.nativeElement;
   };
 
   public errorText = signal('Required');
 
-  ngOnInit(): void {
-  }
-
   validate(control: AbstractControl): ValidationErrors | null {
 
 
+    if (this.validator) {
+
+      const _validator = InputValidators.get(this.validator);
+      if (_validator && !control.hasValidator(_validator)) {
+        // if params:
+        if (this.params) {
+          control.setValidators(_validator(this.params));
+        } else {
+          control.setValidators(_validator);
+        }
+      }
+    }
     this.errorText.set('Required');
     if (this.min && control.value) {
       if (Validators.min(this.min)(control)) {
@@ -79,7 +106,7 @@ export class InputDirective implements OnInit, Validator {
     if(this.crpattern) {
       this.errorText.set('Invalid format');
       // if pattern exists in our list, use validators
-      let _pattern = InputPatterns.Get(this.crpattern);
+      let _pattern = InputPatterns.get(this.crpattern);
       if (_pattern) {
         this.errorText.set(`Invalid ${this.crpattern} format`);
         return Validators.pattern(_pattern)(control);

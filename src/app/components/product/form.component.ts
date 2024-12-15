@@ -1,17 +1,19 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, ValidationErrors, ValidatorFn } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { InputDirective } from '../../lib/input/input.directive';
 import { CrInputPartial } from '../../lib/input/input.partial';
 import { InputPatterns } from '../../lib/input/patterns';
+import { Toast } from '../../lib/toast/toast.state';
+import { ProductExpiryPartial } from './expiry.partial';
 @Component({
   selector: 'app-product-form'
   , changeDetection: ChangeDetectionStrategy.OnPush
   , standalone: true
-  // , styleUrl: 'form.css'
-  // , encapsulation: ViewEncapsulation.None
-  , imports: [CommonModule, RouterModule, ReactiveFormsModule, CrInputPartial, InputDirective],
+  , styleUrl: 'form.css'
+  , encapsulation: ViewEncapsulation.None
+  , imports: [CommonModule, RouterModule, ReactiveFormsModule, CrInputPartial, InputDirective, ProductExpiryPartial],
   template: `
   <form [formGroup]="fg" (ngSubmit)="create()" class="cr-form">
     <cr-input placeholder="Valvet">
@@ -55,6 +57,21 @@ import { InputPatterns } from '../../lib/input/patterns';
       <!-- <span *ngIf="fg.hasError('unambiguousRole')" class="cr-form-feedback cr-feedback"></span> -->
     </cr-input>
 
+    <cr-input placeholder="Oranges" for="oo" error="One number only">
+      <input type="text" id="oo" class="w100 cr-input" placeholder="Oranges" pattern="[0-9]{1}" formControlName="orange"  />
+      <ng-container helptext>One number</ng-container>
+    </cr-input>
+
+
+
+    <cr-input placeholder="Expiration" error="This is expired">
+      <input type="hidden" crinput id="mmyy" pattern="[0-9]{4}" formControlName="mmyy" />
+      <cr-product-expiry (onValue)="expirationValue($event)"></cr-product-expiry>
+
+    <!-- <input type="text" placeholder="YY" id="yy" class="c-2" maxLength="2" inputmode="numeric" pattern="[0-9]{1,2}" #mm (change)="expirationValue(mm.value + yy.value)" /> -->
+    <!-- <input type="text" placeholder="MM" id="mm" class="c-2" maxLength="2" inputmode="numeric" pattern="[0-9]{1,2}" #yy (change)="expirationValue(mm.value + yy.value)" /> -->
+    </cr-input>
+
 
     <div class="breath">
 
@@ -66,8 +83,12 @@ import { InputPatterns } from '../../lib/input/patterns';
 })
 export class ProductFormPartial implements OnInit {
 
+
   valvet: FormControl;
   fg: FormGroup;
+
+  // yyyymm
+  thisMonth: string = (new Date()).toISOString().substring(2, 7).replace('-', '');
 
   forbiddenNameValidator = (nameRe: RegExp): ValidatorFn => {
     return (control: AbstractControl): ValidationErrors | null => {
@@ -83,12 +104,24 @@ export class ProductFormPartial implements OnInit {
     return name && role && name === role ? { unambiguousRole: true } : null;
   };
 
-  constructor(private fb: FormBuilder) {
+  futureValidator = (control: AbstractControl): ValidationErrors | null => {
+    // if control MMYY in the future, return null
+    const value = control.value;
+
+    if (!value || +value > +this.thisMonth) {
+      return null;
+    }
+    return {
+      future: true
+    };
+  };
+
+  constructor(private fb: FormBuilder, private toast: Toast) {
     //
   }
   ngOnInit(): void {
 
-    InputPatterns.addPattern('shortname', '[A-Za-z]{5}');
+    InputPatterns.set('shortname', '[A-Za-z]{5}');
 
     this.fg = this.fb.group({
       valvet: [''],
@@ -100,10 +133,17 @@ export class ProductFormPartial implements OnInit {
       phone: [],
       koolaid: [],
       name: ['', this.forbiddenNameValidator(/bob/i)],
-      role: ['']
+      role: [''],
+      orange: [],
+      mmyy: [null, this.futureValidator],
 
     }, { validators: this.unambiguousRoleValidator });
 
+  }
+
+  expirationValue(value: { month: string, year: string; }) {
+    // change form value to be mm then yy
+    this.fg.get('mmyy').setValue(value.year + value.month);
   }
 
   checkRole() {
@@ -115,9 +155,12 @@ export class ProductFormPartial implements OnInit {
   }
 
   create() {
-    // this.fg.get('role').updateValueAndValidity();
+    // this.fg.get('role').updateValueAndValidity();i\
     _attn(this.fg.value);
     _attn(this.fg.valid);
+    if (this.fg.invalid) {
+      this.toast.ShowError('INVALID_FORM');
+    }
     // const x = Validators.min(2)(this.fg.get('mars'));
     // _attn(this.fg.get('mars').valid, 'is it valid');
   }
