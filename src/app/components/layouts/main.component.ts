@@ -7,7 +7,6 @@ import { GtmComponent } from '../abstract/gtm.abstract';
 
 @Component({
     templateUrl: './main.component.html',
-    standalone: true,
     imports: [CommonModule, RouterModule, TranslatePipe, GtmDirective]
     // changeDetection: ChangeDetectionStrategy.OnPush
 })

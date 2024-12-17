@@ -13,11 +13,9 @@ import { ProductService } from '../../services/product.service';
 import { ProductState } from '../../services/product.state';
 
 @Component({
-
     templateUrl: './list.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [ParamState],
-    standalone: true,
     imports: [CommonModule, RouterModule]
 })
 export class ProductListComponent implements OnInit {

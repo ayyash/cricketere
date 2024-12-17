@@ -12,9 +12,7 @@ import { ConfigService } from '../../services/config.service';
 import { HomeSeoService } from '../../services/seo.home.service';
 import { GtmComponent } from '../abstract/gtm.abstract';
 @Component({
-
     templateUrl: './home.html',
-    standalone: true,
     imports: [CommonModule, TranslatePipe, RouterModule, GtmDirective, AppShellRenderDirective]
 })
 export class PublicHomeComponent extends GtmComponent implements OnInit  {

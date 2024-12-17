@@ -5,7 +5,6 @@ import { LoaderService } from '../../services/loader.service';
 @Component({
     templateUrl: './404.component.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [TranslatePipe]
 })
 export class NotFoundComponent implements OnInit {

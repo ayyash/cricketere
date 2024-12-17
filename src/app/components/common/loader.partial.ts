@@ -6,14 +6,13 @@ import { ILoaderState } from '../../models/loaderstate.model';
 import { LoaderService } from '../../services/loader.service';
 
 @Component({
-  selector: 'http-loader',
-  template: `<div *ngIf="show" class="httploader" >
+    selector: 'http-loader',
+    template: `<div *ngIf="show" class="httploader" >
     <div class="line"></div>
     <div class="subline inc"></div>
     <div class="subline dec"></div></div>`,
-  styleUrls: ['./loader.less'],
-  standalone: true,
-  imports: [CommonModule]
+    styleUrls: ['./loader.less'],
+    imports: [CommonModule]
 })
 export class LoaderComponent implements OnInit, OnDestroy {
   show = false;

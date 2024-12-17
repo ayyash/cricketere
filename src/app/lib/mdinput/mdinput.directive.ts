@@ -14,7 +14,8 @@ import { Subject, Observable } from 'rxjs';
             multi: true,
             useExisting: forwardRef(() => MdInputDirective)
         }
-    ]
+    ],
+    standalone: false
 })
 export class MdInputDirective implements OnInit, Validator {
     constructor(private el: ElementRef) {}

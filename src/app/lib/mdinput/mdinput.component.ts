@@ -18,7 +18,8 @@ import { MdInputDirective } from './mdinput.directive';
             <span class="md-invalid-feedback">{{ labelText }}</span>
             <ng-content select="[helptext]"></ng-content>
         </div>
-    `
+    `,
+    standalone: false
 })
 export class MdInputComponent implements AfterContentInit {
     required: boolean;

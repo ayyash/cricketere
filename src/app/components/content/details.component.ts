@@ -18,16 +18,14 @@ enum EnumRate {
 
 
 @Component({
-
     templateUrl: './details.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [
-      CommonModule,
-      RouterModule,
-      CustomCurrencyPipe,
-      TranslatePipe,
-      RelativeTimePipe
+        CommonModule,
+        RouterModule,
+        CustomCurrencyPipe,
+        TranslatePipe,
+        RelativeTimePipe
     ]
 })
 export class ContentDetailsComponent implements OnInit {

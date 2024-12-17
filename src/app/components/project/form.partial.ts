@@ -11,7 +11,6 @@ import { IViewMode } from '../../models/viewmode.model';
     selector: 'cr-project-form',
     templateUrl: './form.partial.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [CommonModule, ReactiveFormsModule, MdInputModule]
 })
 export class ProjectFormPartialComponent implements OnInit {

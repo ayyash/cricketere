@@ -1,4 +1,4 @@
-import { ENVIRONMENT_INITIALIZER, importProvidersFrom } from '@angular/core';
+import { importProvidersFrom, inject, provideEnvironmentInitializer } from '@angular/core';
 import { RouteReuseStrategy, Router, RouterModule, Routes, Scroll, TitleStrategy } from '@angular/router';
 import { filter } from 'rxjs';
 import { NotFoundComponent } from './components/layouts/404.component';
@@ -76,7 +76,8 @@ const AppRoutes: Routes = [
 ];
 
 
-const appFactory = (router: Router) => () => {
+const appFactory = ()  => {
+  const router: Router = inject(Router);
   _seqlog('appFactory');
   _attn(ConfigService.Config.isServed, 'config served');
   router.events.pipe(
@@ -112,12 +113,7 @@ export const AppRouteProviders = [
   })),
   { provide: RouteReuseStrategy, useClass: RouteReuseService },
   { provide: TitleStrategy, useClass: CricketTitleStrategy },
-  {
-    provide: ENVIRONMENT_INITIALIZER,
-    multi: true,
-    useFactory: appFactory,
-    deps: [Router]
-  }
+  provideEnvironmentInitializer(appFactory)
 ];
 
 /*

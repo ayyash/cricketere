@@ -13,8 +13,7 @@ import { ProjectCardPartialComponent } from '../project/card.partial';
 @Component({
     templateUrl: './forgot.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [CommonModule, TranslatePipe, ReactiveFormsModule, MdInputModule, ProjectCardPartialComponent],
-    standalone: true
+    imports: [CommonModule, TranslatePipe, ReactiveFormsModule, MdInputModule, ProjectCardPartialComponent]
 })
 export class PublicForgotComponent implements OnInit {
 

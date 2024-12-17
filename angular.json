@@ -150,14 +150,18 @@
           }
         },
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular/build:application",
           "options": {
-            "outputPath": "dist",
-            "resourcesOutputPath": "assets/",
-
+            "outputPath": {
+              "base": "dist",
+              "media": "assets",
+              "browser": "browser",
+              "server": ""
+            },
             "index": "src/placeholder.html",
-            "main": "src/main.ts",
-            "polyfills": ["zone.js"],
+            "polyfills": [
+              "zone.js"
+            ],
             "tsConfig": "tsconfig.app.json",
             "styles": [
               {
@@ -209,17 +213,20 @@
                 "input": "node_modules/@angular/common/locales/global",
                 "output": "/locale"
               }
-            ]
+            ],
+            "browser": "src/main.ts",
+            "server": "src/main.server.ts",
+            "prerender": true,
+            "ssr": {
+              "entry": "src/server.ts"
+            }
           },
           "configurations": {
             "serve": {
-              "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true,
-              "commonChunk": true,
               "aot": true,
               "index": "src/index.dev.html",
               "styles": [
@@ -231,8 +238,6 @@
             },
             "serveProduction": {
               "namedChunks": true,
-              "vendorChunk": false,
-              "commonChunk": true,
               "optimization": false,
               "aot": true,
               "sourceMap": true,
@@ -245,13 +250,10 @@
               ]
             },
             "serveRtl": {
-              "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true,
-              "commonChunk": true,
               "aot": true,
               "index": "src/index.rtl.html",
               "styles": [
@@ -262,7 +264,9 @@
               ]
             },
             "production": {
-              "outputPath": "./host/client/",
+              "outputPath": {
+                "base": "./host/client/"
+              },
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
@@ -282,8 +286,6 @@
               "namedChunks": false,
               "aot": true,
               "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "deleteOutputPath": true,
               "assets": [
                 {
@@ -321,7 +323,9 @@
               ]
             },
             "netlify": {
-              "outputPath": "./netlify/client/",
+              "outputPath": {
+                "base": "./netlify/client/"
+              },
               "assets": [
                 {
                   "glob": "favicon.ico",
@@ -369,7 +373,9 @@
             },
             "firebase": {
               "baseHref": "/",
-              "outputPath": "./firebase/client/",
+              "outputPath": {
+                "base": "./firebase/client/"
+              },
               "assets": [
                 {
                   "glob": "favicon.ico",
@@ -416,7 +422,9 @@
               ]
             },
             "surge": {
-              "outputPath": "./surge/client",
+              "outputPath": {
+                "base": "./surge/client"
+              },
               "baseHref": "/",
               "fileReplacements": [
                 {
@@ -467,7 +475,9 @@
               ]
             },
             "simple": {
-              "outputPath": "./simple2/client/",
+              "outputPath": {
+                "base": "./simple2/client/"
+              },
               "index": "src/index.html",
               "assets": [
                 {
@@ -495,7 +505,7 @@
           }
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "@angular/build:dev-server",
           "options": {
             "buildTarget": "cricketereweb:build:serve"
           },
@@ -505,51 +515,6 @@
             },
             "rtl": {
               "buildTarget": "cricketereweb:build:serveRtl"
-            }
-          }
-        },
-        "server": {
-          "builder": "@angular-devkit/build-angular:server",
-          "options": {
-            "outputPath": "./host/server/ng",
-            "main": "server.ts",
-            "tsConfig": "tsconfig.server.json",
-            "stylePreprocessorOptions": {
-              "includePaths": [
-                "./mockup/less",
-                "./node_modules/shut/src/less"
-              ]
-            }
-          },
-          "configurations": {
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": false,
-              "outputHashing": "media",
-              "sourceMap": false,
-              "namedChunks": true,
-              "extractLicenses": true,
-              "deleteOutputPath": false
-            },
-            "simple": {
-              "outputPath": "./simple2/server",
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": false,
-              "outputHashing": "media",
-              "sourceMap": false,
-              "namedChunks": true,
-              "extractLicenses": true,
-              "deleteOutputPath": false
             }
           }
         },

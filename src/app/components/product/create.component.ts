@@ -6,11 +6,9 @@ import { Toast } from '../../lib/toast/toast.state';
 import { ProductFormPartial } from './form.component';
 
 @Component({
-
     templateUrl: './create.html',
-    changeDetection: ChangeDetectionStrategy.OnPush
-    , standalone: true
-    , imports: [CommonModule, RouterModule, ReactiveFormsModule, ProductFormPartial]
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    imports: [CommonModule, RouterModule, ReactiveFormsModule, ProductFormPartial]
 })
 export class ProductCreateFormPartial implements OnInit {
 

@@ -6,10 +6,9 @@ import { EnumGtmEvent, GtmTracking } from './core/gtm';
 import { LoaderService } from './services/loader.service';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [RouterModule, LoaderComponent],
-  template: `<http-loader></http-loader>
+    selector: 'app-root',
+    imports: [RouterModule, LoaderComponent],
+    template: `<http-loader></http-loader>
     <router-outlet></router-outlet>`
 })
 export class AppComponent {

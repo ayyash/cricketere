@@ -7,9 +7,8 @@ import { CrInputPartial } from '../../lib/input/input.partial';
 import { matchPasswordFn } from '../../lib/input/validators';
 
 @Component({
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  template: `
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    template: `
   <div class="page">
     <div class="container">
       <form [formGroup]="fg" (ngSubmit)="submit()" class="cr-form" >
@@ -123,7 +122,7 @@ import { matchPasswordFn } from '../../lib/input/validators';
     </div>
   </div>
     `,
-  imports: [CommonModule, RouterModule, ReactiveFormsModule, CrInputPartial, InputDirective],
+    imports: [CommonModule, RouterModule, ReactiveFormsModule, CrInputPartial, InputDirective]
 })
 
 export class ProductTypesComponent implements OnInit {

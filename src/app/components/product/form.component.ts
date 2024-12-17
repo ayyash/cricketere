@@ -8,13 +8,12 @@ import { InputPatterns } from '../../lib/input/patterns';
 import { Toast } from '../../lib/toast/toast.state';
 import { ProductExpiryPartial } from './expiry.partial';
 @Component({
-  selector: 'app-product-form'
-  , changeDetection: ChangeDetectionStrategy.OnPush
-  , standalone: true
-  , styleUrl: 'form.css'
-  , encapsulation: ViewEncapsulation.None
-  , imports: [CommonModule, RouterModule, ReactiveFormsModule, CrInputPartial, InputDirective, ProductExpiryPartial],
-  template: `
+    selector: 'app-product-form',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    styleUrl: 'form.css',
+    encapsulation: ViewEncapsulation.None,
+    imports: [CommonModule, RouterModule, ReactiveFormsModule, CrInputPartial, InputDirective, ProductExpiryPartial],
+    template: `
   <form [formGroup]="fg" (ngSubmit)="create()" class="cr-form">
     <cr-input placeholder="Valvet">
       <input crinput type="text" id="valvet" class="w100" formControlName="valvet" required  />

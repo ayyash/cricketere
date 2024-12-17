@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Inject, Injectable, Optional } from '@angular/core';
+import { inject, Inject, Injectable, Optional } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Config } from '../config';
@@ -7,82 +7,83 @@ import { GtmTracking } from '../core/gtm';
 import { IConfig } from '../models/config.model';
 
 
-export const configFactory = (config: ConfigService) => () =>
-    {
-      _seqlog('configFactory');
-      return config.loadAppConfig();}
+export const configFactory =  () => {
+  _seqlog('configFactory');
+  const config = inject(ConfigService);
+  return config.loadAppConfig();
+};
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class ConfigService {
 
-    constructor(
-        private http: HttpClient,
-        @Optional() @Inject('localConfig') protected localConfig: IConfig
-    ) {
-      _seqlog('ConfigService');
+  constructor(
+    private http: HttpClient,
+    @Optional() @Inject('localConfig') protected localConfig: IConfig
+  ) {
+    _seqlog('ConfigService');
+  }
+
+  private _getUrl = Config.API.config.local;
+
+  // keep track of config
+  private config = new BehaviorSubject<IConfig>(Config as IConfig);
+  config$: Observable<IConfig> = this.config.asObservable();
+
+  private static _config: IConfig;
+
+  static get Config(): IConfig {
+    return this._config || Config;
+  }
+
+  private NewInstance(config: any, withError: boolean): IConfig {
+    // cast all keys as are
+    const _config = { ...Config, ...<IConfig>config };
+    _config.Storage = { ..._config.Storage };
+    _config.isServed = true;
+    _config.withErrors = withError; // so now we can distinguish where the config really came from
+
+    // populate static element
+    ConfigService._config = _config;
+
+    this.config.next(_config);
+    return _config;
+  }
+
+  loadAppConfig(): Observable<boolean> {
+    _seqlog('LoadAppConfig');
+    if (this.localConfig) {
+      this.NewInstance(this.localConfig, true);
+      return of(true);
     }
 
-    private _getUrl = Config.API.config.local;
 
-    // keep track of config
-    private config = new BehaviorSubject<IConfig>(Config as IConfig);
-    config$: Observable<IConfig> = this.config.asObservable();
+    return this.http.get(this._getUrl).pipe(
+      map((response) => {
+        this.NewInstance(response, false);
+        // also state that it has been isServed
 
-    private static _config: IConfig;
+        _seqlog('config next');
 
-    static get Config(): IConfig {
-        return this._config || Config;
-    }
-
-    private NewInstance(config: any, withError: boolean): IConfig {
-        // cast all keys as are
-        const _config = { ...Config, ...<IConfig>config };
-        _config.Storage = { ..._config.Storage };
-        _config.isServed = true;
-        _config.withErrors = withError; // so now we can distinguish where the config really came from
-
-        // populate static element
-        ConfigService._config = _config;
-
-        this.config.next(_config);
-        return _config;
-    }
-
-    loadAppConfig(): Observable<boolean> {
-        _seqlog('LoadAppConfig');
-        if (this.localConfig) {
-            this.NewInstance(this.localConfig, true);
-            return of(true);
-        }
+        // testing GTM
+        GtmTracking.Values = GtmTracking.MapUser({ name: 'userId', id: '123', email: 'email@address.com' });
+        GtmTracking.Values = GtmTracking.MapProfile({ language: 'en', country: 'jo' });
+        GtmTracking.SetValues(GtmTracking.Values);
 
 
-        return this.http.get(this._getUrl).pipe(
-            map((response) => {
-                this.NewInstance(response, false);
-                // also state that it has been isServed
-
-                _seqlog('config next');
-
-                // testing GTM
-                GtmTracking.Values = GtmTracking.MapUser({ name: 'userId', id: '123', email: 'email@address.com' });
-                GtmTracking.Values = GtmTracking.MapProfile({ language: 'en', country: 'jo' });
-                GtmTracking.SetValues(GtmTracking.Values);
-
-
-                // here next
-                return true;
-            }),
-            catchError((error) => {
-                // if in error, return set fall back from environment
-                // make it served, if you want to distinguish error, create another flag
-                this.NewInstance(Config, true);
-                _debug(error, 'Error in resolve', 'e');
-                return of(true);
-            })
-        );
-    }
+        // here next
+        return true;
+      }),
+      catchError((error) => {
+        // if in error, return set fall back from environment
+        // make it served, if you want to distinguish error, create another flag
+        this.NewInstance(Config, true);
+        _debug(error, 'Error in resolve', 'e');
+        return of(true);
+      })
+    );
+  }
 }
 
 
@@ -97,9 +98,9 @@ declare const WebConfig: any;
 
 export const platformFactory = (): (() => void) => {
 
-    _attn('WebConfig', 'platformFactory');
-    // StaticConfigService.loadAppConfig();
-    return () => null;
+  _attn('WebConfig', 'platformFactory');
+  // StaticConfigService.loadAppConfig();
+  return () => null;
 };
 
 
@@ -107,38 +108,38 @@ export const platformFactory = (): (() => void) => {
 
 export class StaticConfigService {
 
-    private static _config: IConfig;
+  private static _config: IConfig;
 
-    static get Config(): IConfig {
-        return this._config || Config;
+  static get Config(): IConfig {
+    return this._config || Config;
+  }
+
+  private static NewInstance(config: any): IConfig {
+    // clone first, because in ssr the object is transfered in state to client, which adds the key again, unless u clone
+    const _config = { ...Config, ...<IConfig>config };
+
+    _config.Storage = { ..._config.Storage };
+
+    // populate static element
+    StaticConfigService._config = _config;
+
+    return _config;
+  }
+
+
+  static loadAppConfig(): void {
+
+    _seqlog('loadAppConfig');
+    if (WebConfig?.isServed) {
+      this.NewInstance(WebConfig);
+
+    } else {
+      this.NewInstance(Config);
     }
+  }
 
-    private static NewInstance(config: any): IConfig {
-        // clone first, because in ssr the object is transfered in state to client, which adds the key again, unless u clone
-        const _config = { ...Config, ...<IConfig>config };
-
-        _config.Storage = { ..._config.Storage };
-
-        // populate static element
-        StaticConfigService._config = _config;
-
-        return _config;
-    }
-
-
-    static loadAppConfig(): void {
-
-        _seqlog('loadAppConfig');
-        if (WebConfig?.isServed) {
-            this.NewInstance(WebConfig);
-
-        } else {
-            this.NewInstance(Config);
-        }
-    }
-
-    // WATCH: keep an eye, it should accept null
-    private config = new BehaviorSubject<IConfig>(Config as IConfig);
-    config$: Observable<IConfig> = this.config.asObservable();
+  // WATCH: keep an eye, it should accept null
+  private config = new BehaviorSubject<IConfig>(Config as IConfig);
+  config$: Observable<IConfig> = this.config.asObservable();
 
 }

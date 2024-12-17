@@ -9,10 +9,8 @@ import { ProjectService } from '../../services/project.service';
 import { ProjectFormPartialComponent } from './form.partial';
 
 @Component({
-
     templateUrl: './create.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [ProjectFormPartialComponent, CommonModule]
 })
 export class ProjectCreateComponent implements OnInit {

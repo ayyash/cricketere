@@ -7,7 +7,6 @@ import { StarsPartialComponent } from '../common/stars.partial';
 @Component({
     selector: 'cr-project-card',
     templateUrl: './card.partial.html',
-    standalone: true,
     imports: [CommonModule, RouterModule, StarsPartialComponent],
     changeDetection: ChangeDetectionStrategy.OnPush
 })

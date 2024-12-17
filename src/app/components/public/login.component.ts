@@ -11,12 +11,10 @@ import { Toast } from '../../lib/toast/toast.state';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
-
-  templateUrl: './login.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  styleUrls: ['./login.less'],
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, TranslatePipe, MdInputModule, RouterModule]
+    templateUrl: './login.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    styleUrls: ['./login.less'],
+    imports: [CommonModule, ReactiveFormsModule, TranslatePipe, MdInputModule, RouterModule]
 })
 export class PublicLoginComponent implements OnInit {
 

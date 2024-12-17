@@ -36,10 +36,8 @@ const projects: IProject[] = [
 ];
 
 @Component({
-
     templateUrl: './list.html',
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [CommonModule, ProjectCardPartialComponent, RouterModule, StarsPartialComponent]
 })
 export class ProjectListComponent extends GtmComponent implements OnInit {

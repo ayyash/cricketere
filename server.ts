@@ -4,7 +4,7 @@ import 'zone.js';
 
 import { bootstrapApplication } from '@angular/platform-browser';
 import { provideServerRendering } from '@angular/platform-server';
-import { CommonEngine, CommonEngineRenderOptions } from '@angular/ssr';
+import { CommonEngine, CommonEngineRenderOptions } from '@angular/ssr/node';
 import { appProviders } from './src/app.config';
 import { AppComponent } from './src/app/app.component';
 import { REQUEST, RESPONSE } from './src/app/core/server.token';
