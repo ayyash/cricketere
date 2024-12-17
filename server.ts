@@ -29,6 +29,8 @@ const _app = () => bootstrapApplication(AppComponent, {
 }
 );
 
+export default _app;
+
 // create engine
 const engine = new CommonEngine({ bootstrap: _app });
 

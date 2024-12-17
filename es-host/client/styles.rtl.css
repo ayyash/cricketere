@@ -1,0 +1,1 @@
+.liga,.symbol:before,.symbolAfter:after{transform:scaleX(-1);filter:FlipH;-ms-filter:"FlipH"}:root{--sh-start: 100%;--sh-end: -100%}.ar,body,textarea,select,option,button,input{font-family:var(--sh-fontface-ar);direction:rtl}textarea{overflow-x:hidden}

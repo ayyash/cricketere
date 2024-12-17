@@ -7,7 +7,6 @@
     "start:rtl": "ng serve  --configuration=rtl --port 4100 --watch  --live-reload false",
     "start:prod": "ng serve --configuration=production --port 4100 --watch  --live-reload false",
     "build": "ng build --configuration=production",
-    "build:server": "ng run cricketereweb:server:production",
     "postbuild:ssr": "ng run cricketereweb:writeindex",
     "postbuildgulp": "cd ./gulp && gulp writeindex",
     "build:netlify": "ng  build --configuration=production,netlify && ng run cricketereweb:writeindex-netlify",

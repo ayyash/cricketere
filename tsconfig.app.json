@@ -9,7 +9,7 @@
     "files": [
       "src/main.ts",
       "src/typings.d.ts",
-      "src/server.ts"
+      "server.ts"
     ]
 
 }
