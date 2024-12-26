@@ -3,12 +3,11 @@ import { InputDirective } from './input.directive';
 
 @Component({
   selector: 'cr-input',
-  standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: 'input.css',
   encapsulation: ViewEncapsulation.None,
   template: `
-    <div class="{{ cssPrefix }}-field" [class.cr-invalid-form]="invalidForm">
+    <div class="{{ cssPrefix }}-field {{ typeCss }}" [class.cr-invalid-form]="invalidForm">
       <label class="cr-label" for="{{for}}">{{ placeholder }}</label>
       <ng-content></ng-content>
       <span class="cr-required"></span>
@@ -29,6 +28,12 @@ export class CrInputPartial implements AfterContentInit {
   @Input() error: string;
   @Input() invalidForm: boolean;
   @Input() for!: string;
+  @Input() type!: string;
+
+  get typeCss(): string {
+    return this.type ? `${this.cssPrefix}-${this.type}` : '';
+  }
+
 
   get errorText(): string {
     return this.error || this.inputDirective?.errorText();

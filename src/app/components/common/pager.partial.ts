@@ -27,7 +27,6 @@ import { SeoService } from '../../services/seo.service';
   `,
   styleUrls: ['./pager.less'],
   encapsulation: ViewEncapsulation.None,
-  standalone: true,
   imports: [CommonModule, TranslatePipe]
   // changeDetection: ChangeDetectionStrategy.OnPush // note to self, very little changes here so its okay
 })

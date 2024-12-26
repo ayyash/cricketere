@@ -1,7 +1,7 @@
 import { CurrencyPipe } from '@angular/common';
 import { Pipe, PipeTransform } from '@angular/core';
 
-@Pipe({ name: 'crCurrency', standalone: true })
+@Pipe({ name: 'crCurrency' })
 export class CustomCurrencyPipe extends CurrencyPipe implements PipeTransform {
 
 

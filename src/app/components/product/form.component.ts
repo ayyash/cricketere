@@ -63,12 +63,9 @@ import { ProductExpiryPartial } from './expiry.partial';
 
 
 
-    <cr-input placeholder="Expiration" error="This is expired">
-      <input type="hidden" crinput id="mmyy" pattern="[0-9]{4}" formControlName="mmyy" />
+    <cr-input placeholder="Expiration" error="Add a date in the future" class="c-5 dblock">
+      <input type="hidden" crinput id="mmyy" [required]="true" pattern="[0-9]{4}" formControlName="mmyy" />
       <cr-product-expiry (onValue)="expirationValue($event)"></cr-product-expiry>
-
-    <!-- <input type="text" placeholder="YY" id="yy" class="c-2" maxLength="2" inputmode="numeric" pattern="[0-9]{1,2}" #mm (change)="expirationValue(mm.value + yy.value)" /> -->
-    <!-- <input type="text" placeholder="MM" id="mm" class="c-2" maxLength="2" inputmode="numeric" pattern="[0-9]{1,2}" #yy (change)="expirationValue(mm.value + yy.value)" /> -->
     </cr-input>
 
 

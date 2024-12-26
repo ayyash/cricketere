@@ -8,7 +8,6 @@ import { DataService } from '../../services/data.service';
     selector: 'cr-data',
     template: `{{ (data$ | async)?.value}}`,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
     imports: [CommonModule]
 })
 export class DataPartialComponent {

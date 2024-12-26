@@ -6,7 +6,6 @@ import { InputValidators } from './validators';
 @Directive({
   selector: '[crinput]',
   providers: [{ provide: NG_VALIDATORS, multi: true, useExisting: InputDirective }],
-  standalone: true,
   exportAs: 'crinput',
 })
 export class InputDirective implements AfterViewInit, Validator {
@@ -46,7 +45,6 @@ export class InputDirective implements AfterViewInit, Validator {
   public errorText = signal('Required');
 
   validate(control: AbstractControl): ValidationErrors | null {
-
 
     if (this.validator) {
 
@@ -89,7 +87,7 @@ export class InputDirective implements AfterViewInit, Validator {
     if (this.block) {
       // its valid if the value is outside the block array
       if (control.value >= this.block[0] && control.value <= this.block[1]) {
-        this.errorText.set(`Invalid number`);
+        this.errorText.set('Invalid number');
         return {
           block: true
         }
@@ -109,6 +107,7 @@ export class InputDirective implements AfterViewInit, Validator {
       let _pattern = InputPatterns.get(this.crpattern);
       if (_pattern) {
         this.errorText.set(`Invalid ${this.crpattern} format`);
+
         return Validators.pattern(_pattern)(control);
       }
 

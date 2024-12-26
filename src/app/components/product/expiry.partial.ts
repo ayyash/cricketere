@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { AfterViewInit, ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Output, ViewChild, ViewEncapsulation } from '@angular/core';
-import { MdInputModule } from '../../lib/mdinput/mdinput.module';
+import { ReactiveFormsModule } from '@angular/forms';
 @Component({
     selector: 'cr-product-expiry',
     templateUrl: './expiry.partial.html',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
-    imports: [CommonModule, MdInputModule]
+    imports: [CommonModule, ReactiveFormsModule]
 })
 export class ProductExpiryPartial implements AfterViewInit {
   @ViewChild('month', {read: ElementRef}) month!: ElementRef;

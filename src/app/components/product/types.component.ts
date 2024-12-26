@@ -60,7 +60,7 @@ import { matchPasswordFn } from '../../lib/input/validators';
 
         <div class="spaced">
           <cr-input placeholder="Operating system">
-            <select crinput id="os" class="w100" formControlName="os" [required]="true">
+            <select crinput id="os" class="w100" formControlName="os" [required]="true" (change)="updatePlug()">
               <option value="">Select</option>
               <option value="1">Windows</option>
               <option value="2">Mac</option>
@@ -70,17 +70,31 @@ import { matchPasswordFn } from '../../lib/input/validators';
           </cr-input>
         </div>
 
+        <cr-input placeholder="Version" >
+          <input crinput type="number" id="version" class="w100" formControlName="version" (change)="updatePlug()" />
+          <ng-container helptext>OS version</ng-container>
+        </cr-input>
+
+        <cr-input type="hidden" error="Not allowed to have Mac version less than 5">
+          <input type="hidden" crinput id="plugs" formControlName="plugs" [required]="true" >
+
+        </cr-input>
+
+
+
         <cr-input placeholder="History">
           <textarea crinput id="history" [minlength]="10" [maxlength]="20"
            class="w100" formControlName="history" [required]="true"></textarea>
           <ng-container helptext>Write away</ng-container>
         </cr-input>
 
+
+
         <div class="spaced">
           <h4 class="f4 spaced">Checkboxes and radio boxes</h4>
 
           <cr-input placeholder="Colors" error="At least one color" >
-          <div formGroupName="colors" crinput>
+            <div formGroupName="colors" crinput>
               <label>
                 <input type="checkbox" name="colors" id="color1" formControlName="red">
                 Red
@@ -97,7 +111,7 @@ import { matchPasswordFn } from '../../lib/input/validators';
           </cr-input>
 
 
-          <cr-input placeholder="Terms and conditions" error="Please accept">
+          <cr-input placeholder="Terms and conditions" error="Please accept" type="checkbox">
             <input type="checkbox" name="accept" [required]="true" crinput id="accept" formControlName="accept">
           </cr-input>
           <cr-input placeholder="Gender"  [invalidForm]="fg.get('gender').invalid">
@@ -142,6 +156,14 @@ export class ProductTypesComponent implements OnInit {
     return { atleastOne: true };
 
   };
+  // minVersion = (control: AbstractControl): ValidationErrors | null => {
+  //   // if all controls are false, return error
+  //   if ( this.fg?.get('os').value === '2' && control.value < 5) {
+  //     return {minVersion: true};
+  //   }
+  //   return null;
+
+  // };
 
   constructor(private fb: FormBuilder) { }
 
@@ -156,9 +178,11 @@ export class ProductTypesComponent implements OnInit {
       pwd2: [''],
       appointment:[null],
       daterange:[null],
-      os: [],
+      os: [null],
+      version: [null],
       doc: [],
       history: [],
+      plugs: [],
       colors: this.fb.group({
         red: [],
         black: [],
@@ -174,8 +198,21 @@ export class ProductTypesComponent implements OnInit {
 
     this.fg.get('pwd2').setValidators(matchPasswordFn(this.fg.get('pwd')));
 
+
   }
 
+  updatePlug() {
+    // on change of form input, update hidden field
+    const os = this.fg.get('os').value;
+    const version = this.fg.get('version').value;
+    if (os === '2' && version < 5) {
+      this.fg.get('plugs').setValue(null);
+      // this.fg.get('plugs').setErrors({ minVersion: true });
+    } else {
+      this.fg.get('plugs').setValue(os + version);
+    }
+
+  }
   updateSize(f: HTMLInputElement) {
     this.fparams.size = f.files[0]?.size;
     this.fg.get('doc').updateValueAndValidity();
