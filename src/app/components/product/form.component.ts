@@ -94,8 +94,8 @@ export class ProductFormPartial implements OnInit {
   };
 
   unambiguousRoleValidator = (control: AbstractControl): ValidationErrors | null => {
-    const name = this.fg?.get('name')?.value;
-    const role = this.fg?.get('role')?.value;
+    const name = control?.get('name')?.value;
+    const role = control?.get('role')?.value;
     if (!role) return null;
     return name && role && name === role ? { unambiguousRole: true } : null;
   };

@@ -52,9 +52,9 @@ export class InputDirective implements AfterViewInit, Validator {
       if (_validator && !control.hasValidator(_validator)) {
         // if params:
         if (this.params) {
-          control.setValidators(_validator(this.params));
+          control.addValidators(_validator(this.params));
         } else {
-          control.setValidators(_validator);
+          control.addValidators(_validator);
         }
       }
     }
@@ -102,6 +102,7 @@ export class InputDirective implements AfterViewInit, Validator {
     }
 
     if(this.crpattern) {
+
       this.errorText.set('Invalid format');
       // if pattern exists in our list, use validators
       let _pattern = InputPatterns.get(this.crpattern);

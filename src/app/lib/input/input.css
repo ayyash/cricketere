@@ -166,7 +166,6 @@
   .cr-input {
     position: absolute;
     inset-inline-start: 0;
-    position: absolute;
   }
   .cr-feedback {
     float: none;
@@ -189,5 +188,14 @@
     margin-block-start: 0;
     margin-inline-start: 0;
   }
+}
+
+.cr-field.cr-static {
+
+  /* force floating label even if empty */
+  .cr-label:has(~ .cr-input:placeholder-shown) {
+    transform: translateY(-100%) scale(0.8);
+  }
+
 }
 

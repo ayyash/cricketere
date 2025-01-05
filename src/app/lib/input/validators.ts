@@ -36,22 +36,7 @@ export const pastValidator = (control: AbstractControl): ValidationErrors | null
     past: true
   };
 };
-export const pastValidatorFsn = (today: Date): ValidatorFn => {
-  return (control: AbstractControl): ValidationErrors | null => {
-    // date is yyyy-mm-dd, should be int eh future
-    // const today = Date.now();
 
-    if (!control.value) return null;
-    const value = new Date(control.value);
-
-    if (!value || +value < +today) {
-      return null;
-    }
-    return {
-      past: true
-    };
-  };
-};
 export const matchPasswordFn = (pwd: AbstractControl): ValidatorFn => {
   return (control: AbstractControl): ValidationErrors | null => {
     // get password and match, if equal return null
@@ -80,7 +65,7 @@ export const pastValidatorFn = (params: {date: string}): ValidatorFn => {
   };
 };
 
-export const dateRangeValidatorFn = (params: {minDate: string, maxDate?: string}): ValidatorFn => {
+export const dateRangeValidatorFn = (params: {minDate?: string, maxDate?: string}): ValidatorFn => {
   return (control: AbstractControl): ValidationErrors | null => {
     if (!control.value) return null;
 
@@ -124,6 +109,16 @@ export const sizeValidatorFn = (params: {size: number, max: number}): ValidatorF
   };
 };
 
+export const atleastOne = (control: AbstractControl): ValidationErrors | null => {
+  // if all controls are false, return error
+  const values = Object.values(control.value);
+  if (values.some(v => v === true)) {
+    return null;
+  }
+  return { atleastOne: true };
+
+};
+
 // export const dateRangeValidatorFn = (min: string, max?: string): ValidatorFn => {
 //   return (control: AbstractControl): ValidationErrors | null => {
 //     if (!control.value) return null;
@@ -158,6 +153,7 @@ export const InputValidators = new Map<string, any >([
   ['past', pastValidator],
   ['pastFn', pastValidatorFn],
   ['dateRangeFn', dateRangeValidatorFn],
-  ['sizeFn', sizeValidatorFn]
+  ['sizeFn', sizeValidatorFn],
+  ['atleastOne', atleastOne]
 ]);
 
