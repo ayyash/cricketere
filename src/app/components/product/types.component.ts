@@ -2,8 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ReactiveFormsModule, ValidationErrors } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { InputDirective } from '../../lib/input/input.directive';
-import { CrInputPartial } from '../../lib/input/input.partial';
+import { InputComponent } from '../../lib/input/input.const';
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -177,7 +176,7 @@ import { CrInputPartial } from '../../lib/input/input.partial';
     </div>
   </div>
     `,
-    imports: [CommonModule, RouterModule, ReactiveFormsModule, CrInputPartial, InputDirective],
+    imports: [CommonModule, RouterModule, ReactiveFormsModule, ...InputComponent],
     styleUrl: 'form.css',
     encapsulation: ViewEncapsulation.None
 })
