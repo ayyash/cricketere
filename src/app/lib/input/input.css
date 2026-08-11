@@ -173,6 +173,10 @@
   }
   .cr-required {
     position: static;
+    &:after {
+      line-height: 0;
+    }
+
   }
 }
 

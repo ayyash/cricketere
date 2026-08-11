@@ -12,7 +12,6 @@ if (environment.production) {
 }
 
 
-
-
-bootstrapApplication(AppComponent, {providers: appProviders});
+bootstrapApplication(AppComponent, {providers: appProviders})
+ .catch((err) => _debug(err, 'Error bootstrapping', 'e'));
 

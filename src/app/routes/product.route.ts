@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { FoodListComponent } from '../components/food/list.component';
 import { ProductCreateFormPartial } from '../components/product/create.component';
 import { ProductListComponent } from '../components/product/list.component';
 import { ProductTypesComponent } from '../components/product/types.component';
@@ -25,6 +26,11 @@ export const ProductRoutes: Routes = [
     path: 'upload',
     component: ProductUploadComponent,
     title: 'PRODUCTS_UPLOAD'
+  },
+  {
+    path: 'foods',
+    component: FoodListComponent,
+    title: 'PRODUCTS_FOODS'
   }
 
 ];

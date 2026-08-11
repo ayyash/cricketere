@@ -82,7 +82,8 @@
       LOGIN: 'Login to your sekrab account',
       LIST_PROJECTS: 'All projects list',
       PRODUCTS: 'Products List',
-      CREATE_PROJECT: 'Create a new project'
+      PRODUCTS_CREATE: 'Create a new project',
+      PRODUCTS_FOODS: 'Foods List',
     },
     NOT_FOUND: 'Hmm! Once in a while, we change address and forget to update the mailman.',
     DEFAULT_PAGE_TITLE: 'Welcome',

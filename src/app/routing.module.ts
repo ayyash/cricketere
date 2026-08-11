@@ -1,5 +1,5 @@
-import { importProvidersFrom, inject, provideEnvironmentInitializer } from '@angular/core';
-import { RouteReuseStrategy, Router, RouterModule, Routes, Scroll, TitleStrategy } from '@angular/router';
+import { inject, provideEnvironmentInitializer } from '@angular/core';
+import { RouteReuseStrategy, Router, Routes, Scroll, TitleStrategy, provideRouter, withDebugTracing, withEnabledBlockingInitialNavigation, withInMemoryScrolling, withPreloading, withRouterConfig } from '@angular/router';
 import { filter } from 'rxjs';
 import { NotFoundComponent } from './components/layouts/404.component';
 import { ErrorComponent } from './components/layouts/error.component';
@@ -92,25 +92,25 @@ const appFactory = ()  => {
 };
 
 export const AppRouteProviders = [
-  // provideRouter(AppRoutes,
-    // withPreloading(PreloadService),
-    // withInMemoryScrolling({
-    //   scrollPositionRestoration: 'disabled',
-    // }),
-    // withEnabledBlockingInitialNavigation(),
-    // withRouterConfig({
-    //   paramsInheritanceStrategy: 'always',
-    //   onSameUrlNavigation: 'reload'
-    // }),
-    // withDebugTracing()
-  // ),
-  importProvidersFrom(RouterModule.forRoot(AppRoutes, {
-    preloadingStrategy: PreloadService,
-    paramsInheritanceStrategy: 'always',
-    onSameUrlNavigation: 'reload',
-    scrollPositionRestoration: 'disabled',
-    initialNavigation: 'enabledBlocking'
-  })),
+  provideRouter(AppRoutes,
+    withPreloading(PreloadService),
+    withInMemoryScrolling({
+      scrollPositionRestoration: 'disabled',
+    }),
+    withEnabledBlockingInitialNavigation(),
+    withRouterConfig({
+      paramsInheritanceStrategy: 'always',
+      onSameUrlNavigation: 'reload'
+    }),
+    withDebugTracing()
+  ),
+  // importProvidersFrom(RouterModule.forRoot(AppRoutes, {
+  //   preloadingStrategy: PreloadService,
+  //   paramsInheritanceStrategy: 'always',
+  //   onSameUrlNavigation: 'reload',
+  //   scrollPositionRestoration: 'disabled',
+  //   initialNavigation: 'enabledBlocking'
+  // })),
   { provide: RouteReuseStrategy, useClass: RouteReuseService },
   { provide: TitleStrategy, useClass: CricketTitleStrategy },
   provideEnvironmentInitializer(appFactory)
