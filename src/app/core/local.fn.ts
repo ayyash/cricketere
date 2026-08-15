@@ -1,7 +1,8 @@
 import { HttpHandlerFn, HttpInterceptorFn, HttpRequest } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { catchAppError, debug } from './rxjs.operators';
-import { REQUEST, SERVER_URL } from './server.token';
+import { SERVER_URL } from './server.token';
+// import { REQUEST, SERVER_URL } from './server.token';
 
 
 export const LocalInterceptorFn: HttpInterceptorFn = (req: HttpRequest<any>, next: HttpHandlerFn) => {
@@ -13,7 +14,7 @@ export const LocalInterceptorFn: HttpInterceptorFn = (req: HttpRequest<any>, nex
   // const f = inject(Injector).get(INITIAL_CONFIG, null, {optional: true});
   // console.log('fffff', f);
   const serverUrl = inject(SERVER_URL, {optional: true});
-  const _req = inject(REQUEST, {optional: true});
+  // const _req = inject(REQUEST, {optional: true});
 
   console.log('serverurl', serverUrl);
    if (req.url.indexOf('localdata') < 0) {

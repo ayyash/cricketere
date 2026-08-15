@@ -1,11 +1,11 @@
 import express from 'express';
-import prerender from './prerender/fetch.js';
-import config from './server/config.js';
+// import prerender from './prerender/fetch.js';
+import { config } from './server/config.js';
 import country from './server/country.js';
 import expressConfig from './server/express.js';
 import language from './server/language.js';
-import routesBase from './server/routes-base.js';
-import routes from './server/routes.js';
+// import routesBase from './server/routes-base.js';
+import routes from './server/routes-ssr-url-pre.js';
 
 /*********************Configuration***********/
 
@@ -66,13 +66,15 @@ app.use(function (req, res, next) {
 // TODO: test language change in ssr
 
 // serve the right router
-const _routes = (config.ssr ? '-ssr' : '') + (config.urlBased ? '-url' : '') + (config.prepared ? '-pre' : '');
-if (config.withAppBaseHref) {
-  // special case with appbase href used in client
-  routesBase(app, config);
-} else {
-  routes(app, config);
-}
+// const _routes = (config.ssr ? '-ssr' : '') + (config.urlBased ? '-url' : '') + (config.prepared ? '-pre' : '');
+routes(app, config);
+
+// if (config.withAppBaseHref) {
+//   // special case with appbase href used in client
+//   routesBase(app, config);
+// } else {
+//   routes(app, config);
+// }
 
 app.get('/', function (req, res) {
   res.redirect(301, `/en/`);
@@ -106,7 +108,7 @@ const server = app.listen(port, async function (err) {
   }
   // if process.env.PRERENDER, then run this and close
   if (process.env.PRERENDER) {
-    await prerender(port, config);
+    // await prerender(port, config);
     console.log('Done prerendering');
     server.close();
   }

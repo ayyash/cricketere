@@ -1,10 +1,9 @@
-const express = require('express');
-
+import express from 'express';
 // multilingual, non url driven, client side only
-const renderer = require('./renderer');
+import renderer from './renderer';
 
 
-module.exports = function (app, config) {
+export default function (app, config) {
 
     renderer.htmlEngine(app);
 

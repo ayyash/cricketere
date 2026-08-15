@@ -1,5 +1,5 @@
 import { inject, provideEnvironmentInitializer } from '@angular/core';
-import { RouteReuseStrategy, Router, Routes, Scroll, TitleStrategy, provideRouter, withDebugTracing, withEnabledBlockingInitialNavigation, withInMemoryScrolling, withPreloading, withRouterConfig } from '@angular/router';
+import { RouteReuseStrategy, Router, Routes, Scroll, TitleStrategy, provideRouter, withInMemoryScrolling, withPreloading, withRouterConfig } from '@angular/router';
 import { filter } from 'rxjs';
 import { NotFoundComponent } from './components/layouts/404.component';
 import { ErrorComponent } from './components/layouts/error.component';
@@ -67,7 +67,6 @@ const AppRoutes: Routes = [
     data: { preload: true }
 
   },
-  // **gulproute**
   {
     path: '**',
     redirectTo: '/404', // make 404
@@ -85,7 +84,6 @@ const appFactory = ()  => {
   ).subscribe({
     next: (e: Scroll) => {
       _attn(e.position, 'position');
-      _attn(ConfigService.Config.isServed, 'config served');
 
     }
   });
@@ -97,12 +95,12 @@ export const AppRouteProviders = [
     withInMemoryScrolling({
       scrollPositionRestoration: 'disabled',
     }),
-    withEnabledBlockingInitialNavigation(),
+    // withEnabledBlockingInitialNavigation(),
     withRouterConfig({
       paramsInheritanceStrategy: 'always',
       onSameUrlNavigation: 'reload'
     }),
-    withDebugTracing()
+    // withDebugTracing()
   ),
   // importProvidersFrom(RouterModule.forRoot(AppRoutes, {
   //   preloadingStrategy: PreloadService,
@@ -116,97 +114,6 @@ export const AppRouteProviders = [
   provideEnvironmentInitializer(appFactory)
 ];
 
-/*
- useValue() {
-      _seqlog('AppRouteProviders');
-      const router = inject(Router);
-      const viewportScroller = inject(ViewportScroller);
 
-      router.events.pipe(
-        filter(event => event instanceof Scroll)
-      ).subscribe({
-        next: (e: Scroll) => {
-          if (e.position) {
-            // backward navigation
-            _attn(e.position, 'position');
-            viewportScroller.scrollToPosition(e.position);
-          } else if (e.anchor) {
-            // anchor navigation
-            _attn(e.anchor, 'anchor');
-            viewportScroller.scrollToAnchor(e.anchor);
-          } else {
-            // forward navigation
-            // check url if page exists do not scroll
-            if (!e.routerEvent.urlAfterRedirects.includes('page')) {
-              _attn('no page', 'scroll top');
-              viewportScroller.scrollToPosition([0, 0]);
-            }
-          }
-        }
-      });
-    },
-    */
-
-// @NgModule({
-//   imports: [
-//     RouterModule.forRoot(AppRoutes, {
-//       preloadingStrategy: PreloadService,
-//       paramsInheritanceStrategy: 'always',
-//       onSameUrlNavigation: 'reload',
-//       scrollPositionRestoration: 'disabled',
-//       initialNavigation: 'enabledBlocking'
-//     })
-//   ],
-//   exports: [RouterModule],
-//   providers: [{ provide: RouteReuseStrategy, useClass: RouteReuseService },
-//   { provide: TitleStrategy, useClass: CricketTitleStrategy }]
-
-// })
-// export class AppRoutingModule {
-//   constructor(
-//     router: Router,
-//     // location: Location, // angular/common
-//     viewportScroller: ViewportScroller,
-
-//   ) {
-//     _seqlog('app routing');
-
-//     router.events.pipe(
-//       filter(event => event instanceof Scroll)
-//     ).subscribe({
-//       next: (e: Scroll) => {
-//         if (e.position) {
-//           // backward navigation
-//           // _attn(e.position, 'position');
-//           viewportScroller.scrollToPosition(e.position);
-//         } else if (e.anchor) {
-//           // anchor navigation
-//           // _attn(e.anchor, 'anchor');
-//           viewportScroller.scrollToAnchor(e.anchor);
-//         } else {
-//           // forward navigation
-//           // check url if page exists do not scroll
-//           if (!e.routerEvent.urlAfterRedirects.includes('page')) {
-//             // _attn('no page', 'scroll top');
-//             viewportScroller.scrollToPosition([0, 0]);
-//           }
-//         }
-//       }
-//     });
-
-    // for netlify solution for URL based with /en/ base href, use query
-    // router.events.pipe(
-    //   filter(event => event instanceof NavigationEnd)
-    // ).subscribe({
-    //   next: (e: NavigationEnd) => {
-    //     if (router.url.indexOf('nf_route=') < 0 ) {
-    //       // not good enough this ignores other params
-    //       location.go(router.url, 'nf_route=1');
-    //     }
-    //   }
-    // });
-
-//   }
-// }
 
 

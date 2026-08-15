@@ -1,13 +1,14 @@
-const express = require('express');
+
+import express from 'express';
 // for ssr multilingual, URL driven, contains AppEngine
-const ssr = require('./ng/main');
-const localConfig = require('../localdata/config.prod.json');
+import localConfig from '../localdata/config.prod.json' with { type: 'json' };
+import { engine } from '../ssr2/server.mjs';
 
 
-module.exports = function (app, config) {
+export default function (app, config) {
 
   // angular express html engine
-  app.engine('html', ssr.crExpressEgine);
+  app.engine('html', engine);
   app.set('view engine', 'html');
   app.set('views', config.rootPath + 'client');
 
@@ -70,7 +71,7 @@ module.exports = function (app, config) {
 
     res.render(config.rootPath + `index/index.${res.locals.lang}.url.html`, {
       url: `${res.locals.serverUrl}${req.originalUrl}`,
-      serverUrlPath: res.locals.serverUrl,
+      serverUrl: res.locals.serverUrl,
       res,
       req,
       providers: [

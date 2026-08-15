@@ -21,7 +21,7 @@ export class GtmDirective implements AfterViewInit {
         this.el.nativeElement.setAttribute('data-group', this.shGtm.group || EnumGtmGroup.General);
     }
     @HostListener('click', ['$event.target'])
-    onClick(target: HTMLElement): void {
+    onClick(target): void {
         // if event is click send a click event
         GtmTracking.RegisterEvent({
             event: EnumGtmEvent.GroupClick,

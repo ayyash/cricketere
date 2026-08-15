@@ -1,9 +1,8 @@
-const express = require('express');
+import express from 'express';
 
 // multilingual url driven, clientside only
 
-module.exports = function (app, config) {
-
+export default function (app, config) {
 
 
 

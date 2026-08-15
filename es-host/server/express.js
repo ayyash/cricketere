@@ -1,7 +1,8 @@
-var cookieParser = require('cookie-parser');
-var express = require('express');
 
-module.exports = function (app) {
+import cookieParser from 'cookie-parser';
+import express from 'express';
+
+export default function (app) {
 
 
     app.use(cookieParser());

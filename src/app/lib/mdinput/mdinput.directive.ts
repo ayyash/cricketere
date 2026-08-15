@@ -1,8 +1,8 @@
-import { Directive, Input, OnInit, ElementRef, forwardRef, HostListener } from '@angular/core';
-import { Validator, UntypedFormControl, NG_VALIDATORS, Validators } from '@angular/forms';
+import { Directive, ElementRef, forwardRef, HostListener, Input, OnInit } from '@angular/core';
+import { NG_VALIDATORS, UntypedFormControl, Validator, Validators } from '@angular/forms';
+import { Observable, Subject } from 'rxjs';
 import { Res } from '../../core/resources';
 import { MdPatterns } from './validators';
-import { Subject, Observable } from 'rxjs';
 
 @Directive({
     // tslint:disable-next-line:directive-selector
@@ -56,7 +56,7 @@ export class MdInputDirective implements OnInit, Validator {
         this._focus.next(this.$element.value);
     }
     @HostListener('blur', ['$event.relatedTarget'])
-    onBlur(relatedTarget: HTMLElement) {
+    onBlur(relatedTarget) {
         this.focus = false;
         this._blur.next(relatedTarget);
 

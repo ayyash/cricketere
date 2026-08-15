@@ -35,7 +35,7 @@ async function renderToHtml(lang, route, port, config) {
 
 
 // let's pass the port along
-module.exports = async (port, config) => {
+export default  async (port, config) => {
 
   // generate /client/static/route/index.html
   // my static routes

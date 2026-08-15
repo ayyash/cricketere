@@ -3,7 +3,6 @@ import { inject, Inject, Injectable, Optional } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { Config } from '../config';
-import { GtmTracking } from '../core/gtm';
 import { IConfig } from '../models/config.model';
 
 
@@ -67,9 +66,9 @@ export class ConfigService {
         _seqlog('config next');
 
         // testing GTM
-        GtmTracking.Values = GtmTracking.MapUser({ name: 'userId', id: '123', email: 'email@address.com' });
-        GtmTracking.Values = GtmTracking.MapProfile({ language: 'en', country: 'jo' });
-        GtmTracking.SetValues(GtmTracking.Values);
+        // GtmTracking.Values = GtmTracking.MapUser({ name: 'userId', id: '123', email: 'email@address.com' });
+        // GtmTracking.Values = GtmTracking.MapProfile({ language: 'en', country: 'jo' });
+        // GtmTracking.SetValues(GtmTracking.Values);
 
 
         // here next

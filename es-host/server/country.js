@@ -1,6 +1,6 @@
 // var https = require('https');
 
-module.exports = function (config) {
+export default function (config) {
     return function (req, res, next) {
         // find user location or default
         const defaultCountryCode = "JO";

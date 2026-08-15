@@ -1,6 +1,6 @@
 // to make language change on ssr, use globals
 
-module.exports = function (config) {
+export default function (config) {
 
     return function (req, res, next) {
 
